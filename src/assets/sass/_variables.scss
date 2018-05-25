@@ -1,0 +1,105 @@
+// Color System
+// stylelint-disable
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$grays: () !default;
+$grays: map-merge((
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+), $grays);
+
+$blue:      #0078FF;
+$indigo:    #6610f2;
+$purple:    #5A51DE;
+$pink:      #FF004F;
+$red:       #E3111A;
+$orange:    #FF8F00;
+$yellow:    #FFCB00;
+$green:     #00DE51;
+$teal:      #20c997;
+$cyan:      #21C6E0;
+$teal-blue: #00CAFF;
+$tiffany:   #1ACEB3;
+$orchid:    #B959FF;
+$bronze:    #C67C3B;
+$facebook:  #415A93;
+$twitter:   #00CAFF;
+$pinterest: #AE2626;
+$raisin-black: #212734;
+$charcoal: #31394C;
+$payne-grey: #3D465E;
+$grey-blue: #47536C;
+
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-800 !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "teal-blue":  $teal-blue,
+  "tiffany":    $tiffany,
+  "orchid":     $orchid,
+  "bronze":     $bronze,
+  "facebook":   $facebook,
+  "twitter":    $twitter,
+  "pinterest":      $pinterest,
+  "raisin-black":   $raisin-black,
+  "charcoal":       $charcoal,
+  "payne-grey":     $payne-grey,
+  "grey-blue":      $grey-blue,
+), $theme-colors);
+
+// Grey Text And Background Color.
+$gray-percentages: 5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85,90, 92, 94, 96, 97, 98;
+
+@each $i in $gray-percentages {
+  // Text Gray
+  .text-gray-#{$i} {
+    color: lighten($black, $i);
+  }
+
+  // Background Color Gray
+  .bg-gray-#{$i} {
+    background-color: lighten($black, $i);
+  }
+}
