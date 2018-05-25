@@ -15,6 +15,14 @@
     <div class="row mt-2 d-flex justify-content-center">
       <button v-for="item in colorItems" :key="item" class="btn" :class="'btn-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
     </div>
+    <h3 class="my-4 text-gray-50">Outline Buttons</h3>
+    <div class="row d-flex justify-content-center">
+      <button v-for="item in aliasItems" :key="item" class="btn" :class="'btn-outline-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
+      <button class="btn btn-link">Link</button>
+    </div>
+    <div class="row mt-2 d-flex justify-content-center">
+      <button v-for="item in colorItems" :key="item" class="btn" :class="'btn-outline-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
+    </div>
     <h3 class="my-4 text-gray-50">Background Colors</h3>
     <div class="row d-flex justify-content-center">
       <div class="box-container d-flex flex-column">
