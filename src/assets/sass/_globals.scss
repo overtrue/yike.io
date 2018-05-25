@@ -1,0 +1,10 @@
+html,body {
+  height: 100%;
+  min-width: 1024px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility !important;
+}
