@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Color />
+    <Elements />
   </div>
 </template>
 
 <script>
-import Color from './components/Color'
+import Elements from './components/Elements'
 
 export default {
   name: 'app',
   components: {
-    Color,
+    Elements,
   }
 }
 </script>
