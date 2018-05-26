@@ -1,0 +1,14 @@
+// Grey Text And Background Color.
+$gray-degrees: 5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85,90, 92, 94, 96, 97, 98;
+
+@each $degree in $gray-degrees {
+  // Text Gray
+  .text-gray-#{$degree} {
+    color: lighten(#000, $degree);
+  }
+
+  // Background Color Gray
+  .bg-gray-#{$degree} {
+    background-color: lighten(#000, $degree);
+  }
+}

@@ -14,6 +14,8 @@ try {
   import('bootstrap')
 
   import('@sass/app.scss')
+  import('vue-material-design-icons/styles.css')
+
 } catch (e) {
   throw e
 }

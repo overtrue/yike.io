@@ -46,7 +46,11 @@ module.exports = {
           '@components': path.resolve(__dirname, 'src/components'),
           '@assets': path.resolve(__dirname, 'src/assets'),
           '@sass': path.resolve(__dirname, 'src/assets/sass'),
-        }
+          "icons": path.resolve(__dirname, "node_modules/vue-material-design-icons")
+        },
+        extensions: [
+          ".vue"
+        ]
       }
     }
   },
