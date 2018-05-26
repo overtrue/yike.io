@@ -40,7 +40,13 @@ module.exports = {
     return {
       resolve: {
         alias: {
-          "icons": path.resolve(__dirname, "node_modules/vue-material-design-icons")
+          '@modules': path.resolve(__dirname, 'src/modules'),
+          '@plugins': path.resolve(__dirname, 'src/plugins'),
+          '@utils': path.resolve(__dirname, 'src/utils'),
+          '@components': path.resolve(__dirname, 'src/components'),
+          '@assets': path.resolve(__dirname, 'src/assets'),
+          '@sass': path.resolve(__dirname, 'src/assets/sass'),
+          "@icons": path.resolve(__dirname, "node_modules/vue-material-design-icons")
         },
         extensions: [
           ".vue"

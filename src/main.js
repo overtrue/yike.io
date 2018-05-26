@@ -1,10 +1,17 @@
+import './bootstrap'
+
 import Vue from 'vue'
-import App from './App.vue'
-import './assets/sass/app.scss'
-import "vue-material-design-icons/styles.css"
+import { sync } from 'vuex-router-sync'
+import { default as store } from './vuex'
+import router from './router'
+import Root from './Root'
 
 Vue.config.productionTip = false
 
+sync(store, router)
+
 new Vue({
-  render: h => h(App)
+  store,
+  router,
+  render: h => h(Root)
 }).$mount('#app')

@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Elements />
+    <Navbar />
+    <div class="container mt-3">
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
-import Elements from './components/Elements'
+  import Navbar from '@components/Navbar'
 
-export default {
-  name: 'app',
-  components: {
-    Elements,
+  export default {
+    name: 'app',
+    components: {
+      Navbar,
+    }
   }
-}
 </script>

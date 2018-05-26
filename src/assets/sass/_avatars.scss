@@ -1,0 +1,9 @@
+$avatars: 30, 40, 45, 60, 80, 120;
+
+@each $size in $avatars {
+  .avatar-#{$size} {
+    border-radius: 100%;
+    width: #{$size}px;
+    height: #{$size}px;
+  }
+}

@@ -8,7 +8,7 @@
       <div v-for="item in colorItems" :key="item" class="text-item" :class="'text-' + item">{{ '.text-' + item }}</div>
     </div>
     <h3 class="my-5 display-2 text-gray-50">Buttons</h3>
-    <div v-for="size in ['btn-lg', 'normal', 'btn-sm']">
+    <div v-for="(size, index) in ['btn-lg', 'normal', 'btn-sm']" :key="'buttons-' + index">
       <h3 class="my-4 text-gray-50" :class="size">{{ size + ' buttons' }}</h3>
       <div class="row d-flex justify-content-center">
         <button v-for="item in aliasItems" :key="item" class="btn" :class="size + ' btn-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
@@ -17,7 +17,7 @@
         <button v-for="item in colorItems" :key="item" class="btn" :class="size + ' btn-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
       </div>
     </div>
-    <div v-for="size in ['btn-lg', '', 'btn-sm']">
+    <div v-for="(size, index) in ['btn-lg', '', 'btn-sm']" :key="'outline-button-' + index">
       <h3 class="my-4 text-gray-50" :class="size">{{ size + ' outline buttons' }}</h3>
       <div class="row d-flex justify-content-center">
         <button v-for="item in aliasItems" :key="item" class="btn" :class="size + ' btn-outline-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
@@ -52,6 +52,14 @@
       </div>
     </div>
 
+    <h3 class="my-5 display-2 text-gray-50">Avatars</h3>
+    <div class="row mt-4 d-flex justify-content-center align-items-end flex-wrap">
+      <div class="text-center p-3" v-for="item in avatars" >
+        <img src="https://pigjian.com/images/default_avatar.png" class="mr-2" :class="'avatar-'+item">
+        <div class="mt-1">{{ '.avatar-'+item }}</div>
+      </div>
+    </div>
+
     <h3 class="my-5 display-2 text-gray-50">Icons</h3>
     <div class="row mt-4 d-flex justify-content-center flex-wrap">
       <div class="icon-item"><menu-icon decorative /></div>
@@ -66,17 +74,17 @@
 </template>
 
 <script>
-  import AndroidIcon from "icons/android"
-  import UbuntuIcon from "icons/ubuntu"
-  import MenuIcon from "icons/menu"
-  import BellIcon from "icons/bell"
-  import MsgProcessing from "icons/message-processing"
-  import AccountCircleIcon from "icons/account-circle"
-
+  import AndroidIcon from "@icons/android"
+  import UbuntuIcon from "@icons/ubuntu"
+  import MenuIcon from "@icons/menu"
+  import BellIcon from "@icons/bell"
+  import MsgProcessing from "@icons/message-processing"
+  import AccountCircleIcon from "@icons/account-circle"
   export default {
     components: {MenuIcon, AndroidIcon, UbuntuIcon, AccountCircleIcon, MsgProcessing, BellIcon},
     data() {
       return {
+        avatars: [30, 40, 45, 60, 80, 120],
         grayDegrees: [5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85,90, 92, 94, 96, 97, 98],
         shadowDegrees: [0, 6, 30, 60],
         aliasItems: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'],

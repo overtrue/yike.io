@@ -15,3 +15,11 @@ Then, run the project:
 ```js
 npm run serve
 ```
+
+## Local Config
+
+First, copy the `.env.example` to `.env.local`:
+
+```shell
+cp .env.example .env.local
+```
