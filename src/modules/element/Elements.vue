@@ -8,7 +8,7 @@
       <div v-for="item in colorItems" :key="item" class="text-item" :class="'text-' + item">{{ '.text-' + item }}</div>
     </div>
     <h3 class="my-5 display-2 text-gray-50">Buttons</h3>
-    <div v-for="size in ['btn-lg', 'normal', 'btn-sm']">
+    <div v-for="(size, index) in ['btn-lg', 'normal', 'btn-sm']" :key="'buttons-' + index">
       <h3 class="my-4 text-gray-50" :class="size">{{ size + ' buttons' }}</h3>
       <div class="row d-flex justify-content-center">
         <button v-for="item in aliasItems" :key="item" class="btn" :class="size + ' btn-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
@@ -17,7 +17,7 @@
         <button v-for="item in colorItems" :key="item" class="btn" :class="size + ' btn-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
       </div>
     </div>
-    <div v-for="size in ['btn-lg', '', 'btn-sm']">
+    <div v-for="(size, index) in ['btn-lg', '', 'btn-sm']" :key="'outline-button-' + index">
       <h3 class="my-4 text-gray-50" :class="size">{{ size + ' outline buttons' }}</h3>
       <div class="row d-flex justify-content-center">
         <button v-for="item in aliasItems" :key="item" class="btn" :class="size + ' btn-outline-' + item">{{ item.charAt(0).toUpperCase() + item.slice(1) }}</button>
