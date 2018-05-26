@@ -9,3 +9,19 @@ body {
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility !important;
 }
+
+ul.plan-list {
+  padding: 0;
+  list-style: none;
+}
+
+  // Nav
+.navbar {
+  a {
+    color: $navbar-light-color;
+  }
+  .nav-item-icon {
+    font-size: 1.5rem;
+    color: $gray-400;
+  }
+}

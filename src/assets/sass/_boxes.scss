@@ -1,0 +1,17 @@
+.box {
+  padding: 1.5rem;
+  background: #fff;
+  @extend .shadow-6;
+
+  &.box-lg {
+    @extend .shadow-30;
+  }
+
+  &.box-flush {
+    padding: 0 0;
+  }
+
+  .box-heading {
+    margin-bottom: 1rem;
+  }
+}

@@ -52,6 +52,14 @@
       </div>
     </div>
 
+    <h3 class="my-5 display-2 text-gray-50">Avatars</h3>
+    <div class="row mt-4 d-flex justify-content-center align-items-end flex-wrap">
+      <div class="text-center p-3" v-for="item in avatars" >
+        <img src="https://pigjian.com/images/default_avatar.png" class="mr-2" :class="'avatar-'+item">
+        <div class="mt-1">{{ '.avatar-'+item }}</div>
+      </div>
+    </div>
+
     <h3 class="my-5 display-2 text-gray-50">Icons</h3>
     <div class="row mt-4 d-flex justify-content-center flex-wrap">
       <div class="icon-item"><menu-icon decorative /></div>
@@ -72,11 +80,11 @@
   import BellIcon from "@icons/bell"
   import MsgProcessing from "@icons/message-processing"
   import AccountCircleIcon from "@icons/account-circle"
-
   export default {
     components: {MenuIcon, AndroidIcon, UbuntuIcon, AccountCircleIcon, MsgProcessing, BellIcon},
     data() {
       return {
+        avatars: [30, 40, 45, 60, 80, 120],
         grayDegrees: [5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85,90, 92, 94, 96, 97, 98],
         shadowDegrees: [0, 6, 30, 60],
         aliasItems: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'],
