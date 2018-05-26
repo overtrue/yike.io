@@ -66,12 +66,12 @@
 </template>
 
 <script>
-  import AndroidIcon from "icons/android"
-  import UbuntuIcon from "icons/ubuntu"
-  import MenuIcon from "icons/menu"
-  import BellIcon from "icons/bell"
-  import MsgProcessing from "icons/message-processing"
-  import AccountCircleIcon from "icons/account-circle"
+  import AndroidIcon from "@icons/android"
+  import UbuntuIcon from "@icons/ubuntu"
+  import MenuIcon from "@icons/menu"
+  import BellIcon from "@icons/bell"
+  import MsgProcessing from "@icons/message-processing"
+  import AccountCircleIcon from "@icons/account-circle"
 
   export default {
     components: {MenuIcon, AndroidIcon, UbuntuIcon, AccountCircleIcon, MsgProcessing, BellIcon},
