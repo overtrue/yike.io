@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 module.exports = {
   // Project deployment base
@@ -35,7 +36,20 @@ module.exports = {
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: () => {},
-  configureWebpack: () => {},
+  configureWebpack: () => {
+    return {
+      resolve: {
+        alias: {
+          '@modules': path.resolve(__dirname, 'src/modules'),
+          '@plugins': path.resolve(__dirname, 'src/plugins'),
+          '@utils': path.resolve(__dirname, 'src/utils'),
+          '@components': path.resolve(__dirname, 'src/components'),
+          '@assets': path.resolve(__dirname, 'src/assets'),
+          '@sass': path.resolve(__dirname, 'src/assets/sass'),
+        }
+      }
+    }
+  },
 
   // CSS related options
   css: {
