@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 module.exports = {
   // Project deployment base
@@ -35,7 +36,18 @@ module.exports = {
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: () => {},
-  configureWebpack: () => {},
+  configureWebpack: () => {
+    return {
+      resolve: {
+        alias: {
+          "icons": path.resolve(__dirname, "node_modules/vue-material-design-icons")
+        },
+        extensions: [
+          ".vue"
+        ]
+      }
+    }
+  },
 
   // CSS related options
   css: {
