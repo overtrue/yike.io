@@ -11,6 +11,7 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
   line-height: 1.3em;
   padding: .5rem 1.15rem;
   border-width: 2px;
+  letter-spacing: 1px;
 
   &.btn-ghost {
     @extend .btn-outline-light;

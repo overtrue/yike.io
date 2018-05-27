@@ -6,7 +6,7 @@
           <header class="thread-header d-flex justify-content-between align-items-center">
             <user-card></user-card>
             <div class="thread-actions">
-              <button type="button" class="btn btn-icon no-border" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-icon btn-ghost no-border text-20" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <more-icon></more-icon>
               </button>
               <div class="dropdown-menu dropdown-menu-right">

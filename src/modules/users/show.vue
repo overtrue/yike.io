@@ -1,6 +1,6 @@
 <template>
   <div class="page-user-show">
-    <header class="page-header py-4 text-white">
+    <header class="page-header bg-grey-blue py-4 text-white">
       <div class="bg-image"><img src="https://source.unsplash.com/random/1440x300" alt=""></div>
       <div class="container">
         <div class="row align-items-center">

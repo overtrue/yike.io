@@ -49,7 +49,7 @@
         </button>
       </li>
       <li class="nav-item nav-item-icon">
-        <a class="text-20 btn btn-icon btn-outline-light" href="#">
+        <a class="text-24 btn btn-icon btn-ghost no-border" href="#">
           <bell-icon/>
         </a>
       </li>

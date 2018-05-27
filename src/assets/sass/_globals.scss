@@ -2,6 +2,7 @@ html,body {
   font-size: 14px;
   height: 100%;
   min-width: 1024px;
+  letter-spacing: 0.5px;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -17,6 +18,10 @@ ul.plan-list {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+article {
+  line-height: 1.9;
 }
 
   // Nav
@@ -44,7 +49,7 @@ ul.plan-list {
     justify-content: center;
     background: #eee;
     filter: blur(3px);
-    z-index: -1;
+    z-index: 0;
 
     img {
       min-width: 120%;
