@@ -7,7 +7,6 @@ html,body {
 
 body {
   background: #F7F7F7;
-  font-smoothing: antialiased;
   text-rendering: optimizeLegibility !important;
 }
 
@@ -18,10 +17,6 @@ ul.plan-list {
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-[v-cloak] {
-  display: none;
 }
 
   // Nav

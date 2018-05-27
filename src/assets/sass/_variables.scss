@@ -47,9 +47,15 @@ $theme-colors: (
 );
 
 $spacer: 30px;
-$font-family-sans-serif: Roboto;
+$font-family-sans-serif: Roboto, sans-serif;
 
 $link-color: $raisin-black;
 $link-hover-decoration: none;
 
 $list-group-border-color: lighten(#000, 95);
+
+$input-padding-x: 1.15rem;
+$input-border-width: 2px;
+$input-border-radius: 30px;
+$input-border-radius-lg: 30px;
+$input-border-radius-sm: 30px;

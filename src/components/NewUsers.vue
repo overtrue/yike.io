@@ -6,17 +6,17 @@
         <button class="btn btn-ghost btn-icon"><arrow-right></arrow-right></button>
       </div>
     </div>
-    <ul class="plan-list d-flex justify-content-around align-items-center flex-wrap px-2 pb-2">
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
-      <user-card type="vertical"></user-card>
+    <ul class="plan-list px-2 pb-2">
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
+      <user-card type="vertical w25"></user-card>
     </ul>
   </div>
 </template>

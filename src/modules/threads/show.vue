@@ -16,7 +16,7 @@
               </div>
             </div>
           </header>
-          <div class="thread-content mt-3 text-gray-50">
+          <div class="thread-content mt-3 text-gray-40 text-16">
             <h2 class="mb-3">微信小程序分享到朋友圈之曲线救国</h2>
             <p>Trait 是从 PHP 5.4 加入的一种细粒度代码复用的语法。以下是官方手册对 Trait 的描述：</p>
 
