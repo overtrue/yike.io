@@ -14,3 +14,17 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
 .btn[class*="btn-outline-"] {
   border-width: 2px;
 }
+
+.btn-icon {
+  @extend .btn-outline-light;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  color: #d8d8d8;
+  padding: 0;
+
+  &.no-border {
+    border-color: transparent;
+  }
+}

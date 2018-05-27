@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" v-cloak>
     <Navbar />
-    <div class="container mt-3">
+    <div class="main-content container mt-3">
       <router-view />
     </div>
   </div>

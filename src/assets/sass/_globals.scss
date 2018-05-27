@@ -15,6 +15,14 @@ ul.plan-list {
   list-style: none;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+[v-cloak] {
+  display: none;
+}
+
   // Nav
 .navbar {
   a {

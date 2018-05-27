@@ -5,3 +5,25 @@
   border: none;
   padding: 1rem 0;
 }
+
+
+// Carousel
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-image: none;
+  font-size: 30px;
+  color: #fff;
+  border: 2px solid #fff9;
+  border-radius: 100%;
+  line-height: 30px;
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+
+  .material-design-icon > .material-design-icon__svg {
+    bottom: 0 !important;
+  }
+}
