@@ -1,0 +1,26 @@
+.timeline {
+  list-style: none;
+  padding-left: 65px;
+
+  .timeline-item {
+    padding: 1rem 0;
+
+    .timeline-heading {
+      margin-left: -55px;
+    }
+    .timeline-body {
+      position: relative;
+      padding: 1rem;
+
+      &::after {
+        content: " ";
+        width: 2px;
+        background: #F0F0F0;
+        height: 100%;
+        position: absolute;
+        top: 15px;
+        left: -36px;
+      }
+    }
+  }
+}

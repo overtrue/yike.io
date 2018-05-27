@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-cloak>
+  <div v-cloak>
     <Navbar />
     <div class="main-content" :class="{'container my-3': withContainer}">
       <router-view />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import Navbar from '@components/Navbar'
+  import Navbar from '@components/navbar'
 
   export default {
     name: 'app',

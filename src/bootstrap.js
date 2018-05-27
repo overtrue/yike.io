@@ -12,7 +12,6 @@ try {
   window.$ = window.jQuery = import('jquery')
 
   import('bootstrap')
-
   import('@sass/app.scss')
   import('vue-material-design-icons/styles.css')
 

@@ -10,7 +10,7 @@ Vue.use(Router);
 
 const AppRoute = {
   path: '/',
-  component: () => import('../App'),
+  component: () => import('../app'),
   children: [...element, ...home, ...threads, ...users],
 };
 

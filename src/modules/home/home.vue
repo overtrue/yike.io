@@ -52,10 +52,10 @@
 </template>
 
 <script>
-  import Banner from "@components/Banner"
-  import HotTags from "@components/HotTags"
-  import UserRanking from "@components/UserRanking"
-  import NewUsers from "@components/NewUsers"
+  import Banner from "@components/banner"
+  import HotTags from "@components/hot-tags"
+  import UserRanking from "@components/user-ranking"
+  import NewUsers from "@components/new-users"
   import LikeIcon from "@icons/heart"
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
