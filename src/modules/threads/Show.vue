@@ -1,12 +1,12 @@
 <template>
   <div class="page-threads-show">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-9">
         <article class="box">
           <header class="thread-header d-flex justify-content-between align-items-center">
             <user-card></user-card>
             <div class="thread-actions">
-              <button type="button" class="btn btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button type="button" class="btn btn-icon no-border" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <more-icon></more-icon>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
@@ -32,7 +32,7 @@
           </div>
         </article>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="box box-flush mb-2">
           <img src="https://source.unsplash.com/random/400x300" class="img-fluid" alt="" />
 
@@ -40,18 +40,7 @@
             <div class="btn btn-primary">点击查看详情</div>
           </div>
         </div>
-        <div class="box">
-          <div class="box-heading">
-            热门话题
-          </div>
-          <ul class="plan-list text-gray-50">
-            <li class="py-2">#小程序开发 <span class="float-right">1.235k</span></li>
-            <li class="py-2">#小程序开发 <span class="float-right">820123</span></li>
-            <li class="py-2">#小程序开发 <span class="float-right">30271</span></li>
-            <li class="py-2">#小程序开发 <span class="float-right">10293</span></li>
-            <li class="py-2">#小程序开发 <span class="float-right">882</span></li>
-          </ul>
-        </div>
+        <hot-tags></hot-tags>
       </div>
     </div>
   </div>
@@ -60,8 +49,9 @@
 <script>
   import MoreIcon from "@icons/dots-horizontal"
   import UserCard from "@components/UserCard"
+  import HotTags from "@components/HotTags"
 
   export default {
-    components: {UserCard, MoreIcon}
+    components: {UserCard, HotTags, MoreIcon}
   }
 </script>
