@@ -1,10 +1,10 @@
 <template>
-  <div class="box">
+  <div class="box text-gray-50">
     <div class="box-heading d-flex align-items-center justify-content-between">
-      活跃用户
-      <button class="btn btn-icon btn-outline-light"><arrow-right-icon></arrow-right-icon></button>
+      <div class="text-13">活跃用户</div>
+      <button class="btn btn-icon"><arrow-right-icon></arrow-right-icon></button>
     </div>
-    <ul class="plan-list text-gray-50">
+    <ul class="plan-list">
       <user-card class="mb-2"><template slot="appends"><button class="btn btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-card>
       <user-card class="mb-2"><template slot="appends"><button class="btn btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-card>
       <user-card class="mb-2"><template slot="appends"><button class="btn btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-card>

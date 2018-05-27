@@ -1,10 +1,12 @@
 <template>
-  <div class="box">
-    <div class="box-heading d-flex align-items-center justify-content-between">
-      最新成员
-      <button class="btn btn-icon btn-outline-light"><arrow-right></arrow-right></button>
+  <div class="box box-flush text-gray-50">
+    <div class="box-body">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="text-13">最新成员</div>
+        <button class="btn btn-icon"><arrow-right></arrow-right></button>
+      </div>
     </div>
-    <ul class="plan-list text-gray-50 d-flex justify-content-around align-items-center flex-wrap">
+    <ul class="plan-list d-flex justify-content-around align-items-center flex-wrap px-2 pb-2">
       <user-card type="vertical"></user-card>
       <user-card type="vertical"></user-card>
       <user-card type="vertical"></user-card>
