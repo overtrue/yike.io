@@ -11,11 +11,11 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
   padding: .5rem 1.15rem;
 }
 
-.btn[class*="btn-outline-"] {
+.btn {
   border-width: 2px;
 }
 
-.btn-icon {
+.btn.btn-icon {
   @extend .btn-outline-light;
   height: 30px;
   width: 30px;
