@@ -5,3 +5,12 @@ $text-sizes: 10, 12, 13, 14, 16, 18, 20, 22, 24, 36, 48;
     font-size: #{$size}px;
   }
 }
+
+$text-opacitys: 0, 0.3, 0.6, 1;
+
+@each $opacity in $text-opacitys {
+  .text-white-#{$opacity * 100} {
+    color: #fff;
+    opacity: $opacity;
+  }
+}

@@ -34,3 +34,25 @@ ul.plan-list {
     color: $gray-400;
   }
 }
+
+// Header
+.page-header {
+  position: relative;
+  overflow: hidden;
+  .bg-image {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    filter: blur(3px);
+    z-index: -1;
+
+    img {
+      min-width: 120%;
+    }
+  }
+}

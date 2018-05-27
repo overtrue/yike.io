@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">首页</a>
+          <a class="nav-link" href="#" @click="$router.push({path: '/'})">首页</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">节点</a>
@@ -35,7 +35,7 @@
         <button class="btn btn-sm btn-outline-secondary"><plus-icon></plus-icon> 发起讨论</button>
       </li>
       <li class="nav-item nav-item-icon">
-        <a class="nav-link" href="#"><bell-icon/></a>
+        <a class="text-20 btn btn-icon btn-outline-light" href="#"><bell-icon/></a>
       </li>
       <li class="nav-item nav-link mr-md-2">
         <div class="btn-group">

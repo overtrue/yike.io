@@ -24,7 +24,7 @@
 
           <div class="threads-items">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item d-flex align-items-center justify-content-between cursor-pointer" v-for="i in 10" @click="$router.push({name: 'threads.show', params:{id: 1}})">
+              <li class="list-group-item d-flex align-items-center justify-content-between cursor-pointer" v-for="i in 20" @click="$router.push({name: 'threads.show', params:{id: 1}})">
                 <div class="d-flex align-items-center">
                   <a href="#" class="mr-2"><img src="https://source.unsplash.com/random/60x60" alt="" class="avatar-30"></a>
                   <div class="text-gray-50">这几天找工作遇到的面试题目，20 多家公司 100 多道题目</div>
