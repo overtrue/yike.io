@@ -4,7 +4,7 @@
       <div class="col-md-9">
         <article class="box">
           <header class="thread-header d-flex justify-content-between align-items-center">
-            <user-card></user-card>
+            <user-media></user-media>
             <div class="thread-actions">
               <button type="button" class="btn btn-icon btn-ghost no-border text-20" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <more-icon></more-icon>
@@ -48,10 +48,10 @@
 
 <script>
   import MoreIcon from "@icons/dots-horizontal"
-  import UserCard from "@components/UserCard"
-  import HotTags from "@components/HotTags"
+  import UserMedia from "@components/user-media"
+  import HotTags from "@components/hot-tags"
 
   export default {
-    components: {UserCard, HotTags, MoreIcon}
+    components: {UserMedia, HotTags, MoreIcon}
   }
 </script>

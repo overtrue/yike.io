@@ -4,7 +4,7 @@ import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import { default as store } from './vuex'
 import router from './router'
-import Root from './Root'
+import Root from './root'
 
 Vue.config.productionTip = false
 
