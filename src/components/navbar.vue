@@ -20,9 +20,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" @click="$router.push({path: '/'})">首页</a>
-        </li>
+        <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
+          <a href="#" class="nav-link">首页</a>
+        </router-link>
         <li class="nav-item">
           <a class="nav-link" href="#">讨论</a>
         </li>
@@ -60,12 +60,12 @@
             <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40 mr-2"/>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="#">
+            <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: 1 } }" exact>
               <account-icon class="mr-2"></account-icon>
-              个人中心</a>
-            <a class="dropdown-item" href="#">
+              个人中心</router-link>
+            <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
               <account-edit-icon class="mr-2"></account-edit-icon>
-              编辑资料</a>
+              编辑资料</router-link>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
               <logout-variant class="mr-2"></logout-variant>

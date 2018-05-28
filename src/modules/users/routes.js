@@ -5,4 +5,11 @@ export default [{
     container: false
   },
   component: () => import('./show')
+}, {
+  path: '/user/profile',
+  name: 'user.profile',
+  meta: {
+    container: false
+  },
+  component: () => import('./profile')
 }]

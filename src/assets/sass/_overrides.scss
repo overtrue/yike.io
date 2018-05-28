@@ -27,3 +27,20 @@
     bottom: 0 !important;
   }
 }
+
+// Breadcrumb
+.breadcrumb {
+  background: none;
+
+  .breadcrumb-item {
+    &:before {
+      color: lighten($black, 80);
+    }
+    a {
+      color: lighten($black, 80);
+    }
+    &.active a {
+      color: $white;
+    }
+  }
+}
