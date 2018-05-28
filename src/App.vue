@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-cloak>
+  <div id="app">
     <Navbar />
     <div class="main-content" :class="{'container my-3': withContainer}">
       <router-view />

@@ -10,8 +10,10 @@ Vue.config.productionTip = false
 
 sync(store, router)
 
-new Vue({
-  store,
-  router,
-  render: h => h(Root)
-}).$mount('#app')
+setTimeout(() => {
+  new Vue({
+    store,
+    router,
+    render: h => h(Root)
+  }).$mount('#app')
+}, 200)
