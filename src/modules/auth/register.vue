@@ -2,9 +2,13 @@
   <div class="row pt-3">
     <div class="offset-sm-4 col-sm-4">
       <div class="box">
-        <h4 class="text-center font-weight-normal mt-2">用户登录</h4>
+        <h4 class="text-center font-weight-normal mt-2">用户注册</h4>
         <div class="box-body">
           <form>
+            <div class="form-group input-group-lg">
+              <label>邮箱地址</label>
+              <input type="text" class="form-control" placeholder="example@yike.io">
+            </div>
             <div class="form-group input-group-lg">
               <label>用户名</label>
               <input type="text" class="form-control">
@@ -13,27 +17,13 @@
               <label>密码</label>
               <input type="password" class="form-control">
             </div>
-            <button class="my-2 btn btn-primary w-100 btn-lg">登录</button>
+            <button class="my-2 btn btn-primary w-100 btn-lg">注册</button>
           </form>
-        </div>
-        <div class="mb-2 d-flex justify-content-around">
-          <a href="" class="text-20 btn mx-1 btn-icon btn-pink">
-            <google-plus />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-facebook">
-            <facebook-icon />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-blue">
-            <qq-icon />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-dark">
-            <github-icon />
-          </a>
         </div>
       </div>
     </div>
     <div class="offset-sm-3 col-sm-6 text-center mt-2">
-      <p>没有账号？ <router-link class="text-blue" :to="{ name: 'auth.register' }">快速注册</router-link></p>
+      <p>已有账号？ <router-link class="text-blue" :to="{ name: 'auth.login' }">快速登录</router-link></p>
     </div>
   </div>
 </template>
