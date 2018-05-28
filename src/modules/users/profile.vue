@@ -81,11 +81,10 @@
   import UserMedia from "@components/user-media"
 
   import UserCard from "@components/user-card"
-  import UploadAvatar from "@components/upload-avatar"
 
   export default {
     name: 'show',
-    components: {UserMedia, UserCard, TwitterIcon, FacebookIcon, InstagramIcon, UploadAvatar, SettingIcon}
+    components: {UserMedia, UserCard, TwitterIcon, FacebookIcon, InstagramIcon, SettingIcon}
   }
 </script>
 
