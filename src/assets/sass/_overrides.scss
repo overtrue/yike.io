@@ -1,9 +1,21 @@
 // Dropdowns
 
 .dropdown-menu {
+  min-width: 192px;
   @extend .shadow-30;
   border: none;
   padding: 1rem 0;
+
+  .dropdown-item {
+    padding: 0.5rem 1.5rem;
+    line-height: 20px;
+
+    .material-design-icon {
+      color: #657786;
+      font-size: 18px;
+      bottom: -0.125rem;
+    }
+  }
 }
 
 
