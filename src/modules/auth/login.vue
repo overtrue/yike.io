@@ -16,10 +16,16 @@
             <button class="my-2 btn btn-primary w-100 btn-lg">登录</button>
           </form>
         </div>
-        <div class="card-footer border-0 bg-white text-center mb-2">
-          <button class="btn btn-pink"><google-plus /></button>
-          <button class="btn btn-facebook"><facebook /></button>
-          <button class="btn btn-twitter"><twitter /></button>
+        <div class="card-footer border-0 bg-white text-center mb-2 d-flex justify-content-center">
+          <a href="" class="text-20 btn mx-1 btn-icon btn-pink">
+            <google-plus />
+          </a>
+          <a href="" class="text-20 btn mx-1 btn-icon btn-facebook">
+            <facebook-icon />
+          </a>
+          <a href="" class="text-20 btn mx-1 btn-icon btn-twitter">
+            <twitter-icon />
+          </a>
         </div>
       </div>
     </div>
@@ -31,21 +37,10 @@
 
 <script>
   import GooglePlus from '@icons/google-plus'
-  import Facebook from '@icons/facebook'
-  import Twitter from '@icons/twitter'
+  import FacebookIcon from '@icons/facebook'
+  import TwitterIcon from '@icons/twitter'
 
   export default {
-    components: {GooglePlus, Facebook, Twitter}
+    components: {GooglePlus, FacebookIcon, TwitterIcon}
   }
 </script>
-
-<style lang="scss" scoped>
-  .card-footer .btn {
-    width: 36px;
-    height: 36px;
-    line-height: 18px;
-    padding: 0;
-    margin-right: 15px;
-    margin-left: 15px;
-  }
-</style>
