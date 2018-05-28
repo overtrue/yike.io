@@ -60,15 +60,22 @@
             <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40 mr-2"/>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-item">
+              <a href="#">
+                <div class="text-16 text-gray-30">安小超超超</div>
+                <div>@overtrue</div>
+              </a>
+            </div>
+            <div class="dropdown-divider"></div>
             <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: 1 } }" exact>
-              <account-icon class="mr-2"></account-icon>
+              <account-icon class="mr-1"></account-icon>
               个人中心</router-link>
             <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
-              <account-edit-icon class="mr-2"></account-edit-icon>
+              <account-edit-icon class="mr-1"></account-edit-icon>
               编辑资料</router-link>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
-              <logout-variant class="mr-2"></logout-variant>
+              <logout-variant class="mr-1"></logout-variant>
               退出登录</a>
           </div>
         </div>
