@@ -8,8 +8,5 @@ export default [{
 }, {
   path: '/user/profile',
   name: 'user.profile',
-  meta: {
-    container: false
-  },
   component: () => import('./profile')
 }]
