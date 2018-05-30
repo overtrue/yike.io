@@ -4,20 +4,20 @@
       <div class="box">
         <h4 class="text-center font-weight-normal mt-2">用户注册</h4>
         <div class="box-body">
-          <form>
+          <form @submit.prevent="submit">
             <div class="form-group input-group-lg">
               <label>邮箱地址</label>
-              <input type="text" class="form-control" placeholder="example@yike.io">
+              <input type="text" class="form-control" placeholder="example@yike.io" v-model="email">
             </div>
             <div class="form-group input-group-lg">
               <label>用户名</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" placeholder="" v-model="username">
             </div>
             <div class="form-group input-group-lg">
               <label>密码</label>
-              <input type="password" class="form-control">
+              <input type="password" class="form-control" placeholder="" v-model="password">
             </div>
-            <button class="my-2 btn btn-primary w-100 btn-lg">注册</button>
+            <button type="submit" class="my-2 btn btn-primary w-100 btn-lg">注册</button>
           </form>
         </div>
       </div>
@@ -29,12 +29,31 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import GooglePlus from '@icons/google-plus'
   import FacebookIcon from '@icons/facebook'
   import QqIcon from '@icons/qqchat'
   import GithubIcon from '@icons/github-circle'
 
   export default {
-    components: {GooglePlus, FacebookIcon, QqIcon, GithubIcon}
+    components: {GooglePlus, FacebookIcon, QqIcon, GithubIcon},
+    data() {
+      return {
+        username: '',
+        email: '',
+        password: '',
+      }
+    },
+    methods: {
+      ...mapActions(['attemptRegister']),
+
+      async submit() {
+        const { username, email, password } = this
+
+        this.attemptRegister({ username, email, password })
+
+        this.$router.push({ name: 'home' })
+      }
+    }
   }
 </script>

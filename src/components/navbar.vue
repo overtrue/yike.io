@@ -42,44 +42,50 @@
     </div>
 
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex align-items-center">
-      <li class="nav-item">
-        <button class="btn btn-sm btn-outline-secondary">
-          <plus-icon></plus-icon>
-          发起讨论
-        </button>
-      </li>
-      <li class="nav-item nav-item-icon">
-        <a class="text-24 btn btn-icon btn-ghost no-border" href="#">
-          <bell-icon/>
-        </a>
-      </li>
-      <li class="nav-item nav-link mr-md-2">
-        <div class="btn-group">
-          <a href="#" class="dropdown-toggle"
-             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40 mr-2"/>
+      <template v-if="isLogged">
+        <li class="nav-item">
+          <button class="btn btn-sm btn-outline-secondary">
+            <plus-icon></plus-icon>
+            发起讨论
+          </button>
+        </li>
+        <li class="nav-item nav-item-icon">
+          <a class="text-24 btn btn-icon btn-ghost no-border" href="#">
+            <bell-icon/>
           </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-item">
-              <a href="#">
-                <div class="text-16 text-gray-30">安小超超超</div>
-                <div>@overtrue</div>
-              </a>
+        </li>
+        <li class="nav-item nav-link mr-md-2">
+          <div class="btn-group">
+            <a href="#" class="dropdown-toggle"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40 mr-2"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-item">
+                <a href="#">
+                  <div class="text-16 text-gray-30">{{ currentUser.name }}</div>
+                  <div>@{{ currentUser.username }}</div>
+                </a>
+              </div>
+              <div class="dropdown-divider"></div>
+              <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: 1 } }" exact>
+                <account-icon class="mr-1"></account-icon>
+                个人中心</router-link>
+              <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
+                <account-edit-icon class="mr-1"></account-edit-icon>
+                编辑资料</router-link>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="javascript:void(0);" @click="logout">
+                <logout-variant class="mr-1"></logout-variant>
+                退出登录</a>
             </div>
-            <div class="dropdown-divider"></div>
-            <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: 1 } }" exact>
-              <account-icon class="mr-1"></account-icon>
-              个人中心</router-link>
-            <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
-              <account-edit-icon class="mr-1"></account-edit-icon>
-              编辑资料</router-link>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">
-              <logout-variant class="mr-1"></logout-variant>
-              退出登录</a>
           </div>
-        </div>
-      </li>
+        </li>
+      </template>
+      <template v-else>
+        <router-link :to="{ name: 'auth.login' }" tag="li" class="nav-item"><a href="javascript:void(0);">登录</a></router-link>
+        <router-link :to="{ name: 'auth.register' }" tag="li" class="nav-item"><a href="javascript:void(0);">注册</a></router-link>
+      </template>
     </ul>
 
   </nav>
@@ -93,6 +99,7 @@
   import AccountIcon from '@icons/account'
   import AccountEditIcon from '@icons/account-edit'
   import LogoutVariant from '@icons/logout-variant'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     components: {
@@ -103,6 +110,12 @@
       MagnifyIcon,
       AccountEditIcon,
       LogoutVariant
+    },
+    computed: {
+      ...mapGetters(['isLogged', 'currentUser'])
+    },
+    methods: {
+      ...mapActions(['logout'])
     }
   }
 </script>

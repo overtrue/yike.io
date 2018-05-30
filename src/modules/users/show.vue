@@ -8,8 +8,8 @@
             <img src="https://source.unsplash.com/random/100x100" alt="User avatar" class="avatar-120"/>
 
             <div class="px-md-4">
-              <h4>安小超超超</h4>
-              <p>Keep calm and coding.</p>
+              <h4>{{ currentUser.name }}</h4>
+              <p>{{ currentUser.bio }}</p>
               <div class="text-white">
                 <a href="#" class="text-white mr-1">124 <span class="text-white-60">粉丝</span></a>
                 <a href="#" class="text-white mx-1">84 <span class="text-white-60">关注</span></a>
@@ -115,6 +115,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   import TwitterIcon from '@icons/twitter'
   import FacebookIcon from '@icons/facebook'
   import InstagramIcon from '@icons/instagram'
@@ -127,6 +129,9 @@
 
   export default {
     name: 'show',
-    components: {UserMedia, UserCard, TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers}
+    components: {UserMedia, UserCard, TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers},
+    computed: {
+      ...mapGetters(['currentUser'])
+    }
   }
 </script>
