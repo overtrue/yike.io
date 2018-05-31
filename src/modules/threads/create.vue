@@ -16,9 +16,9 @@
       <div class="col-md-3">
         <div class="box p-0">
           <div class="tags p-2">
-            <span class="badge badge-primary mr-1">小程序</span>
-            <span class="badge badge-secondary mr-1">OAuth</span>
-            <span class="badge badge-success">授权</span>
+            <span class="btn btn-outline-secondary m-1">小程序</span>
+            <span class="btn btn-outline-primary m-1">OAuth</span>
+            <span class="btn btn-outline-success m-1">授权</span>
           </div>
           <div class="border-top d-flex justify-content-center p-2">
             <button class="btn btn-primary mr-2">立即发布</button>
@@ -32,6 +32,7 @@
 
 <script>
   import CodeMirror from "codemirror"
+  import PlusIcon from "@icons/plus"
 
   require("@sass/markdown.scss")
   require("codemirror/mode/gfm/gfm")
@@ -39,6 +40,7 @@
   require("codemirror/keymap/sublime")
 
   export default {
+    components: {PlusIcon},
     data() {
       return {
         editor: {},

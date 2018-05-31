@@ -6,6 +6,10 @@ export default [{
   },
   component: () => import('./show')
 }, {
+  path: 'notifications',
+  name: 'user.notification',
+  component: () => import('./notification')
+}, {
   path: '/user',
   component: () => import('./profile'),
   children: [{

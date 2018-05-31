@@ -50,9 +50,9 @@
           </router-link>
         </li>
         <li class="nav-item nav-item-icon">
-          <a class="text-24 btn btn-icon btn-ghost no-border" href="#">
+          <router-link :to="{ name: 'user.notification' }" class="text-24 btn btn-icon btn-ghost no-border">
             <bell-icon/>
-          </a>
+          </router-link>
         </li>
         <li class="nav-item nav-link mr-md-2">
           <div class="btn-group">
