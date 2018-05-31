@@ -49,6 +49,7 @@
         <label>当前所在地</label>
         <input type="text" class="form-control">
       </div>
+      <button class="btn btn-primary rounded">保存</button>
     </form>
   </div>
 </template>

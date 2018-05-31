@@ -6,9 +6,10 @@
           <form>
             <div class="box-heading border-bottom">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control border-0">
+                <input type="text" class="form-control border-0" v-model="form.title">
               </div>
             </div>
+            <textarea class="form-control border-0" id="thread-content" cols="30" rows="20"></textarea>
           </form>
         </div>
       </div>
@@ -30,13 +31,43 @@
 </template>
 
 <script>
+  import CodeMirror from "codemirror"
+
+  require("@sass/markdown.scss")
+  require("codemirror/mode/gfm/gfm")
+  require("codemirror/addon/display/placeholder")
+  require("codemirror/keymap/sublime")
+
   export default {
     data() {
       return {
-        content: ''
+        editor: {},
+        form: {
+          content: ''
+        }
       }
     },
-    watch: {
+    mounted() {
+      this.setupEditor()
+    },
+    methods: {
+      setupEditor() {
+        let vm = this
+
+        this.editor = CodeMirror.fromTextArea(document.getElementById('thread-content'), {
+          keyMap: "sublime",
+          mode:  "markdown",
+          lineWrapping: true,
+          autoCloseBrackets: true,
+          matchBrackets: true,
+          value: vm.form.content || '',
+          profile: 'html'
+        })
+
+        this.editor.on('change', function(editor){
+          vm.form.content = editor.getValue()
+        })
+      },
     }
   }
 </script>
