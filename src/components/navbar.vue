@@ -58,7 +58,7 @@
           <div class="btn-group">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40 mr-2"/>
+              <img :src="currentUser.avatar" class="avatar-40 mr-2"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-item">

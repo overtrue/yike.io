@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 d-flex align-items-center">
-            <img src="https://source.unsplash.com/random/100x100" alt="User avatar" class="avatar-120"/>
+            <img :src="currentUser.avatar" alt="User avatar" class="avatar-120"/>
 
             <div class="px-md-4">
               <h4>{{ currentUser.name }}</h4>
