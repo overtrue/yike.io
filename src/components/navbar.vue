@@ -10,7 +10,7 @@
           <menu-icon decorative/>
         </a>
       </li>
-      <li class="nav-item"><a class="navbar-brand mx-3 text-22" href="#">一刻</a></li>
+      <li class="nav-item"><router-link :to="{ name: 'home' }" class="navbar-brand mx-3 text-22">一刻</router-link></li>
       <li class="nav-item">
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">

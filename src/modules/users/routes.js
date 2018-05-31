@@ -22,7 +22,7 @@ export default [{
     component: () => import('./profile/account')
   }, {
     path: 'notification',
-    name: 'user.notification',
+    name: 'user.notification-setting',
     component: () => import('./profile/notification')
   }, {
     path: 'bindings',
