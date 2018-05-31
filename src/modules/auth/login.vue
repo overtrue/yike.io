@@ -6,7 +6,7 @@
         <div class="box-body">
           <form @submit.prevent="submit">
             <div class="form-group input-group-lg">
-              <label>用户名</label>
+              <label>用户名<small>（邮箱）</small></label>
               <input type="text" class="form-control" v-model="username">
             </div>
             <div class="form-group input-group-lg">

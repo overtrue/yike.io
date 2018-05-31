@@ -12,16 +12,16 @@ export const attemptLogin = ({ dispatch }, payload) =>
 
       return Promise.resolve()
     })
-    // .then(() => dispatch('loadUser'))
+    .then(() => dispatch('loadUser'))
 
 export const attemptRegister = ({ dispatch }, payload) =>
   services.postRegister(payload)
-    .then(({ token, user }) => {
-      dispatch('setUser', user)
+    .then(({ token }) => {
       dispatch('setToken', token)
 
-      return user // keep promise chain
+      return Promise.resolve()
     })
+    .then(() => dispatch('loadUser'))
 
 export const logout = ({ dispatch }) => {
   // localforage.getItem(userTokenStorageKey).then((token) => {
