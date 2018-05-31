@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="boxes">
     <div class="box">
       <div class="box-heading border-bottom">
         <h5>修改密码</h5>
@@ -28,7 +28,7 @@
       <form class="w-50">
         <div class="form-group">
           <label>原邮箱</label>
-          <input type="text" disabled class="form-control" value="example@yike.io">
+          <input type="text" disabled class="form-control" :value="currentUser.email">
         </div>
         <div class="form-group">
           <label>新邮箱</label>
@@ -40,3 +40,13 @@
     </div>
   </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
+  }
+</script>

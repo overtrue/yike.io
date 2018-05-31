@@ -44,10 +44,10 @@
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex align-items-center">
       <template v-if="isLogged">
         <li class="nav-item">
-          <button class="btn btn-sm btn-outline-secondary">
+          <router-link :to="{ name: 'threads.create' }" exact class="btn btn-sm btn-outline-secondary">
             <plus-icon></plus-icon>
             发起讨论
-          </button>
+          </router-link>
         </li>
         <li class="nav-item nav-item-icon">
           <a class="text-24 btn btn-icon btn-ghost no-border" href="#">

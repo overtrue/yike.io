@@ -6,7 +6,7 @@
     <form class="w-50">
       <div class="form-group">
         <label>昵称</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" v-model="user.name">
       </div>
       <div class="form-group">
         <label>性别</label>
@@ -28,12 +28,12 @@
       </div>
       <div class="form-group">
         <label>邮箱地址</label>
-        <input type="email" class="form-control" placeholder="example@yike.io">
+        <input type="email" class="form-control" placeholder="example@yike.io" v-model="user.email">
         <small class="form-text text-muted">You can manage verified email addresses in your <a href="#" class="text-blue">email settings</a>.</small>
       </div>
       <div class="form-group">
         <label>座右铭</label>
-        <textarea class="form-control"></textarea>
+        <textarea class="form-control" v-model="user.bio"></textarea>
         <small class="form-text text-muted">You can @mention other users and organizations to link to them.</small>
       </div>
       <div class="form-group">
@@ -52,3 +52,21 @@
     </form>
   </div>
 </template>
+
+<script>
+  import { mapGetters } from 'vuex'
+
+  export default {
+    data() {
+      return {
+        user: {}
+      }
+    },
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
+    created() {
+      this.user = this.currentUser
+    },
+  }
+</script>
