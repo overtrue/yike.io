@@ -61,6 +61,7 @@
 
         this.attemptLogin({ username, password })
 
+        this.$message.success('欢迎回来~')
         this.$router.push({ name: 'home' })
       },
     }

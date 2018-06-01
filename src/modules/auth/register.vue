@@ -52,6 +52,7 @@
 
         this.attemptRegister({ username, email, password })
 
+        this.$message.warning('注册成功，请先验证你邮箱地址！')
         this.$router.push({ name: 'home' })
       }
     }

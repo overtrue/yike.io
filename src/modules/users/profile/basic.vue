@@ -91,7 +91,10 @@
 
         const result = await user.patch(this.user.id, this.user)
 
-        this.setUser(result)
+        if (result) {
+          this.setUser(result)
+          this.$message.success('成功修改用户信息')
+        }
       }
     }
   }
