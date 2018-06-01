@@ -62,13 +62,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-item">
-                <a href="#">
+                <router-link :to="{ name: 'users.show', params: { id: currentUser.id } }">
                   <div class="text-16 text-gray-30">{{ currentUser.name }}</div>
                   <div>@{{ currentUser.username }}</div>
-                </a>
+                </router-link>
               </div>
               <div class="dropdown-divider"></div>
-              <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: 1 } }" exact>
+              <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: currentUser.id } }" exact>
                 <account-icon class="mr-1"></account-icon>
                 个人中心</router-link>
               <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
