@@ -9,6 +9,13 @@ export default [{
     },
     component: () => import('./center/dynamic')
   }, {
+    path: 'threads',
+    name: 'users.threads',
+    meta: {
+      container: false
+    },
+    component: () => import('./center/threads')
+  }, {
     path: 'followers',
     name: 'users.followers',
     meta: {
@@ -23,10 +30,6 @@ export default [{
     },
     component: () => import('./center/following')
   }]
-}, {
-  path: 'notifications',
-  name: 'user.notification',
-  component: () => import('./notification')
 }, {
   path: '/user',
   component: () => import('./profile'),

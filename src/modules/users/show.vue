@@ -31,12 +31,21 @@
         </div>
       </div>
     </header>
-    <nav class="nav justify-content-center py-2 bg-white text-center shadow-6">
-      <div class="nav-item"><router-link :to="{ name: 'users.show' }" class="nav-link active">最新动态</router-link></div>
-      <div class="nav-item"><a href="#" class="nav-link text-gray-60">讨论 12</a></div>
-      <div class="nav-item"><a href="#" class="nav-link text-gray-60">回复 234</a></div>
-      <div class="nav-item"><a href="#" class="nav-link text-gray-60">关于</a></div>
-    </nav>
+    <div class="nav nav-tab-line justify-content-center bg-white text-center shadow-6">
+      <div class="nav-item">
+        <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
+      </div>
+      <div class="nav-item">
+        <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 12</router-link>
+      </div>
+      <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
+      <div class="nav-item">
+        <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 21</router-link>
+      </div>
+      <div class="nav-item">
+        <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 111</router-link>
+      </div>
+    </div>
 
     <div class="container pt-4">
       <div class="row">
