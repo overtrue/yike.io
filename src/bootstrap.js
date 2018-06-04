@@ -1,6 +1,6 @@
 
-window._ = import('lodash');
-window.Popper = import('popper.js').default;
+window._ = import('lodash')
+window.Popper = import('popper.js').default
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -13,8 +13,26 @@ try {
 
   import('bootstrap')
   import('@sass/app.scss')
+  import('typeface-ubuntu-mono')
   import('vue-material-design-icons/styles.css')
 
+  // check if the implementation is available
+  if (typeof Promise.prototype['finally'] !== 'function') {
+    // implementation
+    Promise.prototype['finally'] = function (callback) {
+      const constructor = this.constructor
+
+      return this.then(function (value) {
+        return constructor.resolve(callback()).then(function () {
+          return value
+        })
+      }, function (reason) {
+        return constructor.resolve(callback()).then(function () {
+          throw reason
+        })
+      })
+    }
+  }
 } catch (e) {
   throw e
 }

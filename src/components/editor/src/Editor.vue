@@ -32,7 +32,6 @@
   import CodeTagsIcon from "@icons/code-tags"
   import FormatListBulletedIcon from "@icons/format-list-bulleted"
   import FormatListNumbersIcon from "@icons/format-list-numbers"
-  require('typeface-ubuntu-mono')
 
   export default {
     name: 'editor',
@@ -62,6 +61,11 @@
         selection: null,
         undoManager: null,
         content: null,
+      }
+    },
+    watch: {
+      value() {
+        this.editSession.setValue(this.value)
       }
     },
     methods: {

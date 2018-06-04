@@ -16,6 +16,7 @@
     "localforage": "^1.7.1",
     "lodash": "^4.17.10",
     "popper.js": "^1.14.3",
+    "prismjs": "^1.14.0",
     "typeface-ubuntu-mono": "0.0.54",
     "vue": "^2.5.16",
     "vue-material-design-icons": "^1.4.0",
