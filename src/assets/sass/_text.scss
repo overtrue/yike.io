@@ -2,7 +2,7 @@ $text-sizes: 10, 12, 13, 14, 16, 18, 20, 22, 24, 36, 48;
 
 @each $size in $text-sizes {
   .text-#{$size} {
-    font-size: #{$size}px;
+    font-size: #{$size}px !important;
   }
 }
 

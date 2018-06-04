@@ -1,29 +1,37 @@
 <template>
   <div class="page-threads-show">
     <div class="row">
-      <div class="col-md-9">
-        <div class="box">
+      <div class="col-md-9 m-auto">
+        <div class="box box-flush">
           <form>
-            <div class="box-heading border-bottom">
+            <div class="box-heading box-body border-bottom mb-0">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control border-0" v-model="form.title">
+                <input type="text" class="form-control border-0 px-0 text-24" v-model="form.title" placeholder="请在这里输入标题">
               </div>
             </div>
-            <textarea class="form-control border-0" id="thread-content" cols="30" rows="20"></textarea>
+            <editor v-model="form.content"></editor>
+            <div class="box-footer border-top p-2 d-flex justify-content-between">
+              <div class="left-actions d-flex align-items-center">
+                <span class="text-muted">发布到</span>
+                <div class="dropdown ml-1">
+                  <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    小程序开发
+                  </div>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </div>
+                <span class="text-muted ml-2">标签</span>
+                <button class="btn btn-ghost btn-icon ml-2"><plus-icon></plus-icon></button>
+              </div>
+              <div class="right-actions">
+                <button type="button" class="btn btn-primary">立即发布</button>
+                <button type="button" class="btn btn-secondary ml-1">保存为草稿</button>
+              </div>
+            </div>
           </form>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="box p-0">
-          <div class="tags p-2">
-            <span class="btn btn-outline-secondary m-1">小程序</span>
-            <span class="btn btn-outline-primary m-1">OAuth</span>
-            <span class="btn btn-outline-success m-1">授权</span>
-          </div>
-          <div class="border-top d-flex justify-content-center p-2">
-            <button class="btn btn-primary mr-2">立即发布</button>
-            <button class="btn btn-secondary">保存草稿</button>
-          </div>
         </div>
       </div>
     </div>
@@ -31,45 +39,22 @@
 </template>
 
 <script>
-  import CodeMirror from "codemirror"
-  import PlusIcon from "@icons/plus"
-
-  require("@sass/markdown.scss")
-  require("codemirror/mode/gfm/gfm")
-  require("codemirror/addon/display/placeholder")
-  require("codemirror/keymap/sublime")
+  import Editor from "@components/editor"
 
   export default {
-    components: {PlusIcon},
+    components: {
+      Editor,
+    },
     data() {
       return {
-        editor: {},
         form: {
-          content: ''
+          content: '安正超'
         }
       }
     },
     mounted() {
-      this.setupEditor()
     },
     methods: {
-      setupEditor() {
-        let vm = this
-
-        this.editor = CodeMirror.fromTextArea(document.getElementById('thread-content'), {
-          keyMap: "sublime",
-          mode:  "markdown",
-          lineWrapping: true,
-          autoCloseBrackets: true,
-          matchBrackets: true,
-          value: vm.form.content || '',
-          profile: 'html'
-        })
-
-        this.editor.on('change', function(editor){
-          vm.form.content = editor.getValue()
-        })
-      },
     }
   }
 </script>

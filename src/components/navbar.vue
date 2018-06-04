@@ -10,7 +10,9 @@
           <menu-icon decorative/>
         </a>
       </li>
-      <li class="nav-item"><router-link :to="{ name: 'home' }" class="navbar-brand mx-3 text-22">一刻</router-link></li>
+      <li class="nav-item">
+        <router-link :to="{ name: 'home' }" class="navbar-brand mx-3 text-22">一刻</router-link>
+      </li>
       <li class="nav-item">
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">
@@ -70,10 +72,12 @@
               <div class="dropdown-divider"></div>
               <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: currentUser.id } }" exact>
                 <account-icon class="mr-1"></account-icon>
-                个人中心</router-link>
+                个人中心
+              </router-link>
               <router-link class="dropdown-item" :to="{ name: 'user.profile' }" exact>
                 <account-edit-icon class="mr-1"></account-edit-icon>
-                编辑资料</router-link>
+                编辑资料
+              </router-link>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="javascript:void(0);" @click="logout">
                 <logout-variant class="mr-1"></logout-variant>

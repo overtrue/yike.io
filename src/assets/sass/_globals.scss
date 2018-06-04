@@ -11,6 +11,21 @@ body {
   text-rendering: optimizeLegibility !important;
 }
 
+$placeholder-color: #6c757d70;
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $placeholder-color !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: $placeholder-color !important;
+}
+::-ms-input-placeholder { /* IE 10+ */
+  color: $placeholder-color !important;
+}
+::-moz-placeholder { /* Firefox 18- */
+  color: $placeholder-color !important;
+}
+
+
 ul.plan-list {
   padding: 0;
   list-style: none;
