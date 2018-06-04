@@ -17,7 +17,10 @@
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <button class="btn btn-outline-light mx-1" v-if="currentUser && currentUser.id != user.id">关注 TA</button>
+            <template v-if="currentUser && currentUser.id != user.id">
+              <button class="btn btn-outline-light mx-1" @click="follow" v-if="!user.has_followed">关注 TA</button>
+              <button class="btn btn-outline-warning mx-1" @click="unfollow" v-else>取消关注</button>
+            </template>
             <a href="" class="text-20 btn mx-1 btn-icon btn-twitter">
               <twitter-icon></twitter-icon>
             </a>
@@ -90,9 +93,23 @@
     },
     methods: {
       async getUser() {
-        let resource = new Resource('user/' + this.$route.params.id)
+        let resource = new Resource(`user/${this.$route.params.id}`)
 
         this.user = await resource.get()
+      },
+      async follow() {
+        let resource = new Resource(`user/${this.$route.params.id}/follow`)
+
+        await resource.post()
+
+        this.user.has_followed = true
+      },
+      async unfollow() {
+        let resource = new Resource(`user/${this.$route.params.id}/unfollow`)
+
+        await resource.post()
+
+        this.user.has_followed = false
       }
     }
   }
