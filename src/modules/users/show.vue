@@ -5,11 +5,11 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 d-flex align-items-center">
-            <img :src="currentUser.avatar" alt="User avatar" class="avatar-120"/>
+            <img :src="user.avatar" alt="User avatar" class="avatar-120"/>
 
             <div class="px-md-4">
-              <h4>{{ currentUser.name }}</h4>
-              <p>{{ currentUser.bio }}</p>
+              <h4>{{ user.name }}</h4>
+              <p>{{ user.bio }}</p>
               <div class="text-white">
                 <router-link :to="{ name: 'users.followers' }" class="text-white mr-1">124 <span class="text-white-60">粉丝</span></router-link>
                 <router-link :to="{ name: 'users.following' }" class="text-white mx-1">84 <span class="text-white-60">关注</span></router-link>
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <button class="btn btn-outline-light mx-1">关注 TA</button>
+            <button class="btn btn-outline-light mx-1" v-if="currentUser && currentUser.id != user.id">关注 TA</button>
             <a href="" class="text-20 btn mx-1 btn-icon btn-twitter">
               <twitter-icon></twitter-icon>
             </a>
@@ -64,6 +64,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import Resource from '@utils/resource'
 
   import TwitterIcon from '@icons/twitter'
   import FacebookIcon from '@icons/facebook'
@@ -76,8 +77,23 @@
   export default {
     name: 'show',
     components: {TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers},
+    data() {
+      return {
+        user: {}
+      }
+    },
     computed: {
       ...mapGetters(['currentUser'])
+    },
+    created() {
+      this.getUser()
+    },
+    methods: {
+      async getUser() {
+        let resource = new Resource('user/' + this.$route.params.id)
+
+        this.user = await resource.get()
+      }
     }
   }
 </script>
