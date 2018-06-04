@@ -11,8 +11,8 @@
               <h4>{{ user.name }}</h4>
               <p>{{ user.bio }}</p>
               <div class="text-white">
-                <router-link :to="{ name: 'users.followers' }" class="text-white mr-1">124 <span class="text-white-60">粉丝</span></router-link>
-                <router-link :to="{ name: 'users.following' }" class="text-white mx-1">84 <span class="text-white-60">关注</span></router-link>
+                <router-link :to="{ name: 'users.followers' }" class="text-white mr-1">{{ user.followers_count }} <span class="text-white-60">粉丝</span></router-link>
+                <router-link :to="{ name: 'users.following' }" class="text-white mx-1">{{ user.followings_count }} <span class="text-white-60">关注</span></router-link>
               </div>
             </div>
           </div>
@@ -43,10 +43,10 @@
       </div>
       <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
       <div class="nav-item">
-        <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 21</router-link>
+        <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 {{ user.followings_count }}</router-link>
       </div>
       <div class="nav-item">
-        <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 111</router-link>
+        <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 {{ user.followers_count }}</router-link>
       </div>
     </div>
 
@@ -88,12 +88,17 @@
     computed: {
       ...mapGetters(['currentUser'])
     },
+    beforeRouteUpdate(to, from, next) {
+      this.getUser(to.params.id)
+
+      next()
+    },
     created() {
-      this.getUser()
+      this.getUser(this.$route.params.id)
     },
     methods: {
-      async getUser() {
-        let resource = new Resource(`user/${this.$route.params.id}`)
+      async getUser(id) {
+        let resource = new Resource(`user/${id}`)
 
         this.user = await resource.get()
       },
@@ -103,6 +108,7 @@
         await resource.post()
 
         this.user.has_followed = true
+        this.user.followers_count++
       },
       async unfollow() {
         let resource = new Resource(`user/${this.$route.params.id}/unfollow`)
@@ -110,6 +116,7 @@
         await resource.post()
 
         this.user.has_followed = false
+        this.user.followers_count--
       }
     }
   }

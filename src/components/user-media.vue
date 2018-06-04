@@ -6,12 +6,12 @@
     <div class="ml-2">
       <div>
         <a href="#" @click="$router.push({name: 'users.show', params:{id: 1}})">
-          <h6 class="mb-0 text-black-50 text-13 d-inline-block">安小超超超</h6>
+          <h6 class="mb-0 text-black-50 text-13 d-inline-block">{{ user.name }}</h6>
           <slot name="name-appends"></slot>
         </a>
       </div>
       <slot name="description">
-        <div class="text-12 text-gray-70">Tencent Inc.</div>
+        <div class="text-12 text-gray-70">{{ user.bio }}</div>
       </slot>
     </div>
     <slot name="appends"></slot>
@@ -19,7 +19,7 @@
 
   <div class="user-media text-center d-inline-block p-1" v-else>
     <a href="#">
-      <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40" alt="">
+      <img :src="user.avatar" class="avatar-40" :alt="user.username">
       <slot></slot>
     </a>
   </div>
@@ -32,6 +32,9 @@
       type: {
         type: String,
         default: 'default',
+      },
+      user: {
+        type: Object
       }
     }
   }
