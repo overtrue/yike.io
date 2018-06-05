@@ -18,8 +18,8 @@
 </template>
 
 <script>
-  import * as ace from 'brace';
-  import 'brace/mode/markdown';
+  import * as ace from 'brace'
+  import 'brace/mode/markdown'
   import "../theme-yike"
   import PlusIcon from "@icons/plus"
   import LinkIcon from "@icons/link"
@@ -56,6 +56,7 @@
     },
     data() {
       return {
+        contentBackup: false,
         editor: null,
         editSession: null,
         selection: null,
@@ -65,7 +66,8 @@
     },
     watch: {
       value() {
-        this.editSession.setValue(this.value)
+        if (this.contentBackup == this.value) {return}
+        this.value && this.editSession.setValue(this.value, 1)
       }
     },
     methods: {
@@ -83,16 +85,18 @@
         this.selection = this.editSession.getSelection()
         this.undoManager = this.editSession.getUndoManager()
 
+        this.editor.$blockScrolling = Infinity
         this.editor.setHighlightActiveLine(false)
         this.editor.setShowPrintMargin(false)
-
-        this.editSession.setValue(this.value)
         this.editSession.setUseSoftTabs(true)
         this.editSession.setUseWrapMode(true)
+        this.editSession.setValue(this.value || '', 1)
         this.editor.getSelection().moveCursorFileEnd()
 
         this.editSession.on('change', () => {
-          this.$emit('input', this.editor.getValue())
+          let content = this.editor.getValue()
+          this.$emit('input', content)
+          this.contentBackup = content
         })
       },
 

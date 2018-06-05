@@ -22,7 +22,7 @@
             </ul>
           </div>
 
-          <threads-list></threads-list>
+          <threads-list :threads="threads"></threads-list>
         </div>
       </div>
       <div class="col-md-3">
@@ -42,6 +42,19 @@
   import ThreadsList from "@components/threads-list"
 
   export default {
-    components: {Banner, HotTags, UserRanking, NewUsers, ThreadsList}
+    data() {
+      return {
+        threads: []
+      }
+    },
+    components: {Banner, HotTags, UserRanking, NewUsers, ThreadsList},
+    methods: {
+      loadThreads() {
+        this.api('threads').get().then(({data}) => this.threads = data)
+      }
+    },
+    mounted() {
+      this.loadThreads()
+    }
   }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-threads-show">
+  <div class="page-threads-show" v-if="ready">
     <div class="row">
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
@@ -33,7 +33,7 @@
 
 <script>
   import Editor from "@components/editor"
-  import Resource from '@utils/resource'
+  import localforage from "localforage"
   import { Select as ElSelect, Option as ElOption } from "element-ui"
   import 'element-ui/lib/theme-chalk/select.css'
 
@@ -46,6 +46,7 @@
     },
     data() {
       return {
+        ready: false,
         nodes: [],
         busing: false,
         form: {
@@ -60,18 +61,44 @@
         }
       }
     },
+    watch: {
+      form: {
+        deep: true,
+        handler() {
+          localforage.setItem('thread.form', this.form)
+        }
+      }
+    },
     computed: {
       formReady() {
-        return !this.busing && this.form.title.length > 5 && this.form.node_id > 0 && this.form.content.markdown.length > 30
+        return !this.busing
+          && this.form.title.length > 5
+          && this.form.node_id > 0
+          && this.form.content.markdown && this.form.content.markdown.length > 30
       }
     },
     mounted() {
       this.loadNodes()
       if (this.$route.name == 'threads.edit') {
-        this.loadThread(this.$route.params.id)
+        this.loadThread(this.$route.params.id).then(this.syncFromCache).then(() => {
+          this.ready = true
+        })
+      } else {
+        this.syncFromCache()
+        this.ready = true
       }
     },
     methods: {
+      syncFromCache() {
+        localforage.getItem('thread.form', (err, form) => {
+          if (!err && typeof form == 'object') {
+            this.form = Object.assign(this.form, form)
+          }
+        })
+      },
+      clearCache() {
+        localforage.removeItem('thread.form')
+      },
       loadNodes() {
         this.busing = true
         return this.api('nodes').get().then((response) => {
@@ -80,7 +107,7 @@
         }).finally(() => this.busing = false)
       },
       loadThread(id) {
-        this.api('threads').find(id).then(thread => this.form = Object.assign(this.form, thread))
+        return this.api('threads').find(id).then(thread => this.form = Object.assign(this.form, thread))
       },
       submit(draft = true) {
         this.form.is_draft = draft
@@ -97,6 +124,7 @@
         promise.then((response) => {
           this.$message.success('内容已' + (draft ? '保存为草稿' : isEdit ? '更新' : '发布'))
           this.$router.replace({name: 'threads.show', params: {id: response.id}})
+          this.clearCache()
         }).finally(() => this.busing = false)
       }
     }

@@ -6,8 +6,9 @@ class Resource {
     this._id = id
   }
 
-  find(id) {
-    return this.get('/'+id)
+  find(id, relations = []) {
+    let relation = relations.length > 0 ? '/?include='+relations.join(',') : ''
+    return this.get('/'+id + relation)
   }
 
   update(id, data) {
