@@ -89,7 +89,9 @@
       ...mapGetters(['currentUser'])
     },
     beforeRouteUpdate(to, from, next) {
-      this.getUser(to.params.id)
+      if (to.params.id != from.params.id) {
+        this.getUser(to.params.id)
+      }
 
       next()
     },

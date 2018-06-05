@@ -9,8 +9,10 @@
       <user-media class="list-group-item" v-for="user in users" :user="user">
         <template slot="appends" slot-scope="prop">
           <div class="ml-auto align-self-center d-flex">
-            <button class="btn btn-icon btn-ghost mr-1 text-18" v-if="!prop.data.has_followed && prop.data.id != currentUser.id"><plus-icon /></button>
-            <button class="btn btn-icon btn-ghost mr-1 text-18" v-else><minus-icon /></button>
+            <template v-if="prop.data.id != currentUser.id && false">
+              <button class="btn btn-icon btn-ghost mr-1 text-18" v-if="!prop.data.has_followed"><plus-icon /></button>
+              <button class="btn btn-icon btn-ghost mr-1 text-18" v-else><minus-icon /></button>
+            </template>
             <button class="btn btn-icon btn-ghost mr-1 text-18"><email-icon /></button>
           </div>
         </template>
