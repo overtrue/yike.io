@@ -1,20 +1,20 @@
 <template>
   <div class="user-media d-flex" v-if="type == 'default'">
-    <a href="" @click="$router.push({name: 'users.show', params:{id: 1}})">
-      <img src="https://pigjian.com/images/default_avatar.png" class="avatar-40" alt=""/>
-    </a>
+    <router-link :to="{name: 'users.show', params:{id: user.id}}">
+      <img :src="user.avatar" class="avatar-40" :alt="user.username"/>
+    </router-link>
     <div class="ml-2">
       <div>
-        <a href="#" @click="$router.push({name: 'users.show', params:{id: 1}})">
+        <router-link :to="{name: 'users.show', params: {id: user.id}}">
           <h6 class="mb-0 text-black-50 text-13 d-inline-block">{{ user.name }}</h6>
           <slot name="name-appends"></slot>
-        </a>
+        </router-link>
       </div>
       <slot name="description">
         <div class="text-12 text-gray-70">{{ user.bio }}</div>
       </slot>
     </div>
-    <slot name="appends"></slot>
+    <slot name="appends" :data="user"></slot>
   </div>
 
   <div class="user-media text-center d-inline-block p-1" v-else>

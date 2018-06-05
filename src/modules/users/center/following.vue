@@ -7,9 +7,10 @@
     </form>
     <div class="list-group list-group-flush">
       <user-media class="list-group-item" v-for="user in users" :user="user">
-        <template slot="appends">
+        <template slot="appends" slot-scope="prop">
           <div class="ml-auto align-self-center d-flex">
-            <button class="btn btn-icon btn-ghost mr-1 text-18"><plus-icon /></button>
+            <button class="btn btn-icon btn-ghost mr-1 text-18" v-if="!prop.data.has_followed && prop.data.id != currentUser.id"><plus-icon /></button>
+            <button class="btn btn-icon btn-ghost mr-1 text-18" v-else><minus-icon /></button>
             <button class="btn btn-icon btn-ghost mr-1 text-18"><email-icon /></button>
           </div>
         </template>
@@ -22,18 +23,23 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Resource from '@utils/resource'
 
   import UserMedia from '@components/user-media'
   import EmailIcon from '@icons/email'
   import PlusIcon from '@icons/plus'
+  import MinusIcon from '@icons/minus'
 
   export default {
-    components: {UserMedia, PlusIcon, EmailIcon},
+    components: {UserMedia, PlusIcon, EmailIcon, MinusIcon},
     data() {
       return {
         users: []
       }
+    },
+    computed: {
+      ...mapGetters(['currentUser'])
     },
     created() {
       this.followings()
