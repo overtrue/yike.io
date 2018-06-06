@@ -8,21 +8,21 @@
           <div class="box-body">
             <ul class="nav nav-pills">
               <li class="nav-item">
-                <a class="nav-link active" href="#">综合讨论</a>
+                <a class="nav-link" :class="{active: currentThreadsTab == 'default'}" href="javascript:;" @click="currentThreadsTab = 'default'">综合讨论</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">精选</a>
+                <a class="nav-link" :class="{active: currentThreadsTab == 'featured'}" href="javascript:;" @click="currentThreadsTab = 'featured'">精选</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">零回复</a>
+                <a class="nav-link" :class="{active: currentThreadsTab == 'zeroComment'}" href="javascript:;" @click="currentThreadsTab = 'zeroComment'">零回复</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">最新发布</a>
+                <a class="nav-link" :class="{active: currentThreadsTab == 'recent'}" href="javascript:;" @click="currentThreadsTab = 'recent'">最新发布</a>
               </li>
             </ul>
           </div>
 
-          <threads-list :threads="threads"></threads-list>
+          <threads-list :threads="threads[currentThreadsTab]" @page-changed="handlePageChanged"></threads-list>
         </div>
       </div>
       <div class="col-md-3">
@@ -44,13 +44,27 @@
   export default {
     data() {
       return {
-        threads: []
+        threads: {
+          default: {},
+          featured: {},
+          zeroComment: {},
+          recent: {},
+        },
+        currentThreadsTab: 'default'
       }
     },
     components: {Banner, HotTags, UserRanking, NewUsers, ThreadsList},
+    watch:{
+      currentThreadsTab() {
+        this.loadThreads(1)
+      }
+    },
     methods: {
-      loadThreads() {
-        this.api('threads').get().then(({data}) => this.threads = data)
+      loadThreads(page = 1) {
+        this.api('threads').get('?page='+page).then(threads => this.threads[this.currentThreadsTab] = threads)
+      },
+      handlePageChanged(page) {
+        this.loadThreads(page)
       }
     },
     mounted() {
