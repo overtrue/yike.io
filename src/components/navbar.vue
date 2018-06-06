@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto">
         <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
-          <a href="#" class="nav-link">首页</a>
+          <a href="javascript:void(0);" class="nav-link">首页</a>
         </router-link>
         <li class="nav-item">
           <a class="nav-link" href="#">讨论</a>
@@ -31,9 +31,9 @@
         <li class="nav-item">
           <a class="nav-link" href="#">问答</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">节点</a>
-        </li>
+        <router-link :to="{ name: 'nodes.show' }" exact tag="li" class="nav-item">
+          <a href="javascript:void(0);" class="nav-link">节点</a>
+        </router-link>
         <li class="nav-item">
           <a class="nav-link" href="#">话题</a>
         </li>
