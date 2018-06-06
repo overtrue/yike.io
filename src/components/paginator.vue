@@ -18,13 +18,15 @@
     props: {
       meta: {
         type: Object,
-        default: {
-          total: 1,
-          per_page: 1,
-          from: 1,
-          to: 1,
-          last_page: 1,
-          current_page: 1
+        default() {
+          return {
+            total: 1,
+            per_page: 1,
+            from: 1,
+            to: 1,
+            last_page: 1,
+            current_page: 1
+          }
         }
       }
     },
