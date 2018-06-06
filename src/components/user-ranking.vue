@@ -5,12 +5,10 @@
       <button class="btn btn-ghost btn-icon"><arrow-right-icon></arrow-right-icon></button>
     </div>
     <ul class="plan-list">
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-media>
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-media>
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-media>
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template></user-media>
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon no-border ml-auto"><check-icon></check-icon></button></template></user-media>
-      <user-media class="mb-2"><template slot="appends"><button class="btn btn-ghost btn-icon no-border ml-auto"><check-icon></check-icon></button></template></user-media>
+      <user-media class="mb-2" v-for="item in users" :key="item.id" :user="item">
+        <template slot="appends"><button class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template>
+        <template slot="description"><div class="text-gray-70 text-12">{{ item.created_at_timeago }}</div></template>
+      </user-media>
     </ul>
   </div>
 </template>
@@ -23,7 +21,20 @@
 
   export default {
     name: 'NewUsers',
-    components: {UserMedia, ArrowRightIcon, CheckIcon, PlusIcon}
+    components: {UserMedia, ArrowRightIcon, CheckIcon, PlusIcon},
+    data() {
+      return {
+        users: []
+      }
+    },
+    methods: {
+      loadUsers() {
+        this.api('users').get('?limit=12').then(users => this.users = users.data)
+      }
+    },
+    mounted() {
+      this.loadUsers()
+    }
   }
 </script>
 
