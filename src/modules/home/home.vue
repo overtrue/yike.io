@@ -61,7 +61,7 @@
     },
     methods: {
       loadThreads(page = 1) {
-        this.api('threads').get('?page='+page).then(threads => this.threads[this.currentThreadsTab] = threads)
+        this.api('threads').get(`?tab=${this.currentThreadsTab}&page=${page}`).then(threads => this.threads[this.currentThreadsTab] = threads)
       },
       handlePageChanged(page) {
         this.loadThreads(page)

@@ -131,9 +131,14 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .form-control:focus {
     border: none;
     box-shadow: none;
+  }
+
+  .editor-container {
+    overflow: auto;
+    height: calc(100vh - 370px);
   }
 </style>

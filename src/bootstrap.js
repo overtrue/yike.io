@@ -13,6 +13,7 @@ try {
 
   import('bootstrap')
   import('@sass/app.scss')
+  import('animate.css')
   import('typeface-ubuntu-mono')
   import('vue-material-design-icons/styles.css')
 

@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <div class="editor-toolbar border-bottom d-flex align-items-center px-2">
+    <div v-if="toolbar" class="editor-toolbar border-bottom d-flex align-items-center px-2">
       <button class="btn btn-link p-1 text-20" type="button" @click="toggleHeading(2)"><format-header2-icon></format-header2-icon></button>
       <button class="btn btn-link p-1 text-20" type="button" @click="toggleHeading(3)"><format-header3-icon></format-header3-icon></button>
       <button class="btn btn-link p-1 text-20" type="button" @click="toggleBold"><format-bold-icon></format-bold-icon></button>
@@ -11,8 +11,8 @@
       <button class="btn btn-link p-1 text-20" type="button" @click="toggleOrderedList"><format-list-numbers-icon></format-list-numbers-icon></button>
       <button class="btn btn-link p-1 text-20" type="button" @click="insertLink"><link-icon></link-icon></button>
     </div>
-    <div class="editor-container p-2">
-      <textarea id="editor" cols="30" rows="20" placeholder="请在这里输入你的内容"></textarea>
+    <div class="editor-container" :class="editorClass">
+      <textarea id="editor" placeholder="请在这里输入你的内容"></textarea>
     </div>
   </div>
 </template>
@@ -39,6 +39,18 @@
       value: {
         type: String,
         default: ""
+      },
+      toolbar: {
+        type: Boolean,
+        default: true
+      },
+      editorClass: {
+        type: String,
+        default: 'p-2'
+      },
+      options: {
+        type: Object,
+        default: {}
       }
     },
     components: {
@@ -67,20 +79,23 @@
     watch: {
       value() {
         if (this.contentBackup == this.value) {return}
-        this.value && this.editSession.setValue(this.value, 1)
+        if (this.value) {
+          this.editSession.setValue(this.value, 1)
+          this.editor.getSelection().moveCursorFileEnd()
+        }
       }
     },
     methods: {
       init() {
         this.editor = ace.edit('editor')
-        this.editor.setOptions({
-          maxLines: 50,
-          minLines: 10,
+        this.editor.setOptions(Object.assign({
+          minLines: 5,
           mode: "ace/mode/markdown",
           theme: "ace/theme/yike",
           showGutter: false,
+          autoScrollEditorIntoView: true,
           fontSize: 14,
-        })
+        }, this.options))
         this.editSession = this.editor.getSession()
         this.selection = this.editSession.getSelection()
         this.undoManager = this.editSession.getUndoManager()
@@ -91,6 +106,7 @@
         this.editSession.setUseSoftTabs(true)
         this.editSession.setUseWrapMode(true)
         this.editSession.setValue(this.value || '', 1)
+        this.editor.focus()
         this.editor.getSelection().moveCursorFileEnd()
 
         this.editSession.on('change', () => {
@@ -400,11 +416,13 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss">
   .editor-container {
     width: 100%;
-    overflow: auto;
-    height: calc(100vh - 370px);
+
+    .ace-yike {
+      min-height: 50px;
+    }
   }
   .ace_gutter {
     -webkit-font-smoothing: antialiased;
