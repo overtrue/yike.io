@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <button class="btn btn-outline-light mx-1">订阅</button>
+            <subscribe-btn :node="node" />
           </div>
         </div>
       </div>
@@ -48,11 +48,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import HotTags from "@components/hot-tags"
   import ThreadsList from "@components/threads-list"
+  import SubscribeBtn from '../../components/subscribe-btn'
 
   export default {
-    components: {HotTags, ThreadsList},
+    components: {SubscribeBtn, HotTags, ThreadsList},
     data() {
       return {
         node: {},
@@ -65,6 +67,9 @@
         currentThreadsTab: 'default'
       }
     },
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
     created() {
       this.getNode()
       this.loadThreads()
@@ -76,13 +81,16 @@
     },
     methods: {
       loadThreads(page = 1) {
-        this.api(`nodes/${this.$route.params.id}/threads`).get('?page='+page).then(threads => this.threads[this.currentThreadsTab] = threads)
+        this.api(`nodes/${this.$route.params.id}/threads`)
+          .get('?page='+page)
+          .then(threads => this.threads[this.currentThreadsTab] = threads)
       },
       handlePageChanged(page) {
         this.loadThreads(page)
       },
       getNode() {
-        this.api('nodes').find(this.$route.params.id)
+        this.api('nodes')
+          .find(this.$route.params.id)
           .then((data) => {
             this.node = data
           })
