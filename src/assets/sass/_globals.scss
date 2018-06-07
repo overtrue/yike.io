@@ -58,12 +58,7 @@ ul.plan-list {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eee;
-    filter: blur(3px);
+    background: #555b65;
     z-index: 0;
-
-    img {
-      min-width: 120%;
-    }
   }
 }

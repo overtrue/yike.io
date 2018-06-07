@@ -10,8 +10,8 @@
             <router-link :to="{ name: 'notifications.all' }" exact class="nav-link">全部 </router-link>
             <router-link :to="{ name: 'notifications.mention' }" exact class="nav-link">提及我的</router-link>
             <router-link :to="{ name: 'notifications.reply' }" exact class="nav-link">回复我的</router-link>
-            <router-link :to="{ name: 'notifications.follower' }" exact class="nav-link">关注我的</router-link>
-            <router-link :to="{ name: 'notifications.letter' }" exact class="nav-link">私信我的</router-link>
+            <router-link :to="{ name: 'notifications.follower' }" exact class="nav-link">关注消息</router-link>
+            <router-link :to="{ name: 'notifications.letter' }" exact class="nav-link">私信消息</router-link>
           </div>
         </div>
       </div>

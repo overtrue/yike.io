@@ -1,6 +1,6 @@
 <template>
     <div class="comments">
-      <div class="py-2"><div class="text-16 text-gray-50">35 条评论</div></div>
+      <div class="py-2"><div class="text-16 text-gray-50">{{ comments.meta.total || 0 }} 条评论</div></div>
       <div class="box" v-if="currentUser.id">
         <div class="d-flex align-items-center">
           <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username"/>

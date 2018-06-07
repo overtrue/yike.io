@@ -1,7 +1,7 @@
 <template>
   <div class="page-user-show">
     <header class="page-header bg-grey-blue py-4 text-white">
-      <div class="bg-image"><img src="https://source.unsplash.com/random/1440x300" alt=""></div>
+      <div class="bg-image"><img src="/banners/sunrise.jpg" alt=""></div>
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 d-flex align-items-center">

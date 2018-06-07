@@ -1,5 +1,5 @@
 <template>
-    <ul class="paginator d-flex justify-content-center align-items-center">
+    <ul class="paginator d-flex justify-content-center align-items-center" v-if="meta.total > 0">
       <template v-if="centerStart != 1">
         <li class="paginator-item" :class="{active: 1 == meta.current_page}"><a href="javascript:;" @click="change(1)">1</a></li>
         <li class="paginator-item"><a disabled class="text-muted" v-html="'&ctdot;'"></a></li>
@@ -20,9 +20,9 @@
         type: Object,
         default() {
           return {
-            total: 1,
-            per_page: 1,
-            from: 1,
+            total: 0,
+            per_page: 10,
+            from: 0,
             to: 1,
             last_page: 1,
             current_page: 1

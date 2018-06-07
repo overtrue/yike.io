@@ -7,34 +7,34 @@ export default [{
     meta: {
       requiresAuth: true,
     },
-    component: () => import('./classifications/all')
+    component: () => import('./panels/all')
   }, {
     path: 'mention',
     name: 'notifications.mention',
     meta: {
       requiresAuth: true,
     },
-    component: () => import('./classifications/mention')
+    component: () => import('./panels/mention')
   }, {
     path: 'reply',
     name: 'notifications.reply',
     meta: {
       requiresAuth: true,
     },
-    component: () => import('./classifications/reply')
+    component: () => import('./panels/reply')
   }, {
     path: 'follower',
     name: 'notifications.follower',
     meta: {
       requiresAuth: true,
     },
-    component: () => import('./classifications/follower')
+    component: () => import('./panels/follower')
   }, {
     path: 'letter',
     name: 'notifications.letter',
     meta: {
       requiresAuth: true,
     },
-    component: () => import('./classifications/letter')
+    component: () => import('./panels/letter')
   }]
 }]
