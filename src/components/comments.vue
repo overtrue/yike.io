@@ -31,7 +31,7 @@
 
     <paginator :meta="comments.meta"></paginator>
 
-    <div class="box mb-3" v-for="item in comments.data">
+    <div class="box mb-3" v-if="comments.length > 0" v-for="item in comments.data">
       <user-media :user="item.user">
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
       </user-media>

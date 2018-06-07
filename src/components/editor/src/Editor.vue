@@ -50,7 +50,9 @@
       },
       options: {
         type: Object,
-        default: {}
+        default() {
+          return {}
+        }
       }
     },
     components: {
