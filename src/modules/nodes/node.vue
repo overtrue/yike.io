@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <subscribe-btn :node="node" />
+            <subscribe-btn :item="node" />
           </div>
         </div>
       </div>

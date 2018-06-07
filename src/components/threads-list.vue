@@ -2,7 +2,7 @@
   <div class="threads-items">
     <ul class="list-group list-group-flush">
       <li class="list-group-item d-flex align-items-center justify-content-between cursor-pointer"
-          v-for="item in threads.data" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
+          v-for="item in threads.data" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
         <div class="d-flex align-items-center">
           <a href="#" class="mr-2"><img :src="item.user.avatar" alt="" class="avatar-30"></a>
           <div class="text-gray-50">{{ item.title }}</div>
