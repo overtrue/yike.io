@@ -24,8 +24,8 @@
           <div class="thread-statistics-card border-top p-2">
             <div class="text-gray-60 d-flex text-16">
               <like-btn class="p-1" :item="thread"></like-btn>
-              <a class="p-1"><comment-icon></comment-icon> {{thread.comments_count}}</a>
-              <a class="p-1"><view-icon></view-icon> 2804</a>
+              <a class="p-1"><comment-icon></comment-icon> {{ thread.cache.comments_count }}</a>
+              <a class="p-1"><view-icon></view-icon> {{ thread.cache.views_count }}</a>
               <subscribe-btn class="p-1" type="threads" :item="thread" tag="span" />
             </div>
           </div>
@@ -69,9 +69,9 @@
   import UserMedia from "@components/user-media"
   import HotTags from "@components/hot-tags"
   import Comments from "@components/comments"
-  import FollowBtn from "@components/follow-btn"
   import LikeBtn from "@components/like-btn"
   import SubscribeBtn from "@components/subscribe-btn"
+  import FollowBtn from '@components/follow-btn'
   import Prism from 'prismjs'
 
   import CommentIcon from "@icons/comment"

@@ -9,12 +9,15 @@
         </div>
         <div class="ml-auto d-flex align-items-center justify-content-end">
           <div class="text-gray-60 d-flex justify-content-between align-items-center">
-            <a class="p-1"><like-icon></like-icon> 24</a>
-            <a class="p-1"><comment-icon></comment-icon> 189</a>
-            <a class="p-1"><view-icon></view-icon> 2804</a>
+            <a class="p-1"><like-icon></like-icon> {{ item.cache.likes_count }}</a>
+            <a class="p-1"><comment-icon></comment-icon> {{ item.cache.comments_count }}</a>
+            <a class="p-1"><view-icon></view-icon> {{ item.cache.views_count }}</a>
           </div>
           <div class="ml-1 text-gray-60"><small>{{ item.created_at_timeago }}</small></div>
         </div>
+      </li>
+      <li class="list-group-item d-flex align-items-center justify-content-center p-5" v-if="threads['data'] && threads.data.length == 0">
+        空空如也~
       </li>
     </ul>
     <paginator :meta="threads.meta" @change="handleChange"></paginator>

@@ -6,7 +6,7 @@
       </div>
     </form>
     <div class="list-group list-group-flush">
-      <user-media class="list-group-item" v-for="user in users" :user="user">
+      <user-media class="list-group-item" v-for="user in users.data" :user="user">
         <template slot="appends" slot-scope="prop">
           <div class="ml-auto align-self-center d-flex">
             <template v-if="prop.data.id != currentUser.id && false">

@@ -7,7 +7,7 @@ export default [{
     meta: {
       container: false
     },
-    component: () => import('./center/dynamic')
+    component: () => import('./center/activities')
   }, {
     path: 'threads',
     name: 'users.threads',

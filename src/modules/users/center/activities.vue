@@ -57,7 +57,7 @@
         </user-media>
       </div>
       <div class="timeline-body d-flex justify-content-between flex-wrap">
-        <user-card></user-card>
+        <user-card :user="currentUser"></user-card>
       </div>
     </li>
   </ul>
@@ -66,8 +66,12 @@
 <script>
   import UserCard from "@components/user-card"
   import UserMedia from "@components/user-media"
+  import { mapGetters } from 'vuex'
 
   export default {
-    components: {UserCard, UserMedia}
+    components: {UserCard, UserMedia},
+    computed: {
+      ...mapGetters(['currentUser']),
+    }
   }
 </script>

@@ -18,8 +18,7 @@
           </div>
           <div class="col-md-6 d-flex justify-content-end">
             <template v-if="currentUser && currentUser.id != user.id">
-              <button class="btn btn-outline-light mx-1" @click="follow" v-if="!user.has_followed">关注 TA</button>
-              <button class="btn btn-outline-warning mx-1" @click="unfollow" v-else>取消关注</button>
+              <follow-btn :user="user"></follow-btn>
             </template>
             <a href="" class="text-20 btn mx-1 btn-icon btn-twitter">
               <twitter-icon></twitter-icon>
@@ -76,10 +75,11 @@
   import HotTags from "@components/hot-tags"
   import UserRanking from "@components/user-ranking"
   import NewUsers from "@components/new-users"
+  import FollowBtn from '@components/follow-btn'
 
   export default {
     name: 'show',
-    components: {TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers},
+    components: {FollowBtn, TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers},
     data() {
       return {
         user: {}

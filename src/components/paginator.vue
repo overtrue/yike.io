@@ -1,5 +1,5 @@
 <template>
-    <ul class="paginator d-flex justify-content-center align-items-center" v-if="meta.total > 0">
+    <ul class="paginator d-flex justify-content-center align-items-center" v-if="meta.last_page > 1">
       <template v-if="centerStart != 1">
         <li class="paginator-item" :class="{active: 1 == meta.current_page}"><a href="javascript:;" @click="change(1)">1</a></li>
         <li class="paginator-item"><a disabled class="text-muted" v-html="'&ctdot;'"></a></li>
