@@ -31,7 +31,7 @@
                   </div>
                 </div>
                 <div class="right-action">
-                  <follow-btn></follow-btn>
+                  <follow-btn :user="thread.user"></follow-btn>
                 </div>
               </div>
           </div>
