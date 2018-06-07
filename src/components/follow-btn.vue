@@ -66,7 +66,7 @@
         await this.api(`user/${this.user.id}/follow`).post().then(() => {
           this.$message.success('已关注')
         })
-        this.followed = true
+
         this.user.followers_count++
         this.refreshCachedFollowings()
       },
@@ -75,7 +75,6 @@
           this.$message.success('已取消关注')
         })
 
-        this.followed = false
         this.user.followers_count--
         this.refreshCachedFollowings()
       },
@@ -88,7 +87,7 @@
         })
       },
       refreshCachedFollowings() {
-        return localforage.removeItem(this.cacheKey).then(this.syncCachedFollowings)
+        return localforage.removeItem(this.cacheKey).then(this.loadFollowings).then(this.syncCachedFollowings)
       },
       loadFollowings() {
         return this.api(`user/${this.currentUser.id}/followings`).get().then((followings) => {
