@@ -23,14 +23,13 @@
         if (!this.currentUser['id']) {
           this.$router.push({name: 'auth.login'})
         }
+
         await this.api(`user/${this.$route.params.id}/follow`).post()
         this.user.has_followed = true
         this.user.followers_count++
       },
       async unfollow() {
-        let resource = new Resource(`user/${this.$route.params.id}/unfollow`)
-
-        await resource.post()
+        await this.api(`user/${this.$route.params.id}/unfollow`).post()
 
         this.user.has_followed = false
         this.user.followers_count--

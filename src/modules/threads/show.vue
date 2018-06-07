@@ -21,19 +21,26 @@
             <header><h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2></header>
             <section class="markdown-body" v-html="thread.content.body"></section>
           </div>
+          <div class="thread-statistics-card border-top p-2">
+            <div class="text-gray-60 d-flex text-16">
+              <a class="p-1"><like-btn :item="thread"></like-btn></a>
+              <a class="p-1"><comment-icon></comment-icon> {{thread.comments_count}}</a>
+              <a class="p-1"><view-icon></view-icon> 2804</a>
+            </div>
+          </div>
           <div class="thread-author-card border-top p-3">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="user-info d-flex align-items-center">
-                  <img :src="thread.user.avatar" alt="User avatar" class="avatar-60" />
-                  <div class="p-2">
-                    <h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3>
-                    <div class="text-12 text-muted">{{ thread.user.bio }}</div>
-                  </div>
-                </div>
-                <div class="right-action">
-                  <follow-btn :user="thread.user"></follow-btn>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="user-info d-flex align-items-center">
+                <img :src="thread.user.avatar" alt="User avatar" class="avatar-60" />
+                <div class="p-2">
+                  <h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3>
+                  <div class="text-12 text-muted">{{ thread.user.bio }}</div>
                 </div>
               </div>
+              <div class="right-action">
+                <follow-btn :user="thread.user"></follow-btn>
+              </div>
+            </div>
           </div>
         </article>
         <div class="thread-comments mt-3">
@@ -62,10 +69,14 @@
   import HotTags from "@components/hot-tags"
   import Comments from "@components/comments"
   import FollowBtn from "@components/follow-btn"
+  import LikeBtn from "@components/like-btn"
   import Prism from 'prismjs'
 
+  import CommentIcon from "@icons/comment"
+  import ViewIcon from "@icons/eye"
+
   export default {
-    components: {FollowBtn, UserMedia, HotTags, MoreIcon, PencilIcon, DeleteIcon, Comments},
+    components: {LikeBtn, CommentIcon, ViewIcon, FollowBtn, UserMedia, HotTags, MoreIcon, PencilIcon, DeleteIcon, Comments},
     data() {
       return {
         thread: null,
@@ -84,7 +95,6 @@
     },
     mounted() {
       this.loadThread()
-
     }
   }
 </script>
