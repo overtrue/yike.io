@@ -1,35 +1,30 @@
 <template>
-  <div v-if="currentUser.id">
-    <template v-if="tag == 'button'">
-      <button class="btn btn-outline-light mx-1" @click="subscribe" v-if="!item.has_subscribed">
-        <volume-high class="text-16" />
-        <span class="pl-1">订阅</span>
-      </button>
-      <button class="btn btn-outline-warning mx-1" @click="unsubscribe" v-else>
-        <volume-mute class="text-16" />
-        <span class="pl-1">取消订阅</span>
-      </button>
-    </template>
+  <div v-if="$user.id">
+    <button class="btn btn-sm btn-tiffany" @click="subscribe" v-if="!item.has_subscribed">
+      <volume-high />
+      <span class="pl-1">订阅</span>
+    </button>
     <template v-else>
-      <span v-if="!item.has_subscribed" @click="subscribe">
-        <volume-high class="text-gray-60 text-18 cursor-pointer" />
-      </span>
-      <span v-else @click="unsubscribe">
-        <volume-mute class="text-blue text-18 cursor-pointer" />
-      </span>
+      <button class="btn btn-sm" @click="unsubscribe"
+              :class="{'btn-tiffany': !hovering, 'btn-danger': hovering}"
+              @mouseenter="hovering=true"
+              @mouseleave="hovering=false">
+        <volume-mute v-if="hovering"></volume-mute>
+        <check-icon v-else></check-icon>
+        <span class="pl-1">{{ hovering ? '取消订阅' : '正在订阅'}}</span>
+      </button>
     </template>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-
   import VolumeMute from '@icons/volume-mute'
   import VolumeHigh from '@icons/volume-high'
+  import CheckIcon from '@icons/check'
 
   export default {
     name: 'subscribe-btn',
-    components: {VolumeMute, VolumeHigh},
+    components: {VolumeMute, VolumeHigh, CheckIcon},
     props: {
       type: {
         type: String,
@@ -39,17 +34,15 @@
         type: Object,
         required: true
       },
-      tag: {
-        type: String,
-        default: 'button'
-      },
     },
-    computed: {
-      ...mapGetters(['currentUser'])
+    data() {
+      return {
+        hovering: false,
+      }
     },
     methods: {
       async subscribe() {
-        if (!this.currentUser['id']) {
+        if (!this.$user.id) {
           this.$router.push({name: 'auth.login'})
         }
 

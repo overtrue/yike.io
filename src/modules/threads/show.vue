@@ -25,11 +25,11 @@
             <section class="markdown-body" v-html="thread.content.body"></section>
           </div>
           <div class="thread-statistics-card border-top p-2">
-            <div class="text-gray-60 d-flex text-16">
+            <div class="text-gray-60 d-flex text-16 align-items-center">
               <like-btn class="p-1" :item="thread"></like-btn>
               <a class="p-1"><comment-icon></comment-icon> {{ thread.cache.comments_count }}</a>
               <a class="p-1"><view-icon></view-icon> {{ thread.cache.views_count }}</a>
-              <subscribe-btn class="p-1" type="threads" :item="thread" tag="span" />
+              <subscribe-btn class="p-1 ml-auto" type="threads" :item="thread" />
             </div>
           </div>
           <div class="thread-author-card border-top p-3">
@@ -87,8 +87,10 @@
         thread: null,
       }
     },
-    computed() {
-      return this.thread.user_id == this.$user.id || this.$user.is_admin;
+    computed: {
+      canEdit() {
+        return this.thread.user_id == this.$user.id || this.$user.is_admin;
+      }
     },
     methods: {
       loadThread() {
