@@ -1,9 +1,9 @@
 <template>
   <div class="comments">
     <div class="py-2">
-      <div class="text-16 text-gray-50">{{ comments.length > 0 ? comments.meta.total : 0 }} 条评论</div>
+      <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
     </div>
-    <div class="box" v-if="currentUser.id">
+    <div class="box mb-3" v-if="currentUser.id">
       <div class="d-flex align-items-center">
         <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username"/>
         <div class="text-18 text-muted ml-2 w-100" v-if="!writing" @click="writing = true">撰写评论...</div>
@@ -31,7 +31,7 @@
 
     <paginator :meta="comments.meta"></paginator>
 
-    <div class="box mb-3" v-if="comments.length > 0" v-for="item in comments.data">
+    <div class="box mb-3" v-for="item in comments.data" :key="item.id">
       <user-media :user="item.user">
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
       </user-media>
