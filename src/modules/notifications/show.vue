@@ -7,16 +7,30 @@
             <bell-icon class="mr-1 text-16" />通知
           </div>
           <div class="nav flex-column nav-pills">
-            <router-link :to="{ name: 'notifications.all' }" exact class="nav-link">全部 </router-link>
-            <router-link :to="{ name: 'notifications.mention' }" exact class="nav-link">提及我的</router-link>
-            <router-link :to="{ name: 'notifications.reply' }" exact class="nav-link">回复我的</router-link>
-            <router-link :to="{ name: 'notifications.follower' }" exact class="nav-link">关注消息</router-link>
-            <router-link :to="{ name: 'notifications.letter' }" exact class="nav-link">私信消息</router-link>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == ''}" @click="currentTab = ''">全部 </a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'follow'}" @click="currentTab = 'follow'">关注消息</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'comment'}" @click="currentTab = 'comment'">评论消息</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'subscribe'}" @click="currentTab = 'subscribe'">订阅消息</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'like'}" @click="currentTab = 'like'">点赞消息</a>
           </div>
         </div>
       </div>
       <div class="col-md-9">
-        <router-view></router-view>
+        <div class="box">
+          <div class="box-heading text-right border-bottom pb-2">
+            <button class="btn btn-sm btn-outline-secondary">全部已读</button>
+          </div>
+          <ul class="list-group list-group-flush" v-if="notifications.length > 0">
+            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'text-gray-60': notification.read_at}" @click="markOneRead(notification, index)">
+              <keep-alive>
+                <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
+              </keep-alive>
+            </li>
+          </ul>
+          <div class="text-center text-gray-50" v-else>
+            无新通知
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -25,7 +39,35 @@
 <script>
   import BellIcon from '@icons/bell'
 
+  import NewFollower from './components/new-follower'
+  import CommentMyThread from './components/comment-my-thread'
+  import LikedMyThread from './components/liked-my-thread'
+  import SubscribedMyThread from './components/subscribed-my-thread'
+
   export default {
-    components: {BellIcon}
+    components: {BellIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread},
+    data() {
+      return {
+        currentTab: '',
+        notifications: []
+      }
+    },
+    watch: {
+      currentTab() {
+        this.loadNotifications(1)
+      }
+    },
+    created() {
+      this.loadNotifications()
+    },
+    methods: {
+      loadNotifications(page = 1) {
+        this.$router.push({name: 'notifications.show', query: {tab: this.currentTab}})
+
+        this.api('user/notifications')
+          .get(`?tab=${this.currentTab}&page=${page}`)
+          .then(notifications => this.notifications = notifications.data)
+      }
+    }
   }
 </script>
