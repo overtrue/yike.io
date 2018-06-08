@@ -54,7 +54,7 @@
 
     <h3 class="my-5 display-2 text-gray-50">Avatars</h3>
     <div class="row mt-4 d-flex justify-content-center align-items-end flex-wrap">
-      <div class="text-center p-3" v-for="item in avatars" >
+      <div class="text-center p-3" v-for="item in avatars" :key="item">
         <img src="https://pigjian.com/images/default_avatar.png" class="mr-2" :class="'avatar-'+item">
         <div class="mt-1">{{ '.avatar-'+item }}</div>
       </div>
@@ -62,7 +62,7 @@
 
     <h3 class="my-5 display-2 text-gray-50">Text sizes</h3>
     <div class="row mt-4 d-flex justify-content-center align-items-center flex-wrap">
-      <div class="text-center p-1" v-for="item in textSizes" >
+      <div class="text-center p-1" v-for="item in textSizes" :key="item">
         <div class="mt-1" :class="'text-'+item">{{ '.text-'+item }}</div>
       </div>
     </div>

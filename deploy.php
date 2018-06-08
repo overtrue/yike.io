@@ -17,6 +17,7 @@ set('default_timeout', 1600);
 set('deploy_path', '/www/yike.io');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
+set('cleanup_use_sudo', true);
 set('http_user', 'www-data');
 set('http_group', 'www-data');
 set('writable_mode', 'chown');
@@ -37,8 +38,8 @@ task('npm:install-and-compile', function(){
 //    }
 
     within('{{release_path}}', function () {
-        run('sudo npm install --registry=http://registry.npm.taobao.org ');
-        run('sudo npm run build');
+        run('npm install --registry=http://registry.npm.taobao.org ');
+        run('npm run build');
     });
 });
 

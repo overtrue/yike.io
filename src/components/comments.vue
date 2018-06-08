@@ -68,7 +68,7 @@
       },
       objectType: {
         type: String,
-        default: 'App\Thread',
+        default: 'App\\Thread',
       },
     },
     data () {

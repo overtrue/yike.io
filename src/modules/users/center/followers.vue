@@ -1,6 +1,6 @@
 <template>
   <div class="box box-flush">
-    <form class="box-body">
+    <form class="box-body" v-if="users.data.length > 0">
       <div class="input-group">
         <input type="text" class="form-control border-0" placeholder="搜索用户">
       </div>

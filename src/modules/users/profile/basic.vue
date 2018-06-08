@@ -55,6 +55,7 @@
 </template>
 
 <script>
+  import {cloneDeepWith} from 'lodash'
   import { mapGetters, mapActions } from 'vuex'
   import Resource from '@utils/resource'
 
@@ -74,7 +75,7 @@
       ...mapGetters(['currentUser'])
     },
     created() {
-      this.user = _.cloneDeepWith(this.currentUser)
+      this.user = cloneDeepWith(this.currentUser)
 
       if (!this.user.extends) {
         this.user.extends = {

@@ -270,7 +270,7 @@
         const { row } = selection.getCursor()
         const lineText = this.editSession.getLine(row)
         const length = lineText.length
-        const index = lineText.search(/[^\*]/)
+        const index = lineText.search(/[^\\*]/)
         // console.log(row, column, index, length)
         const range = {
           start: {
