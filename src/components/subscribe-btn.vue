@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$user.id">
+  <div v-if="this.currentUser.id">
     <button class="btn btn-sm btn-tiffany" @click="subscribe" v-if="!item.has_subscribed">
       <volume-high />
       <span class="pl-1">订阅</span>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   import VolumeMute from '@icons/volume-mute'
   import VolumeHigh from '@icons/volume-high'
   import CheckIcon from '@icons/check'
@@ -40,9 +42,12 @@
         hovering: false,
       }
     },
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
     methods: {
       async subscribe() {
-        if (!this.$user.id) {
+        if (!this.currentUser.id) {
           this.$router.push({name: 'auth.login'})
         }
 
