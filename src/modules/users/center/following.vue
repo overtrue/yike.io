@@ -6,18 +6,7 @@
       </div>
     </form>
     <div class="list-group list-group-flush">
-      <user-media class="list-group-item" v-for="user in users.data" :user="user">
-        <template slot="appends" slot-scope="prop">
-          {{ user.bio }}
-          <div class="ml-auto align-self-center d-flex">
-            <template v-if="prop.data.id != currentUser.id && false">
-              <button class="btn btn-icon btn-ghost mr-1 text-18" v-if="!prop.data.has_followed"><plus-icon /></button>
-              <button class="btn btn-icon btn-ghost mr-1 text-18" v-else><minus-icon /></button>
-            </template>
-            <button class="btn btn-icon btn-ghost mr-1 text-18"><email-icon /></button>
-          </div>
-        </template>
-      </user-media>
+      <user-list-item class="list-group-item" :user="user" :key="user.id" v-for="user of users.data"></user-list-item>
       <div class="d-flex justify-content-center align-items-center p-5" v-if="users.data.length == 0">空空如也~</div>
       <paginator :meta="users.meta"></paginator>
     </div>
@@ -31,14 +20,14 @@
   import { mapGetters } from 'vuex'
   import Resource from '@utils/resource'
 
-  import UserMedia from '@components/user-media'
+  import UserListItem from '@components/user-list-item'
   import Paginator from '@components/paginator'
   import EmailIcon from '@icons/email'
   import PlusIcon from '@icons/plus'
   import MinusIcon from '@icons/minus'
 
   export default {
-    components: {UserMedia, Paginator, PlusIcon, EmailIcon, MinusIcon},
+    components: {UserListItem, Paginator, PlusIcon, EmailIcon, MinusIcon},
     data() {
       return {
         users: []

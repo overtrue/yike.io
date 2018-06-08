@@ -6,7 +6,7 @@
     <div class="ml-2">
       <div>
         <router-link :to="{name: 'users.show', params: {id: user.id}}">
-          <h6 class="mb-0 text-black-50 text-14 d-inline-block">{{ user.name }}</h6>
+          <slot name="name"><h6 class="mb-0 d-inline-block" :class="nameClasses">{{ user.name }}</h6></slot>
           <slot name="name-appends"></slot>
         </router-link>
       </div>
@@ -35,6 +35,10 @@
       },
       user: {
         type: Object
+      },
+      nameClasses: {
+        type: String,
+        default: 'text-black-50 text-14'
       }
     }
   }
