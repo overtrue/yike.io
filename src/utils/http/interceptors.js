@@ -1,3 +1,5 @@
+import { Message } from 'element-ui'
+
 export default (http) => {
   // 请求拦截
   http.interceptors.request.use(
@@ -24,6 +26,16 @@ export default (http) => {
     * requests
     */
     (error) => {
+      console.error(error.response.data)
+
+      switch (error.response.status) {
+        case 403:
+          Message.error('您没有此操作权限！')
+          break;
+        default:
+          Message.error('服务器出了点小问题，程序员小哥哥要被扣工资了~！')
+      }
+
       return Promise.reject(error)
     }
   )

@@ -4,17 +4,22 @@
       <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
     </div>
     <div class="box mb-3" v-if="currentUser.id">
-      <div class="d-flex align-items-center">
-        <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username"/>
-        <div class="text-18 text-muted ml-2 w-100" v-if="!writing" @click="writing = true">撰写评论...</div>
-        <div class="text-16 text-muted ml-2" v-else>{{ currentUser.name }}</div>
-      </div>
-      <template v-if="writing">
-        <editor v-model="content" :toolbar="false" editor-class="py-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
-        <div class="py-1">
-          <button type="button" class="btn btn-primary" :disabled="!formReady" @click="submit">提交</button>
-          <button type="button" class="ml-2 btn btn-secondary" @click="writing=false">取消</button>
+      <template v-if="currentUser.has_activated">
+        <div class="d-flex align-items-center">
+          <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username"/>
+          <div class="text-18 text-muted ml-2 w-100" v-if="!writing" @click="writing = true">撰写评论...</div>
+          <div class="text-16 text-muted ml-2" v-else>{{ currentUser.name }}</div>
         </div>
+        <template v-if="writing">
+          <editor v-model="content" :toolbar="false" editor-class="py-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
+          <div class="py-1">
+            <button type="button" class="btn btn-primary" :disabled="!formReady" @click="submit">提交</button>
+            <button type="button" class="ml-2 btn btn-secondary" @click="writing=false">取消</button>
+          </div>
+        </template>
+      </template>
+      <template v-else>
+        <div class="text-18 ml-2 text-muted text-center">您需要激活账户才能评论~</div>
       </template>
     </div>
     <div v-else>

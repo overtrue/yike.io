@@ -12,12 +12,15 @@
                 <more-icon></more-icon>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
-                <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
+                <template v-if="canEdit">
+                  <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
+                  <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
+                </template>
+                <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 举报</button>
               </div>
             </div>
           </header>
-          <div class="thread-content box-body mt-3 text-gray-40 text-16">
+          <div class="thread-content box-body text-gray-40 text-16">
             <header><h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2></header>
             <section class="markdown-body" v-html="thread.content.body"></section>
           </div>
@@ -83,6 +86,9 @@
       return {
         thread: null,
       }
+    },
+    computed() {
+      return this.thread.user_id == this.$user.id || this.$user.is_admin;
     },
     methods: {
       loadThread() {

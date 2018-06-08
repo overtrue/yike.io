@@ -16,6 +16,7 @@ sync(store, router)
 
 Vue.prototype.$message = Message
 Vue.prototype.api = (resource, id = null) => new Resource(resource, id)
+Vue.prototype.$user = store.getters.currentUser
 
 setTimeout(() => {
   new Vue({

@@ -3,13 +3,16 @@
     <div class="row">
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
-          <form>
+          <div class="box-body text-center" v-if="$user && !$user.has_activated">
+            您没有此操作权限！
+          </div>
+          <form v-else>
             <div class="box-heading box-body border-bottom mb-0">
               <div class="input-group input-group-lg">
                 <input type="text" class="form-control border-0 px-0 text-24" v-model="form.title" placeholder="请在这里输入标题">
               </div>
             </div>
-            <editor v-model="form.content.markdown"></editor>
+            <editor v-model="form.content.markdown" :options="{maxLines: Infinity}"></editor>
             <div class="box-footer border-top p-2 d-flex justify-content-between">
               <div class="left-actions d-flex align-items-center">
                 <span class="text-muted">发布到</span>
