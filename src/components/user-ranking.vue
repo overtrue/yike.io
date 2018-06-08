@@ -5,7 +5,7 @@
       <!--<button class="btn btn-ghost btn-icon"><arrow-right-icon></arrow-right-icon></button>-->
     </div>
     <ul class="plan-list">
-      <user-media class="mb-2" v-for="item in users" :key="item.id" :user="item">
+      <user-media class="mb-2 d-flex align-items-center" v-for="item in users" :key="item.id" :user="item">
         <template slot="appends"><follow-btn :user="item" class="ml-auto" :simple="true"></follow-btn></template>
         <template slot="description"><div class="text-gray-70 text-12">{{ item.created_at_timeago }}</div></template>
       </user-media>
