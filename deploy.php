@@ -37,7 +37,8 @@ task('npm:install-and-compile', function(){
 //    }
 
     within('{{release_path}}', function () {
-        run('npm install --registry=http://registry.npm.taobao.org ');
+//        run('npm install --registry=http://registry.npm.taobao.org ');
+        run('npm install');
         run('npm run build');
     });
 });
