@@ -16,7 +16,7 @@
                   <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
                   <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
                 </template>
-                <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 举报</button>
+                <button class="dropdown-item" type="button"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
               </div>
             </div>
           </header>
@@ -68,6 +68,7 @@
 <script>
   import PencilIcon from "@icons/pencil"
   import DeleteIcon from "@icons/delete"
+  import AlertBoxIcon from "@icons/alert-box"
   import MoreIcon from "@icons/dots-horizontal"
   import UserMedia from "@components/user-media"
   import HotTags from "@components/hot-tags"
@@ -81,7 +82,20 @@
   import ViewIcon from "@icons/eye"
 
   export default {
-    components: {LikeBtn, SubscribeBtn, CommentIcon, ViewIcon, FollowBtn, UserMedia, HotTags, MoreIcon, PencilIcon, DeleteIcon, Comments},
+    components: {
+      LikeBtn,
+      SubscribeBtn,
+      CommentIcon,
+      ViewIcon,
+      FollowBtn,
+      UserMedia,
+      HotTags,
+      MoreIcon,
+      PencilIcon,
+      AlertBoxIcon,
+      DeleteIcon,
+      Comments
+    },
     data() {
       return {
         thread: null,
