@@ -1,12 +1,12 @@
 <template>
   <div class="user-media d-flex" v-if="type == 'default'">
-    <router-link :to="{name: 'users.show', params:{id: user.id}}">
+    <router-link :to="resource_url('users', user.id)">
       <img :src="user.avatar" class="avatar-40" :alt="user.name"/>
     </router-link>
     <div class="ml-2">
       <div>
-        <router-link :to="{name: 'users.show', params: {id: user.id}}">
-          <slot name="name"><h6 class="mb-0 d-inline-block" :class="nameClasses">{{ user.name }}</h6></slot>
+        <router-link :to="resource_url('users', user.id)">
+          <slot name="name"><h6 class="mb-0 text-16 d-inline-block" :class="nameClasses">{{ user.name }}</h6></slot>
           <slot name="name-appends"></slot>
         </router-link>
       </div>

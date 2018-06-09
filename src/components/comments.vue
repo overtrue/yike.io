@@ -38,6 +38,7 @@
 
     <div class="box mb-3" v-for="item in comments.data" :key="item.id">
       <user-media :user="item.user">
+        <template slot="name-appends"><router-link :tag="a" class="text-muted text-12 ml-1" :to="resource_url('users', item.user.id)">{{ item.user.username }}</router-link></template>
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
       </user-media>
       <div class="comment-content markdown-body pt-2" v-html="item.content.body"></div>
@@ -109,6 +110,7 @@
           this.content = ''
           this.writing = false
           this.$message.success('评论成功！')
+          this.$emit('created')
           this.loadComments()
         })
       },

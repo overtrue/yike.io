@@ -5,7 +5,7 @@
         <article class="box box-flush">
           <header class="thread-header box-body d-flex justify-content-between align-items-center">
             <user-media :user="thread.user">
-              <small class="text-muted" slot="description">{{ thread.created_at_timeago }}</small>
+              <small class="text-muted" slot="description">发布于 {{ thread.created_at_timeago }}</small>
             </user-media>
             <div class="thread-actions">
               <button type="button" class="btn btn-icon btn-ghost no-border text-20" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,9 +35,9 @@
           <div class="thread-author-card border-top p-3">
             <div class="d-flex align-items-center justify-content-between">
               <div class="user-info d-flex align-items-center">
-                <img :src="thread.user.avatar" alt="User avatar" class="avatar-60" />
+                <router-link :to="resource_url('users', thread.user.id)"><img :src="thread.user.avatar" alt="User avatar" class="avatar-60" /></router-link>
                 <div class="p-2">
-                  <h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3>
+                  <router-link :to="resource_url('users', thread.user.id)"><h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3></router-link>
                   <div class="text-12 text-muted">{{ thread.user.bio }}</div>
                 </div>
               </div>
@@ -48,7 +48,7 @@
           </div>
         </article>
         <div class="thread-comments mt-3">
-          <comments object-type="App\Thread" :object-id="thread.id"></comments>
+          <comments object-type="App\Thread" :object-id="thread.id" @created="loadThread"></comments>
         </div>
       </div>
       <div class="col-md-3">

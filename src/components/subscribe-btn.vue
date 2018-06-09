@@ -11,7 +11,7 @@
               @mouseleave="hovering=false">
         <volume-mute v-if="hovering"></volume-mute>
         <check-icon v-else></check-icon>
-        <span class="pl-1">{{ hovering ? '取消订阅' : '正在订阅'}}</span>
+        <span class="pl-1">{{ hovering ? '取消订阅' : '已订阅'}}</span>
       </button>
     </template>
   </div>

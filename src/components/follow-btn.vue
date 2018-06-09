@@ -1,7 +1,7 @@
 <template>
   <div v-if="currentUser && currentUser.id != user.id">
     <template v-if="!followed">
-      <template v-if="simple"><button @click="follow" class="btn btn-ghost btn-icon ml-auto"><plus-icon></plus-icon></button></template>
+      <template v-if="simple"><button @click="follow" class="btn btn-ghost btn-icon ml-auto" title="关注 TA"><plus-icon></plus-icon></button></template>
       <template v-else><button @click="follow" class="btn btn-outline-teal-blue mx-1"><plus-icon></plus-icon> 关注 TA</button></template>
     </template>
     <template v-else>
@@ -10,14 +10,14 @@
               class="btn btn-icon ml-auto"
                 :class="{'btn-ghost': !hovering, 'btn-danger': hovering}"
                 @mouseenter="hovering=true"
-                @mouseleave="hovering=false">
+                @mouseleave="hovering=false" title="取消关注 TA">
         <check-icon v-if="!hovering"></check-icon><close-icon v-else></close-icon>
       </button></template>
       <template v-else>
         <button @click="unfollow" class="btn mx-1"
                 :class="{'btn-teal-blue': !hovering, 'btn-danger': hovering}"
                 @mouseenter="hovering=true"
-                @mouseleave="hovering=false">
+                @mouseleave="hovering=false" title="取消关注 TA">
           <check-icon v-if="!hovering"></check-icon><close-icon v-else></close-icon> {{ hovering ? '取消关注' : '正在关注' }}</button>
       </template>
     </template>
