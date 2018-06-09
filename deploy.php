@@ -18,16 +18,18 @@ set('deploy_path', '/www/yike.io');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
 set('cleanup_use_sudo', true);
-set('http_user', 'www-data');
 set('http_group', 'www-data');
 set('writable_mode', 'chown');
 set('default_stage', 'production');
 set('keep_releases', 2);
 
-host('36.255.223.123')
+set('shared_files', [
+    '.env.production',
+]);
+
+host('yike.io')
     ->stage('production')
     ->user('deployer')
-    ->port(2200)
     ->multiplexing(true);
 
 desc('Run build.');
@@ -38,7 +40,8 @@ task('npm:install-and-compile', function(){
 //    }
 
     within('{{release_path}}', function () {
-        run('npm install --registry=http://registry.npm.taobao.org ');
+//        run('npm install --registry=http://registry.npm.taobao.org ');
+        run('npm install');
         run('npm run build');
     });
 });
