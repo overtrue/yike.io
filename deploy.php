@@ -18,11 +18,14 @@ set('deploy_path', '/www/yike.io');
 set('writable_use_sudo', true);
 set('clear_use_sudo', true);
 set('cleanup_use_sudo', true);
-set('http_user', 'www-data');
 set('http_group', 'www-data');
 set('writable_mode', 'chown');
 set('default_stage', 'production');
 set('keep_releases', 2);
+
+set('shared_files', [
+    '.env',
+]);
 
 host('yike.io')
     ->stage('production')
