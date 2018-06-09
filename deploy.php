@@ -24,7 +24,7 @@ set('default_stage', 'production');
 set('keep_releases', 2);
 
 set('shared_files', [
-    '.env',
+    '.env.production',
 ]);
 
 host('yike.io')
