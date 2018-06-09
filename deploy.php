@@ -24,10 +24,9 @@ set('writable_mode', 'chown');
 set('default_stage', 'production');
 set('keep_releases', 2);
 
-host('36.255.223.123')
+host('yike.io')
     ->stage('production')
     ->user('deployer')
-    ->port(2200)
     ->multiplexing(true);
 
 desc('Run build.');
