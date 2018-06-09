@@ -36,10 +36,22 @@
 
     <paginator :meta="comments.meta"></paginator>
 
-    <div class="box mb-3" v-for="item in comments.data" :key="item.id">
+    <div class="box mb-3" v-for="(item,index) in comments.data" :key="item.id">
       <user-media :user="item.user">
         <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="resource_url('users', item.user.id)">{{ item.user.username }}</router-link></template>
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
+        <div class="text-16 text-gray-60 ml-auto" slot="appends">
+          <span class="mx-1 cursor-pointer" @click="upVote(index, item)">
+            <thumb-up-outline v-if="!item.has_up_voted" />
+            <thumb-up class="text-primary" v-else />
+            {{ item.up_voters }}
+          </span>
+          <span class="mx-1 cursor-pointer" @click="downVote(index, item)">
+            <thumb-down-outline v-if="!item.has_down_voted" />
+            <thumb-down class="text-danger" v-else />
+            {{ item.down_voters }}
+          </span>
+        </div>
       </user-media>
       <div class="comment-content markdown-body pt-2" v-html="item.content.body"></div>
     </div>
@@ -55,9 +67,14 @@
   import localforage from 'localforage'
   import { mapGetters } from 'vuex'
 
+  import ThumbUp from '@icons/thumb-up'
+  import ThumbDown from '@icons/thumb-down'
+  import ThumbUpOutline from '@icons/thumb-up-outline'
+  import ThumbDownOutline from '@icons/thumb-down-outline'
+
   export default {
     name: 'comments',
-    components: {Editor, UserMedia, Paginator},
+    components: {Editor, UserMedia, Paginator, ThumbUp, ThumbDown, ThumbUpOutline, ThumbDownOutline},
     computed: {
       ...mapGetters(['currentUser']),
       formReady () {
@@ -98,6 +115,40 @@
       this.syncCachedContent()
     },
     methods: {
+      upVote(index, item) {
+        if (item.has_up_voted) {
+          this.api(`comments/${item.id}/cancel-vote`).post()
+
+          this.comments.data[index].up_voters--
+          this.comments.data[index].has_up_voted = false
+        } else {
+          this.api(`comments/${item.id}/up-vote`).post()
+
+          this.comments.data[index].up_voters++
+          if (item.has_down_voted) {
+            this.comments.data[index].down_voters--
+            this.comments.data[index].has_down_voted = false
+          }
+          this.comments.data[index].has_up_voted = true
+        }
+      },
+      downVote(index, item) {
+        if (item.has_down_voted) {
+          this.api(`comments/${item.id}/cancel-vote`).post()
+
+          this.comments.data[index].down_voters--
+          this.comments.data[index].has_down_voted = false
+        } else {
+          this.api(`comments/${item.id}/down-vote`).post()
+
+          this.comments.data[index].down_voters++
+          if (item.has_up_voted) {
+            this.comments.data[index].up_voters--
+            this.comments.data[index].has_up_voted = false
+          }
+          this.comments.data[index].has_down_voted = true
+        }
+      },
       submit () {
         this.api('comments').post({
           commentable_type: this.objectType,
