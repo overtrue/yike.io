@@ -20,7 +20,7 @@ export const postRegister = ({ username, email, password }) => {
 }
 
 // get current user's data
-export const loadUserData = () => http.get('/user')
+export const loadUserData = () => http.get('/me')
 
 // revoke current token
 export const revokeToken = (token) => http.post('/oauth/tokens/' + token)

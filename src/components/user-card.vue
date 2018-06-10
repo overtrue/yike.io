@@ -5,7 +5,7 @@
             <follow-btn :user="user"></follow-btn>
           </template>
           <template slot="description">
-            <router-link class="text-12" :to="{name: 'users.show', params: {id: user.id}}">@{{ user.username }}</router-link>
+            <router-link class="text-12" :to="{name: 'users.show', params: {id: user.username}}">@{{ user.username }}</router-link>
           </template>
         </user-media>
         <div class="text-gray-70 py-2">{{ user.bio }}</div>

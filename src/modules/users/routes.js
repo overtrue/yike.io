@@ -1,5 +1,5 @@
 export default [{
-  path: '/users/:id',
+  path: '/:username',
   component: () => import('./show'),
   children: [{
     path: '/',

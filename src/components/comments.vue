@@ -1,5 +1,6 @@
 <template>
   <div class="comments">
+    <a name="comments"></a>
     <div class="py-2">
       <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
     </div>
@@ -23,7 +24,7 @@
       </template>
     </div>
     <div v-else>
-      <div class="box" v-if="currentUser">
+      <div class="box mb-3" v-if="currentUser">
         <div class="text-18 ml-2 text-center">
           您需要
           <router-link :to="{ name: 'auth.login' }" tag="a" class="text-blue">登录</router-link>
@@ -37,8 +38,9 @@
     <paginator :meta="comments.meta"></paginator>
 
     <div class="box mb-3" v-for="(item,index) in comments.data" :key="item.id">
+      <a :name="'comment-' + item.id"></a>
       <user-media :user="item.user">
-        <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="resource_url('users', item.user.id)">{{ item.user.username }}</router-link></template>
+        <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
         <div class="text-16 text-gray-60 ml-auto" slot="appends">
           <span class="mx-1 cursor-pointer" @click="vote('up', item, index)">
@@ -51,9 +53,12 @@
             <thumb-down class="text-danger" v-else />
             {{ item.down_voters }}
           </span>
+          <span class="mx-1 cursor-pointer" @click="reply(item)">
+            <reply />
+          </span>
         </div>
       </user-media>
-      <div class="comment-content markdown-body pt-2" v-html="item.content.body"></div>
+      <markdown-body class="comment-content pt-2" v-model="item.content.body"></markdown-body>
     </div>
 
     <paginator :meta="comments.meta"></paginator>
@@ -63,18 +68,20 @@
 <script>
   import Editor from '@components/editor'
   import Paginator from '@components/paginator'
+  import MarkdownBody from '@components/markdown-body'
   import UserMedia from '@components/user-media'
   import localforage from 'localforage'
   import { mapGetters } from 'vuex'
 
   import ThumbUp from '@icons/thumb-up'
+  import Reply from '@icons/reply'
   import ThumbDown from '@icons/thumb-down'
   import ThumbUpOutline from '@icons/thumb-up-outline'
   import ThumbDownOutline from '@icons/thumb-down-outline'
 
   export default {
     name: 'comments',
-    components: {Editor, UserMedia, Paginator, ThumbUp, ThumbDown, ThumbUpOutline, ThumbDownOutline},
+    components: {Editor, UserMedia, MarkdownBody, Paginator, ThumbUp, Reply, ThumbDown, ThumbUpOutline, ThumbDownOutline},
     computed: {
       ...mapGetters(['currentUser']),
       formReady () {
@@ -116,6 +123,10 @@
     },
     methods: {
       vote(type = 'up', item, index) {
+        if (!this.$user().id) {
+          return this.$router.push({name: 'auth.login'})
+        }
+
         let reverse = type == 'up' ? 'down' : 'up'
 
         if (item[`has_${type}_voted`]) {
@@ -133,6 +144,11 @@
           this.comments.data[index][`${type}_voters`]++
           this.comments.data[index][`has_${type}_voted`] = true
         }
+      },
+      reply(item) {
+        this.content = `@${item.user.username} `
+        this.writing = true
+        window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
       },
       submit () {
         this.api('comments').post({

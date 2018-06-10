@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
-          <div class="box-body text-center" v-if="$user && !$user.has_activated">
+          <div class="box-body text-center" v-if="$user() && !$user().has_activated">
             您没有此操作权限！
           </div>
           <form v-else>
