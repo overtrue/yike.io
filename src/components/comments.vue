@@ -41,12 +41,12 @@
         <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="resource_url('users', item.user.id)">{{ item.user.username }}</router-link></template>
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
         <div class="text-16 text-gray-60 ml-auto" slot="appends">
-          <span class="mx-1 cursor-pointer" @click="upVote(index, item)">
+          <span class="mx-1 cursor-pointer" @click="vote('up', item, index)">
             <thumb-up-outline v-if="!item.has_up_voted" />
             <thumb-up class="text-primary" v-else />
             {{ item.up_voters }}
           </span>
-          <span class="mx-1 cursor-pointer" @click="downVote(index, item)">
+          <span class="mx-1 cursor-pointer" @click="vote('down', item, index)">
             <thumb-down-outline v-if="!item.has_down_voted" />
             <thumb-down class="text-danger" v-else />
             {{ item.down_voters }}
@@ -115,38 +115,23 @@
       this.syncCachedContent()
     },
     methods: {
-      upVote(index, item) {
-        if (item.has_up_voted) {
+      vote(type = 'up', item, index) {
+        let reverse = type == 'up' ? 'down' : 'up'
+
+        if (item[`has_${type}_voted`]) {
           this.api(`comments/${item.id}/cancel-vote`).post()
 
-          this.comments.data[index].up_voters--
-          this.comments.data[index].has_up_voted = false
+          this.comments.data[index][`${type}_voters`]--
+          this.comments.data[index][`has_${type}_voted`] = false
         } else {
-          this.api(`comments/${item.id}/up-vote`).post()
+          this.api(`comments/${item.id}/${type}-vote`).post()
 
-          this.comments.data[index].up_voters++
-          if (item.has_down_voted) {
-            this.comments.data[index].down_voters--
-            this.comments.data[index].has_down_voted = false
+          if (item[`has_${reverse}_voted`]) {
+            this.comments.data[index][`${reverse}_voters`]--
+            this.comments.data[index][`has_${reverse}_voted`] = false
           }
-          this.comments.data[index].has_up_voted = true
-        }
-      },
-      downVote(index, item) {
-        if (item.has_down_voted) {
-          this.api(`comments/${item.id}/cancel-vote`).post()
-
-          this.comments.data[index].down_voters--
-          this.comments.data[index].has_down_voted = false
-        } else {
-          this.api(`comments/${item.id}/down-vote`).post()
-
-          this.comments.data[index].down_voters++
-          if (item.has_up_voted) {
-            this.comments.data[index].up_voters--
-            this.comments.data[index].has_up_voted = false
-          }
-          this.comments.data[index].has_down_voted = true
+          this.comments.data[index][`${type}_voters`]++
+          this.comments.data[index][`has_${type}_voted`] = true
         }
       },
       submit () {
