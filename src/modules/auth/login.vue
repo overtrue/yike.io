@@ -17,18 +17,7 @@
           </form>
         </div>
         <div class="mb-2 d-flex justify-content-around">
-          <a href="" class="text-20 btn mx-1 btn-icon btn-pink">
-            <google-plus />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-facebook">
-            <facebook-icon />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-blue">
-            <qq-icon />
-          </a>
-          <a href="" class="text-20 btn mx-1 btn-icon btn-dark">
-            <github-icon />
-          </a>
+          <socialite-btns></socialite-btns>
         </div>
       </div>
     </div>
@@ -40,19 +29,15 @@
 
 <script>
   import { mapActions } from 'vuex'
-  import GooglePlus from '@icons/google-plus'
-  import FacebookIcon from '@icons/facebook'
-  import QqIcon from '@icons/qqchat'
-  import GithubIcon from '@icons/github-circle'
-
+  import SocialiteBtns from '@components/socialite-login'
   export default {
-    components: {GooglePlus, FacebookIcon, QqIcon, GithubIcon},
     data() {
       return {
         username: '',
         password: '',
       }
     },
+    components: {SocialiteBtns},
     methods: {
       ...mapActions(['attemptLogin']),
 

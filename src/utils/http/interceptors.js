@@ -5,10 +5,6 @@ export default (http) => {
   http.interceptors.request.use(
     config => {
       // config.withCredentials = true // 需要跨域打开此配置
-      // 所有请求登录后带上 access_token
-      // if (window.localStorage.hasOwnProperty('token')) {
-      //   config.headers.Authorization='Bearer ' + window.localStorage.getItem('token')
-      // }
       return config
     },
     error => {

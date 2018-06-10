@@ -24,10 +24,6 @@ export const attemptRegister = ({ dispatch }, payload) =>
     .then(() => dispatch('loadUser'))
 
 export const logout = ({ dispatch }) => {
-  // localforage.getItem(userTokenStorageKey).then((token) => {
-  //   services.revokeToken(token)
-  // })
-
   return localforage.removeItem(userTokenStorageKey)
     .then(dispatch('setToken', null))
     .then(dispatch('setUser', {}))
