@@ -16,8 +16,9 @@
                   <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
                   <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
                 </template>
-                <button class="dropdown-item" type="button"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
+                <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
               </div>
+              <report-form :visible="showReportForm" @close="showReportForm = false"></report-form>
             </div>
           </header>
           <div class="thread-content box-body text-gray-40 text-16">
@@ -77,12 +78,14 @@
   import SubscribeBtn from "@components/subscribe-btn"
   import FollowBtn from '@components/follow-btn'
   import Prism from 'prismjs'
+  import ReportForm from './report-form'
 
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
 
   export default {
     components: {
+      ReportForm,
       LikeBtn,
       SubscribeBtn,
       CommentIcon,
@@ -99,6 +102,7 @@
     data() {
       return {
         thread: null,
+        showReportForm: false,
       }
     },
     computed: {
