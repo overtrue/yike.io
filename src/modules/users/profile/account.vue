@@ -4,20 +4,20 @@
       <div class="box-heading border-bottom">
         <h5>修改密码</h5>
       </div>
-      <form class="w-50">
+      <form class="w-50" @submit.prevent="resetPassword">
         <div class="form-group">
           <label>旧密码</label>
-          <input type="text" class="form-control">
+          <input type="password" v-model="oldPassword" class="form-control">
         </div>
         <div class="form-group">
           <label>新密码</label>
-          <input type="text" class="form-control">
+          <input type="password" v-model="password" class="form-control">
         </div>
         <div class="form-group">
           <label>确认新密码</label>
-          <input type="text" class="form-control">
+          <input type="password" v-model="passwordConfirmation" class="form-control">
         </div>
-        <button class="btn btn-primary rounded">修改密码</button>
+        <button type="submit" class="btn btn-primary rounded">修改密码</button>
         <a href="#" class="text-blue ml-2">忘记密码？</a>
       </form>
     </div>
@@ -66,6 +66,13 @@
   import { mapGetters } from 'vuex'
 
   export default {
+    data() {
+      return {
+        oldPassword: '',
+        password: '',
+        passwordConfirmation: '',
+      }
+    },
     computed: {
       ...mapGetters(['currentUser'])
     },
@@ -77,6 +84,13 @@
       }
     },
     methods: {
+      resetPassword() {
+        this.api('user/reset-password').post({
+          old_password: this.oldPassword,
+          password: this.password,
+          password_confirmation: this.passwordConfirmation,
+        })
+      },
       goAnchor(name) {
         let element = document.getElementById(name)
 
