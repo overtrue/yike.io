@@ -19,8 +19,9 @@
         </div>
       </div>
     </div>
-    <div class="offset-sm-3 col-sm-6 text-center mt-2">
+    <div class="offset-sm-4 col-sm-4 text-center mt-2 d-flex justify-content-between">
       <p>没有账号？ <router-link class="text-blue" :to="{ name: 'auth.register' }">快速注册</router-link></p>
+      <p><router-link class="text-blue" :to="{ name: 'auth.reset-password' }">忘记密码？</router-link></p>
     </div>
   </div>
 </template>
