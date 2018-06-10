@@ -25,17 +25,17 @@
       <div class="box-heading border-bottom">
         <h5>修改邮箱地址</h5>
       </div>
-      <form class="w-50">
+      <form class="w-50" @submit.prevent="updateEmail">
         <div class="form-group">
           <label>原邮箱</label>
           <input type="text" disabled class="form-control" :value="currentUser.email">
         </div>
         <div class="form-group">
           <label>新邮箱</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" v-model="email">
           <small class="form-text text-muted">修改后需要进行新的邮箱验证。</small>
         </div>
-        <button class="btn btn-primary rounded">确定</button>
+        <button type="submit" class="btn btn-primary rounded">确定</button>
       </form>
     </div>
     <div class="box" id="edit-phone">
@@ -71,6 +71,7 @@
         oldPassword: '',
         password: '',
         passwordConfirmation: '',
+        email: '',
       }
     },
     computed: {
@@ -84,6 +85,13 @@
       }
     },
     methods: {
+      async updateEmail() {
+        let result = await this.api('user/mail').post({
+          email: this.email
+        })
+
+        this.$message.warning(result.message)
+      },
       resetPassword() {
         this.api('user/reset-password').post({
           old_password: this.oldPassword,
