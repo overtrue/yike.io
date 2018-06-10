@@ -1,5 +1,5 @@
 <template>
-  <div class="page-user-show">
+  <div class="page-user-show" v-if="user.id">
     <header class="page-header bg-grey-blue py-4 text-white">
       <div class="bg-image"><img src="/banners/sunrise.jpg" alt=""></div>
       <div class="container">
@@ -89,23 +89,25 @@
       ...mapGetters(['currentUser'])
     },
     beforeRouteUpdate(to, from, next) {
-      if (to.params.id != from.params.id) {
-        this.getUser(to.params.id)
+      if (to.params.username != from.params.username) {
+        this.getUser(to.params.username)
       }
 
       next()
     },
     created() {
-      this.getUser(this.$route.params.id)
+      this.getUser(this.$route.params.username)
     },
     methods: {
       async getUser(id) {
-        let resource = new Resource(`user/${id}`)
+        let resource = new Resource(`users/${id}`)
 
-        this.user = await resource.get()
+        this.user = await resource.get().catch(() => {
+          this.$router.replace({name: 'pages.not-found'})
+        })
       },
       async follow() {
-        let resource = new Resource(`user/${this.$route.params.id}/follow`)
+        let resource = new Resource(`user/${this.$route.params.username}/follow`)
 
         await resource.post()
 
@@ -113,7 +115,7 @@
         this.user.followers_count++
       },
       async unfollow() {
-        let resource = new Resource(`user/${this.$route.params.id}/unfollow`)
+        let resource = new Resource(`user/${this.$route.params.username}/unfollow`)
 
         await resource.post()
 

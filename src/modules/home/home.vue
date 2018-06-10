@@ -21,7 +21,6 @@
               </li>
             </ul>
           </div>
-
           <threads-list :threads="threads[currentThreadsTab]" @page-changed="handlePageChanged"></threads-list>
         </div>
       </div>

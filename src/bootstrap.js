@@ -12,6 +12,7 @@ try {
   window.$ = window.jQuery = import('jquery')
 
   import('bootstrap')
+  import('prismjs/themes/prism.css')
   import('@sass/app.scss')
   import('animate.css')
   import('typeface-ubuntu-mono')

@@ -12,7 +12,6 @@ const beforeEach = (to, from, next) => {
       if (vuex.getters.isLogged && to.path.indexOf('auth') > 0) {
         return next({ name: 'home' })
       }
-
       return next()
     })
     .catch(() => {

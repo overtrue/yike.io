@@ -15,7 +15,7 @@ Vue.use(Router);
 const AppRoute = {
   path: '/',
   component: () => import('../app'),
-  children: [...auth, ...element, ...home, ...threads, ...users, ...notifications, ...nodes, ...pages],
+  children: [...auth, ...element, ...home, ...threads, ...notifications, ...nodes, ...pages, ...users],
 };
 
 const routes = [AppRoute];

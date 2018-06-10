@@ -23,7 +23,7 @@
           </header>
           <div class="thread-content box-body text-gray-40 text-16">
             <header><h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2></header>
-            <section class="markdown-body" v-html="thread.content.body"></section>
+            <markdown-body v-model="thread.content.body"></markdown-body>
           </div>
           <div class="thread-statistics-card border-top p-2">
             <div class="text-gray-60 d-flex text-16 align-items-center">
@@ -36,9 +36,9 @@
           <div class="thread-author-card border-top p-3">
             <div class="d-flex align-items-center justify-content-between">
               <div class="user-info d-flex align-items-center">
-                <router-link :to="resource_url('users', thread.user.id)"><img :src="thread.user.avatar" alt="User avatar" class="avatar-60" /></router-link>
+                <router-link :to="{name: 'users.show', params: {username: thread.user.username}}"><img :src="thread.user.avatar" alt="User avatar" class="avatar-60" /></router-link>
                 <div class="p-2">
-                  <router-link :to="resource_url('users', thread.user.id)"><h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3></router-link>
+                  <router-link :to="{name: 'users.show', params: {username: thread.user.username}}"><h3 class="text-gray-50 text-14">{{ thread.user.name }}</h3></router-link>
                   <div class="text-12 text-muted">{{ thread.user.bio }}</div>
                 </div>
               </div>
@@ -77,7 +77,7 @@
   import LikeBtn from "@components/like-btn"
   import SubscribeBtn from "@components/subscribe-btn"
   import FollowBtn from '@components/follow-btn'
-  import Prism from 'prismjs'
+  import MarkdownBody from '@components/markdown-body'
   import ReportForm from './report-form'
 
   import CommentIcon from "@icons/comment"
@@ -97,6 +97,7 @@
       PencilIcon,
       AlertBoxIcon,
       DeleteIcon,
+      MarkdownBody,
       Comments
     },
     data() {
@@ -107,22 +108,23 @@
     },
     computed: {
       canEdit() {
-        return this.thread.user_id == this.$user.id || this.$user.is_admin;
+        return this.thread.user_id == this.$user().id || this.$user().is_admin;
       }
+    },
+    beforeRouteUpdate(to, from, next) {
+      if (to.params.id != from.params.id) {
+        this.loadThread()
+      }
+
+      next()
     },
     methods: {
       loadThread() {
-        this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response).then(() => {
-          this.$nextTick(() => {
-            setTimeout(() => {
-              Prism.highlightAll()
-            }, 300)
-          })
-        })
+        this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response)
       }
     },
     mounted() {
       this.loadThread()
-    }
+    },
   }
 </script>
