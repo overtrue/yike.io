@@ -8,13 +8,14 @@ import { routes as threads } from '@modules/threads'
 import { routes as users } from '@modules/users'
 import { routes as notifications } from '@modules/notifications'
 import { routes as nodes } from '@modules/nodes'
+import { routes as pages } from '@modules/pages'
 
 Vue.use(Router);
 
 const AppRoute = {
   path: '/',
   component: () => import('../app'),
-  children: [...auth, ...element, ...home, ...threads, ...users, ...notifications, ...nodes],
+  children: [...auth, ...element, ...home, ...threads, ...users, ...notifications, ...nodes, ...pages],
 };
 
 const routes = [AppRoute];
