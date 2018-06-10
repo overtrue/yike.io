@@ -1,13 +1,13 @@
 <template>
   <div class="oauth-btns d-flex align-items-center justify-content-between">
+    <div class="text-20 btn mx-1 btn-icon btn-dark" @click="oauth('github')">
+      <github-icon />
+    </div>
     <div class="text-20 btn mx-1 btn-icon btn-pink" @click="oauth('google')">
       <google-plus />
     </div>
     <div class="text-20 btn mx-1 btn-icon btn-facebook" @click="oauth('facebook')">
       <facebook-icon />
-    </div>
-    <div class="text-20 btn mx-1 btn-icon btn-dark" @click="oauth('github')">
-      <github-icon />
     </div>
   </div>
 </template>
