@@ -18,7 +18,7 @@
           <input type="password" v-model="passwordConfirmation" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary rounded">修改密码</button>
-        <a href="#" class="text-blue ml-2">忘记密码？</a>
+        <router-link :to="{name: 'auth.forget-password'}" class="text-blue ml-2">忘记密码？</router-link>
       </form>
     </div>
     <div class="box" id="edit-email">
@@ -104,6 +104,10 @@
           password: this.password,
           password_confirmation: this.passwordConfirmation,
         })
+
+        this.oldPassword = ''
+        this.password = ''
+        this.passwordConfirmation = ''
       },
       goAnchor(name) {
         let element = document.getElementById(name)

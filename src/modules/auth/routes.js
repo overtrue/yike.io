@@ -22,4 +22,12 @@ export default [{
     container: false,
   },
   component: () => import('./oauth')
-},]
+}, {
+  path: '/user/forget-password',
+  name: 'auth.forget-password',
+  component: () => import('./forget-password')
+}, {
+  path: '/user/reset-password',
+  name: 'auth.reset-password',
+  component: () => import('./reset-password')
+}]
