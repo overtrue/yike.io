@@ -41,7 +41,7 @@
     },
     methods: {
       async followings() {
-        let resource = new Resource(`user/${this.$route.params.id}/followings`)
+        let resource = new Resource(`user/${this.$route.params.username}/followings`)
 
         this.users = await resource.get()
       }

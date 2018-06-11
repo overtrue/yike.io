@@ -49,7 +49,12 @@
         </div>
         <div class="form-group">
           <label>新号码</label>
-          <input type="text" class="form-control">
+          <div class="input-group">
+            <input type="text" class="form-control" v-model="phone">
+            <div class="input-group-append">
+              <button class="btn btn-primary rounded-right">获取验证码</button>
+            </div>
+          </div>
           <small class="form-text text-muted">修改手机号码需要进行短信验证。</small>
         </div>
         <div class="form-group">
@@ -72,6 +77,7 @@
         password: '',
         passwordConfirmation: '',
         email: '',
+        phone: '',
       }
     },
     computed: {
