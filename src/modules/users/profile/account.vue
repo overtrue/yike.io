@@ -38,7 +38,7 @@
         <button type="submit" class="btn btn-primary rounded">确定</button>
       </form>
     </div>
-    <div class="box" id="edit-phone">
+    <div class="box" id="edit-phone" v-if="false">
       <div class="box-heading border-bottom">
         <h5>修改手机号码</h5>
       </div>

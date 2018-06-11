@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" v-if="false">
         <label>手机号码</label>
         <input type="text" class="form-control" v-model="user.phone" disabled>
         <small class="form-text text-muted">您可以管理您的<router-link :to="{ name: 'user.account', hash: '#edit-phone' }" class="text-blue">手机号码设置</router-link>。</small>

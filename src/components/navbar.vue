@@ -64,13 +64,13 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right">
               <div class="dropdown-item">
-                <router-link :to="{ name: 'users.show', params: { id: currentUser.id } }">
+                <router-link :to="{ name: 'users.show', params: { username: currentUser.username } }">
                   <div class="text-16 text-gray-30">{{ currentUser.name }}</div>
                   <div>@{{ currentUser.username }}</div>
                 </router-link>
               </div>
               <div class="dropdown-divider"></div>
-              <router-link class="dropdown-item" :to="{ name: 'users.show', params: { id: currentUser.id } }" exact>
+              <router-link class="dropdown-item" :to="{ name: 'users.show', params: { username: currentUser.username } }" exact>
                 <account-icon class="mr-1"></account-icon>
                 个人中心
               </router-link>
