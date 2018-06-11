@@ -45,6 +45,11 @@
     computed: {
       ...mapGetters(['currentUser'])
     },
+    watch: {
+      item() {
+        this.hovering = false
+      }
+    },
     methods: {
       async subscribe() {
         if (!this.currentUser.id) {
