@@ -65,6 +65,7 @@
     </div>
     <div class="position-fixed toolbar" v-show="showToolbar">
       <animate-action :item="thread"/>
+      <share-action class="mt-3" :item="thread"/>
     </div>
   </div>
 </template>
@@ -83,6 +84,7 @@
   import MarkdownBody from '@components/markdown-body'
   import ReportForm from './report-form'
   import AnimateAction from '@components/animate-action'
+  import ShareAction from '@components/share-action'
 
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
@@ -90,6 +92,7 @@
   export default {
     components: {
       AnimateAction,
+      ShareAction,
       ReportForm,
       LikeBtn,
       SubscribeBtn,
