@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   import LikeIcon from "@icons/heart"
 
   export default {
@@ -24,12 +23,9 @@
         }
       }
     },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
     methods: {
       async like() {
-        if (!this.currentUser['id']) {
+        if (!this.$user().id) {
           this.$router.push({name: 'auth.login'})
         }
 

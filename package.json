@@ -16,6 +16,7 @@
     "jquery": "^3.3.1",
     "localforage": "^1.7.1",
     "lodash": "^4.17.10",
+    "mo-js": "^0.288.2",
     "popper.js": "^1.14.3",
     "prismjs": "^1.14.0",
     "typeface-ubuntu-mono": "0.0.54",

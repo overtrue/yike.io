@@ -63,6 +63,9 @@
         <hot-tags></hot-tags>
       </div>
     </div>
+    <div class="position-fixed toolbar" v-show="showToolbar">
+      <animate-action :item="thread"/>
+    </div>
   </div>
 </template>
 
@@ -79,12 +82,14 @@
   import FollowBtn from '@components/follow-btn'
   import MarkdownBody from '@components/markdown-body'
   import ReportForm from './report-form'
+  import AnimateAction from '@components/animate-action'
 
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
 
   export default {
     components: {
+      AnimateAction,
       ReportForm,
       LikeBtn,
       SubscribeBtn,
@@ -104,6 +109,7 @@
       return {
         thread: null,
         showReportForm: false,
+        showToolbar: false,
       }
     },
     computed: {
@@ -125,6 +131,21 @@
     },
     mounted() {
       this.loadThread()
+
+      const vm = this
+
+      window.addEventListener('scroll', function () {
+        let top = document.body.scrollTop + document.documentElement.scrollTop
+
+        vm.showToolbar = top > 200
+      })
     },
   }
 </script>
+
+<style lang="scss">
+  .toolbar {
+    top: 150px;
+    left: 60px;
+  }
+</style>
