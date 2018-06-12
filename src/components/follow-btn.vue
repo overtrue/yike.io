@@ -85,7 +85,7 @@
           if (err || !followingUserIds) {
             this.loadFollowings()
           }
-          this.followingUserIds = followingUserIds
+          this.followingUserIds = followingUserIds || []
         })
       },
       refreshCachedFollowings() {
@@ -94,7 +94,7 @@
       loadFollowings() {
         return this.api(`user/${this.currentUser.username}/followings`).get().then((followings) => {
           let followingUserIds = followings.data.map(user => user.id)
-          this.followingUserIds = followingUserIds
+          this.followingUserIds = followingUserIds || []
           localforage.setItem(this.cacheKey, followingUserIds)
         })
       }

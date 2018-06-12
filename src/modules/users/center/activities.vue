@@ -1,77 +1,82 @@
 <template>
-  <ul class="timeline">
-    <li class="timeline-item">
-      <div class="timeline-heading">
-        <user-media class="align-items-start">
-          <template slot="description"><small class="text-muted">3 分钟前</small></template>
-          <template slot="appends"><span class="text-gray-70 ml-2">评论了 <a href="#">《这是一篇测试文章》</a>：</span> </template>
-        </user-media>
-      </div>
-      <div class="timeline-body">
-        <div class="box cursor-pointer text-gray-50">
-          你这写得很棒哦老铁！一般我用的组件都没见过像您写得这么好用的，真是非常的棒棒哦！下次直接用你的了，哈哈。
+  <ul class="timeline pb-2">
+      <li class="timeline-item" v-for="activity in activities.data">
+        <div class="timeline-heading">
+          <div class="d-flex">
+            <router-link :to="{name:'users.show', params: {username: currentUser.username}}">
+              <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.name"/>
+            </router-link>
+            <div class="ml-2">
+              <div>
+                <router-link :to="{name:'users.show', params: {username: currentUser.username}}">
+                  <h6 class="mb-0 text-16 d-inline-block">{{ currentUser.name }}</h6>
+                </router-link>
+                <span class="text-gray-70 ml-1">
+                  <template v-if="activity.log_name == 'commented.thread'">
+                    评论了 <a href="#">《{{ activity.subject.title }}》</a>
+                  </template>
+                  <template v-else-if="activity.log_name == 'published.thread'">
+                    发布了 <a href="#">《{{ activity.subject.title }}》</a>
+                  </template>
+                  <template v-else-if="activity.log_name == 'like.thread'">
+                    赞了 <a href="#">《{{ activity.subject.title }}》</a>
+                  </template>
+                  <template v-else-if="activity.log_name == 'follow.user'">
+                    关注了 <router-link :to="{name:'users.show', params: {username: activity.subject.username}}"></router-link>
+                  </template>
+                </span>
+              </div>
+              <div class="text-12 text-gray-70"><small class="text-muted">{{ activity.created_at }}</small></div>
+            </div>
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <div class="timeline-heading">
-        <user-media>
-          <template slot="description"><small class="text-muted">28 分钟前</small></template>
-          <template slot="appends"><span class="text-gray-70 ml-2">评论了 <a href="#">《求求大家帮忙看一下问题，找不到原因了》</a>：</span> </template>
-        </user-media>
-      </div>
-      <div class="timeline-body">
-        <div class="box cursor-pointer text-gray-50">大哥你第二段代码里少了一个分号你不晓得？</div>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <div class="timeline-heading">
-        <user-media>
-          <template slot="description"><small class="text-muted">1 天前</small></template>
-          <template slot="appends"><span class="text-gray-70 ml-2">发布了 <a href="#">《求解 stringObject.split(RegExp) 出现字符串分隔错误？》</a>：</span> </template>
-        </user-media>
-      </div>
-      <div class="timeline-body">
-        <div class="box cursor-pointer text-gray-50">
-          <div class="box-heading">string.split(RegExp)方法使用正则表达式分隔字符串，当正则表达式含有小括号()的时候翻个的字符串会出现错误，但是通过string.match(RegExp)的时候返回的值是我想要的是正确的
-            例如...</div>
+        <div class="timeline-body">
+          <user-card :user="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
+          <div class="box cursor-pointer text-gray-50" v-else>{{ activity.properties['content'] || '无' }}</div>
         </div>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <div class="timeline-heading">
-        <user-media>
-          <template slot="description"><small class="text-muted">2 天前</small></template>
-          <template slot="appends"><span class="text-gray-70 ml-2">回复了 <a href="#">@overtrue</a> 的帖子 <a href="#">《求解 stringObject.split(RegExp) 出现字符串分隔错误？》</a>：</span> </template>
-        </user-media>
-      </div>
-      <div class="timeline-body">
-        <div class="box cursor-pointer text-gray-50">我擦，我的问题和你的一毛一样，请问兄弟问题解决了没有啊？😭😭😭</div>
-      </div>
-    </li>
-    <li class="timeline-item">
-      <div class="timeline-heading">
-        <user-media>
-          <template slot="description"><small class="text-muted">4 天前</small></template>
-          <template slot="appends"><span class="text-gray-70 ml-2">关注了 <a href="#">@overtrue</a></span></template>
-        </user-media>
-      </div>
-      <div class="timeline-body d-flex justify-content-between flex-wrap">
-        <user-card :user="currentUser"></user-card>
-      </div>
-    </li>
+      </li>
+      <li class="timeline-item" v-if="activities.meta.current_page < activities.meta.last_page">
+        <div class="timeline-heading">
+          <div class="d-flex">
+            <button class="btn btn-secondary btn-icon text-20" @click="loadActivities"><arrow-down-icon></arrow-down-icon></button>
+          </div>
+        </div>
+      </li>
   </ul>
 </template>
 
 <script>
   import UserCard from "@components/user-card"
-  import UserMedia from "@components/user-media"
+  import ArrowDownIcon from '@icons/arrow-down'
   import { mapGetters } from 'vuex'
 
   export default {
-    components: {UserCard, UserMedia},
+    data() {
+      return {
+        activities: {
+          data: [],
+          meta: {
+            current_page: 0,
+            last_page: 0,
+          }
+        }
+      }
+    },
+    components: {UserCard, ArrowDownIcon},
     computed: {
       ...mapGetters(['currentUser']),
+    },
+    methods: {
+      loadActivities() {
+        let page = this.activities.meta.current_page + 1
+        this.api(`user/${this.currentUser.username}/activities?per_page=2&page=${page}`).get().then(activities => {
+          this.activities.data = this.activities.data.concat(activities.data)
+          this.activities.meta = activities.meta
+        })
+      }
+    },
+    mounted() {
+      this.loadActivities()
     }
   }
 </script>
