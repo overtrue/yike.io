@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentUser && currentUser.id != user.id">
+  <div v-if="currentUser && currentUser.id && currentUser.id != user.id">
     <template v-if="!followed">
       <template v-if="simple"><button @click="follow" class="btn btn-ghost btn-icon ml-auto" title="关注 TA"><plus-icon></plus-icon></button></template>
       <template v-else><button @click="follow" class="btn btn-outline-teal-blue mx-1"><plus-icon></plus-icon> 关注 TA</button></template>
@@ -55,7 +55,9 @@
       }
     },
     mounted() {
-      this.syncCachedFollowings()
+      if (this.currentUser.id) {
+        this.syncCachedFollowings()
+      }
     },
     methods: {
       async follow() {
