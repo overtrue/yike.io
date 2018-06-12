@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentUser && currentUser.id != user.id">
+  <div v-if="currentUser && currentUser.id && currentUser.id != user.id">
     <template v-if="!followed">
       <template v-if="simple"><button @click="follow" class="btn btn-ghost btn-icon ml-auto" title="关注 TA"><plus-icon></plus-icon></button></template>
       <template v-else><button @click="follow" class="btn btn-outline-teal-blue mx-1"><plus-icon></plus-icon> 关注 TA</button></template>
@@ -55,7 +55,9 @@
       }
     },
     mounted() {
-      this.syncCachedFollowings()
+      if (this.currentUser.id) {
+        this.syncCachedFollowings()
+      }
     },
     methods: {
       async follow() {
@@ -63,7 +65,7 @@
           this.$router.push({name: 'auth.login'})
         }
 
-        await this.api(`user/${this.user.id}/follow`).post().then(() => {
+        await this.api(`user/${this.user.username}/follow`).post().then(() => {
           this.$message.success('已关注')
         })
 
@@ -71,7 +73,7 @@
         this.refreshCachedFollowings()
       },
       async unfollow() {
-        await this.api(`user/${this.user.id}/unfollow`).post().then(() => {
+        await this.api(`user/${this.user.username}/unfollow`).post().then(() => {
           this.$message.success('已取消关注')
         })
 
@@ -90,7 +92,7 @@
         return localforage.removeItem(this.cacheKey).then(this.loadFollowings).then(this.syncCachedFollowings)
       },
       loadFollowings() {
-        return this.api(`user/${this.currentUser.id}/followings`).get().then((followings) => {
+        return this.api(`user/${this.currentUser.username}/followings`).get().then((followings) => {
           let followingUserIds = followings.data.map(user => user.id)
           this.followingUserIds = followingUserIds
           localforage.setItem(this.cacheKey, followingUserIds)
