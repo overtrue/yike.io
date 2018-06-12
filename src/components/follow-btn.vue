@@ -65,7 +65,7 @@
           this.$router.push({name: 'auth.login'})
         }
 
-        await this.api(`user/${this.user.id}/follow`).post().then(() => {
+        await this.api(`user/${this.user.username}/follow`).post().then(() => {
           this.$message.success('已关注')
         })
 
@@ -73,7 +73,7 @@
         this.refreshCachedFollowings()
       },
       async unfollow() {
-        await this.api(`user/${this.user.id}/unfollow`).post().then(() => {
+        await this.api(`user/${this.user.username}/unfollow`).post().then(() => {
           this.$message.success('已取消关注')
         })
 
@@ -92,7 +92,7 @@
         return localforage.removeItem(this.cacheKey).then(this.loadFollowings).then(this.syncCachedFollowings)
       },
       loadFollowings() {
-        return this.api(`user/${this.currentUser.id}/followings`).get().then((followings) => {
+        return this.api(`user/${this.currentUser.username}/followings`).get().then((followings) => {
           let followingUserIds = followings.data.map(user => user.id)
           this.followingUserIds = followingUserIds
           localforage.setItem(this.cacheKey, followingUserIds)
