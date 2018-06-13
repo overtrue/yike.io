@@ -50,10 +50,14 @@
       async submit() {
         const { username, email, password } = this
 
-        this.attemptRegister({ username, email, password })
+        try {
+          await this.attemptRegister({ username, email, password })
 
-        this.$message.warning('注册成功，请先验证你邮箱地址！')
-        this.$router.push({ name: 'home' })
+          this.$message.warning('注册成功，请先验证你邮箱地址！')
+          this.$router.push({ name: 'home' })
+        } catch (e) {
+          this.$message.error('注册失败！')
+        }
       }
     }
   }

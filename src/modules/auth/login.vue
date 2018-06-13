@@ -40,13 +40,17 @@
     methods: {
       ...mapActions(['attemptLogin']),
 
-      submit() {
+      async submit() {
         const { username, password } = this
 
-        this.attemptLogin({ username, password })
+        try {
+          await this.attemptLogin({ username, password })
 
-        this.$message.success('欢迎回来~')
-        this.$router.push({ name: 'home' })
+          this.$message.success('欢迎回来~')
+          this.$router.push({ name: 'home' })
+        } catch (e) {
+          this.$message.error('账号密码错误！')
+        }
       },
     }
   }
