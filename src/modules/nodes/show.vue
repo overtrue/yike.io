@@ -51,7 +51,7 @@
   import { mapGetters } from 'vuex'
   import HotTags from "@components/hot-tags"
   import ThreadsList from "@components/threads-list"
-  import SubscribeBtn from '../../components/subscribe-btn'
+  import SubscribeBtn from '@components/subscribe-btn'
 
   export default {
     components: {SubscribeBtn, HotTags, ThreadsList},
@@ -70,27 +70,35 @@
     computed: {
       ...mapGetters(['currentUser'])
     },
+    beforeRouteUpdate(to, from, next) {
+      if (to.params.id != from.params.id) {
+        this.getNode(to.params.id)
+        this.loadThreads(to.params.id)
+      }
+
+      next()
+    },
     created() {
-      this.getNode()
-      this.loadThreads()
+      this.getNode(this.$route.params.id)
+      this.loadThreads(this.$route.params.id)
     },
     watch:{
       currentThreadsTab() {
-        this.loadThreads(1)
+        this.loadThreads(this.$route.params.id, 1)
       }
     },
     methods: {
-      loadThreads(page = 1) {
-        this.api(`nodes/${this.$route.params.id}/threads`)
+      loadThreads(id, page = 1) {
+        this.api(`nodes/${id}/threads`)
           .get('?all=yes&page='+page)
           .then(threads => this.threads[this.currentThreadsTab] = threads)
       },
       handlePageChanged(page) {
         this.loadThreads(page)
       },
-      getNode() {
+      getNode(id) {
         this.api('nodes')
-          .find(this.$route.params.id)
+          .find(id)
           .then((data) => {
             this.node = data
           })

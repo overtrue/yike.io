@@ -4,18 +4,31 @@
       <div class="text-13">热门话题</div>
     </div>
     <ul class="plan-list text-13">
-      <li class="py-1">#小程序开发 <span class="float-right">1.235k</span></li>
-      <li class="py-1">#小程序开发 <span class="float-right">820123</span></li>
-      <li class="py-1">#小程序开发 <span class="float-right">30271</span></li>
-      <li class="py-1">#小程序开发 <span class="float-right">10293</span></li>
-      <li class="py-1">#小程序开发 <span class="float-right">882</span></li>
+      <template v-for="node in nodes">
+        <router-link tag="li" :key="node.id" :to="{name: 'nodes.node', params:{id: node.id}}" class="py-1 cursor-pointer">
+          #{{ node.title }} <span class="float-right">{{node.cache.threads_count}}</span>
+        </router-link>
+      </template>
     </ul>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'HotTags'
+    name: 'HotTags',
+    data() {
+      return {
+        nodes: []
+      }
+    },
+    methods: {
+      loadNodes() {
+        this.api('nodes').get('?hot=5').then(nodes => this.nodes = nodes.data)
+      }
+    },
+    created() {
+      this.loadNodes()
+    }
   }
 </script>
 
