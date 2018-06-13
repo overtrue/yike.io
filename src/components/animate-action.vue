@@ -24,6 +24,12 @@
         }
       }
     },
+    data() {
+      return {
+        likers: this.item.likers_count,
+        animationTimeline: null
+      }
+    },
     methods: {
       toggle() {
         if (this.item.has_liked) {
@@ -47,15 +53,32 @@
 
         this.item.has_liked = false
         this.item.likers_count--
+      },
+      repeatClapping() {
+        const clapIcon = document.getElementById('clap--icon')
+
+        this.updateNumberOfClaps()
+        this.animationTimeline.replay()
+        clapIcon.classList.add('checked')
+      },
+      updateNumberOfClaps() {
+        const clapCount = document.getElementById('clap--count')
+        const clapTotalCount = document.getElementById('clap--count-total')
+
+        if (this.item.has_liked) {
+          clapCount.innerHTML = "-1"
+          clapTotalCount.innerHTML = this.likers - 1
+          this.likers--
+        } else {
+          clapCount.innerHTML = "+1"
+          clapTotalCount.innerHTML = this.likers + 1
+          this.likers++
+        }
       }
     },
     mounted() {
       const vm = this
       const clap = document.getElementById('clap')
-      const clapIcon = document.getElementById('clap--icon')
-      const clapCount = document.getElementById('clap--count')
-      const clapTotalCount = document.getElementById('clap--count-total')
-      let initialNumberOfClaps = this.item.likers_count;
       const tlDuration = 300
       let clapHold;
 
@@ -120,8 +143,8 @@
       })
       clap.style.transform = "scale(1, 1)" /*Bug1 fix*/
 
-      const animationTimeline = new mojs.Timeline()
-      animationTimeline.add([
+      this.animationTimeline = new mojs.Timeline()
+      this.animationTimeline.add([
         triangleBurst,
         circleBurst,
         countAnimation,
@@ -129,39 +152,19 @@
         scaleButton
       ])
 
-
       clap.addEventListener('click', function() {
-        repeatClapping();
+        vm.repeatClapping();
       })
 
       clap.addEventListener('mousedown', function() {
         clapHold = setInterval(function() {
-          repeatClapping();
+          vm.repeatClapping();
         }, 400)
       })
 
       clap.addEventListener('mouseup', function() {
         clearInterval(clapHold);
       })
-
-
-      function repeatClapping() {
-        updateNumberOfClaps()
-        animationTimeline.replay()
-        clapIcon.classList.add('checked')
-      }
-
-      function updateNumberOfClaps() {
-        if (vm.item.has_liked) {
-          clapCount.innerHTML = "-1"
-          clapTotalCount.innerHTML = initialNumberOfClaps - 1
-          initialNumberOfClaps--
-        } else {
-          clapCount.innerHTML = "+1"
-          clapTotalCount.innerHTML = initialNumberOfClaps + 1
-          initialNumberOfClaps++
-        }
-      }
     }
   }
 </script>

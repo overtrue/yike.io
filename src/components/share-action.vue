@@ -1,6 +1,6 @@
 <template>
   <div class="share-action text-center cursor-pointer">
-    <span class="text-gray-50 text-24 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="text-gray-50 text-24 w-100 h-100 d-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <near-me />
     </span>
     <div class="dropdown-menu dropdown-menu-right">
@@ -46,7 +46,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .share-action {
     .dropdown-menu {
       top: 6px !important;
 
@@ -57,5 +56,4 @@
     .dropdown-toggle::after {
       display: none;
     }
-  }
 </style>
