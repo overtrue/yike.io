@@ -3,13 +3,13 @@
       <li class="timeline-item" v-for="activity in activities.data">
         <div class="timeline-heading">
           <div class="d-flex">
-            <router-link :to="{name:'users.show', params: {username: currentUser.username}}">
-              <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.name"/>
+            <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
+              <img :src="$parent.user.avatar" class="avatar-40" :alt="$parent.user.name"/>
             </router-link>
             <div class="ml-2">
               <div>
-                <router-link :to="{name:'users.show', params: {username: currentUser.username}}">
-                  <h6 class="mb-0 text-16 d-inline-block">{{ currentUser.name }}</h6>
+                <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
+                  <h6 class="mb-0 text-16 d-inline-block">{{ $parent.user.name }}</h6>
                 </router-link>
                 <span class="text-gray-70 ml-1">
                   <template v-if="activity.log_name == 'commented.thread'">
@@ -48,7 +48,6 @@
 <script>
   import UserCard from "@components/user-card"
   import ArrowDownIcon from '@icons/arrow-down'
-  import { mapGetters } from 'vuex'
 
   export default {
     data() {
@@ -63,13 +62,10 @@
       }
     },
     components: {UserCard, ArrowDownIcon},
-    computed: {
-      ...mapGetters(['currentUser']),
-    },
     methods: {
       loadActivities() {
         let page = this.activities.meta.current_page + 1
-        this.api(`user/${this.currentUser.username}/activities?per_page=2&page=${page}`).get().then(activities => {
+        this.api(`user/${this.$route.params.username}/activities?per_page=2&page=${page}`).get().then(activities => {
           this.activities.data = this.activities.data.concat(activities.data)
           this.activities.meta = activities.meta
         })

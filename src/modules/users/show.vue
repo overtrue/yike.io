@@ -38,7 +38,7 @@
         <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
       </div>
       <div class="nav-item">
-        <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 12</router-link>
+        <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 {{ user.cache.comments_count }}</router-link>
       </div>
       <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
       <div class="nav-item">
