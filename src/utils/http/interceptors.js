@@ -45,7 +45,7 @@ export default (http) => {
           break
       }
 
-      return Promise.reject(error.response.data)
+      return Promise.reject(error.response)
     }
   )
 }

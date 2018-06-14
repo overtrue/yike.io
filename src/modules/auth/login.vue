@@ -49,7 +49,9 @@
           this.$message.success('欢迎回来~')
           this.$router.push({ name: 'home' })
         } catch (e) {
-          this.$message.error('账号密码错误！')
+          if (e.status != 422) {
+            this.$message.error('账号密码错误！')
+          }
         }
       },
     }
