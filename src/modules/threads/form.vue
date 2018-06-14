@@ -9,10 +9,10 @@
           <form v-else>
             <div class="box-heading box-body border-bottom mb-0">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control border-0 px-0 text-24" v-model="form.title" placeholder="请在这里输入标题">
+                <input type="text" class="form-control border-0 px-0 text-24" v-model="form.title" placeholder="请在这里输入标题（请精准表达）">
               </div>
             </div>
-            <editor v-model="form.content.markdown" :options="{maxLines: Infinity}"></editor>
+            <editor v-model="form.content.markdown" :options="{maxLines: Infinity}" placeholder="请详细并精准的表达，不得少于30个字符~"></editor>
             <div class="box-footer border-top p-2 d-flex justify-content-between">
               <div class="left-actions d-flex align-items-center">
                 <span class="text-muted">发布到</span>
@@ -75,9 +75,9 @@
     computed: {
       formReady() {
         return !this.busing
-          && this.form.title.length > 5
+          && this.form.title.length >= 5
           && this.form.node_id > 0
-          && this.form.content.markdown && this.form.content.markdown.length > 30
+          && this.form.content.markdown && this.form.content.markdown.length >= 30
       }
     },
     mounted() {

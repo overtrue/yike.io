@@ -38,7 +38,7 @@
       </div>
       <div class="form-group">
         <label>个人主页</label>
-        <input type="text" class="form-control" v-model="user.extends.website">
+        <input type="text" class="form-control" v-model="user.extends.home_url">
       </div>
       <div class="form-group">
         <label>公司</label>
@@ -64,7 +64,7 @@
       return {
         user: {
           extends: {
-            website: '',
+            home_url: '',
             company: '',
             location: ''
           }
@@ -76,14 +76,6 @@
     },
     created() {
       this.user = cloneDeepWith(this.currentUser)
-
-      if (!this.user.extends) {
-        this.user.extends = {
-          website: '',
-          company: '',
-          location: ''
-        }
-      }
     },
     methods: {
       ...mapActions(['setUser']),

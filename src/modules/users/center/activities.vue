@@ -13,16 +13,16 @@
                 </router-link>
                 <span class="text-gray-70 ml-1">
                   <template v-if="activity.log_name == 'commented.thread'">
-                    评论了 <a href="#">《{{ activity.subject.title }}》</a>
+                    评论了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
                   </template>
                   <template v-else-if="activity.log_name == 'published.thread'">
-                    发布了 <a href="#">《{{ activity.subject.title }}》</a>
+                    发布了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
                   </template>
                   <template v-else-if="activity.log_name == 'like.thread'">
-                    赞了 <a href="#">《{{ activity.subject.title }}》</a>
+                    赞了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
                   </template>
                   <template v-else-if="activity.log_name == 'follow.user'">
-                    关注了 <router-link :to="{name:'users.show', params: {username: activity.subject.username}}"></router-link>
+                    关注了 <router-link :to="{name:'users.show', params: {username: activity.subject.username}}">{{ activity.subject.username }}</router-link>
                   </template>
                 </span>
               </div>
@@ -50,6 +50,13 @@
   import ArrowDownIcon from '@icons/arrow-down'
 
   export default {
+    name: 'user-activities',
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
+    },
     data() {
       return {
         activities: {
@@ -65,7 +72,7 @@
     methods: {
       loadActivities() {
         let page = this.activities.meta.current_page + 1
-        this.api(`user/${this.$route.params.username}/activities?per_page=2&page=${page}`).get().then(activities => {
+        this.api(`user/${this.user.username}/activities?per_page=10&page=${page}`).get().then(activities => {
           this.activities.data = this.activities.data.concat(activities.data)
           this.activities.meta = activities.meta
         })

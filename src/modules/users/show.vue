@@ -11,8 +11,8 @@
               <h4>{{ user.name }}</h4>
               <p>{{ user.bio }}</p>
               <div class="text-white">
-                <router-link :to="{ name: 'users.followers' }" class="text-white mr-1">{{ user.followers_count }} <span class="text-white-60">粉丝</span></router-link>
-                <router-link :to="{ name: 'users.following' }" class="text-white mx-1">{{ user.followings_count }} <span class="text-white-60">关注</span></router-link>
+                <router-link :to="{ name: 'users.followers' }" class="text-white mr-1">{{ user.cache.followers_count }} <span class="text-white-60">粉丝</span></router-link>
+                <router-link :to="{ name: 'users.following' }" class="text-white mx-1">{{ user.cache.followings_count }} <span class="text-white-60">关注</span></router-link>
               </div>
             </div>
           </div>
@@ -52,7 +52,7 @@
     <div class="container pt-4">
       <div class="row">
         <div class="col-md-9">
-          <router-view></router-view>
+          <router-view :user="user"></router-view>
         </div>
         <div class="col-md-3">
           <hot-tags></hot-tags>

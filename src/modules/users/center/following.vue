@@ -27,6 +27,13 @@
   import MinusIcon from '@icons/minus'
 
   export default {
+    name: 'user-followings',
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
+    },
     components: {UserListItem, Paginator, PlusIcon, EmailIcon, MinusIcon},
     data() {
       return {
@@ -41,7 +48,7 @@
     },
     methods: {
       async followings() {
-        let resource = new Resource(`user/${this.$route.params.username}/followings`)
+        let resource = new Resource(`user/${this.user.username}/followings`)
 
         this.users = await resource.get()
       }

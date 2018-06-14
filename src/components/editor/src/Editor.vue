@@ -12,7 +12,7 @@
       <button class="btn btn-link p-1 text-20" type="button" @click="insertLink"><link-icon></link-icon></button>
     </div>
     <div class="editor-container" :class="editorClass">
-      <textarea id="editor" placeholder="请在这里输入你的内容"></textarea>
+      <textarea id="editor" :placeholder="placeholder"></textarea>
     </div>
   </div>
 </template>
@@ -47,6 +47,10 @@
       editorClass: {
         type: String,
         default: 'p-2'
+      },
+      placeholder: {
+        type: String,
+        default: '请在这里输入你的内容'
       },
       options: {
         type: Object,

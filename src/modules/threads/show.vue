@@ -53,14 +53,8 @@
         </div>
       </div>
       <div class="col-md-3">
-        <div class="box box-flush mb-2">
-          <img src="https://source.unsplash.com/random/400x300" class="img-fluid" alt="" />
-
-          <div class="text-center p-3">
-            <div class="btn btn-primary">点击查看详情</div>
-          </div>
-        </div>
-        <hot-tags></hot-tags>
+        <user-profile-card :user="thread.user"></user-profile-card>
+        <hot-tags class="mt-2"></hot-tags>
       </div>
     </div>
     <div class="position-fixed toolbar" v-show="showToolbar">
@@ -85,6 +79,7 @@
   import ReportForm from './report-form'
   import AnimateAction from '@components/animate-action'
   import ShareAction from '@components/share-action'
+  import UserProfileCard from '@components/user-profile-card'
 
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
@@ -106,7 +101,8 @@
       AlertBoxIcon,
       DeleteIcon,
       MarkdownBody,
-      Comments
+      Comments,
+      UserProfileCard,
     },
     data() {
       return {

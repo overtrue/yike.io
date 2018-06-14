@@ -25,20 +25,17 @@
         <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
           <a href="javascript:void(0);" class="nav-link">首页</a>
         </router-link>
-        <li class="nav-item">
-          <a class="nav-link" href="#">讨论</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">问答</a>
-        </li>
+        <!--<li class="nav-item">-->
+          <!--<a class="nav-link" href="#">讨论</a>-->
+        <!--</li>-->
+        <!--<li class="nav-item">-->
+          <!--<a class="nav-link" href="#">问答</a>-->
+        <!--</li>-->
         <router-link :to="{ name: 'nodes.show' }" exact tag="li" class="nav-item">
           <a href="javascript:void(0);" class="nav-link">节点</a>
         </router-link>
         <li class="nav-item">
-          <a class="nav-link" href="#">话题</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">SDK</a>
+          <a class="nav-link" href="https://easywechat.com">SDK</a>
         </li>
       </ul>
     </div>
