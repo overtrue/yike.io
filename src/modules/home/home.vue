@@ -1,6 +1,6 @@
 <template>
   <div class="page-home">
-    <banner name="home"></banner>
+    <banner name="home" v-if="false"></banner>
 
     <div class="row mt-3">
       <div class="col-md-9">

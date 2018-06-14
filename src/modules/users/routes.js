@@ -48,6 +48,13 @@ export default [{
     },
     component: () => import('./profile/account')
   }, {
+    path: 'extends',
+    name: 'user.extends',
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import('./profile/extends')
+  }, {
     path: 'notification',
     name: 'user.notification-setting',
     meta: {

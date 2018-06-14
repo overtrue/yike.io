@@ -80,9 +80,9 @@
     methods: {
       ...mapActions(['setUser']),
       async submit() {
-        let user = new Resource('user')
+        let user = new Resource('users')
 
-        const result = await user.patch(this.user.id, this.user)
+        const result = await user.patch(this.user.username, this.user)
 
         if (result) {
           this.setUser(result)
