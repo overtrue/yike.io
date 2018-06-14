@@ -1,6 +1,6 @@
 <template>
   <div id="clap" class="text-center clap d-flex align-items-center justify-content-center" @click="toggle">
-    <span id="clap--icon" class="clap--icon text-24">
+    <span id="clap--icon" class="clap--icon">
       <thumb-up-outline v-if="!item.has_liked"/>
       <thumb-up v-else />
     </span>
@@ -188,12 +188,11 @@
   }
   .clap {
     position: relative;
-    outline: 1px solid transparent;
     border-radius: 50%;
-    border: 1px solid $primary-color;
+    background: #fff;
+    font-size: 24px;
     width: $btn-dimension;
     height: $btn-dimension;
-    background: none;
     &:after {
       content: "";
       position: absolute;
@@ -207,8 +206,9 @@
     }
     &:hover {
       cursor: pointer;
-      border: 1px solid $secondary-color;
-      transition: border-color 0.3s ease-in;
+      background: #fff60;
+      font-size: 26px;
+      transition: all 0.3s ease-in;
       &:after {
         animation: shockwave 1s ease-in infinite;
       }
@@ -231,7 +231,7 @@
       width: $btn-dimension;
       text-align: center;
       left: 0;
-      top: -$btn-dimension/3.5;
+      bottom: -$btn-dimension/2.5;
       color: $primary-color;
     }
   }
