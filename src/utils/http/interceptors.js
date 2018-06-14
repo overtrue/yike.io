@@ -23,7 +23,7 @@ export default (http) => {
     */
     (error) => {
       switch (error.response.status) {
-        case 422:
+        case 422: {
           let data = error.response.data.errors
           let content = ''
 
@@ -35,9 +35,11 @@ export default (http) => {
 
           Message.error(content)
           break
-        case 403:
+        }
+        case 403: {
           Message.error('您没有此操作权限！')
-          break;
+          break
+        }
         case 500:
         case 501:
         case 503:

@@ -1,6 +1,6 @@
 <template>
   <ul class="timeline pb-2">
-      <li class="timeline-item" v-for="activity in activities.data">
+      <li class="timeline-item" v-for="activity in activities.data" :key="activity.id">
         <div class="timeline-heading">
           <div class="d-flex">
             <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
