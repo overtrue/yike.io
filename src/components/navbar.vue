@@ -40,20 +40,19 @@
       </ul>
     </div>
 
-    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex align-items-center">
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex align-items-center justify-content-around">
       <template v-if="isLogged">
         <li class="nav-item">
-          <router-link :to="{ name: 'threads.create' }" exact class="btn btn-sm btn-outline-secondary">
+          <router-link :to="{ name: 'threads.create' }" exact class="text-20 btn btn-icon btn-light">
             <plus-icon></plus-icon>
-            发起讨论
           </router-link>
         </li>
         <li class="nav-item nav-item-icon">
-          <router-link :to="{ name: 'notifications.show' }" class="text-24 btn btn-icon btn-ghost no-border">
+          <router-link :to="{ name: 'notifications.show' }" class="text-20 btn btn-icon btn-light">
             <bell-icon/>
           </router-link>
         </li>
-        <li class="nav-item nav-link mr-md-2">
+        <li class="nav-item mr-md-2">
           <div class="btn-group">
             <a href="#" class="dropdown-toggle"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
