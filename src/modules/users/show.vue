@@ -38,14 +38,14 @@
         <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
       </div>
       <div class="nav-item">
-        <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 {{ user.cache.comments_count }}</router-link>
+        <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 <span class="text-gray-70 pl-1">{{ user.cache.comments_count }}</span></router-link>
       </div>
       <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
       <div class="nav-item">
-        <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 {{ user.followings_count }}</router-link>
+        <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 <span class="text-gray-70 pl-1">{{ user.followings_count }}</span></router-link>
       </div>
       <div class="nav-item">
-        <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 {{ user.followers_count }}</router-link>
+        <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
       </div>
     </div>
 
