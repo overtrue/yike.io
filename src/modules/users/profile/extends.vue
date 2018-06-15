@@ -97,6 +97,9 @@
         }
       }
     },
+    created() {
+      this.links = this.$user().extends
+    },
     methods: {
       submit() {
         this.api('users').patch(this.$user().username, {
