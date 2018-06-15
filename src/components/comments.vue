@@ -12,7 +12,7 @@
           <div class="text-16 text-muted ml-2" v-else>{{ currentUser.name }}</div>
         </div>
         <template v-if="writing">
-          <editor v-model="content" :toolbar="false" editor-class="py-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
+          <editor v-model="content" :toolbar="false" editor-class="comment-editor py-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
           <div class="py-1">
             <button type="button" class="btn btn-primary" :disabled="!formReady" @click="submit">提交</button>
             <button type="button" class="ml-2 btn btn-secondary" @click="writing=false">取消</button>
@@ -182,5 +182,7 @@
 </script>
 
 <style scoped>
-
+  .comment-editor .editor-container {
+    height: auto;
+  }
 </style>
