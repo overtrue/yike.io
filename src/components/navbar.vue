@@ -6,7 +6,7 @@
     </button>
     <ul class="navbar-nav d-flex align-items-center justify-content-between">
       <li class="nav-item nav-item-icon">
-        <a href="#" class="nav-link">
+        <a href="javascript:void(0)" class="nav-link" @click="toggle">
           <menu-icon decorative/>
         </a>
       </li>
@@ -54,7 +54,7 @@
         </li>
         <li class="nav-item mr-md-2">
           <div class="btn-group">
-            <a href="#" class="dropdown-toggle"
+            <a href="#" class="dropdown-toggle cursor-pointer"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img :src="currentUser.avatar" class="avatar-40 mr-2"/>
             </a>
@@ -115,7 +115,7 @@
       ...mapGetters(['isLogged', 'currentUser'])
     },
     methods: {
-      ...mapActions(['logout'])
+      ...mapActions(['logout', 'toggle'])
     }
   }
 </script>
@@ -123,10 +123,6 @@
 <style lang="scss">
   .navbar {
     height: 60px;
-  }
-
-  .dropdown-toggle {
-    cursor: pointer;
   }
 
   .navbar-nav .nav-item {

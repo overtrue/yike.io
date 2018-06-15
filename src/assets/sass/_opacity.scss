@@ -1,0 +1,7 @@
+$degrees: 5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85, 90;
+
+@each $degree in $degrees {
+  .opacity-#{$degree} {
+    opacity: #{$degree/100};
+  }
+}

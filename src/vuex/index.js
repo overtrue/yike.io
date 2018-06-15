@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import state from './state'
-import mutations from './mutations'
-import actions from './actions'
+import * as mutations from './mutations'
+import * as actions from './actions'
 import { default as vuex } from './vuex'
 import * as getters from './getters'
 
