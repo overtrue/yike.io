@@ -10,6 +10,7 @@
     <div class="text-gray-70">
       <div class="py-1">{{ user.bio }}</div>
     </div>
+    <user-social-btns :user="user" :size="12" class="flex-wrap justify-content-center"></user-social-btns>
     <div class="d-flex mt-2 pt-2 border-top align-items-center justify-content-between">
       <router-link to="{name: 'users.following', params: {username: user.username}}">
         <div class="text-20 text-gray-40">{{ user.cache.followings_count }}</div>
@@ -33,6 +34,7 @@
   import FollowBtn from '@components/follow-btn'
   import MapMakerIcon from "@icons/map-marker"
   import PlusIcon from "@icons/plus"
+  import UserSocialBtns from '@components/user-social-btns'
 
   export default {
     name: 'user-profile-card',
@@ -42,7 +44,7 @@
         required: true
       }
     },
-    components: {UserMedia, FollowBtn, MapMakerIcon, PlusIcon}
+    components: {UserMedia, FollowBtn, MapMakerIcon, PlusIcon, UserSocialBtns}
   }
 </script>
 

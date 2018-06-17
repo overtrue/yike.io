@@ -20,15 +20,7 @@
             <template v-if="currentUser && currentUser.id != user.id">
               <follow-btn :user="user"></follow-btn>
             </template>
-            <a href="" class="text-20 btn mx-1 btn-icon btn-twitter">
-              <twitter-icon></twitter-icon>
-            </a>
-            <a href="" class="text-20 btn mx-1 btn-icon btn-facebook">
-              <facebook-icon></facebook-icon>
-            </a>
-            <a href="" class="text-20 btn mx-1 btn-icon btn-dark">
-              <instagram-icon></instagram-icon>
-            </a>
+            <user-social-btns :user="user"></user-social-btns>
           </div>
         </div>
       </div>
@@ -68,18 +60,15 @@
   import { mapGetters } from 'vuex'
   import Resource from '@utils/resource'
 
-  import TwitterIcon from '@icons/twitter'
-  import FacebookIcon from '@icons/facebook'
-  import InstagramIcon from '@icons/instagram'
-
   import HotTags from "@components/hot-tags"
   import UserRanking from "@components/user-ranking"
   import NewUsers from "@components/new-users"
   import FollowBtn from '@components/follow-btn'
+  import UserSocialBtns from '@components/user-social-btns'
 
   export default {
     name: 'show',
-    components: {FollowBtn, TwitterIcon, FacebookIcon, InstagramIcon, HotTags, UserRanking, NewUsers},
+    components: {FollowBtn, HotTags, UserRanking, NewUsers, UserSocialBtns},
     data() {
       return {
         user: {}
