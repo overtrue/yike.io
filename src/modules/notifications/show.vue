@@ -39,10 +39,10 @@
 <script>
   import BellIcon from '@icons/bell'
 
-  import NewFollower from './components/new-follower'
-  import CommentMyThread from './components/comment-my-thread'
-  import LikedMyThread from './components/liked-my-thread'
-  import SubscribedMyThread from './components/subscribed-my-thread'
+  import NewFollower from './tabs/new-follower'
+  import CommentMyThread from './tabs/comment-my-thread'
+  import LikedMyThread from './tabs/liked-my-thread'
+  import SubscribedMyThread from './tabs/subscribed-my-thread'
 
   export default {
     components: {BellIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread},

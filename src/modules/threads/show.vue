@@ -1,5 +1,5 @@
 <template>
-  <div class="page-threads-show" v-if="thread">
+  <div class="page-threads-show pb-4" v-if="thread">
     <div class="row">
       <div class="col-md-9">
         <article class="box box-flush">
@@ -51,15 +51,33 @@
         <div class="thread-comments mt-3">
           <comments object-type="App\Thread" :object-id="thread.id" @created="loadThread"></comments>
         </div>
+        <div class="thread-toolbar" v-show="showToolbar">
+          <animate-action :item="thread"/>
+          <share-action class="mt-3" :item="thread"/>
+        </div>
+        <div class="thread-stats-bar bg-white py-1" v-show="showStatsBar">
+          <div class="container">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link btn btn-sm btn-primary" href="#"><thumb-up-icon></thumb-up-icon> 1230</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> 条评论</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><more-icon></more-icon></a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="col-md-3">
         <user-profile-card :user="thread.user"></user-profile-card>
         <hot-tags class="mt-2"></hot-tags>
       </div>
-    </div>
-    <div class="position-fixed toolbar" v-show="showToolbar">
-      <animate-action :item="thread"/>
-      <share-action class="mt-3" :item="thread"/>
     </div>
   </div>
 </template>
@@ -68,11 +86,14 @@
   import PencilIcon from "@icons/pencil"
   import DeleteIcon from "@icons/delete"
   import AlertBoxIcon from "@icons/alert-box"
-  import MoreIcon from "@icons/dots-horizontal"
   import UserMedia from "@components/user-media"
   import HotTags from "@components/hot-tags"
   import Comments from "@components/comments"
   import LikeBtn from "@components/like-btn"
+  import ThumbUpIcon from '@icons/thumb-up'
+  import StarIcon from '@icons/star'
+  import MoreIcon from '@icons/dots-horizontal'
+  import ShareIcon from '@icons/share'
   import SubscribeBtn from "@components/subscribe-btn"
   import FollowBtn from '@components/follow-btn'
   import MarkdownBody from '@components/markdown-body'
@@ -96,10 +117,13 @@
       FollowBtn,
       UserMedia,
       HotTags,
-      MoreIcon,
       PencilIcon,
       AlertBoxIcon,
       DeleteIcon,
+      ThumbUpIcon,
+      ShareIcon,
+      StarIcon,
+      MoreIcon,
       MarkdownBody,
       Comments,
       UserProfileCard,
@@ -109,6 +133,7 @@
         thread: null,
         showReportForm: false,
         showToolbar: false,
+        showStatsBar: true,
       }
     },
     computed: {
@@ -125,26 +150,40 @@
     },
     methods: {
       loadThread() {
-        this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response)
+        this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response).then(this.registerEventListener)
+      },
+      registerEventListener() {
+        window.addEventListener('scroll', () => {
+          let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+          let articleHeight = document.querySelector('article').clientHeight
+          let windowHeight = window.innerHeight
+
+          this.showToolbar = top > 200
+          this.showStatsBar = top <= (articleHeight + 90) - windowHeight - 220
+        })
       }
     },
     mounted() {
       this.loadThread()
-
-      const vm = this
-
-      window.addEventListener('scroll', function () {
-        let top = document.body.scrollTop + document.documentElement.scrollTop
-
-        vm.showToolbar = top > 200
-      })
     },
   }
 </script>
 
 <style lang="scss">
-  .toolbar {
+  .thread-toolbar {
+    position: fixed;
     top: 150px;
-    left: 60px;
+    margin-left: -80px;
+  }
+  .thread-stats-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    .material-design-icon {
+      font-size: 1.2em;
+      bottom: -0.06em;
+    }
   }
 </style>

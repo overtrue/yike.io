@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import Sidebar from '@modules/users/components/sidebar'
+  import Sidebar from '@modules/users/profile/sidebar'
 
   export default {
     name: 'show',
