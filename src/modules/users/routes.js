@@ -7,28 +7,28 @@ export default [{
     meta: {
       container: false
     },
-    component: () => import('./center/activities')
+    component: () => import('./tabs/activities')
   }, {
     path: 'threads',
     name: 'users.threads',
     meta: {
       container: false
     },
-    component: () => import('./center/threads')
+    component: () => import('./tabs/threads')
   }, {
     path: 'followers',
     name: 'users.followers',
     meta: {
       container: false
     },
-    component: () => import('./center/followers')
+    component: () => import('./tabs/followers')
   }, {
     path: 'following',
     name: 'users.following',
     meta: {
       container: false
     },
-    component: () => import('./center/following')
+    component: () => import('./tabs/following')
   }]
 }, {
   path: '/user',

@@ -1,15 +1,24 @@
 <template>
-    <div class="jumbotron jumbotron-fluid text-center">
+    <div class="text-center p-5 text-gray-50">
         <div class="container">
-            <h1 class="display-4">Fluid jumbotron</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <h1 class="display-4"><slot name="icon"><empty-icon></empty-icon></slot></h1>
+            <p class="lead"><slot name="message">{{ message }}</slot></p>
         </div>
     </div>
 </template>
 
 <script>
+  import EmptyIcon from '@icons/tooltip-outline'
+
   export default {
-    name: 'empty-state'
+    name: 'empty-state',
+    components: { EmptyIcon },
+    props: {
+      message: {
+        type: String,
+        default: '空空如也~'
+      }
+    }
   }
 </script>
 

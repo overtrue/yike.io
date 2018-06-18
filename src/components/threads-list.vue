@@ -17,7 +17,7 @@
         </div>
       </li>
       <li class="list-group-item d-flex align-items-center justify-content-center p-5" v-if="threads['data'] && threads.data.length == 0">
-        空空如也~
+        <empty-state message="没有相关内容"></empty-state>
       </li>
     </ul>
     <paginator :meta="threads.meta" @change="handleChange"></paginator>
@@ -29,10 +29,11 @@
   import LikeIcon from "@icons/heart"
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
+  import EmptyState from '@components/empty-state'
 
   export default {
     name: 'threads-list',
-    components: {LikeIcon, CommentIcon, ViewIcon, Paginator},
+    components: {LikeIcon, CommentIcon, ViewIcon, Paginator, EmptyState},
     props: {
       threads: {
         type: Object,

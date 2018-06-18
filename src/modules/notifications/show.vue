@@ -17,7 +17,7 @@
       </div>
       <div class="col-md-9">
         <div class="box">
-          <div class="box-heading text-right border-bottom pb-2">
+          <div class="box-heading text-right border-bottom pb-2" v-if="notifications.length > 0">
             <button class="btn btn-sm btn-outline-secondary">全部已读</button>
           </div>
           <ul class="list-group list-group-flush" v-if="notifications.length > 0">
@@ -28,7 +28,9 @@
             </li>
           </ul>
           <div class="text-center text-gray-50" v-else>
-            无新通知
+            <empty-state message="没有新的消息哦~">
+              <template slot="icon"><inbox-icon></inbox-icon></template>
+            </empty-state>
           </div>
         </div>
       </div>
@@ -38,6 +40,8 @@
 
 <script>
   import BellIcon from '@icons/bell'
+  import InboxIcon from '@icons/inbox'
+  import EmptyState from '@components/empty-state'
 
   import NewFollower from './tabs/new-follower'
   import CommentMyThread from './tabs/comment-my-thread'
@@ -45,7 +49,7 @@
   import SubscribedMyThread from './tabs/subscribed-my-thread'
 
   export default {
-    components: {BellIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread},
+    components: {EmptyState, BellIcon, InboxIcon, NewFollower, EmptyState, CommentMyThread, LikedMyThread, SubscribedMyThread},
     data() {
       return {
         currentTab: '',
