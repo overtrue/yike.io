@@ -22,6 +22,14 @@ $charcoal: #31394C;
 $payne-grey: #3D465E;
 $grey-blue: #47536C;
 
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1190px
+) !default;
+
+
 $theme-colors: (
   "blue":       $blue,
   "indigo":     $indigo,
@@ -47,6 +55,7 @@ $theme-colors: (
 );
 
 $spacer: 30px;
+$font-family-base: "Helvetica Neue",Helvetica,Arial,sans-serif;
 $font-family-sans-serif: Roboto, sans-serif;
 
 $link-color: $raisin-black;

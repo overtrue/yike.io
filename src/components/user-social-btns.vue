@@ -1,21 +1,21 @@
 <template>
-    <div class="user-social-btns d-flex justify-content-end">
-        <button type="button" :class="classes" class="btn btn-dark btn-icon">
+    <div class="user-social-btns d-flex justify-content-start">
+        <button type="button" class="btn btn-dark btn-icon" :class="btnClass">
           <github-icon></github-icon>
         </button>
-        <button type="button" :class="classes" class="btn btn-twitter btn-icon">
+        <button type="button" class="btn btn-twitter btn-icon" :class="btnClass">
           <twitter-icon></twitter-icon>
         </button>
-        <button type="button" :class="classes" class="btn btn-facebook btn-icon">
+        <button type="button" class="btn btn-facebook btn-icon" :class="btnClass">
           <facebook-icon></facebook-icon>
         </button>
-        <button type="button" :class="classes" class="btn btn-orange btn-icon text-white">
+        <button type="button" class="btn btn-orange btn-icon text-white" :class="btnClass">
           <instagram-icon></instagram-icon>
         </button>
-        <button type="button" :class="classes" class="btn btn-teal-blue btn-icon text-white">
+        <button type="button" class="btn btn-teal-blue btn-icon text-white" :class="btnClass">
           <telegram-icon></telegram-icon>
         </button>
-        <button type="button" :class="classes" class="btn btn-payne-grey btn-icon text-white">
+        <button type="button" class="btn btn-payne-grey btn-icon text-white" :class="btnClass">
           <steam-icon></steam-icon>
         </button>
     </div>
@@ -38,18 +38,29 @@
       },
       size: {
         type: Number,
-        default: 16,
+        default: 16
+      },
+      spacing: {
+        type: Number,
+        default: 8
       }
     },
-    computed: {
-      classes() {
-        return 'text-'+this.size
+    computed:{
+      btnClass() {
+        return `text-${this.size} spacing-${this.spacing}`
       }
     },
     components: {TwitterIcon, GithubIcon, FacebookIcon, InstagramIcon, TelegramIcon, SteamIcon},
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+    .user-social-btns {
+        @each $size in 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19, 20 {
+            .spacing-#{$size} {
+                margin-left: #{$size}px;
+                margin-right: #{$size}px;
+            }
+        }
+    }
 </style>

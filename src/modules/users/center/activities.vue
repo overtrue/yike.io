@@ -1,5 +1,5 @@
 <template>
-  <ul class="timeline pb-2">
+  <ul class="timeline pb-2 box">
       <li class="timeline-item" v-for="activity in activities.data" :key="activity.id">
         <div class="timeline-heading">
           <div class="d-flex">
@@ -26,7 +26,7 @@
                   </template>
                 </span>
               </div>
-              <div class="text-12 text-gray-70"><small class="text-muted">{{ activity.created_at }}</small></div>
+              <div class="text-12 text-gray-70"><small class="text-muted">{{ activity.created_at_timeago }}</small></div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-$avatars: 30, 40, 45, 60, 80, 120;
+$avatars: 30, 40, 45, 60, 80, 120, 160, 180, 200;
 
 @each $size in $avatars {
   .avatar-#{$size} {

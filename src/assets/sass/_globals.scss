@@ -13,7 +13,11 @@ ul {
 
 body {
   background: #F7F7F7;
-  text-rendering: optimizeLegibility !important;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 $placeholder-color: #6c757d70;
