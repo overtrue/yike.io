@@ -49,7 +49,7 @@
   import SubscribedMyThread from './tabs/subscribed-my-thread'
 
   export default {
-    components: {EmptyState, BellIcon, InboxIcon, NewFollower, EmptyState, CommentMyThread, LikedMyThread, SubscribedMyThread},
+    components: {EmptyState, BellIcon, InboxIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread},
     data() {
       return {
         currentTab: '',
