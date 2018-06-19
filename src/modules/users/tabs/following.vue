@@ -7,7 +7,7 @@
     </form>
     <div class="list-group list-group-flush">
       <user-list-item class="list-group-item" :user="user" :key="user.id" v-for="user of users.data"></user-list-item>
-      <div class="d-flex justify-content-center align-items-center p-5" v-if="users.data && users.data.length == 0">空空如也~</div>
+      <empty-state v-if="users.data && users.data.length == 0"></empty-state>
       <paginator :meta="users.meta"></paginator>
     </div>
     <div class="text-center" v-if="false">
@@ -19,7 +19,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import Resource from '@utils/resource'
-
+  import EmptyState from '@components/empty-state'
   import UserListItem from '@components/user-list-item'
   import Paginator from '@components/paginator'
   import EmailIcon from '@icons/email'
@@ -34,7 +34,7 @@
         required: true
       }
     },
-    components: {UserListItem, Paginator, PlusIcon, EmailIcon, MinusIcon},
+    components: {UserListItem, EmptyState, Paginator, PlusIcon, EmailIcon, MinusIcon},
     data() {
       return {
         users: []
