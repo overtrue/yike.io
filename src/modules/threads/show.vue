@@ -59,10 +59,10 @@
           <div class="container">
             <ul class="nav">
               <li class="nav-item">
-                <a class="nav-link btn btn-sm btn-primary" href="#"><thumb-up-icon></thumb-up-icon> 1230</a>
+                <like-btn class="nav-link p-0" type="button" :item="thread"></like-btn>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> 条评论</a>
+                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>

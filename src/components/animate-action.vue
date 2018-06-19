@@ -64,6 +64,7 @@
       updateNumberOfClaps() {
         const clapCount = document.getElementById('clap--count')
         const clapTotalCount = document.getElementById('clap--count-total')
+        this.likers = this.$parent.thread.likers_count
 
         if (this.item.has_liked) {
           clapCount.innerHTML = "-1"
