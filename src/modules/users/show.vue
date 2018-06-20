@@ -4,7 +4,7 @@
       <div class="bg-image"><img src="/banners/sunrise.jpg" alt=""></div>
     </header>
     <div class="bg-white">
-      <div class="nav nav-tab-line justify-content-center container text-center shadow-6">
+      <div class="nav nav-tab-line justify-content-center align-items-center container text-center shadow-6">
         <div class="nav-item user-avatar">
           <img :src="user.avatar" alt="User avatar" class="avatar-200"/>
         </div>
@@ -125,7 +125,7 @@
       overflow: hidden;
     }
     .page-header {
-      height: 500px;
+      height: 50vh;
       overflow-y: visible;
     }
     .nav {

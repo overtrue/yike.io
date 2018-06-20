@@ -42,7 +42,7 @@
         <li class="timeline-item" v-if="activities.meta.current_page < activities.meta.last_page">
           <div class="timeline-heading">
             <div class="d-flex">
-              <button class="btn btn-secondary btn-icon text-20" @click="loadActivities"><arrow-down-icon></arrow-down-icon></button>
+              <button class="btn btn-secondary btn-icon text-20" @click="loadActivities(user.username)"><arrow-down-icon></arrow-down-icon></button>
             </div>
           </div>
         </li>
@@ -75,17 +75,31 @@
       }
     },
     components: {UserCard, ArrowDownIcon, EmptyState},
+    beforeRouteUpdate(to, from, next) {
+      if (to.params.username != from.params.username) {
+        this.activities = {
+          data: [],
+            meta: {
+            current_page: 0,
+              last_page: 0,
+          }
+        }
+        this.loadActivities(to.params.username)
+      }
+
+      next()
+    },
     methods: {
-      loadActivities() {
+      loadActivities(username) {
         let page = this.activities.meta.current_page + 1
-        this.api(`user/${this.user.username}/activities?per_page=10&page=${page}`).get().then(activities => {
+        this.api(`user/${username}/activities?per_page=10&page=${page}`).get().then(activities => {
           this.activities.data = this.activities.data.concat(activities.data)
           this.activities.meta = activities.meta
         })
       }
     },
     mounted() {
-      this.loadActivities()
+      this.loadActivities(this.user.username)
     }
   }
 </script>
