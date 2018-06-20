@@ -13,21 +13,7 @@
       </div>
       <user-social-btns :user="user" :size="12" :spacing="2" class="flex-wrap justify-content-center"></user-social-btns>
     </div>
-    <div class="box-body d-flex pt-2 border-top align-items-center justify-content-between">
-      <router-link to="{name: 'users.following', params: {username: user.username}}">
-        <div class="text-20 text-gray-40">{{ user.cache.followings_count }}</div>
-        <div class="text-gray-70 text-12">关注</div>
-      </router-link>
-      <router-link to="{name: 'users.followers', params: {username: user.username}}">
-        <div class="text-20 text-gray-40">{{ user.cache.followers_count }}</div>
-        <div class="text-gray-70 text-12">粉丝</div>
-      </router-link>
-      <router-link to="{name: 'users.threads', params: {username: user.username}}">
-        <div class="text-20 text-gray-40">{{ user.cache.threads_count }}</div>
-        <div class="text-gray-70 text-12">讨论</div>
-      </router-link>
-    </div>
-    <follow-btn :user="user" class="mt-2 ml-auto"></follow-btn>
+    <follow-btn :user="user" class="pb-2 ml-auto"></follow-btn>
   </div>
 </template>
 
