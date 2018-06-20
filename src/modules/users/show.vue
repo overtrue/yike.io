@@ -28,7 +28,7 @@
               <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
             </div>
           </div>
-          <div class="d-flex align-items-center justify-content-end col-lg-2 col-md-3">
+          <div class="d-flex align-items-center justify-content-end col-lg-3 col-md-3">
             <template v-if="currentUser && currentUser.id != user.id">
               <follow-btn :user="user"></follow-btn>
             </template>
