@@ -42,5 +42,5 @@
 </script>
 
 <style scoped>
-  .user-card { min-width: 25vw; }
+  .user-card { min-width: 360px; }
 </style>
