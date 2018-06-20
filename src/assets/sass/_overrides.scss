@@ -60,20 +60,6 @@
       bottom: -0.125rem;
     }
   }
-
-  &::after {
-    content: " ";
-    width: 10px;
-    height: 10px;
-    background: #fff;
-    display: block;
-    position: absolute;
-    left: auto;
-    right: 20%;
-    top: -6px;
-    transform: rotate(45deg);
-    @extend .shadow-30;
-  }
 }
 
 

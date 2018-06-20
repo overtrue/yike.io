@@ -8,16 +8,8 @@
       <template v-if="currentUser.has_activated">
         <div class="d-flex align-items-center">
           <img :src="currentUser.avatar" class="avatar-40" :alt="currentUser.username"/>
-          <div class="text-18 text-muted ml-2 w-100" v-if="!writing" @click="writing = true">撰写评论...</div>
-          <div class="text-16 text-muted ml-2" v-else>{{ currentUser.name }}</div>
+          <div class="text-18 text-muted ml-2 w-100" @click="writing = true">撰写评论...</div>
         </div>
-        <template v-if="writing">
-          <editor v-model="content" :toolbar="false" editor-class="comment-editor py-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
-          <div class="py-1">
-            <button type="button" class="btn btn-primary" :disabled="!formReady" @click="submit">提交</button>
-            <button type="button" class="ml-2 btn btn-secondary" @click="writing=false">取消</button>
-          </div>
-        </template>
       </template>
       <template v-else>
         <div class="text-18 ml-2 text-muted text-center">您需要激活账户才能评论~</div>
@@ -62,6 +54,16 @@
     </div>
 
     <paginator :meta="comments.meta"></paginator>
+
+    <div class="box box-flush shadow-30 pop-comment-form" :class="{'show': writing}">
+      <editor v-model="content" editor-class="comment-editor p-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
+      <div class="box-body d-flex justify-content-between align-items-center">
+        <div class="pop-form-btns">
+          <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">提交</button>
+          <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="writing=false">取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -115,6 +117,11 @@
     watch: {
       content () {
         localforage.setItem(this.cacheKey, this.content)
+      },
+      writing() {
+        if (!this.writing) {
+          this.content = ''
+        }
       }
     },
     mounted () {
@@ -181,8 +188,21 @@
   }
 </script>
 
-<style scoped>
-  .comment-editor .editor-container {
+<style scoped lang="scss">
+  .comment-editor.editor-container {
     height: auto;
+  }
+  .pop-comment-form {
+    position: sticky;
+    bottom: 55px;
+    min-width: 500px;
+    max-width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s;
+
+    &.show {
+      max-height: 400px;
+    }
   }
 </style>

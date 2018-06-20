@@ -1,15 +1,15 @@
 <template>
   <div class="editor">
     <div v-if="toolbar" class="editor-toolbar border-bottom d-flex align-items-center px-2">
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleHeading(2)"><format-header2-icon></format-header2-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleHeading(3)"><format-header3-icon></format-header3-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleBold"><format-bold-icon></format-bold-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleItalic"><format-italic-icon></format-italic-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleBlockquote"><format-quote-open-icon></format-quote-open-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="insertCode"><code-tags-icon></code-tags-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleUnorderedList"><format-list-bulleted-icon></format-list-bulleted-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="toggleOrderedList"><format-list-numbers-icon></format-list-numbers-icon></button>
-      <button class="btn btn-link p-1 text-20" type="button" @click="insertLink"><link-icon></link-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleHeading(2)"><format-header2-icon></format-header2-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleHeading(3)"><format-header3-icon></format-header3-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleBold"><format-bold-icon></format-bold-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleItalic"><format-italic-icon></format-italic-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleBlockquote"><format-quote-open-icon></format-quote-open-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="insertCode"><code-tags-icon></code-tags-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleUnorderedList"><format-list-bulleted-icon></format-list-bulleted-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="toggleOrderedList"><format-list-numbers-icon></format-list-numbers-icon></button>
+      <button class="btn btn-link p-1 text-18 text-grey-blue" type="button" @click="insertLink"><link-icon></link-icon></button>
     </div>
     <div class="editor-container" :class="editorClass">
       <textarea id="editor" :placeholder="placeholder"></textarea>

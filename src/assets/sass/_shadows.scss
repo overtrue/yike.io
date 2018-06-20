@@ -7,6 +7,6 @@ $box-shadow-degrees: (
 
 @each $size, $offset in $box-shadow-degrees {
   .shadow-#{$size} {
-    box-shadow: 0 #{$offset}px #{$size}px 0 rgba(0,0,0,0.05);
+    box-shadow: 0 #{$offset}px #{$size}px 0 rgba($black, 0.05 * $offset);
   }
 }

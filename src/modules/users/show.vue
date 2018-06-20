@@ -3,35 +3,43 @@
     <header class="page-header bg-grey-blue py-4 text-white">
       <div class="bg-image"><img src="/banners/sunrise.jpg" alt=""></div>
     </header>
-    <div class="bg-white">
-      <div class="nav nav-tab-line justify-content-center container text-center shadow-6">
-        <div class="nav-item user-avatar">
-          <img :src="user.avatar" alt="User avatar" class="avatar-200"/>
-        </div>
-        <div class="nav-item">
-          <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
-        </div>
-        <div class="nav-item">
-          <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 <span class="text-gray-70 pl-1">{{ user.cache.comments_count }}</span></router-link>
-        </div>
-        <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
-        <div class="nav-item">
-          <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 <span class="text-gray-70 pl-1">{{ user.followings_count }}</span></router-link>
-        </div>
-        <div class="nav-item">
-          <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
-        </div>
-        <div class="nav-item d-flex justify-content-end">
-          <template v-if="currentUser && currentUser.id != user.id">
-            <follow-btn :user="user"></follow-btn>
-          </template>
+    <div class="user-show-navbar bg-white">
+      <div class="container">
+        <div class="row align-items-stretch">
+          <div class="col-md-2 d-flex align-items-center">
+            <img :src="user.avatar" alt="User avatar" :class="{'avatar-200 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" />
+            <div>
+              <div class="text-22 ml-1 lh-1">{{ user.name }}</div>
+              <div class="text-gray-50 ml-1">@{{ user.username }}</div>
+            </div>
+          </div>
+          <div class="col-md-6 nav nav-tab-line justify-content-center text-center shadow-6">
+            <div class="nav-item">
+              <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
+            </div>
+            <div class="nav-item">
+              <router-link :to="{ name: 'users.threads' }" class="nav-link" exact>讨论 <span class="text-gray-70 pl-1">{{ user.cache.comments_count }}</span></router-link>
+            </div>
+            <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
+            <div class="nav-item">
+              <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 <span class="text-gray-70 pl-1">{{ user.followings_count }}</span></router-link>
+            </div>
+            <div class="nav-item">
+              <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-end col-md-3">
+            <template v-if="currentUser && currentUser.id != user.id">
+              <follow-btn :user="user"></follow-btn>
+            </template>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="container pt-4">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-2 col-md-3">
           <h3 class="mb-0">{{ user.name }}</h3>
           <div class="text-gray-50">@{{ user.username }}</div>
           <div class="py-1">{{ user.bio }}</div>
@@ -43,7 +51,7 @@
             <div class="mt-1"><user-social-btns :user="user" :spacing="2"></user-social-btns></div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-7 col-md-6">
           <router-view :user="user"></router-view>
         </div>
         <div class="col-md-3">
@@ -75,7 +83,8 @@
     components: {FollowBtn, DomainIcon, CalendarCheckIcon, LinkIcon, MapMakerIcon, HotTags, UserRanking, NewUsers, UserSocialBtns},
     data() {
       return {
-        user: {}
+        user: {},
+        navFixed: false
       }
     },
     computed: {
@@ -90,6 +99,7 @@
     },
     created() {
       this.getUser(this.$route.params.username)
+      this.$nextTick(this.registerEventListener)
     },
     methods: {
       async getUser(id) {
@@ -97,6 +107,13 @@
 
         this.user = await resource.get().catch(() => {
           this.$router.replace({name: 'pages.not-found'})
+        })
+      },
+      registerEventListener() {
+        window.addEventListener('scroll', () => {
+          let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+
+          this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
         })
       },
       async follow() {
@@ -125,17 +142,21 @@
       overflow: hidden;
     }
     .page-header {
-      height: 500px;
+      height: 40vh;
       overflow-y: visible;
     }
-    .nav {
-      background: transparent;
-      position: relative;
-      box-shadow: none;
+    .user-show-navbar {
+      position: sticky;
+      top: -1px;
+      z-index: 999;
+      .nav {
+        position: relative;
+        background: transparent;
+        box-shadow: none;
+      }
     }
-    .user-avatar {
-      position: absolute;
-      top: -120px;
+    .avatar-200 {
+      bottom: -50px;
       border-radius: 100%;
       border: 5px solid #fff;
       left: 0;

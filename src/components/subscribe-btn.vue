@@ -1,6 +1,6 @@
 <template>
   <div v-if="this.currentUser.id">
-    <button class="btn btn-sm btn-tiffany" @click="subscribe" v-if="!item.has_subscribed">
+    <button class="btn btn-sm text-gray-50" @click="subscribe" v-if="!item.has_subscribed">
       <volume-high />
       <span class="pl-1">订阅</span>
     </button>

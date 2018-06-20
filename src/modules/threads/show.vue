@@ -7,30 +7,40 @@
             <user-media :user="thread.user">
               <small class="text-muted" slot="description">发布于 {{ thread.created_at_timeago }}</small>
             </user-media>
-            <div class="thread-actions">
-              <button type="button" class="btn btn-icon btn-ghost no-border text-20" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <more-icon></more-icon>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <template v-if="canEdit">
-                  <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
-                  <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
-                </template>
-                <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
-              </div>
-              <report-form :visible="showReportForm" @close="showReportForm = false"></report-form>
-            </div>
           </header>
           <div class="thread-content box-body text-gray-40 text-16">
             <header><h2 class="mb-3 pb-2 border-bottom">{{ thread.title }}</h2></header>
             <markdown-body v-model="thread.content.body"></markdown-body>
           </div>
-          <div class="thread-statistics-card border-top p-2">
-            <div class="text-gray-60 d-flex text-16 align-items-center">
-              <like-btn class="p-1" :item="thread"></like-btn>
-              <a class="p-1"><comment-icon></comment-icon> {{ thread.cache.comments_count }}</a>
-              <a class="p-1"><view-icon></view-icon> {{ thread.cache.views_count }}</a>
-              <subscribe-btn class="p-1 ml-auto" type="threads" :item="thread" />
+          <div class="thread-stats-bar bg-white border-top py-1">
+            <div class="container">
+              <ul class="nav">
+                <li class="nav-item">
+                  <like-btn class="nav-link p-0" type="button" :item="thread"></like-btn>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#"><subscribe-btn type="threads" :item="thread" /></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>
+                </li>
+                <li class="nav-item">
+                  <button type="button" class="nav-link text-gray-50 btn btn-sm btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <more-icon></more-icon>
+                  </button>
+                  <div class="dropdown-menu">
+                    <template v-if="canEdit">
+                      <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
+                      <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
+                    </template>
+                    <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
+                  </div>
+                  <report-form :visible="showReportForm" @close="showReportForm = false"></report-form>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="thread-author-card border-top p-3">
@@ -55,27 +65,9 @@
           <animate-action :item="thread"/>
           <share-action class="mt-3" :item="thread"/>
         </div>
-        <div class="thread-stats-bar bg-white py-1" v-show="showStatsBar">
-          <div class="container">
-            <ul class="nav">
-              <li class="nav-item">
-                <like-btn class="nav-link p-0" type="button" :item="thread"></like-btn>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><more-icon></more-icon></a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
-      <div class="col-md-3">
-        <user-profile-card :user="thread.user"></user-profile-card>
+      <div class="col-md-3 position-relative">
+        <user-profile-card class="user-profile-card" :user="thread.user"></user-profile-card>
         <hot-tags class="mt-2"></hot-tags>
       </div>
     </div>
@@ -133,7 +125,6 @@
         thread: null,
         showReportForm: false,
         showToolbar: false,
-        showStatsBar: true,
       }
     },
     computed: {
@@ -155,11 +146,7 @@
       registerEventListener() {
         window.addEventListener('scroll', () => {
           let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-          let articleHeight = document.querySelector('article').clientHeight
-          let windowHeight = window.innerHeight
-
           this.showToolbar = top > 200
-          this.showStatsBar = top <= (articleHeight + 90) - windowHeight - 220
         })
       }
     },
@@ -176,14 +163,17 @@
     margin-left: -80px;
   }
   .thread-stats-bar {
-    position: fixed;
+    position: sticky;
     bottom: 0;
-    left: 0;
     width: 100%;
-
+    left: 0;
     .material-design-icon {
       font-size: 1.2em;
       bottom: -0.06em;
     }
+  }
+  .user-profile-card {
+    position: sticky;
+    top: 50px;
   }
 </style>
