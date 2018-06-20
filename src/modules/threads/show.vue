@@ -174,6 +174,6 @@
   }
   .user-profile-card {
     position: sticky;
-    top: 50px;
+    top: 20px;
   }
 </style>
