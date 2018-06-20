@@ -5,18 +5,14 @@
     </router-link>
     <div class="ml-2">
       <div>
-        <router-link tag="a" class="d-inline-block" :to="{name: 'users.show', params: {id: user.username}}">
-          <slot name="name"><h5 class="mb-0 text-gray-50">{{ user.name }}</h5></slot>
+        <router-link tag="a" :to="{name: 'users.show', params: {id: user.username}}">
+          <h5 class="mb-0 text-gray-50 d-inline">{{ user.name }}</h5>
         </router-link>
-        <slot name="name-appends">
-          <router-link tag="a" class="ml-1 text-muted text-12 d-inline-block" :to="{name: 'users.show', params: {id: user.username}}">
-            {{ user.username }}
-          </router-link>
-        </slot>
+        <router-link tag="a" class="ml-1 text-muted text-12" :to="{name: 'users.show', params: {id: user.username}}">
+          @{{ user.username }}
+        </router-link>
       </div>
-      <slot name="description">
-        <div class="text-12 text-gray-70">{{ user.bio }}</div>
-      </slot>
+      <div class="text-12 text-gray-70">{{ user.bio }}</div>
     </div>
     <slot name="appends" :data="user">
       <follow-btn :user="user" :simple="true" class="ml-auto"></follow-btn>

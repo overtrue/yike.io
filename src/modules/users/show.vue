@@ -6,14 +6,14 @@
     <div class="user-show-navbar bg-white">
       <div class="container">
         <div class="row align-items-stretch">
-          <div class="col-md-2 d-flex align-items-center">
+          <div class="col-lg-2 col-md-3 d-flex align-items-center">
             <img :src="user.avatar" alt="User avatar" :class="{'avatar-200 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" />
             <div>
               <div class="text-22 ml-1 lh-1">{{ user.name }}</div>
               <div class="text-gray-50 ml-1">@{{ user.username }}</div>
             </div>
           </div>
-          <div class="col-md-6 nav nav-tab-line justify-content-center text-center shadow-6">
+          <div class="col-lg-7 col-md-6 nav nav-tab-line justify-content-center text-center shadow-6">
             <div class="nav-item">
               <router-link :to="{ name: 'users.show' }" class="nav-link" exact>最新动态</router-link>
             </div>
@@ -28,7 +28,7 @@
               <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
             </div>
           </div>
-          <div class="d-flex align-items-center justify-content-end col-md-3">
+          <div class="d-flex align-items-center justify-content-end col-lg-2 col-md-3">
             <template v-if="currentUser && currentUser.id != user.id">
               <follow-btn :user="user"></follow-btn>
             </template>
