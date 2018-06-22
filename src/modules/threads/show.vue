@@ -16,13 +16,13 @@
             <div class="container">
               <ul class="nav">
                 <li class="nav-item">
-                  <like-btn class="nav-link p-0" type="button" :item="thread"></like-btn>
+                  <like-btn relation="thread" :item="thread"></like-btn>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#"><subscribe-btn type="threads" :item="thread" /></a>
+                  <subscribe-btn relation="thread" :item="thread" />
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>
@@ -53,7 +53,7 @@
                 </div>
               </div>
               <div class="right-action">
-                <follow-btn :user="thread.user"></follow-btn>
+                <follow-btn :item="thread.user"></follow-btn>
               </div>
             </div>
           </div>
@@ -81,16 +81,15 @@
   import UserMedia from "@components/user-media"
   import HotTags from "@components/hot-tags"
   import Comments from "@components/comments"
-  import LikeBtn from "@components/like-btn"
-  import ThumbUpIcon from '@icons/thumb-up'
   import StarIcon from '@icons/star'
   import MoreIcon from '@icons/dots-horizontal'
   import ShareIcon from '@icons/share'
-  import SubscribeBtn from "@components/subscribe-btn"
-  import FollowBtn from '@components/follow-btn'
+  import SubscribeBtn from "@components/buttons/subscribe-btn"
+  import FollowBtn from '@components/buttons/follow-btn'
+  import LikeBtn from '@components/buttons/like-btn'
   import MarkdownBody from '@components/markdown-body'
   import ReportForm from './report-form'
-  import AnimateAction from '@components/animate-action'
+  import AnimateAction from '@components/buttons/animate-action'
   import ShareAction from '@components/share-action'
   import UserProfileCard from '@components/user-profile-card'
 
@@ -99,10 +98,10 @@
 
   export default {
     components: {
+      LikeBtn,
       AnimateAction,
       ShareAction,
       ReportForm,
-      LikeBtn,
       SubscribeBtn,
       CommentIcon,
       ViewIcon,
@@ -112,7 +111,6 @@
       PencilIcon,
       AlertBoxIcon,
       DeleteIcon,
-      ThumbUpIcon,
       ShareIcon,
       StarIcon,
       MoreIcon,

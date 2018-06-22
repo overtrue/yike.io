@@ -13,13 +13,13 @@
       </div>
       <user-social-btns :user="user" :size="12" :spacing="2" class="flex-wrap justify-content-center"></user-social-btns>
     </div>
-    <follow-btn :user="user" class="pb-2 ml-auto"></follow-btn>
+    <follow-btn :item="user" class="pb-2 ml-auto"></follow-btn>
   </div>
 </template>
 
 <script>
   import UserMedia from "@components/user-media"
-  import FollowBtn from '@components/follow-btn'
+  import FollowBtn from '@components/buttons/follow-btn'
   import MapMakerIcon from "@icons/map-marker"
   import PlusIcon from "@icons/plus"
   import UserSocialBtns from '@components/user-social-btns'

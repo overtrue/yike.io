@@ -13,46 +13,33 @@
   import mojs from 'mo-js'
   import ThumbUpOutline from "@icons/thumb-up-outline"
   import ThumbUp from "@icons/thumb-up"
+  import RelationBtn from './relation-btn'
 
   export default {
-    components: {ThumbUp, ThumbUpOutline},
+    components: {RelationBtn, ThumbUp, ThumbUpOutline},
     props: {
       item: {
         type: Object,
-        default() {
-          return {}
-        }
+        require: true
       }
     },
     data() {
       return {
-        likers: this.item.likers_count,
+        likers: this.item.cache.likes_count,
         animationTimeline: null
       }
     },
     methods: {
       toggle() {
-        if (this.item.has_liked) {
-          this.unlike()
-        } else {
-          this.like()
-        }
-      },
-      async like() {
-        if (!this.$user().id) {
-          this.$router.push({name: 'auth.login'})
-        }
+        this.api(`relations/like`)
+          .post({
+            followable_type: 'App\\Thread',
+            followable_id: this.item.id
+          }).then(() => {
+          this.item.has_liked = !this.item.has_liked
 
-        await this.api(`threads/${this.$route.params.id}/like`).post()
-
-        this.item.has_liked = true
-        this.item.likers_count++
-      },
-      async unlike() {
-        await this.api(`threads/${this.$route.params.id}/unlike`).post()
-
-        this.item.has_liked = false
-        this.item.likers_count--
+          this.item.has_liked ? this.$parent.thread.cache.likes_count++ : this.$parent.thread.cache.likes_count--
+        })
       },
       repeatClapping() {
         const clapIcon = document.getElementById('clap--icon')
@@ -64,7 +51,7 @@
       updateNumberOfClaps() {
         const clapCount = document.getElementById('clap--count')
         const clapTotalCount = document.getElementById('clap--count-total')
-        this.likers = this.$parent.thread.likers_count
+        this.likers = this.$parent.thread.cache.likes_count
 
         if (this.item.has_liked) {
           clapCount.innerHTML = "-1"

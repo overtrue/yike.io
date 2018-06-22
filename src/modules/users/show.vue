@@ -71,7 +71,7 @@
   import HotTags from "@components/hot-tags"
   import UserRanking from "@components/user-ranking"
   import NewUsers from "@components/new-users"
-  import FollowBtn from '@components/follow-btn'
+  import FollowBtn from '@components/buttons/follow-btn'
   import MapMakerIcon from "@icons/map-marker"
   import DomainIcon from "@icons/domain"
   import LinkIcon from "@icons/link"

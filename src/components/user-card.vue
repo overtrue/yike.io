@@ -10,8 +10,7 @@
         </router-link>
         <router-link class="text-12 text-muted" :to="{name: 'users.show', params: {id: user.username}}">@{{ user.username }}</router-link>
       </div>
-      <follow-btn :user="user" class="ml-auto"></follow-btn>
-
+      <follow-btn :item="user" class="ml-auto"></follow-btn>
     </div>
     <div class="text-gray-70">
       <div class="py-2">{{ user.bio }}</div>
@@ -25,7 +24,7 @@
 
 <script>
   import UserMedia from "@components/user-media"
-  import FollowBtn from '@components/follow-btn'
+  import FollowBtn from '@components/buttons/follow-btn'
   import MapMakerIcon from "@icons/map-marker"
   import PlusIcon from "@icons/plus"
 

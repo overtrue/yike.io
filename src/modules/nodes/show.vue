@@ -10,7 +10,7 @@
             </div>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
-            <subscribe-btn :item="node" />
+            <subscribe-btn relation="node" :item="node" />
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
   import { mapGetters } from 'vuex'
   import HotTags from "@components/hot-tags"
   import ThreadsList from "@components/threads-list"
-  import SubscribeBtn from '@components/subscribe-btn'
+  import SubscribeBtn from '@components/buttons/subscribe-btn'
 
   export default {
     components: {SubscribeBtn, HotTags, ThreadsList},

@@ -15,13 +15,13 @@
       <div class="text-12 text-gray-70">{{ user.bio }}</div>
     </div>
     <slot name="appends" :data="user">
-      <follow-btn :user="user" :simple="true" class="ml-auto"></follow-btn>
+      <follow-btn :item="user" simple class="ml-auto"></follow-btn>
     </slot>
   </div>
 </template>
 
 <script>
-  import FollowBtn from '@components/follow-btn'
+  import FollowBtn from '@components/buttons/follow-btn'
   export default {
     name: 'user-list-item',
     components: {FollowBtn},
