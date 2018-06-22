@@ -22,10 +22,10 @@
             </div>
             <!--<div class="nav-item"><a href="#" class="nav-link">回复 234</a></div>-->
             <div class="nav-item">
-              <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 <span class="text-gray-70 pl-1">{{ user.followings_count }}</span></router-link>
+              <router-link :to="{ name: 'users.following' }" class="nav-link" exact>关注 <span class="text-gray-70 pl-1">{{ user.cache.followings_count }}</span></router-link>
             </div>
             <div class="nav-item">
-              <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.followers_count }}</span></router-link>
+              <router-link :to="{ name: 'users.followers' }" class="nav-link" exact>粉丝 <span class="text-gray-70 pl-1">{{ user.cache.followers_count }}</span></router-link>
             </div>
           </div>
           <div class="d-flex align-items-center justify-content-end col-lg-3 col-md-3">
