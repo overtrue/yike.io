@@ -40,15 +40,15 @@
     <div class="container pt-4">
       <div class="row">
         <div class="col-lg-2 col-md-3">
-          <h3 class="mb-0">{{ user.name }}</h3>
-          <div class="text-gray-50">@{{ user.username }}</div>
-          <div class="py-1">{{ user.bio }}</div>
+          <h3 class="mb-1">{{ user.name }}</h3>
+          <div class="text-gray-50 text-16">@{{ user.username }}</div>
+          <div class="my-1">{{ user.bio }}</div>
           <div class="extends text-gray-50">
-            <div v-if="user.extends.location"><map-maker-icon class="text-gray-70 mr-1"></map-maker-icon>{{ user.extends.location }}</div>
-            <div v-if="user.extends.company"><domain-icon class="text-gray-70 mr-1"></domain-icon>{{ user.extends.company }}</div>
-            <div v-if="user.extends.home_url"><link-icon class="text-gray-70 mr-1"></link-icon> <a :href="user.extends.home_url">{{ user.extends.home_url }}</a></div>
-            <div><calendar-check-icon class="text-gray-70 mr-1"></calendar-check-icon>加入于 {{ user.created_at_timeago }}</div>
-            <div class="mt-1"><user-social-btns :user="user" :spacing="2"></user-social-btns></div>
+            <div class="pt-1" v-if="user.extends.location"><map-maker-icon class="text-gray-70 mr-1"></map-maker-icon>{{ user.extends.location }}</div>
+            <div class="pt-1" v-if="user.extends.company"><domain-icon class="text-gray-70 mr-1"></domain-icon>{{ user.extends.company }}</div>
+            <div class="pt-1" v-if="user.extends.home_url"><link-icon class="text-gray-70 mr-1"></link-icon> <a :href="user.extends.home_url">{{ user.extends.home_url }}</a></div>
+            <div class="pt-1"><calendar-check-icon class="text-gray-70 mr-1"></calendar-check-icon>加入于 {{ user.created_at_timeago }}</div>
+            <div class="pt-2"><user-social-btns :user="user" :spacing="2"></user-social-btns></div>
           </div>
         </div>
         <div class="col-lg-7 col-md-6">
