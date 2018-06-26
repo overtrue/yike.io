@@ -29,28 +29,38 @@
 
     <paginator :meta="comments.meta"></paginator>
 
-    <div class="box mb-3" v-for="(item,index) in comments.data" :key="item.id">
+    <div class="box box-flush">
+    <div class="border-bottom box-body py-2" v-for="(item,index) in comments.data" :key="item.id">
       <a :name="'comment-' + item.id"></a>
       <user-media :user="item.user">
         <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
         <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
-        <div class="text-16 text-gray-60 ml-auto" slot="appends">
-          <span class="mx-1 cursor-pointer" @click="vote('up', item, index)">
-            <thumb-up-outline v-if="!item.has_up_voted" />
-            <thumb-up class="text-primary" v-else />
-            {{ item.up_voters }}
-          </span>
-          <span class="mx-1 cursor-pointer" @click="vote('down', item, index)">
-            <thumb-down-outline v-if="!item.has_down_voted" />
-            <thumb-down class="text-danger" v-else />
-            {{ item.down_voters }}
-          </span>
-          <span class="mx-1 cursor-pointer" @click="reply(item)">
-            <reply />
-          </span>
+        <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
+          <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
+            <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted" >
+              <thumb-up-outline />
+            </button>
+            <button class="btn btn-icon btn-primary" v-else>
+              <thumb-up />
+            </button>
+            <span class="ml-1 align-self-center">{{ item.up_voters }}</span>
+          </div>
+          <div class="mx-1 cursor-pointer d-flex" @click="vote('down', item, index)">
+            <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_down_voted">
+              <thumb-down-outline  />
+            </button>
+            <button class="btn btn-icon btn-danger" v-else>
+              <thumb-down/>
+            </button>
+            <span class="ml-1 align-self-center">{{ item.down_voters }}</span>
+          </div>
+          <div class="mx-1 cursor-pointer" @click="reply(item)">
+            <button class="btn btn-icon btn-light text-gray-60"><reply /></button>
+          </div>
         </div>
       </user-media>
       <markdown-body class="comment-content pt-2" v-model="item.content.body"></markdown-body>
+    </div>
     </div>
 
     <paginator :meta="comments.meta"></paginator>
@@ -188,21 +198,27 @@
   }
 </script>
 
-<style scoped lang="scss">
-  .comment-editor.editor-container {
-    height: auto;
-  }
-  .pop-comment-form {
-    position: sticky;
-    bottom: 55px;
-    min-width: 500px;
-    max-width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .2s;
+<style lang="scss">
+  .comments {
+    .comment-editor.editor-container {
+      height: auto;
+    }
+    .pop-comment-form {
+      position: sticky;
+      bottom: 55px;
+      min-width: 500px;
+      max-width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .2s;
 
-    &.show {
-      max-height: 400px;
+      &.show {
+        max-height: 400px;
+      }
+    }
+
+    .markdown-body.comment-content p:last-child {
+      margin-bottom: 0;
     }
   }
 </style>

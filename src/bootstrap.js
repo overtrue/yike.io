@@ -1,4 +1,4 @@
-
+import $ from 'jquery'
 window._ = import('lodash')
 window.Popper = import('popper.js').default
 
@@ -9,7 +9,7 @@ window.Popper = import('popper.js').default
  */
 
 try {
-  window.$ = window.jQuery = import('jquery')
+  window.$ = window.jQuery = $
 
   import('bootstrap')
   import('prismjs/themes/prism.css')
