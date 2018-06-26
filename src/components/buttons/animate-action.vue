@@ -20,7 +20,7 @@
     props: {
       item: {
         type: Object,
-        require: true
+        required: true
       }
     },
     data() {

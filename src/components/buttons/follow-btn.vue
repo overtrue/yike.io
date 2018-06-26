@@ -38,7 +38,7 @@
     props: {
       item: {
         type: Object,
-        require: true
+        required: true
       },
       simple: {
         type: Boolean,

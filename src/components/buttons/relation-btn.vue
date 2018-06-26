@@ -14,15 +14,15 @@
     props: {
       relation: {
         type: String,
-        require: true
+        required: true
       },
       action: {
         type: String,
-        require: true
+        required: true
       },
       item: {
         type: Object,
-        require: true,
+        required: true,
         default() {
           return {}
         }

@@ -18,11 +18,11 @@
     props: {
       relation: {
         type: String,
-        require: true
+        required: true
       },
       item: {
         type: Object,
-        require: true
+        required: true
       }
     },
     methods: {
