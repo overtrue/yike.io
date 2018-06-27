@@ -47,9 +47,10 @@
   import CommentMyThread from './tabs/comment-my-thread'
   import LikedMyThread from './tabs/liked-my-thread'
   import SubscribedMyThread from './tabs/subscribed-my-thread'
+  import Welcome from './tabs/welcome'
 
   export default {
-    components: {EmptyState, BellIcon, InboxIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread},
+    components: {EmptyState, BellIcon, InboxIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
     data() {
       return {
         currentTab: '',
