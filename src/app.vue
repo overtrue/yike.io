@@ -1,6 +1,5 @@
 <template>
   <div id="wrapper" :class="{toggled: isToggled}">
-    <sidebar></sidebar>
     <div id="page-content-wrapper" class="w-100 position-absolute">
       <navbar v-if="shouldShowNavbar" />
       <div class="alert alert-warning text-center m-0" role="alert" v-if="currentUser.id && !currentUser.has_activated">

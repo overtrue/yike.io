@@ -1,13 +1,13 @@
 <template>
-  <div class="threads-items">
+  <div class="threads-items mb-2">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item d-flex align-items-center justify-content-between cursor-pointer"
+      <li class="list-group-item d-md-flex d-block align-items-center justify-content-between cursor-pointer"
           v-for="item in threads.data" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
         <div class="d-flex align-items-center">
           <a href="#" class="mr-2"><img :src="item.user.avatar" alt="" class="avatar-30"></a>
           <div class="text-gray-50">{{ item.title }}</div>
         </div>
-        <div class="ml-auto d-flex align-items-center justify-content-end">
+        <div class="ml-auto d-flex align-items-center justify-content-md-end">
           <div class="text-gray-60 d-flex justify-content-between align-items-center">
             <a class="p-1"><like-icon></like-icon> {{ item.cache.likes_count }}</a>
             <a class="p-1"><comment-icon></comment-icon> {{ item.cache.comments_count }}</a>
