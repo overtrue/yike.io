@@ -1,5 +1,5 @@
 <template>
-  <relation-btn relation="user" action="follow" :item="item">
+  <relation-btn relation="user" action="follow" :item="item" v-if="item.id != currentUser.id">
     <template slot="on">
       <button v-if="simple" class="btn btn-ghost btn-icon ml-auto" title="关注 TA"><plus-icon></plus-icon></button>
       <button v-else class="btn btn-outline-teal-blue mx-1" title="关注 TA"><plus-icon></plus-icon> 关注 TA</button>
@@ -26,6 +26,7 @@
   import PlusIcon from '@icons/plus'
   import CheckIcon from '@icons/check'
   import CloseIcon from '@icons/close'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'follow-btn',
@@ -50,5 +51,8 @@
         hovering: false
       }
     },
+    computed: {
+      ...mapGetters(['currentUser'])
+    }
   }
 </script>
