@@ -90,7 +90,7 @@
   import MarkdownBody from '@components/markdown-body'
   import ReportForm from './report-form'
   import AnimateAction from '@components/buttons/animate-action'
-  import ShareAction from '@components/share-action'
+  import ShareAction from '@components/buttons/share-action'
   import UserProfileCard from '@components/user-profile-card'
 
   import CommentIcon from "@icons/comment"
