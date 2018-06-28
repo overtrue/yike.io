@@ -8,7 +8,7 @@
           </div>
           <div class="box-body">
             <ul class="nav nav-pills">
-              <li class="nav-item mr-2" v-for="child in node.children" :key="child.id">
+              <li class="nav-item mr-2 mb-1" v-for="child in node.children" :key="child.id">
                 <router-link :to="{name: 'nodes.node', params: {id: child.id}}" class="btn text-gray-40 btn-outline-light">
                   {{child.title}}
                 </router-link>
