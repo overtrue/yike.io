@@ -33,8 +33,13 @@
                   </button>
                   <div class="dropdown-menu">
                     <template v-if="canEdit">
+                      <template v-if="currentUser.is_admin">
+                        <button class="dropdown-item" type="button" @click="toggleStatus('excellent_at')"><medal-icon class="mr-1"></medal-icon> {{ thread.excellent_at ? '取消精华' : '精华' }}</button>
+                        <button class="dropdown-item" type="button" @click="toggleStatus('pinned_at')"><top-icon class="mr-1"></top-icon> {{ thread.pinned_at ? '取消置顶' : '置顶' }}</button>
+                        <button class="dropdown-item" type="button" @click="toggleStatus('banned_at')"><lock-icon class="mr-1"></lock-icon> {{ thread.banned_at ? '取消冻结' : '冻结' }}</button>
+                      </template>
                       <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
-                      <button class="dropdown-item" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
+                      <button class="dropdown-item text-danger" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
                     </template>
                     <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
                   </div>
@@ -75,6 +80,10 @@
 </template>
 
 <script>
+  import moment from 'moment'
+  import MedalIcon from "@icons/medal"
+  import LockIcon from "@icons/lock-alert"
+  import TopIcon from '@icons/format-vertical-align-top'
   import PencilIcon from "@icons/pencil"
   import DeleteIcon from "@icons/delete"
   import AlertBoxIcon from "@icons/alert-box"
@@ -96,6 +105,8 @@
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
 
+  import { mapGetters } from 'vuex'
+
   export default {
     components: {
       LikeBtn,
@@ -114,6 +125,9 @@
       ShareIcon,
       StarIcon,
       MoreIcon,
+      MedalIcon,
+      TopIcon,
+      LockIcon,
       MarkdownBody,
       Comments,
       UserProfileCard,
@@ -126,6 +140,7 @@
       }
     },
     computed: {
+      ...mapGetters(['currentUser']),
       canEdit() {
         return this.thread.user_id == this.$user().id || this.$user().is_admin;
       }
@@ -140,6 +155,13 @@
     methods: {
       loadThread() {
         this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response).then(this.registerEventListener)
+      },
+      toggleStatus(timestamp) {
+        this.thread[timestamp] = this.thread[timestamp] ? null : moment().format('YYYY-MM-DD HH:mm:ss')
+        this.api('threads').patch(this.thread.id, this.thread).then(() => {
+          this.$message.success('搞定！')
+          this.loadThread()
+        })
       },
       registerEventListener() {
         window.addEventListener('scroll', () => {

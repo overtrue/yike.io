@@ -4,7 +4,7 @@
       <volume-high /><span class="pl-1">订阅</span>
     </button>
     <button class="btn btn-sm" slot="off"
-            :class="{'btn-tiffany': !hovering, 'btn-danger': hovering}"
+            :class="{'btn-primary': !hovering, 'btn-danger': hovering}"
             @mouseenter="hovering=true"
             @mouseleave="hovering=false">
       <volume-mute v-if="hovering"></volume-mute>
