@@ -19,6 +19,12 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
     color: #B3B3B3;
   }
 
+  &.btn-transparent {
+    @extend .btn-outline-light;
+    border-color: transparent;
+    color: #B3B3B3;
+  }
+
   &.btn-icon {
     height: 2em;
     width: 2em;
