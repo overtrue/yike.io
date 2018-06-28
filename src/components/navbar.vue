@@ -27,19 +27,19 @@
               <a href="javascript:void(0);" class="nav-link">节点</a>
             </router-link>
             <li class="nav-item">
-              <a class="nav-link" href="https://easywechat.com">SDK</a>
+              <a class="nav-link" href="https://easywechat.com?utm_source=yike.io">SDK</a>
             </li>
           </ul>
 
           <ul class="navbar-nav ml-md-auto flex-row d-md-flex align-items-center justify-content-around">
           <template v-if="isLogged">
             <li class="nav-item">
-              <router-link :to="{ name: 'threads.create' }" exact class="text-20 btn btn-icon btn-light">
+              <router-link :to="{ name: 'threads.create' }" exact class="text-20 btn btn-icon btn-transparent btn-light">
                 <plus-icon></plus-icon>
               </router-link>
             </li>
             <li class="nav-item nav-item-icon">
-              <router-link :to="{ name: 'notifications.show' }" class="text-20 btn btn-icon btn-light">
+              <router-link :to="{ name: 'notifications.show' }" class="text-20 btn btn-icon btn-transparent btn-light">
                 <bell-icon/>
               </router-link>
             </li>
