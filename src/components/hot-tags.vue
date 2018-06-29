@@ -23,7 +23,7 @@
     },
     methods: {
       loadNodes() {
-        this.api('nodes').get('?hot=5').then(nodes => this.nodes = nodes.data)
+        this.api('nodes').get('?hot=5&per_page=5').then(nodes => this.nodes = nodes.data)
       }
     },
     created() {
