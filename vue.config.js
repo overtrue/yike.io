@@ -24,7 +24,7 @@ module.exports = {
 
   // use the full build with in-browser compiler?
   // https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
-  compiler: false,
+  runtimeCompiler: false,
 
   // babel-loader skips `node_modules` deps by default.
   // explicitly transpile a dependency with this option.
