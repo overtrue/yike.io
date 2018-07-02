@@ -47,7 +47,6 @@ class Resource {
 
   delete(id) {
     if (typeof id == 'object') {
-      data = id
       id = this._id
     }
     return http.delete(this._uri + '/' + id)

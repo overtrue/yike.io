@@ -93,9 +93,7 @@
     watch: {
       value() {
         if (this.contentBackup == this.value) {return}
-        if (this.value) {
-          this.editor.setValue(this.value, 1)
-        }
+        this.setValue()
       }
     },
     methods: {
@@ -121,6 +119,12 @@
           this.$emit('input', content)
           this.contentBackup = content
         })
+      },
+
+      setValue() {
+        if (this.value) {
+          this.editor.setValue(this.value, 1)
+        }
       }
     },
     mounted() {
@@ -128,6 +132,7 @@
       String.prototype.capitalize = function() {
         return this.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
       }
+      this.setValue()
     }
   }
 </script>
