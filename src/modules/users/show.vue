@@ -7,9 +7,9 @@
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-2 col-md-3 d-flex align-items-center">
-            <img :src="user.avatar" alt="User avatar" :class="{'avatar-200 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" class="w-100" />
+            <img :src="user.avatar" alt="User avatar" :class="{'w-100 avatar-200 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" />
             <div>
-              <div class="text-22 ml-1 lh-1">{{ user.name }}</div>
+              <div class="ml-1 lh-1" :class="navFixed ? 'text-16' : 'text-22'">{{ user.name }}</div>
               <div class="text-gray-50 ml-1">@{{ user.username }}</div>
             </div>
           </div>
@@ -110,10 +110,13 @@
         })
       },
       registerEventListener() {
+        let vm = this
         window.addEventListener('scroll', () => {
-          let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+          if (vm.$route.name == 'users.show') {
+            let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 
-          this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
+            this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
+          }
         })
       },
       async follow() {
