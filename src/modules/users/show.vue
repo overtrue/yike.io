@@ -112,7 +112,7 @@
       registerEventListener() {
         let vm = this
         window.addEventListener('scroll', () => {
-          if (vm.$route.name == 'users.show') {
+          if (vm.$route.name.substr(0, 5) == 'users') {
             let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
 
             this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
