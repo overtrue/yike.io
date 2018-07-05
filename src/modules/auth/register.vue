@@ -3,7 +3,7 @@
     <div class="offset-sm-4 col-sm-4">
       <div class="box">
         <h4 class="text-center font-weight-normal mt-2">用户注册</h4>
-        <form @submit.prevent="submit">
+        <form @submit.prevent="showCaptcha">
           <div class="form-group input-group-lg">
             <label>邮箱地址</label>
             <input type="text" class="form-control" placeholder="example@yike.io" v-model="email">
@@ -40,16 +40,31 @@
         username: '',
         email: '',
         password: '',
+        ticket: null,
+        randstr: null,
       }
     },
     methods: {
       ...mapActions(['attemptRegister']),
-
+      showCaptcha() {
+        let captcha = new TencentCaptcha('2013342827', (res) => {
+          if (res.ret === 0) {
+            this.ticket = res.ticket
+            this.randstr = res.randstr
+            this.submit()
+          } else {
+            return this.$message.error('请先完成验证！')
+          }
+        })
+        captcha.show()
+      },
       async submit() {
-        const { username, email, password } = this
+        if (!this.ticket) {
+          return this.$message.error('请先完成验证！')
+        }
 
         try {
-          await this.attemptRegister({ username, email, password })
+          await this.attemptRegister(this.$data)
 
           this.$message.warning('注册成功，请先验证你邮箱地址！')
           this.$router.push({ name: 'home' })

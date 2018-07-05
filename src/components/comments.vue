@@ -34,7 +34,7 @@
       <a :name="'comment-' + item.id"></a>
       <user-media :user="item.user">
         <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
-        <small class="text-muted" slot="description">{{ item.created_at_timeago }}</small>
+        <small class="text-muted" slot="description"><a :href="'#comment-' + item.id">{{ item.created_at_timeago }}</a></small>
         <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
           <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
             <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted" >
@@ -135,7 +135,13 @@
       }
     },
     mounted () {
-      this.loadComments()
+      this.loadComments().then(() => {
+        if (window.location.hash.length > 0) {
+          setTimeout(() => {
+              window.location.replace(window.location.hash)
+          })
+        }
+      })
       this.syncCachedContent()
     },
     methods: {
@@ -192,7 +198,7 @@
         })
       },
       loadComments () {
-        this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}`).then(comments => this.comments = comments)
+        return this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}`).then(comments => this.comments = comments)
       }
     }
   }

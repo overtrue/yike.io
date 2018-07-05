@@ -14,8 +14,8 @@ export const postLogin = ({ username, password }) => {
   })
 }
 
-export const postRegister = ({ username, email, password }) => {
-  return http.post('/auth/register', { username, email, password })
+export const postRegister = (payload) => {
+  return http.post('/auth/register', payload)
 }
 
 // get current user's data

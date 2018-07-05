@@ -17,16 +17,16 @@
                   </router-link>
                   <span class="text-gray-70 ml-1">
                     <template v-if="activity.log_name == 'commented.thread'">
-                      评论了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
+                      评论了 <router-link :to="subjectLink(activity)">《{{ activity.subject.title }}》</router-link>
                     </template>
                     <template v-else-if="activity.log_name == 'published.thread'">
-                      发布了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
+                      发布了 <router-link :to="subjectLink(activity)">《{{ activity.subject.title }}》</router-link>
                     </template>
                     <template v-else-if="activity.log_name == 'like.thread'">
-                      赞了 <router-link :to="{name:'threads.show', params: {id: activity.subject.id}}">《{{ activity.subject.title }}》</router-link>
+                      赞了 <router-link :to="subjectLink(activity)">《{{ activity.subject.title }}》</router-link>
                     </template>
                     <template v-else-if="activity.log_name == 'follow.user'">
-                      关注了 <router-link :to="{name:'users.show', params: {username: activity.subject.username}}">{{ activity.subject.username }}</router-link>
+                      关注了 <router-link :to="subjectLink(activity)">{{ activity.subject.username }}</router-link>
                     </template>
                   </span>
                 </div>
@@ -36,7 +36,9 @@
           </div>
           <div class="timeline-body">
             <user-card :user="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
-            <div class="box cursor-pointer text-gray-50" v-else>{{ activity.properties['content'] || '无' }}</div>
+            <div class="box cursor-pointer text-gray-50" v-else>
+              <router-link :to="subjectLink(activity)">{{ activity.properties['content'] || '无' }}</router-link>
+            </div>
           </div>
         </li>
         <li class="timeline-item" v-if="activities.meta.current_page < activities.meta.last_page">
@@ -90,6 +92,21 @@
       next()
     },
     methods: {
+      subjectLink(activity) {
+        switch (activity.subject_type) {
+          case 'App\\Thread':
+            if (activity.log_name == 'commented.thread') {
+              return {name:'threads.show', params: {id: activity.subject.id}, hash: '#comment-'+ activity.properties.comment_id ||0 }
+            }
+
+            return {name:'threads.show', params: {id: activity.subject.id}}
+          case 'App\\Comment':
+            return {name:'threads.show', params: {id: activity.subject.id}}
+          case 'App\\User':
+            return {name:'users.show', params: {id: activity.subject.username}}
+        }
+        return null
+      },
       loadActivities(username) {
         let page = this.activities.meta.current_page + 1
         this.api(`user/${username}/activities?per_page=10&page=${page}`).get().then(activities => {

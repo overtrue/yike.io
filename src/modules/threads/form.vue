@@ -23,7 +23,7 @@
                 </div>
               </div>
               <div class="right-actions">
-                <button type="button" class="btn btn-primary" :disabled="!formReady" @click="submit(false)">立即发布</button>
+                <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
                 <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存为草稿</button>
               </div>
             </div>
@@ -60,7 +60,9 @@
           content: {
             markdown: '',
             body: '',
-          }
+          },
+          ticket: null,
+          randstr: null,
         }
       }
     },
@@ -112,7 +114,23 @@
       loadThread(id) {
         return this.api('threads').find(id).then(thread => this.form = Object.assign(this.form, thread))
       },
+      showCaptcha(draft) {
+        let captcha = new TencentCaptcha('2070170938', (res) => {
+          console.log(res)
+          if (res.ret === 0) {
+            this.form.ticket = res.ticket
+            this.form.randstr = res.randstr
+            this.submit(draft)
+          } else {
+            return this.$message.error('请先完成验证！')
+          }
+        })
+        captcha.show()
+      },
       submit(draft = true) {
+        if (!this.form.ticket) {
+          return this.$message.error('请先完成验证！')
+        }
         this.form.is_draft = draft
         this.busing = true
         let promise = null
