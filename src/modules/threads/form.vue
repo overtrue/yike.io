@@ -116,7 +116,6 @@
       },
       showCaptcha(draft) {
         let captcha = new TencentCaptcha('2070170938', (res) => {
-          console.log(res)
           if (res.ret === 0) {
             this.form.ticket = res.ticket
             this.form.randstr = res.randstr
