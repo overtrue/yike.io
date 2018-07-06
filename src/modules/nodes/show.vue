@@ -3,11 +3,9 @@
     <header class="page-header bg-grey-blue py-4 text-white">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-md-6 d-flex align-items-center">
-            <div class="px-md-4">
-              <h4>{{ node.title }}</h4>
-              <p>{{ node.description }}</p>
-            </div>
+          <div class="col-md-6">
+            <h1>{{ node.title }}</h1>
+            <p>{{ node.description }}</p>
           </div>
           <div class="col-md-6 d-flex justify-content-end">
             <subscribe-btn relation="node" :item="node" />
