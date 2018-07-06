@@ -143,6 +143,11 @@
   .page-user-show {
     .bg-image {
       overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
     .page-header {
       height: 40vh;
