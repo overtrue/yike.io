@@ -3,6 +3,8 @@
   background: #fff;
   @extend .shadow-6;
 
+  border-radius: .25rem;
+
   &.box-lg {
     @extend .shadow-30;
   }
