@@ -1,5 +1,5 @@
 <template>
-  <relation-btn relation="user" action="follow" :item="item" v-if="item.id != currentUser.id">
+  <relation-btn relation="user" action="follow" :item="item" v-if="currentUser.id && item.id != currentUser.id">
     <template slot="on">
       <button v-if="simple" class="btn btn-ghost btn-icon ml-auto" title="关注 TA"><plus-icon></plus-icon></button>
       <button v-else class="btn btn-outline-teal-blue mx-1" title="关注 TA"><plus-icon></plus-icon> 关注 TA</button>

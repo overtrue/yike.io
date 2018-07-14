@@ -40,6 +40,10 @@ export default (http) => {
           Message.error('您没有此操作权限！')
           break
         }
+        case 401: {
+          window.location.href = '/auth/login'
+          break;
+        }
         case 500:
         case 501:
         case 503:

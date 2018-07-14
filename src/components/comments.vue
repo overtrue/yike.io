@@ -30,7 +30,7 @@
     <paginator :meta="comments.meta"></paginator>
 
     <div class="box box-flush">
-    <div class="border-bottom box-body py-2" v-for="(item,index) in comments.data" :key="item.id">
+    <div class="border-bottom box-body py-2" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id">
       <a :name="'comment-' + item.id"></a>
       <user-media :user="item.user">
         <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>

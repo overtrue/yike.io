@@ -15,7 +15,7 @@
           <button type="submit" class="my-2 btn btn-primary w-100 btn-lg">登录</button>
         </form>
         <div class="mb-2 d-flex justify-content-around">
-          <socialite-btns></socialite-btns>
+          <!--<socialite-btns></socialite-btns>-->
         </div>
       </div>
     </div>

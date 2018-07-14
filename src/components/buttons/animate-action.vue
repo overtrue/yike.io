@@ -14,6 +14,7 @@
   import ThumbUpOutline from "@icons/thumb-up-outline"
   import ThumbUp from "@icons/thumb-up"
   import RelationBtn from './relation-btn'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {RelationBtn, ThumbUp, ThumbUpOutline},
@@ -29,8 +30,14 @@
         animationTimeline: null
       }
     },
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
     methods: {
       toggle() {
+        if (!this.currentUser.id) {
+          return this.$router.push({name: 'auth.login'})
+        }
         this.api(`relations/like`)
           .post({
             followable_type: 'App\\Thread',

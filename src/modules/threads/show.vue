@@ -25,7 +25,7 @@
                   <subscribe-btn relation="thread" :item="thread" />
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#"><share-icon></share-icon> 分享</a>
+                  <share-dropdown><a class="nav-link text-gray-50 btn btn-sm btn-link"><share-icon></share-icon> 分享</a></share-dropdown>
                 </li>
                 <li class="nav-item">
                   <button type="button" class="nav-link text-gray-50 btn btn-sm btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +66,7 @@
         <div class="thread-comments mt-3">
           <comments object-type="App\Thread" :object-id="thread.id" @created="loadThread"></comments>
         </div>
-        <div class="thread-toolbar" v-show="showToolbar">
+        <div class="thread-toolbar">
           <animate-action :item="thread"/>
           <share-action class="mt-3" :item="thread"/>
         </div>
@@ -101,6 +101,7 @@
   import AnimateAction from '@components/buttons/animate-action'
   import ShareAction from '@components/buttons/share-action'
   import UserProfileCard from '@components/user-profile-card'
+  import ShareDropdown from '@components/share-dropdown'
 
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
@@ -131,12 +132,12 @@
       MarkdownBody,
       Comments,
       UserProfileCard,
+      ShareDropdown,
     },
     data() {
       return {
         thread: null,
         showReportForm: false,
-        showToolbar: false,
       }
     },
     computed: {
@@ -163,12 +164,6 @@
           this.loadThread()
         })
       },
-      registerEventListener() {
-        window.addEventListener('scroll', () => {
-          let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-          this.showToolbar = top > 200
-        })
-      }
     },
     mounted() {
       this.loadThread()
