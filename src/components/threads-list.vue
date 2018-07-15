@@ -5,7 +5,11 @@
           v-for="item in threads.data" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
         <div class="d-flex align-items-center">
           <a href="#" class="mr-2"><img :src="item.user.avatar" alt="" class="avatar-30"></a>
-          <div class="text-gray-50">{{ item.title }}</div>
+          <div class="text-gray-50">
+            <span v-if="item.excellent_at" class="badge badge-success">精华</span>
+            <span v-if="item.pinned_at" class="badge badge-danger">置顶</span>
+            {{ item.title }}
+          </div>
         </div>
         <div class="ml-auto d-flex align-items-center justify-content-md-end">
           <div class="text-gray-60 d-flex justify-content-between align-items-center">
@@ -30,10 +34,12 @@
   import CommentIcon from "@icons/comment"
   import ViewIcon from "@icons/eye"
   import EmptyState from '@components/empty-state'
+  import MedalIcon from "@icons/medal"
+  import TopIcon from '@icons/format-vertical-align-top'
 
   export default {
     name: 'threads-list',
-    components: {LikeIcon, CommentIcon, ViewIcon, Paginator, EmptyState},
+    components: {LikeIcon, CommentIcon, ViewIcon, MedalIcon, TopIcon, Paginator, EmptyState},
     props: {
       threads: {
         type: Object,

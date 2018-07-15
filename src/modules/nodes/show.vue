@@ -20,7 +20,7 @@
             <div class="box-body">
               <ul class="nav nav-pills">
                 <li class="nav-item">
-                  <a class="nav-link" :class="{active: currentThreadsTab == 'default'}" href="javascript:;" @click="currentThreadsTab = 'default'">综合讨论</a>
+                  <a class="nav-link" :class="{active: currentThreadsTab == 'default'}" href="javascript:;" @click="currentThreadsTab = 'default'">活跃</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" :class="{active: currentThreadsTab == 'featured'}" href="javascript:;" @click="currentThreadsTab = 'featured'">精选</a>
