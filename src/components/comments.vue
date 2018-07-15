@@ -169,6 +169,9 @@
         }
       },
       reply(item) {
+        if (!this.$user().id) {
+          return this.$router.push({name: 'auth.login'})
+        }
         this.content = `@${item.user.username} `
         this.writing = true
         window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
