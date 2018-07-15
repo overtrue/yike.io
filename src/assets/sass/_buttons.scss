@@ -7,11 +7,14 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
 }
 
 .btn {
-  border-radius: 30px;
   line-height: 1.3em;
   padding: .5rem 1.15rem;
   border-width: 2px;
   letter-spacing: 1px;
+
+  &.btn-rounded {
+    border-radius: 30px;
+  }
 
   &.btn-ghost {
     @extend .btn-outline-light;
@@ -26,6 +29,7 @@ $border-radius-degrees: (0, 4, 6, 15, 30) !default;
   }
 
   &.btn-icon {
+    @extend .btn-rounded;
     height: 2em;
     width: 2em;
     line-height: 1.5;

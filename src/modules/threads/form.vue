@@ -7,24 +7,26 @@
             您没有此操作权限！
           </div>
           <form v-else>
-            <div class="box-heading box-body border-bottom mb-0">
-              <div class="input-group input-group-lg">
-                <input type="text" class="form-control border-0 px-0 text-24" v-model="form.title" placeholder="请在这里输入标题（请精准表达）">
-              </div>
-            </div>
-            <editor v-model="form.content.markdown" :options="{maxLines: Infinity}" placeholder="请详细并精准的表达，不得少于30个字符~"></editor>
-            <div class="box-footer border-top p-2 d-flex justify-content-between">
-              <div class="left-actions d-flex align-items-center">
-                <span class="text-muted">发布到</span>
-                <div class="dropdown ml-1">
-                  <el-select filterable v-model="form.node_id">
-                    <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title"></el-option>
-                  </el-select>
+            <div class="card">
+              <div class="card-header pt-3 border-bottom-0">
+                <div class="input-group input-group">
+                  <input type="text" ref="title_input" class="form-control form-control-lg" v-model="form.title" placeholder="请在这里输入标题（请精准表达）">
                 </div>
               </div>
-              <div class="right-actions">
-                <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
-                <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存为草稿</button>
+              <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="请使用 Markdown 格式详细并精准的表达，不得少于30个字符~"></editor>
+              <div class="card-footer border-top p-2 d-flex justify-content-between">
+                <div class="left-actions d-flex align-items-center">
+                  <span class="text-muted">发布到</span>
+                  <div class="dropdown ml-1">
+                    <el-select filterable v-model="form.node_id">
+                      <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title"></el-option>
+                    </el-select>
+                  </div>
+                </div>
+                <div class="right-actions">
+                  <button type="button" class="btn btn-primary" :disabled="!formReady" @click="showCaptcha(false)">立即发布</button>
+                  <button type="button" class="btn btn-secondary ml-1" :disabled="!formReady" @click="submit(true)">保存为草稿</button>
+                </div>
               </div>
             </div>
           </form>
@@ -35,9 +37,9 @@
 </template>
 
 <script>
-  import Editor from "@components/editor"
-  import localforage from "localforage"
-  import { Select as ElSelect, Option as ElOption } from "element-ui"
+  import Editor from '@components/editor'
+  import localforage from 'localforage'
+  import { Select as ElSelect, Option as ElOption } from 'element-ui'
   import 'element-ui/lib/theme-chalk/select.css'
 
   export default {
@@ -47,7 +49,7 @@
       ElSelect,
       ElOption,
     },
-    data() {
+    data () {
       return {
         ready: false,
         nodes: [],
@@ -69,20 +71,20 @@
     watch: {
       form: {
         deep: true,
-        handler() {
+        handler () {
           localforage.setItem('thread.form', this.form)
         }
       }
     },
     computed: {
-      formReady() {
+      formReady () {
         return !this.busing
           && this.form.title.length >= 5
           && this.form.node_id > 0
           && this.form.content.markdown && this.form.content.markdown.length >= 30
       }
     },
-    mounted() {
+    mounted () {
       this.loadNodes()
       if (this.$route.name == 'threads.edit') {
         this.loadThread(this.$route.params.id).then(this.syncFromCache).then(() => {
@@ -92,29 +94,32 @@
         this.syncFromCache()
         this.ready = true
       }
+      this.$nextTick(() => {
+        this.$refs['title_input'].focus()
+      })
     },
     methods: {
-      syncFromCache() {
+      syncFromCache () {
         localforage.getItem('thread.form', (err, form) => {
           if (!err && typeof form == 'object') {
             this.form = Object.assign(this.form, form)
           }
         })
       },
-      clearCache() {
+      clearCache () {
         localforage.removeItem('thread.form')
       },
-      loadNodes() {
+      loadNodes () {
         this.busing = true
         return this.api('nodes').get().then((response) => {
           this.nodes = response.data
           this.busing = false
         }).finally(() => this.busing = false)
       },
-      loadThread(id) {
+      loadThread (id) {
         return this.api('threads').find(id).then(thread => this.form = Object.assign(this.form, thread))
       },
-      showCaptcha(draft) {
+      showCaptcha (draft) {
         let captcha = new TencentCaptcha('2070170938', (res) => {
           if (res.ret === 0) {
             this.form.ticket = res.ticket
@@ -126,7 +131,7 @@
         })
         captcha.show()
       },
-      submit(draft = true) {
+      submit (draft = true) {
         if (!this.form.ticket) {
           return this.$message.error('请先完成验证！')
         }
@@ -152,11 +157,6 @@
 </script>
 
 <style lang="scss">
-  .form-control:focus {
-    border: none;
-    box-shadow: none;
-  }
-
   .editor-container {
     overflow: auto;
     height: calc(100vh - 370px);

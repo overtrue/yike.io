@@ -100,3 +100,14 @@
     }
   }
 }
+
+.CodeMirror {
+  @extend .form-control;
+  padding-left: 0px;
+}
+
+.CodeMirror-focused {
+  border-color: #80bcff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 120, 255, 0.25);
+}

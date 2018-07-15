@@ -65,9 +65,12 @@
 
     <paginator :meta="comments.meta"></paginator>
 
-    <div class="box box-flush shadow-30 pop-comment-form" :class="{'show': writing}">
-      <editor v-model="content" editor-class="comment-editor p-2" placeholder="同样支持 markdown 语法" :options="editorOptions"></editor>
-      <div class="box-body d-flex justify-content-between align-items-center">
+    <div class="card card-flush shadow-30 pop-comment-form" :class="{'show': writing}">
+      <editor v-model="content" class="comment-editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
+      <div class="p-2 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-end">
+          <a href="https://guides.github.com/features/mastering-markdown/" class="text-gray-50" target="_blank"><span class="text-14 material-design-icon"><svg class="material-design-icon__svg" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg></span> Markdown 语法指南</a>
+        </div>
         <div class="pop-form-btns">
           <button type="button" class="btn btn-sm btn-primary" :disabled="!formReady" @click="submit">提交</button>
           <button type="button" class="ml-2 btn btn-sm btn-secondary" @click="writing=false">取消</button>
@@ -87,13 +90,14 @@
 
   import ThumbUp from '@icons/thumb-up'
   import Reply from '@icons/reply'
+  import Markdown from '@icons/markdown'
   import ThumbDown from '@icons/thumb-down'
   import ThumbUpOutline from '@icons/thumb-up-outline'
   import ThumbDownOutline from '@icons/thumb-down-outline'
 
   export default {
     name: 'comments',
-    components: {Editor, UserMedia, MarkdownBody, Paginator, ThumbUp, Reply, ThumbDown, ThumbUpOutline, ThumbDownOutline},
+    components: {Editor, UserMedia, Markdown, MarkdownBody, Paginator, ThumbUp, Reply, ThumbDown, ThumbUpOutline, ThumbDownOutline},
     computed: {
       ...mapGetters(['currentUser']),
       formReady () {
@@ -209,8 +213,18 @@
 
 <style lang="scss">
   .comments {
-    .comment-editor.editor-container {
+    .pop-comment-form {
+      border:none;
+      max-height: 0;
+
+      &.show {
+        max-height: 300px;
+      }
+    }
+    .comment-editor .CodeMirror {
       height: auto;
+      min-height: 100px;
+      max-height: 200px;
     }
     .pop-comment-form {
       position: sticky;
@@ -219,11 +233,7 @@
       max-width: 100%;
       max-height: 0;
       overflow: hidden;
-      transition: max-height .2s;
-
-      &.show {
-        max-height: 400px;
-      }
+      transition: max-height .5s;
     }
 
     .markdown-body.comment-content p:last-child {
