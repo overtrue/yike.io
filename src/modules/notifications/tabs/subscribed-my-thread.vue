@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between align-items-center">
     <div class="content">
       <router-link :to="{name: 'users.show', params: {id: notification.data.user_id}}">
         <img class="rounded-circle mr-2" width="30" :src="notification.data.avatar">

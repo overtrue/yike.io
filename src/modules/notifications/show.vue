@@ -21,7 +21,7 @@
             <button class="btn btn-sm btn-outline-secondary">全部已读</button>
           </div>
           <ul class="list-group list-group-flush" v-if="notifications.length > 0">
-            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'text-gray-60': notification.read_at}" @click="markOneRead(notification, index)">
+            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'bg-gray-95': notification.read_at == null}" @click="markOneRead(notification, index)">
               <keep-alive>
                 <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
               </keep-alive>
