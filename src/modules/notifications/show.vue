@@ -8,20 +8,20 @@
           </div>
           <div class="nav flex-column nav-pills">
             <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == ''}" @click="currentTab = ''">全部 </a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'follow'}" @click="currentTab = 'follow'">关注消息</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'comment'}" @click="currentTab = 'comment'">评论消息</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'subscribe'}" @click="currentTab = 'subscribe'">订阅消息</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'like'}" @click="currentTab = 'like'">点赞消息</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'follow'}" @click="currentTab = 'follow'">关注</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'comment'}" @click="currentTab = 'comment'">评论</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'subscribe'}" @click="currentTab = 'subscribe'">订阅</a>
+            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'like'}" @click="currentTab = 'like'">点赞</a>
           </div>
         </div>
       </div>
       <div class="col-md-9">
         <div class="box">
           <div class="box-heading text-right border-bottom pb-2" v-if="notifications.length > 0">
-            <button class="btn btn-sm btn-outline-secondary">全部已读</button>
+            <button class="btn btn-sm btn-secondary"><check-icon class="pr-2" />标记全部为已读</button>
           </div>
           <ul class="list-group list-group-flush" v-if="notifications.length > 0">
-            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'text-gray-60': notification.read_at}" @click="markOneRead(notification, index)">
+            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'bg-gray-95': notification.read_at == null}" @click="markOneRead(notification, index)">
               <keep-alive>
                 <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
               </keep-alive>
@@ -41,6 +41,7 @@
 <script>
   import BellIcon from '@icons/bell'
   import InboxIcon from '@icons/inbox'
+  import CheckIcon from '@icons/check'
   import EmptyState from '@components/empty-state'
 
   import NewFollower from './tabs/new-follower'
@@ -50,7 +51,7 @@
   import Welcome from './tabs/welcome'
 
   export default {
-    components: {EmptyState, BellIcon, InboxIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
+    components: {EmptyState, BellIcon, InboxIcon, CheckIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
     data() {
       return {
         currentTab: '',

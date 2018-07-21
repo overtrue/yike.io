@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between align-items-center">
     <div class="content">
       欢迎加入一刻社区~
     </div>
