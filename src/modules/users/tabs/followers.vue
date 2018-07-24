@@ -27,12 +27,6 @@
 
   export default {
     name: 'user-followers',
-    props: {
-      user: {
-        type: Object,
-        required: true
-      }
-    },
     components: {UserListItem, EmptyState, Paginator, PlusIcon, EmailIcon},
     data() {
       return {
@@ -47,7 +41,7 @@
     },
     methods: {
       async followers() {
-        let resource = new Resource(`user/${this.user.username}/followers`)
+        let resource = new Resource(`user/${this.$parent.user.username}/followers`)
 
         this.users = await resource.get()
       }

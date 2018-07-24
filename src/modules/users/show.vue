@@ -1,13 +1,13 @@
 <template>
   <div class="page-user-show" v-if="user.id">
     <header class="page-header bg-grey-blue py-4 text-white">
-      <div class="bg-image"><img src="/banners/sunrise.jpg" alt=""></div>
+      <div class="bg-image"><img src="/banners/shanghai.jpg" alt=""></div>
     </header>
     <div class="user-show-navbar bg-white">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-2 col-md-3 d-flex align-items-center">
-            <img :src="user.avatar" alt="User avatar" :class="{'avatar-200 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" />
+            <img :src="user.avatar" alt="User avatar" :class="{'avatar-200 shadow-6 position-absolute mb-2': !navFixed, 'avatar-40': navFixed}" />
             <div>
               <div class="ml-1 lh-1" :class="navFixed ? 'text-16' : 'text-22'">{{ user.name }}</div>
               <div class="text-gray-50 ml-1">@{{ user.username }}</div>
@@ -30,7 +30,7 @@
           </div>
           <div class="d-flex align-items-center justify-content-end col-lg-3 col-md-3">
             <template v-if="currentUser && currentUser.id != user.id">
-              <follow-btn :user="user"></follow-btn>
+              <follow-btn :item="user"></follow-btn>
             </template>
           </div>
         </div>
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="col-lg-7 col-md-6">
-          <router-view :user="user"></router-view>
+          <router-view></router-view>
         </div>
         <div class="col-md-3">
           <hot-tags></hot-tags>
@@ -67,7 +67,6 @@
 <script>
   import { mapGetters } from 'vuex'
   import Resource from '@utils/resource'
-
   import HotTags from "@components/hot-tags"
   import UserRanking from "@components/user-ranking"
   import NewUsers from "@components/new-users"
@@ -118,22 +117,6 @@
             this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
           }
         })
-      },
-      async follow() {
-        let resource = new Resource(`user/${this.$route.params.username}/follow`)
-
-        await resource.post()
-
-        this.user.has_followed = true
-        this.user.followers_count++
-      },
-      async unfollow() {
-        let resource = new Resource(`user/${this.$route.params.username}/unfollow`)
-
-        await resource.post()
-
-        this.user.has_followed = false
-        this.user.followers_count--
       }
     }
   }

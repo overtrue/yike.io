@@ -44,27 +44,30 @@
         <li class="timeline-item" v-if="activities.meta.current_page < activities.meta.last_page">
           <div class="timeline-heading">
             <div class="d-flex">
-              <button class="btn btn-secondary btn-icon text-20" @click="loadActivities(user.username)"><arrow-down-icon></arrow-down-icon></button>
+              <button class="btn btn-secondary btn-icon text-20" @click="loadActivities($parent.user.username)"><arrow-down-icon/></button>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-item" v-if="activities.meta.current_page == activities.meta.last_page">
+          <div class="timeline-heading">
+            <div class="d-flex">
+              <button class="btn btn-secondary btn-icon text-20" disabled><source-commit-end/></button>
             </div>
           </div>
         </li>
     </ul>
+    <empty-state v-if="activities.data.length <= 0"/>
   </div>
 </template>
 
 <script>
   import UserCard from "@components/user-card"
   import ArrowDownIcon from '@icons/arrow-down'
+  import SourceCommitEnd from '@icons/source-commit-end'
   import EmptyState from '@components/empty-state'
 
   export default {
     name: 'user-activities',
-    props: {
-      user: {
-        type: Object,
-        required: true
-      }
-    },
     data() {
       return {
         activities: {
@@ -76,7 +79,7 @@
         }
       }
     },
-    components: {UserCard, ArrowDownIcon, EmptyState},
+    components: {UserCard, ArrowDownIcon, SourceCommitEnd, EmptyState},
     beforeRouteUpdate(to, from, next) {
       if (to.params.username != from.params.username) {
         this.activities = {
@@ -116,7 +119,7 @@
       }
     },
     mounted() {
-      this.loadActivities(this.user.username)
+      this.loadActivities(this.$parent.user.username)
     }
   }
 </script>

@@ -14,21 +14,18 @@
           </div>
           <div class="thread-stats-bar bg-white border-top py-1">
             <div class="container">
-              <ul class="nav">
+              <ul class="nav align-items-center">
                 <li class="nav-item">
                   <like-btn relation="thread" :item="thread"></like-btn>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
+                  <a class="text-gray-50 btn btn-sm btn-link" href="#comments"><comment-icon></comment-icon> {{ thread.cache.comments_count }} 条评论</a>
                 </li>
                 <li class="nav-item">
-                  <subscribe-btn relation="thread" :item="thread" />
+                  <share-dropdown><a class="text-gray-50 btn btn-sm btn-link"><share-icon></share-icon> 分享</a></share-dropdown>
                 </li>
                 <li class="nav-item">
-                  <share-dropdown><a class="nav-link text-gray-50 btn btn-sm btn-link"><share-icon></share-icon> 分享</a></share-dropdown>
-                </li>
-                <li class="nav-item">
-                  <button type="button" class="nav-link text-gray-50 btn btn-sm btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button type="button" class="text-gray-50 btn btn-sm btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <more-icon></more-icon>
                   </button>
                   <div class="dropdown-menu">
@@ -44,6 +41,9 @@
                     <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
                   </div>
                   <report-form :visible="showReportForm" @close="showReportForm = false"></report-form>
+                </li>
+                <li class="nav-item ml-auto">
+                  <subscribe-btn relation="thread" :item="thread" />
                 </li>
               </ul>
             </div>
@@ -73,9 +73,11 @@
       </div>
       <div class="col-md-3 position-relative">
         <user-profile-card class="user-profile-card" :user="thread.user"></user-profile-card>
+        <user-list-card title="他们觉得很赞" :users="thread.likers" class="mt-2"/>
         <hot-tags class="mt-2"></hot-tags>
       </div>
     </div>
+    <wechat-qrcode/>
   </div>
 </template>
 
@@ -89,6 +91,8 @@
   import AlertBoxIcon from "@icons/alert-box"
   import UserMedia from "@components/user-media"
   import HotTags from "@components/hot-tags"
+  import UserListCard from "@components/user-list-card"
+  import WechatQrcode from "@components/wechat-qrcode"
   import Comments from "@components/comments"
   import StarIcon from '@icons/star'
   import MoreIcon from '@icons/dots-horizontal'
@@ -110,6 +114,7 @@
 
   export default {
     components: {
+      UserListCard,
       LikeBtn,
       AnimateAction,
       ShareAction,
@@ -133,6 +138,7 @@
       Comments,
       UserProfileCard,
       ShareDropdown,
+      WechatQrcode,
     },
     data() {
       return {
@@ -155,8 +161,10 @@
     },
     methods: {
       loadThread() {
-        this.api('threads').find(this.$route.params.id, ['user']).then(response => this.thread = response).then(this.registerEventListener)
+        this.api('threads').find(this.$route.params.id, ['user', 'likers'])
+          .then(response => this.thread = response).then(this.registerEventListener)
       },
+
       toggleStatus(timestamp) {
         this.thread[timestamp] = this.thread[timestamp] ? null : moment().format('YYYY-MM-DD HH:mm:ss')
         this.api('threads').patch(this.thread.id, this.thread).then(() => {

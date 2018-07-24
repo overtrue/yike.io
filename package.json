@@ -28,6 +28,7 @@
     "tributejs": "^3.2.0",
     "typeface-ubuntu-mono": "0.0.54",
     "vue": "^2.5.16",
+    "vue-avatar-cropper": "0.0.28",
     "vue-material-design-icons": "^1.5.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",

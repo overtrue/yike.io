@@ -7,12 +7,6 @@
 
   export default {
     name: 'user-threads',
-    props: {
-      user: {
-        type: Object,
-        required: true
-      }
-    },
     components: {ThreadsList},
     data() {
       return {
@@ -21,7 +15,7 @@
     },
     methods: {
       loadThreads(page = 1) {
-        this.api('threads').get(`?user_id=${this.user.id}&page=${page}`).then(threads => {
+        this.api('threads').get(`?user_id=${this.$parent.user.id}&page=${page}`).then(threads => {
           this.threads = threads
         })
       },

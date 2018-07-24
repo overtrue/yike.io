@@ -13,10 +13,17 @@
 
 <script>
   import Sidebar from '@modules/users/profile/sidebar'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'show',
-    components: {Sidebar}
+    components: { Sidebar },
+    computed: {
+      ...mapGetters(['currentUser'])
+    },
+    methods: {
+      ...mapActions(['setUser']),
+    }
   }
 </script>
 

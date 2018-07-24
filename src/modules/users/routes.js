@@ -69,6 +69,13 @@ export default [{
     },
     component: () => import('./profile/bindings')
   }, {
+    path: 'avatar',
+    name: 'user.avatar',
+    meta: {
+      requiresAuth: true,
+    },
+    component: () => import('./profile/avatar')
+  }, {
     path: 'blacklist',
     name: 'user.blacklist',
     meta: {
