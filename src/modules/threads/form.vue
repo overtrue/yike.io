@@ -3,8 +3,9 @@
     <div class="row">
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
-          <div class="box-body text-center" v-if="$user() && !$user().has_activated">
-            您没有此操作权限！
+          <div class="box-body py-4 text-center" v-if="$user() && !$user().has_activated">
+            <h1 class="display-4 text-gray-40"><alert/></h1>
+            您需要先激活账户以使用此功能
           </div>
           <form v-else>
             <div class="card">
@@ -39,6 +40,7 @@
 <script>
   import Editor from '@components/editor'
   import localforage from 'localforage'
+  import Alert from '@icons/alert-circle'
   import { Select as ElSelect, Option as ElOption } from 'element-ui'
   import 'element-ui/lib/theme-chalk/select.css'
 
@@ -46,6 +48,7 @@
     name: 'thread-form',
     components: {
       Editor,
+      Alert,
       ElSelect,
       ElOption,
     },
