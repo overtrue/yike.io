@@ -17,11 +17,11 @@
       </div>
       <div class="col-md-9">
         <div class="box">
-          <div class="box-heading text-right border-bottom pb-2" v-if="notifications.length > 0">
+          <div class="box-heading text-right border-bottom pb-2" v-if="false">
             <button class="btn btn-sm btn-secondary"><check-icon class="pr-2" />标记全部为已读</button>
           </div>
           <ul class="list-group list-group-flush" v-if="notifications.length > 0">
-            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'bg-gray-95': notification.read_at == null}" @click="markOneRead(notification, index)">
+            <li class="list-group-item list-group-item-action border-top-0" v-for="(notification, index) in notifications" :key="notification.id" :class="{'bg-gray-98': notification.read_at == null}" @click="markOneRead(notification, index)">
               <keep-alive>
                 <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
               </keep-alive>
