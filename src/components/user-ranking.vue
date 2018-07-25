@@ -30,7 +30,7 @@
     },
     methods: {
       loadUsers() {
-        this.api('users').get('?limit=12').then(users => this.users = users.data)
+        this.api('users').get('?limit=10').then(users => this.users = users.data)
       }
     },
     mounted() {

@@ -4,15 +4,15 @@
       <div class="box">
         <h4 class="text-center font-weight-normal mt-2">用户登录</h4>
         <form @submit.prevent="submit">
-          <div class="form-group input-group-lg">
+          <div class="form-group">
             <label>用户名<small>（或邮箱）</small></label>
-            <input type="text" class="form-control" v-model="username">
+            <input type="text" class="form-control" v-model="username" required>
           </div>
-          <div class="form-group input-group-lg">
+          <div class="form-group">
             <label>密码</label>
-            <input type="password" class="form-control" v-model="password">
+            <input type="password" class="form-control" v-model="password" required>
           </div>
-          <button type="submit" class="my-2 btn btn-primary w-100 btn-lg">登录</button>
+          <button type="submit" class="my-2 btn btn-primary w-100">登录</button>
         </form>
         <div class="mb-2 d-flex justify-content-around">
           <!--<socialite-btns></socialite-btns>-->
