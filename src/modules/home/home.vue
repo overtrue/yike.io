@@ -25,9 +25,10 @@
         </div>
       </div>
       <div class="col-md-3">
-        <hot-tags></hot-tags>
-        <user-ranking class="mt-2"></user-ranking>
-        <new-users class="mt-2"></new-users>
+        <guest-login-guide class="mb-2"/>
+        <hot-tags/>
+        <user-ranking class="mt-2"/>
+        <new-users class="mt-2"/>
       </div>
     </div>
   </div>
@@ -39,6 +40,7 @@
   import UserRanking from "@components/user-ranking"
   import NewUsers from "@components/new-users"
   import ThreadsList from "@components/threads-list"
+  import GuestLoginGuide from '@components/guest-login-guide'
 
   export default {
     data() {
@@ -52,7 +54,7 @@
         currentThreadsTab: 'default'
       }
     },
-    components: {Banner, HotTags, UserRanking, NewUsers, ThreadsList},
+    components: {Banner, HotTags, UserRanking, NewUsers, ThreadsList, GuestLoginGuide},
     watch:{
       currentThreadsTab() {
         this.loadThreads(1)
