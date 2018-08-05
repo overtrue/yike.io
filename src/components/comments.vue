@@ -1,6 +1,5 @@
 <template>
-  <div class="comments">
-    <a name="comments"></a>
+  <div class="comments" name="comments">
     <div class="py-2">
       <div class="text-16 text-gray-50">{{ comments.meta ? comments.meta.total : 0 }} 条评论</div>
     </div>
@@ -30,37 +29,36 @@
     <paginator :meta="comments.meta"></paginator>
 
     <div class="box box-flush">
-    <div class="border-bottom box-body py-2" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id">
-      <a :name="'comment-' + item.id"></a>
-      <user-media :user="item.user">
-        <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
-        <small class="text-muted" slot="description"><a :href="'#comment-' + item.id">{{ item.created_at_timeago }}</a></small>
-        <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
-          <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
-            <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted" >
-              <thumb-up-outline />
-            </button>
-            <button class="btn btn-icon btn-primary" v-else>
-              <thumb-up />
-            </button>
-            <span class="ml-1 align-self-center">{{ item.up_voters }}</span>
+      <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id" :id="'comment-' + item.id" :name="'comment-' + item.id">
+        <user-media :user="item.user">
+          <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
+          <small class="text-muted" slot="description"><a :href="'#comment-' + item.id">{{ item.created_at_timeago }}</a></small>
+          <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
+            <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
+              <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted" >
+                <thumb-up-outline />
+              </button>
+              <button class="btn btn-icon btn-primary" v-else>
+                <thumb-up />
+              </button>
+              <span class="ml-1 align-self-center">{{ item.up_voters }}</span>
+            </div>
+            <div class="mx-1 cursor-pointer d-flex" @click="vote('down', item, index)">
+              <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_down_voted">
+                <thumb-down-outline  />
+              </button>
+              <button class="btn btn-icon btn-danger" v-else>
+                <thumb-down/>
+              </button>
+              <span class="ml-1 align-self-center">{{ item.down_voters }}</span>
+            </div>
+            <div class="mx-1 cursor-pointer" @click="reply(item)">
+              <button class="btn btn-icon btn-light text-gray-60"><reply /></button>
+            </div>
           </div>
-          <div class="mx-1 cursor-pointer d-flex" @click="vote('down', item, index)">
-            <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_down_voted">
-              <thumb-down-outline  />
-            </button>
-            <button class="btn btn-icon btn-danger" v-else>
-              <thumb-down/>
-            </button>
-            <span class="ml-1 align-self-center">{{ item.down_voters }}</span>
-          </div>
-          <div class="mx-1 cursor-pointer" @click="reply(item)">
-            <button class="btn btn-icon btn-light text-gray-60"><reply /></button>
-          </div>
-        </div>
-      </user-media>
-      <markdown-body class="comment-content pt-2" v-model="item.content.body"></markdown-body>
-    </div>
+        </user-media>
+        <markdown-body class="comment-content pt-2" v-model="item.content.body"></markdown-body>
+      </div>
     </div>
 
     <paginator :meta="comments.meta"></paginator>

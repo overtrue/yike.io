@@ -44,14 +44,15 @@
   import CheckIcon from '@icons/check'
   import EmptyState from '@components/empty-state'
 
-  import NewFollower from './tabs/new-follower'
-  import CommentMyThread from './tabs/comment-my-thread'
-  import LikedMyThread from './tabs/liked-my-thread'
-  import SubscribedMyThread from './tabs/subscribed-my-thread'
-  import Welcome from './tabs/welcome'
+  import NewFollower from './types/new-follower'
+  import CommentMyThread from './types/comment-my-thread'
+  import LikedMyThread from './types/liked-my-thread'
+  import MentionedMe from './types/mentioned-me'
+  import SubscribedMyThread from './types/subscribed-my-thread'
+  import Welcome from './types/welcome'
 
   export default {
-    components: {EmptyState, BellIcon, InboxIcon, CheckIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
+    components: {EmptyState, MentionedMe, BellIcon, InboxIcon, CheckIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
     data() {
       return {
         currentTab: '',

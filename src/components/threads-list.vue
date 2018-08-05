@@ -21,7 +21,7 @@
         </div>
       </li>
       <li class="list-group-item d-flex align-items-center justify-content-center p-5" v-if="threads['data'] && threads.data.length == 0">
-        <empty-state message="没有相关内容"></empty-state>
+        <empty-state message="该分类下无相关讨论哦~"></empty-state>
       </li>
     </ul>
     <paginator :meta="threads.meta" @change="handleChange"></paginator>

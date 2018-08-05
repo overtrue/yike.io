@@ -1,7 +1,7 @@
 <template>
   <div class="share-action">
     <p class="text-center text-gray-40 text-14">分享</p>
-    <button class="mx-auto btn btn-icon text-22 copy-link text-gray-50" :data-clipboard-text="copyText" data-toggle="tooltip" title="复制链接"><link-variant title="复制链接" /></button>
+    <button class="mx-auto btn btn-icon text-18 copy-link text-gray-50" :data-clipboard-text="copyText" data-toggle="tooltip" title="复制链接"><link-variant title="复制链接" /></button>
     <div>
     <a :class="btnClasses" target="_blank" :href="weibo" title="分享到微博">
       <span class="material-design-icon sina-icon">
@@ -48,7 +48,7 @@
         weibo: '',
         twitter: '',
         facebook: '',
-        btnClasses: 'btn btn-icon d-block mx-auto mt-2 bg-white text-22 text-gray-50',
+        btnClasses: 'btn btn-icon d-block mx-auto mt-2 bg-white text-18 text-gray-50',
         hovering: false,
       }
     },

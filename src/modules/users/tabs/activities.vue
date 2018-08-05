@@ -15,7 +15,7 @@
                   <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
                     <h6 class="mb-0 text-16 d-inline-block">{{ $parent.user.name }}</h6>
                   </router-link>
-                  <span class="text-gray-70 ml-1">
+                  <span class="text-gray-60 ml-1">
                     <template v-if="activity.log_name == 'commented.thread'">
                       评论了 <router-link :to="subjectLink(activity)">《{{ activity.subject.title }}》</router-link>
                     </template>
@@ -36,8 +36,8 @@
           </div>
           <div class="timeline-body">
             <user-card :user="activity.subject" v-if="activity.log_name == 'follow.user'"></user-card>
-            <div class="box cursor-pointer text-gray-50" v-else>
-              <router-link :to="subjectLink(activity)">{{ activity.properties['content'] || '无' }}</router-link>
+            <div class="box cursor-pointer" v-else>
+              <router-link class="text-muted" :to="subjectLink(activity)">{{ activity.properties['content'] || '无' }}</router-link>
             </div>
           </div>
         </li>
@@ -100,14 +100,13 @@
             if (activity.log_name == 'commented.thread') {
               return {name:'threads.show', params: {id: activity.subject.id}, hash: '#comment-'+ activity.properties.comment_id ||0 }
             }
-
             return {name:'threads.show', params: {id: activity.subject.id}}
           case 'App\\Comment':
             return {name:'threads.show', params: {id: activity.subject.id}}
           case 'App\\User':
             return {name:'users.show', params: {id: activity.subject.username}}
         }
-        return null
+        return {}
       },
       loadActivities(username) {
         let page = this.activities.meta.current_page + 1

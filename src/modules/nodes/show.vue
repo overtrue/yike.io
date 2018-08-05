@@ -1,6 +1,6 @@
 <template>
   <div class="page-node-show">
-    <header class="page-header bg-grey-blue py-4 text-white">
+    <header class="page-header bg-grey-blue py-3 text-white">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">

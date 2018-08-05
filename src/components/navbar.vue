@@ -2,8 +2,8 @@
   <div class="bg-white bg-white shadow-6">
     <div class="container">
     <nav class="navbar px-0 py-1 text-14 navbar-expand-lg navbar-light">
-        <router-link :to="{ name: 'home' }" class="navbar-brand text-22">
-          <img class="mx-2 avatar-40" src="/yike.svg" alt="一刻社区">一刻</router-link>
+        <router-link :to="{ name: 'home' }" class="navbar-brand text-22 d-flex align-items-center antialiased">
+          <img class="mr-2 avatar-40" src="/yike.svg" alt="一刻社区">一刻 <span class="text-14 text-muted ml-1">| 微信开发者社区</span></router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
