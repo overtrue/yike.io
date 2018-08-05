@@ -3,7 +3,7 @@
     <div class="container">
     <nav class="navbar px-0 py-1 text-14 navbar-expand-lg navbar-light">
         <router-link :to="{ name: 'home' }" class="navbar-brand text-22 d-flex align-items-center antialiased">
-          <img class="mr-2 avatar-40" src="/yike.svg" alt="一刻社区">一刻<span class="text-14 text-muted ml-1">| 微信开发者社区</span><sup class="ml-1 text-10 text-danger"> Beta</sup> </router-link>
+          <img class="mr-2 avatar-40" src="/yike.svg" alt="一刻社区">一刻<span class="text-14 text-muted ml-1">| 高品质微信开发者社区</span><sup class="ml-1 text-10 text-danger"> Beta</sup> </router-link>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
