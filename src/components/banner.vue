@@ -1,26 +1,24 @@
 <template>
   <div :id="id" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li :data-target="idSelector" data-slide-to="0" class="active"></li>
-      <li :data-target="idSelector" data-slide-to="1"></li>
-      <li :data-target="idSelector" data-slide-to="2"></li>
+    <ol class="carousel-indicators" v-if="banner.banners.length > 1">
+      <li :data-target="idSelector" :data-slide-to="i - 1" class="active" v-for="i in banner.banners.length"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="https://source.unsplash.com/random//800x260?auto=yes&bg=777&fg=555&text=First slide" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="https://source.unsplash.com/random//800x260?auto=yes&bg=666&fg=444&text=Second slide" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="https://source.unsplash.com/random//800x260?auto=yes&bg=555&fg=333&text=Third slide" alt="Third slide">
+      <div class="carousel-item active" v-for="item of banner.banners" :key="item.id">
+        <a :href="item.url || 'javascript:;'">
+          <img class="d-block w-100" :src="item.image_url" alt="First slide">
+          <div class="carousel-caption d-none d-md-block" v-if="item.title || item.description">
+            <h1 v-if="item.title">{{ item.title }}</h1>
+            <p v-if="item.description">{{ item.description }}</p>
+          </div>
+        </a>
       </div>
     </div>
-    <a class="carousel-control-prev" :href="idSelector" role="button" data-slide="prev">
+    <a class="carousel-control-prev" :href="idSelector" role="button" data-slide="prev"  v-if="banner.banners.length > 1">
       <span class="carousel-control-prev-icon" aria-hidden="true"><arrow-left></arrow-left></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="carousel-control-next" :href="idSelector" role="button" data-slide="next">
+    <a class="carousel-control-next" :href="idSelector" role="button" data-slide="next"  v-if="banner.banners.length > 1">
       <span class="carousel-control-next-icon" aria-hidden="true"><arrow-right></arrow-right></span>
       <span class="sr-only">Next</span>
     </a>
@@ -50,17 +48,29 @@
     },
     data() {
       return {
-        banners: []
+        banner: []
       }
     },
     methods: {
-      loadBanners() {
-        //
+      loadBanner() {
+        this.api('banners/' + this.name).get().then((banner) => {
+          this.banner = banner
+        })
       }
+    },
+    mounted() {
+      this.loadBanner()
     }
   }
 </script>
 
 <style lang="scss">
-
+  .carousel-item {
+    display: flex !important;
+    align-items: center;
+    justify-content: stretch;
+    max-height: 300px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
 </style>
