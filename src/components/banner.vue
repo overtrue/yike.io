@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="carousel slide" data-ride="carousel">
+  <div :id="id" class="carousel slide" data-ride="carousel" v-if="banner">
     <ol class="carousel-indicators" v-if="banner.banners.length > 1">
       <li :data-target="idSelector" :data-slide-to="i - 1" class="active" v-for="i in banner.banners.length"></li>
     </ol>
@@ -48,7 +48,7 @@
     },
     data() {
       return {
-        banner: []
+        banner: null
       }
     },
     methods: {
