@@ -32,7 +32,7 @@
       <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id" :id="'comment-' + item.id" :name="'comment-' + item.id">
         <user-media :user="item.user">
           <template slot="name-appends"><router-link tag="a" class="text-muted text-12 ml-1" :to="{name: 'users.show', params: {username: item.user.username}}">{{ item.user.username }}</router-link></template>
-          <small class="text-muted" slot="description"><a :href="'#comment-' + item.id">{{ item.created_at_timeago }}</a></small>
+          <small slot="description"><a :href="'#comment-' + item.id" class="text-gray-70">{{ item.created_at_timeago }}</a></small>
           <div class="text-16 text-gray-60 ml-auto d-flex align-items-center" slot="appends">
             <div class="mx-1 cursor-pointer d-flex" @click="vote('up', item, index)">
               <button class="btn btn-icon btn-light text-gray-60" v-if="!item.has_up_voted" >
@@ -57,7 +57,7 @@
             </div>
           </div>
         </user-media>
-        <markdown-body class="comment-content pt-2" v-model="item.content.body"></markdown-body>
+        <markdown-body class="comment-content text-gray-40 pt-2" v-model="item.content.body"></markdown-body>
       </div>
     </div>
 
