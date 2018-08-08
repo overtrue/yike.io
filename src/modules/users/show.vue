@@ -1,6 +1,6 @@
 <template>
   <div class="page-user-show" v-if="user.id">
-    <header class="page-header bg-grey-blue py-2" style="background-image: url(/banners/shanghai.jpg)">
+    <header class="page-header d-flex align-items-end bg-grey-blue py-2" style="background-image: url(/banners/shanghai.jpg)">
       <div class="user-profile container position-relative w-100 text-white p-2 d-md-flex flex-row align-items-center">
         <img :src="user.avatar" alt="User avatar" class="avatar avatar-120" />
         <div class="ml-md-3">
