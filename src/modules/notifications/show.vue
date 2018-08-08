@@ -2,26 +2,22 @@
   <div class="page-notification-show">
     <div class="row">
       <div class="col-md-3">
-        <div class="box">
+        <div class="box mb-2">
           <div class="box-heading">
             <bell-icon class="mr-1 text-16" />通知
           </div>
-          <div class="nav flex-column nav-pills">
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == ''}" @click="currentTab = ''">全部 </a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'follow'}" @click="currentTab = 'follow'">关注</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'comment'}" @click="currentTab = 'comment'">评论</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'subscribe'}" @click="currentTab = 'subscribe'">订阅</a>
-            <a href="javascript:void(0);" class="nav-link" :class="{active: currentTab == 'like'}" @click="currentTab = 'like'">点赞</a>
+          <div class="nav flex-lg-column nav-pills">
+            <a href="javascript:void(0);" class="nav-link" v-for="tab,id of tabs" :class="{active: currentTab == id}" @click="currentTab = id">{{ tab }}</a>
           </div>
         </div>
       </div>
       <div class="col-md-9">
-        <div class="box">
-          <div class="box-heading text-right border-bottom pb-2" v-if="false">
-            <button class="btn btn-sm btn-secondary"><check-icon class="pr-2" />标记全部为已读</button>
-          </div>
+        <div class="box box-flush">
           <ul class="list-group list-group-flush" v-if="notifications.length > 0">
-            <li class="list-group-item list-group-item-action border-top-0" v-for="notification in notifications" :key="notification.id" :class="{'bg-gray-98': notification.read_at == null}">
+            <li class="list-group-item">
+              {{ tabs[currentTab] }}
+            </li>
+            <li class="list-group-item list-group-item-action" v-for="notification in notifications" :key="notification.id" :class="{'bg-gray-98': notification.read_at == null}">
               <keep-alive>
                 <component :is="notification.type.split('_').join('-')" :notification="notification"></component>
               </keep-alive>
@@ -55,7 +51,14 @@
     components: {EmptyState, MentionedMe, BellIcon, InboxIcon, CheckIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
     data() {
       return {
-        currentTab: '',
+        tabs: {
+          all: '全部 ',
+          follow: '关注',
+          comment: '评论',
+          subscribe: '订阅',
+          like: '点赞',
+        },
+        currentTab: 'all',
         notifications: []
       }
     },

@@ -1,8 +1,6 @@
 <template>
   <notification :notification="notification">
-    <template slot="title">
-      <span class="mx-1">关注了你</span>
-    </template>
+    <template slot="title">关注了你</template>
   </notification>
 </template>
 

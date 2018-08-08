@@ -1,7 +1,6 @@
 <template>
   <notification :notification="notification">
-    <template slot="title">
-      <span class="mx-1">赞了你的文章</span>
+    <template slot="title">赞了你的文章
       <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}">
         《{{ notification.data.thread_title }}》
       </router-link>
