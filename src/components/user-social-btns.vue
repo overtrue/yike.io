@@ -1,5 +1,5 @@
 <template>
-    <div class="user-social-btns d-flex justify-content-start">
+    <div class="user-social-btns d-flex justify-content-start flex-wrap">
         <a class="btn btn-dark btn-icon" :href="'https://github.com/'+user.extends.github" target="_blank" :class="btnClass" v-if="user.extends.github">
           <github-icon></github-icon>
         </a>
@@ -60,6 +60,7 @@
             .spacing-#{$size} {
                 margin-left: #{$size}px;
                 margin-right: #{$size}px;
+                margin-bottom: #{$size}px;
             }
         }
     }
