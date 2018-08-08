@@ -12,7 +12,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="github-form" v-model="links.github">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">https://github.com/</span>
+              </div>
+              <input type="text" class="form-control" id="github-form" v-model="links.github" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">
@@ -22,7 +27,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="twitter-form" v-model="links.twitter">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">https://twitter.com/</span>
+              </div>
+              <input type="text" class="form-control" id="twitter-form" v-model="links.twitter" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">
@@ -32,7 +42,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="facebook-form" v-model="links.facebook">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">https://www.facebook.com/</span>
+              </div>
+              <input type="text" class="form-control" id="facebook-form" v-model="links.facebook" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">
@@ -42,7 +57,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="instagram-form" v-model="links.instagram">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon4">https://www.instagram.com/</span>
+              </div>
+              <input type="text" class="form-control" id="instagram-form" v-model="links.instagram" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">
@@ -52,7 +72,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="telegram-form" v-model="links.telegram">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon5">https://t.me/</span>
+              </div>
+              <input type="text" class="form-control" id="telegram-form" v-model="links.telegram" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">
@@ -62,7 +87,12 @@
             </button>
           </label>
           <div class="col-sm-10 pl-0">
-            <input type="text" class="form-control" id="steam-form" v-model="links.steam">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon6">https://steamcommunity.com/id/</span>
+              </div>
+              <input type="text" class="form-control" id="steam-form" v-model="links.steam" placeholder="username">
+            </div>
           </div>
         </div>
         <div class="form-group row d-flex align-items-center">

@@ -1,23 +1,23 @@
 <template>
     <div class="user-social-btns d-flex justify-content-start">
-        <button type="button" class="btn btn-dark btn-icon" :class="btnClass" v-if="user.extends.github">
+        <a class="btn btn-dark btn-icon" :href="'https://github.com/'+user.extends.github" target="_blank" :class="btnClass" v-if="user.extends.github">
           <github-icon></github-icon>
-        </button>
-        <button type="button" class="btn btn-twitter btn-icon" :class="btnClass" v-if="user.extends.twitter">
+        </a>
+        <a class="btn btn-twitter btn-icon" :href="'https://twitter.com/' + user.extends.twitter" target="_blank" :class="btnClass" v-if="user.extends.twitter">
           <twitter-icon></twitter-icon>
-        </button>
-        <button type="button" class="btn btn-facebook btn-icon" :class="btnClass" v-if="user.extends.facebook">
+        </a>
+        <a class="btn btn-facebook btn-icon" :href="'https://www.facebook.com/' + user.extends.facebook" target="_blank" :class="btnClass" v-if="user.extends.facebook">
           <facebook-icon></facebook-icon>
-        </button>
-        <button type="button" class="btn btn-orange btn-icon text-white" :class="btnClass" v-if="user.extends.instagram">
+        </a>
+        <a class="btn btn-orange btn-icon text-white" :href="'https://www.instagram.com/' + user.extends.instagram" target="_blank" :class="btnClass" v-if="user.extends.instagram">
           <instagram-icon></instagram-icon>
-        </button>
-        <button type="button" class="btn btn-teal-blue btn-icon text-white" :class="btnClass" v-if="user.extends.telegram">
+        </a>
+        <a class="btn btn-teal-blue btn-icon text-white" :href="'https://t.me/' + user.extends.telegram" target="_blank" :class="btnClass" v-if="user.extends.telegram">
           <telegram-icon></telegram-icon>
-        </button>
-        <button type="button" class="btn btn-payne-grey btn-icon text-white" :class="btnClass" v-if="user.extends.steam">
+        </a>
+        <a class="btn btn-payne-grey btn-icon text-white" :href="'https://steamcommunity.com/id/'+user.extends.steam" target="_blank" :class="btnClass" v-if="user.extends.steam">
           <steam-icon></steam-icon>
-        </button>
+        </a>
     </div>
 </template>
 

@@ -7,7 +7,7 @@
       <div class="carousel-item active" v-for="item of banner.banners" :key="item.id">
         <a :href="item.url || 'javascript:;'">
           <img class="d-block w-100" :src="item.image_url" alt="First slide">
-          <div class="carousel-caption d-none d-md-block" v-if="item.title || item.description">
+          <div class="carousel-caption" v-if="item.title || item.description">
             <h1 v-if="item.title">{{ item.title }}</h1>
             <p v-if="item.description">{{ item.description }}</p>
           </div>
