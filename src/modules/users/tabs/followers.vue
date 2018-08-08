@@ -1,10 +1,10 @@
 <template>
   <div class="box box-flush">
-    <form class="box-body" v-if="users.data && users.data.length > 0">
-      <div class="input-group">
-        <input type="text" class="form-control border-0" placeholder="搜索用户">
-      </div>
-    </form>
+    <!--<form class="box-body" v-if="users.data && users.data.length > 0">-->
+      <!--<div class="input-group">-->
+        <!--<input type="text" class="form-control border-0" placeholder="搜索用户">-->
+      <!--</div>-->
+    <!--</form>-->
     <div class="list-group list-group-flush">
       <user-list-item class="list-group-item" :user="user" :key="user.id" v-for="user of users.data"></user-list-item>
       <empty-state v-if="users.data && users.data.length == 0"></empty-state>
