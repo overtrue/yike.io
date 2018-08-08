@@ -199,4 +199,10 @@
     position: sticky;
     top: 20px;
   }
+
+  @media screen and (min-width: 1200px) and (max-width: 1350px) {
+    .page-threads-show {
+      margin-left: 65px;
+    }
+  }
 </style>
