@@ -37,7 +37,7 @@ export default (http) => {
           break
         }
         case 403: {
-          Message.error('您没有此操作权限！')
+          Message.error(error.response.data.message || '您没有此操作权限！')
           break
         }
         case 401: {

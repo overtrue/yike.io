@@ -1,13 +1,18 @@
 <template>
   <div class="page-threads-show" v-if="ready">
-    <div class="row">
+    <div v-if="currentUser.has_banned">
+      <user-locked/>
+    </div>
+    <div v-else-if="$user() && !$user().has_activated">
+      <div class="box-body py-4 text-center">
+        <h1 class="display-4 text-gray-40"><alert/></h1>
+        您需要先激活账户以使用此功能
+      </div>
+    </div>
+    <div class="row" v-else>
       <div class="col-md-9 m-auto">
         <div class="box box-flush">
-          <div class="box-body py-4 text-center" v-if="$user() && !$user().has_activated">
-            <h1 class="display-4 text-gray-40"><alert/></h1>
-            您需要先激活账户以使用此功能
-          </div>
-          <form v-else>
+          <form>
             <div class="card">
               <div class="card-header pt-3 border-bottom-0">
                 <div class="input-group input-group">
@@ -38,7 +43,9 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   import Editor from '@components/editor'
+  import UserLocked from '@components/user-locked'
   import localforage from 'localforage'
   import Alert from '@icons/alert-circle'
   import { Select as ElSelect, Option as ElOption } from 'element-ui'
@@ -51,6 +58,7 @@
       Alert,
       ElSelect,
       ElOption,
+      UserLocked,
     },
     data () {
       return {
@@ -80,6 +88,7 @@
       }
     },
     computed: {
+      ...mapGetters(['currentUser']),
       formReady () {
         return !this.busing
           && this.form.title.length >= 5
