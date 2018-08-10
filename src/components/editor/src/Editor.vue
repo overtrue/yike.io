@@ -37,6 +37,8 @@
   import CodeMirror from 'codemirror'
   import EmojiCompleter from '../emoji-completer'
   import AtCompleter from '../at-completer'
+  import '../attachment'
+  import { mapGetters } from 'vuex'
   import PlusIcon from '@icons/plus'
   import LinkIcon from '@icons/link'
   import FormatHeader1Icon from '@icons/format-header-1'
@@ -116,6 +118,9 @@
         this.setValue()
       }
     },
+    computed: {
+      ...mapGetters(['authToken']),
+    },
     methods: {
       init () {
         this.initEditor()
@@ -139,6 +144,14 @@
           let content = editor.getValue()
           this.$emit('input', content)
           this.contentBackup = content
+        })
+        inlineAttachment.editors.codemirror4.attach(this.editor, {
+          uploadFieldName: 'file',
+          jsonFieldName: 'url',
+          uploadUrl: this.$http.defaults.baseURL + '/files/upload',
+          extraHeaders: {
+            Authorization: `Bearer ${this.authToken}`
+          }
         })
       },
 
