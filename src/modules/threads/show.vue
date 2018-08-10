@@ -163,6 +163,14 @@
       loadThread() {
         this.api('threads').find(this.$route.params.id, ['user', 'likers'])
           .then(response => this.thread = response).then(this.registerEventListener)
+          .catch((response) => {
+            if (response.status == '404') {
+              this.$message.error('该主题已被删除或锁定！')
+              setTimeout(() => {
+                this.$router.go(-1)
+              }, 1000)
+            }
+          })
       },
       handleDelete(thread) {
         this.api('threads').delete(thread.id).then(() => {
