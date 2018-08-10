@@ -36,7 +36,7 @@
                         <button class="dropdown-item" type="button" @click="toggleStatus('banned_at')"><lock-icon class="mr-1"></lock-icon> {{ thread.banned_at ? '取消冻结' : '冻结' }}</button>
                       </template>
                       <button class="dropdown-item" type="button" @click="$router.push({name:'threads.edit', params:{id: thread.id}})"><pencil-icon class="mr-1"></pencil-icon> 编辑</button>
-                      <button class="dropdown-item text-danger" type="button"><delete-icon class="mr-1"></delete-icon> 删除</button>
+                      <button class="dropdown-item text-danger" type="button" @click="handleDelete(thread)"><delete-icon class="mr-1"></delete-icon> 删除</button>
                     </template>
                     <button class="dropdown-item cursor-pointer" type="button" @click="showReportForm = true"><alert-box-icon class="mr-1"></alert-box-icon> 举报</button>
                   </div>
@@ -164,7 +164,12 @@
         this.api('threads').find(this.$route.params.id, ['user', 'likers'])
           .then(response => this.thread = response).then(this.registerEventListener)
       },
-
+      handleDelete(thread) {
+        this.api('threads').delete(thread.id).then(() => {
+          this.$message.success('已删除！')
+          this.$router.go(-1)
+        })
+      },
       toggleStatus(timestamp) {
         this.thread[timestamp] = this.thread[timestamp] ? null : moment().format('YYYY-MM-DD HH:mm:ss')
         this.api('threads').patch(this.thread.id, this.thread).then(() => {
