@@ -7,8 +7,7 @@
       </router-link>
     </template>
     <div class="pt-2">
-      <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}" class="text-muted">
-        {{ notification.data.content }}
+      <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}" class="text-muted" v-html="notification.data.content">
       </router-link>
     </div>
   </notification>

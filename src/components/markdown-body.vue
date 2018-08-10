@@ -33,7 +33,7 @@
     },
     methods: {
       replaceUserMention(body) {
-        return body.replace(/@([a-z][a-z_0-9]+)/, '<a href="/$1" >@$1</a>')
+        return body.replace(new RegExp(/@([a-z][a-z_0-9]+)/, 'g'), '<a href="/$1" >@$1</a>')
       },
     }
   }
