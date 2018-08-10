@@ -36,6 +36,7 @@
 <script>
   import CodeMirror from 'codemirror'
   import EmojiCompleter from '../emoji-completer'
+  import AtCompleter from '../at-completer'
   import PlusIcon from '@icons/plus'
   import LinkIcon from '@icons/link'
   import FormatHeader1Icon from '@icons/format-header-1'
@@ -133,6 +134,7 @@
           extraKeys: {'Enter': 'newlineAndIndentContinueMarkdownList'}
         })
         this.editor.on('change', EmojiCompleter)
+        this.editor.on('change', AtCompleter)
         this.editor.on('change', (editor) => {
           let content = editor.getValue()
           this.$emit('input', content)

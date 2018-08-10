@@ -64,7 +64,7 @@
     <paginator :meta="comments.meta"></paginator>
 
     <div class="card card-flush shadow-30 pop-comment-form" :class="{'show': writing}">
-      <editor v-model="content" class="comment-editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
+      <editor v-model="content" class="comment-editor" ref="editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
       <div class="p-2 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-end">
           <a href="https://guides.github.com/features/mastering-markdown/" class="text-gray-50" target="_blank"><span class="text-14 material-design-icon"><svg class="material-design-icon__svg" viewBox="0 0 16 16" version="1.1" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg></span> Markdown 语法指南</a>
@@ -133,6 +133,12 @@
       writing() {
         if (!this.writing) {
           this.content = ''
+        } else {
+          let editor = this.$refs['editor'].editor
+          editor.focus()
+          setTimeout(() => {
+            editor.setCursor(editor.lineCount(), 0)
+          })
         }
       }
     },
@@ -203,7 +209,15 @@
         })
       },
       loadComments () {
-        return this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}`).then(comments => this.comments = comments)
+        return this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}`).then(comments => {
+          this.comments = comments
+          this.mapCommentsUserForMention(comments.data)
+        })
+      },
+      mapCommentsUserForMention(comments) {
+        comments.map((comment) => {
+          window.pageUsers.some((u) => u.id === comment.user_id) || window.pageUsers.push(comment.user)
+        })
       }
     }
   }

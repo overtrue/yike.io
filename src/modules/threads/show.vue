@@ -170,7 +170,9 @@
                 this.$router.go(-1)
               }, 1000)
             }
-          })
+          }).then(() => {
+            window.pageUsers = [this.thread.user]
+        })
       },
       handleDelete(thread) {
         this.api('threads').delete(thread.id).then(() => {
