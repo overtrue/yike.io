@@ -4,8 +4,7 @@
       <span>在 <router-link :to="{name: 'threads.show', params: {id: notification.data.commentable_id}, hash: '#comment-' + notification.data.comment_id}">《{{ notification.data.commentable_title }}》</router-link> 的评论了中提到了您</span>
     </template>
    <div class="pt-2 text-muted">
-     <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}" v-pre>
-       {{ notification.data.content }}
+     <router-link :to="{name: 'threads.show', params: {id: notification.data.thread_id}}" v-html="notification.data.content">
      </router-link>
    </div>
   </notification>
