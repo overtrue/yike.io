@@ -44,18 +44,23 @@
     },
     data() {
       return {
-        copyText: window.location.href,
         weibo: '',
         twitter: '',
         facebook: '',
         btnClasses: 'btn btn-icon d-block mx-auto mt-2 bg-white text-18 text-gray-50',
         hovering: false,
+        title: this.item.title + ' -- via ' + document.title
+      }
+    },
+    computed: {
+      copyText() {
+        return this.title + "\n\n" + window.location.href
       }
     },
     mounted() {
       let url = encodeURIComponent(window.location.href)
-      this.weibo = `https://service.weibo.com/share/share.php?url=${url}&title=${this.item.title}&pic=&appkey=`
-      this.twitter = `https://twitter.com/intent/tweet?text=${this.item.title}&url=${url}`
+      this.weibo = `https://service.weibo.com/share/share.php?url=${url}&title=${this.title}&pic=&appkey=`
+      this.twitter = `https://twitter.com/intent/tweet?text=${this.title}&url=${url}`
       this.facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
 
       let btn = new ClipboardJS('.copy-link')

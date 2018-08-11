@@ -133,6 +133,8 @@
       writing() {
         if (!this.writing) {
           this.content = ''
+          localforage.removeItem(this.cacheKey)
+          this.$refs['editor'].editor.setValue('')
         } else {
           let editor = this.$refs['editor'].editor
           editor.focus()
@@ -194,7 +196,6 @@
           }
         }).then(() => {
           this.content = ''
-          localforage.removeItem(this.cacheKey)
           this.writing = false
           this.$message.success('评论成功！')
           this.$emit('created')
