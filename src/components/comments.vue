@@ -194,6 +194,7 @@
           }
         }).then(() => {
           this.content = ''
+          localforage.removeItem(this.cacheKey)
           this.writing = false
           this.$message.success('评论成功！')
           this.$emit('created')

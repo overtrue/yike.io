@@ -10,11 +10,11 @@
           </div>
           <div class="form-group">
             <label>用户名</label>
-            <input type="text" class="form-control" ref="usernameInput" placeholder="3 ~ 12 位字母或数字" v-model="username"  @blur="validateUsername" required>
+            <input type="text" class="form-control" ref="usernameInput" placeholder="5 ~ 12 位字母或数字" v-model="username"  @blur="validateUsername" required>
           </div>
           <div class="form-group">
             <label>密码</label>
-            <input type="password" class="form-control" ref="passwordInput" placeholder="6~32 位安全密码" v-model="password" required>
+            <input type="password" class="form-control" ref="passwordInput" placeholder="6 ~ 32 位安全密码" v-model="password" required>
           </div>
           <button type="submit" :disabled="!formReady" class="my-2 btn btn-primary w-100">注册</button>
         </form>
@@ -62,7 +62,8 @@
       formReady() {
         return !this.error && this.email.match(this.regex.email)
           && this.username.match(this.regex.username)
-          && this.username.length >= 3
+          && this.username.length >= 5
+          && this.username.length <= 12
           && this.password.length >= 6 && this.password.length <= 32
       }
     },
