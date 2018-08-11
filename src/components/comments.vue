@@ -232,13 +232,13 @@
       max-height: 0;
 
       &.show {
-        max-height: 300px;
+        max-height: 320px;
       }
     }
     .comment-editor .CodeMirror {
       height: auto;
       min-height: 100px;
-      max-height: 200px;
+      max-height: 180px;
     }
     .pop-comment-form {
       position: sticky;

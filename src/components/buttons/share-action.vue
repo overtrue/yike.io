@@ -49,7 +49,7 @@
         facebook: '',
         btnClasses: 'btn btn-icon d-block mx-auto mt-2 bg-white text-18 text-gray-50',
         hovering: false,
-        title: this.item.title + ' -- via ' + document.title
+        title: encodeURIComponent(this.item.title + ' -- via ' + document.title)
       }
     },
     computed: {
