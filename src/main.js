@@ -15,9 +15,8 @@ Vue.config.productionTip = false
 
 sync(store, router)
 
-Vue.use(http, { router })
-
 Vue.prototype.$message = Message
+Vue.prototype.$http = http
 Vue.prototype.api = (resource, id = null) => new Resource(resource, id)
 Vue.prototype.$user = () => {
   return store.getters.currentUser
