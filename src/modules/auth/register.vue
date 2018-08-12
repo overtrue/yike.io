@@ -45,8 +45,8 @@
         randstr: null,
         error: true,
         regex: {
-          email: /^[a-zA-Z0-9\-_\.]+@[a-zA-Z0-9\-\.]+.(com|io|cc|co|li|it|sh|cn|net|org|jp|tw|me|info|us|in|la|pro|im|so|at|my)$/,
-          username: /^[a-zA-Z]+[a-zA-Z0-9_\-]+$/
+          email: /^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-.]+.(com|io|cc|co|li|it|sh|cn|net|org|jp|tw|me|info|us|in|la|pro|im|so|at|my)$/,
+          username: /^[a-zA-Z]+[a-zA-Z0-9_-]+$/
         }
       }
     },

@@ -41,11 +41,10 @@ export default (http, router) => {
           break
         }
         case 401: {
-          if (window.location.pathname === '/auth/login') {
-            return
+          if (window.location.pathname !== '/auth/login') {
+            router.push({ name: 'auth.login' })
           }
 
-          router.push({ name: 'auth.login' })
           break;
         }
         case 500:
