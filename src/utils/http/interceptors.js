@@ -1,6 +1,6 @@
 import { Message } from 'element-ui'
 
-export default (http) => {
+export default (http, router) => {
   // 请求拦截
   http.interceptors.request.use(
     config => {
@@ -41,7 +41,11 @@ export default (http) => {
           break
         }
         case 401: {
-          window.location.href = '/auth/login'
+          if (window.location.pathname === '/auth/login') {
+            return
+          }
+
+          router.push({ name: 'auth.login' })
           break;
         }
         case 500:

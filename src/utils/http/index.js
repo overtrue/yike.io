@@ -16,4 +16,13 @@ export function setToken(token) {
   http.defaults.headers.common.Authorization = `Bearer ${token}`
 }
 
-export default http
+
+export default function install(Vue, { router }) {
+  interceptors(http, router)
+
+  Object.defineProperty(Vue.prototype, '$http', {
+    get () {
+      return http
+    },
+  })
+}
