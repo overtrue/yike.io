@@ -25,7 +25,7 @@ export default (http) => {
       if (!error['response']) {
         return Promise.reject(error)
       }
-      
+
       switch (error.response.status) {
         case 422: {
           let data = error.response.data.errors

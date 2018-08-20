@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <paginator :meta="comments.meta"></paginator>
+    <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
 
     <div class="box box-flush">
       <div class="border-bottom box-body py-2" :class="{'animated flash': $route.hash === '#comment-' + item.id}" v-if="item.content && item.content.body" v-for="(item,index) in comments.data" :key="item.id" :id="'comment-' + item.id" :name="'comment-' + item.id">
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <paginator :meta="comments.meta"></paginator>
+    <paginator :meta="comments.meta" @change="handlePaginate"></paginator>
 
     <div class="card card-flush shadow-30 pop-comment-form" :class="{'show': writing}">
       <editor v-model="content" class="comment-editor" ref="editor" placeholder="请使用 markdown 语法" :options="editorOptions"></editor>
@@ -123,10 +123,19 @@
         editorOptions: {
           minLines: 3,
           maxLines: 20
-        }
+        },
+        query: Object.assign({
+          page: 1
+        }, this.$route.query)
       }
     },
     watch: {
+      query: {
+        deep: true,
+        handler() {
+          this.loadComments()
+        }
+      },
       content () {
         localforage.setItem(this.cacheKey, this.content)
       },
@@ -155,6 +164,9 @@
       this.syncCachedContent()
     },
     methods: {
+      handlePaginate(page){
+        this.query.page = page
+      },
       vote(type = 'up', item, index) {
         if (!this.$user().id) {
           return this.$router.push({name: 'auth.login'})
@@ -211,7 +223,7 @@
         })
       },
       loadComments () {
-        return this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}`).then(comments => {
+        return this.api('comments').get(`?commentable_type=${this.objectType}&commentable_id=${this.objectId}&page=${this.query.page}`).then(comments => {
           this.comments = comments
           this.mapCommentsUserForMention(comments.data)
         })
