@@ -133,6 +133,7 @@
       query: {
         deep: true,
         handler() {
+          this.$router.replace({query: this.query})
           this.loadComments()
         }
       },
