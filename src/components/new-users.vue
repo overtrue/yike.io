@@ -26,7 +26,7 @@
     },
     methods: {
       loadUsers() {
-        this.api('users').get('?limit=12').then(users => this.users = users.data)
+        this.api('users').get('?latest=1&limit=12').then(users => this.users = users.data)
       }
     },
     mounted() {
