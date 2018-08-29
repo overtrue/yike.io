@@ -72,9 +72,10 @@
       validateUsername() {
         this.error = false
 
-        if (!this.username.match(this.regex.username) || this.username.length < 3) {
+        if (!this.username.match(this.regex.username) || this.username.length < 5) {
           this.error = true
-          return this.$message.error('请输入正确的用户名')
+          this.$refs['usernameInput'].classList.add('is-invalid')
+          return this.$message.error('请输入 5 ~ 12 位正确格式用户名')
         }
 
         this.$http.post('user/exists', {username: this.username}).then(response => {
@@ -90,6 +91,7 @@
 
         if (!this.email.match(this.regex.email)) {
           this.error = true
+          this.$refs['emailInput'].classList.add('is-invalid')
           return this.$message.error('请输入正确的邮箱地址')
         }
 
