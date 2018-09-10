@@ -5,7 +5,7 @@
         <div class="list-group-item list-group-item-action cursor-pointer" v-for="item of threads" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}});clear()">
           <div class="d-flex align-items-center">
             <a href="#" class="mr-2"><img src="http://yike.test/storage/avatars/1.png" alt="" class="avatar-30"></a>
-            <div class="text-gray-50">{{ item.title }}</div>
+            <div class="text-gray-50 text-truncate">{{ item.title }}</div>
           </div>
         </div>
       </div>
