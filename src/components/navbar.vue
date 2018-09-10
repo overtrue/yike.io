@@ -10,11 +10,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav flex-row align-items-center justify-content-center py-sm-2 py-md-0 mx-auto">
-            <!--<li class="nav-item">-->
-            <!--<form class="form-inline my-2 my-lg-0">-->
-            <!--<input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search">-->
-            <!--</form>-->
-            <!--</li>-->
             <router-link :to="{ name: 'home' }" exact tag="li" class="nav-item">
               <a href="javascript:void(0);" class="nav-link">首页</a>
             </router-link>
@@ -29,6 +24,9 @@
             </router-link>
             <li class="nav-item">
               <a class="nav-link" href="https://easywechat.com?utm_source=yike.io">SDK</a>
+            </li>
+            <li class="nav-item">
+              <nav-search/>
             </li>
           </ul>
 
@@ -93,6 +91,7 @@
   import AccountIcon from '@icons/account'
   import AccountEditIcon from '@icons/account-edit'
   import LogoutVariant from '@icons/logout-variant'
+  import NavSearch from './nav-search'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -103,7 +102,8 @@
       AccountIcon,
       MagnifyIcon,
       AccountEditIcon,
-      LogoutVariant
+      LogoutVariant,
+      NavSearch
     },
     computed: {
       ...mapGetters(['isLogged', 'currentUser'])
