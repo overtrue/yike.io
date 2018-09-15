@@ -33,8 +33,8 @@
     },
     methods: {
       clear() {
-        this.q = ''
-        this.threads = []
+        // this.q = ''
+        // this.threads = []
       },
       highlightContent(item) {
         return (item.highlights['content'] || []).join('...')
@@ -57,10 +57,6 @@
       left: 0;
       min-width: 400px;
       z-index: 99;
-
-      .highlights em {
-        color: #C67C3B !important;
-      }
     }
   }
 </style>
