@@ -7,15 +7,13 @@
             <a href="#" class="mr-2"><img src="http://yike.test/storage/avatars/1.png" alt="" class="avatar-30"></a>
             <div class="highlights text-gray-50 text-truncate" v-html="item['highlights'] && item['highlights']['title'] ? item.highlights.title[0] : item.title"></div>
           </div>
-          <p class="highlights mt-1 text-gray-60" v-if="item.highlights" v-html="highlightContent(item)"></p>
+          <p class="highlights mt-1 text-gray-60" v-if="item.highlights['content']" v-html="highlightContent(item)"></p>
         </div>
       </div>
   </form>
 </template>
 
 <script>
-  import _ from 'lodash'
-
   export default {
     name: 'nav-search',
     data() {
@@ -39,7 +37,7 @@
         this.threads = []
       },
       highlightContent(item) {
-        return _.values(item.highlights).join('...')
+        return (item.highlights['content'] || []).join('...')
       },
       search() {
         this.$http.get(`/threads/search?q=`+this.q).then((response) => {
