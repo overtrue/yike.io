@@ -7,7 +7,7 @@
             <a href="#" class="mr-2"><img src="http://yike.test/storage/avatars/1.png" alt="" class="avatar-30"></a>
             <div class="text-gray-50 text-truncate">{{ item.title }}</div>
           </div>
-          <p class="highlights text-gray-60" v-if="highlights" v-html="_.values(item.highlights).join('...')"></p>
+          <p class="highlights text-gray-60" v-if="item.highlights" v-html="_.values(item.highlights).join('...')"></p>
         </div>
       </div>
   </form>
