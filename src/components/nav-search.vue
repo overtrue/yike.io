@@ -5,7 +5,7 @@
         <div class="list-group-item list-group-item-action cursor-pointer" v-for="item of threads" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}});clear()">
           <div class="d-flex align-items-center">
             <a href="#" class="mr-2"><img src="http://yike.test/storage/avatars/1.png" alt="" class="avatar-30"></a>
-            <div class="text-gray-50 text-truncate" v-html="item['highlights'] && item['highlights']['title'] ? item.highlights.title : item.title"></div>
+            <div class="highlights text-gray-50 text-truncate" v-html="item['highlights'] && item['highlights']['title'] ? item.highlights.title : item.title"></div>
           </div>
           <p class="highlights text-gray-60" v-if="item.highlights" v-html="highlightContent(item)"></p>
         </div>
