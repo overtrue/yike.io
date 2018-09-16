@@ -33,8 +33,8 @@
     },
     methods: {
       clear() {
-        // this.q = ''
-        // this.threads = []
+        this.q = ''
+        this.threads = []
       },
       highlightContent(item) {
         return (item.highlights['content'] || []).join('...')
