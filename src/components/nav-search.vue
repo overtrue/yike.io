@@ -56,6 +56,9 @@
       top: 100%;
       left: 0;
       min-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
       z-index: 99;
     }
   }
