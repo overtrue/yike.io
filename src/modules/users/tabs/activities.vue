@@ -4,7 +4,7 @@
       <empty-state/>
     </div>
     <ul class="timeline pb-2" v-else>
-        <li class="timeline-item" v-for="activity in activities.data" :key="activity.id">
+        <li class="timeline-item" v-for="activity in activities.data" :key="activity.id" v-if="activity.subject">
           <div class="timeline-heading">
             <div class="d-flex">
               <router-link :to="{name:'users.show', params: {username: $parent.user.username}}">
