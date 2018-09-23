@@ -7,7 +7,7 @@ require 'recipe/common.php';
 set('application', 'yikeio client');
 
 // Project repository
-set('repository', 'git@gitee.com:yikeio/yike.io.git');
+set('repository', 'git@github.com:overtrue/yike.io.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
