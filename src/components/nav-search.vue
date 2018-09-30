@@ -33,11 +33,11 @@
     },
     mounted() {
       this.$nextTick(() => {
-        document.addEventListener('click', this.methods.onBodyClick)
+        document.addEventListener('click', this.onBodyClick)
       })
     },
     beforeDestroy() {
-      document.removeEventListener('click', this.methods.onBodyClick)
+      document.removeEventListener('click', this.onBodyClick)
     },
     methods: {
       onBodyClick(e) {
