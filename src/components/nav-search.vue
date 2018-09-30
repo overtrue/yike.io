@@ -45,7 +45,7 @@
         if (e.target !== searchForm) {
           this.threads = []
         }
-      }
+      },
       highlightContent(item) {
         return (item.highlights['content'] || []).join('...')
       },
