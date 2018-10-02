@@ -3,7 +3,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item d-md-flex d-block align-items-center justify-content-between cursor-pointer"
           v-for="item in threads.data" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center w-70">
           <a href="#" class="mr-2"><img :src="item.user.avatar" alt="" class="avatar-30"></a>
           <div class="text-gray-50">
             <span v-if="item.excellent_at" class="badge badge-success">精华</span>
