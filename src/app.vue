@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import Navbar from '@components/navbar';
-import Sidebar from '@components/sidebar';
-import ArrowUpIcon from '@icons/arrow-up';
+import { mapGetters, mapActions } from 'vuex'
+import Navbar from '@components/navbar'
+import Sidebar from '@components/sidebar'
+import ArrowUpIcon from '@icons/arrow-up'
 
 export default {
   name: 'app',
@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapGetters(['currentUser', 'isToggled']),
     checkParams () {
-      return this.$route.query['active-success'] == 'yes';
+      return this.$route.query['active-success'] == 'yes'
     },
     shouldShowNavbar () {
       return (
@@ -89,9 +89,9 @@ export default {
           document.body.scrollTop > 400 ||
           document.documentElement.scrollTop > 400
         ) {
-          this.$refs['backToTopLayer'].style.display = 'block';
+          this.$refs['backToTopLayer'].style.display = 'block'
         } else {
-          this.$refs['backToTopLayer'].style.display = 'none';
+          this.$refs['backToTopLayer'].style.display = 'none'
         }
       })
     }, 1000)
