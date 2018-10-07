@@ -46,61 +46,59 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import HotTags from "@components/hot-tags"
-  import ThreadsList from "@components/threads-list"
-  import SubscribeBtn from '@components/buttons/subscribe-btn'
+import { mapGetters } from 'vuex';
+import HotTags from '@components/hot-tags';
+import ThreadsList from '@components/threads-list';
+import SubscribeBtn from '@components/buttons/subscribe-btn';
 
-  export default {
-    components: {SubscribeBtn, HotTags, ThreadsList},
-    data() {
-      return {
-        node: {},
-        threads: {
-          default: {},
-          featured: {},
-          zeroComment: {},
-          recent: {},
-        },
-        currentThreadsTab: 'default'
-      }
-    },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
-    beforeRouteUpdate(to, from, next) {
-      if (to.params.id != from.params.id) {
-        this.getNode(to.params.id)
-        this.loadThreads(to.params.id)
-      }
+export default {
+  components: { SubscribeBtn, HotTags, ThreadsList },
+  data () {
+    return {
+      node: {},
+      threads: {
+        default: {},
+        featured: {},
+        zeroComment: {},
+        recent: {}
+      },
+      currentThreadsTab: 'default'
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  beforeRouteUpdate (to, from, next) {
+    if (to.params.id != from.params.id) {
+      this.getNode(to.params.id)
+      this.loadThreads(to.params.id)
+    }
 
-      next()
+    next()
+  },
+  created () {
+    this.getNode(this.$route.params.id)
+    this.loadThreads(this.$route.params.id)
+  },
+  watch: {
+    currentThreadsTab () {
+      this.loadThreads(this.$route.params.id, 1)
+    }
+  },
+  methods: {
+    loadThreads (id, page = 1) {
+      this.$http
+        .get(`nodes/${id}/threads?all=yes&page=${page}`)
+        .then(threads => (this.threads[this.currentThreadsTab] = threads))
     },
-    created() {
-      this.getNode(this.$route.params.id)
-      this.loadThreads(this.$route.params.id)
+    handlePageChanged (page) {
+      this.loadThreads(page)
     },
-    watch:{
-      currentThreadsTab() {
-        this.loadThreads(this.$route.params.id, 1)
-      }
-    },
-    methods: {
-      loadThreads(id, page = 1) {
-        this.api(`nodes/${id}/threads`)
-          .get('?all=yes&page='+page)
-          .then(threads => this.threads[this.currentThreadsTab] = threads)
-      },
-      handlePageChanged(page) {
-        this.loadThreads(page)
-      },
-      getNode(id) {
-        this.api('nodes')
-          .find(id)
-          .then((data) => {
-            this.node = data
-          })
-      }
+    getNode (id) {
+      this.$http.get(`nodes/${id}`).then(data => {
+        this.node = data
+      })
     }
   }
+}
 </script>

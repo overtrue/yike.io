@@ -12,19 +12,18 @@
 </template>
 
 <script>
-  import QRCode from 'qrcode'
-  export default {
-    name: 'wechat-qrcode',
-    mounted() {
-      setTimeout(() => {
-        QRCode.toCanvas(document.getElementById('page-wechat-qrcode-canvas'), window.location.href, {width: 200})
-      }, 500)
+import QRCode from 'qrcode'
+export default {
+  name: 'wechat-qrcode',
+  mounted () {
+    setTimeout(() => {
+      QRCode.toCanvas(document.getElementById('page-wechat-qrcode-canvas'), window.location.href, { width: 200 })
+    }, 500)
 
-      document.body.appendChild(this.$refs['pageWechatQrcode'])
-    }
+    document.body.appendChild(this.$refs['pageWechatQrcode'])
   }
+}
 </script>
 
 <style scoped>
-
 </style>

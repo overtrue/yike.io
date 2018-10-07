@@ -14,24 +14,25 @@
 </template>
 
 <script>
-  export default {
-    name: 'HotTags',
-    data() {
-      return {
-        nodes: []
-      }
-    },
-    methods: {
-      loadNodes() {
-        this.api('nodes').get('?hot=5&per_page=5').then(nodes => this.nodes = nodes.data)
-      }
-    },
-    created() {
-      this.loadNodes()
+export default {
+  name: 'HotTags',
+  data () {
+    return {
+      nodes: []
     }
+  },
+  methods: {
+    loadNodes () {
+      this.$http
+        .get('nodes?hot=5&per_page=5')
+        .then(nodes => (this.nodes = nodes.data))
+    }
+  },
+  created () {
+    this.loadNodes()
   }
+}
 </script>
 
 <style scoped>
-
 </style>

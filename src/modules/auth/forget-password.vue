@@ -15,20 +15,20 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        email: ''
-      }
-    },
-    methods: {
-      submit() {
-        this.api('user/forget-password').post({
-          email: this.email
-        })
+export default {
+  data () {
+    return {
+      email: ''
+    }
+  },
+  methods: {
+    submit () {
+      this.$http.post('user/forget-password', {
+        email: this.email
+      })
 
-        this.$message.success('邮件发送成功，请及时查看您的邮箱！')
-      }
+      this.$message.success('邮件发送成功，请及时查看您的邮箱！')
     }
   }
+}
 </script>

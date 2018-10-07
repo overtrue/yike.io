@@ -3,11 +3,11 @@ import vuex from '../vuex'
 const needAuth = route => route.meta.requiresAuth === true
 
 const beforeEach = (to, from, next) => {
-
   /**
    * Otherwise  if authentication is required login.
    */
-  vuex.dispatch('checkUserToken')
+  vuex
+    .dispatch('checkUserToken')
     .then(() => {
       if (vuex.getters.isLogged && to.path.indexOf('auth') > 0) {
         return next({ name: 'home' })
@@ -20,7 +20,7 @@ const beforeEach = (to, from, next) => {
         return next({ name: 'auth.login' }) // redirect to login
       }
       next()
-    });
-};
+    })
+}
 
 export default beforeEach

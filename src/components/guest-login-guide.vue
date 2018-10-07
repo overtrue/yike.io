@@ -7,19 +7,19 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  export default {
-    name: 'guest-login-guide',
-    computed: {
-      ...mapGetters(['isLogged'])
-    }
+import { mapGetters } from 'vuex'
+export default {
+  name: 'guest-login-guide',
+  computed: {
+    ...mapGetters(['isLogged'])
   }
+}
 </script>
 
 <style scoped>
-  .guest-login-guide {
-    background: url('/banners/technology.jpg');
-    background-size: 160%;
-    background-position: center;
-  }
+.guest-login-guide {
+  background: url('/banners/technology.jpg');
+  background-size: 160%;
+  background-position: center;
+}
 </style>

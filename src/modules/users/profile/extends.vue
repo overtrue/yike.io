@@ -106,38 +106,47 @@
 </template>
 
 <script>
-  import TwitterIcon from '@icons/twitter'
-  import GithubIcon from '@icons/github-circle'
-  import FacebookIcon from '@icons/facebook'
-  import InstagramIcon from '@icons/instagram'
-  import TelegramIcon from '@icons/telegram'
-  import SteamIcon from '@icons/steam'
+import TwitterIcon from '@icons/twitter';
+import GithubIcon from '@icons/github-circle';
+import FacebookIcon from '@icons/facebook';
+import InstagramIcon from '@icons/instagram';
+import TelegramIcon from '@icons/telegram';
+import SteamIcon from '@icons/steam';
 
-  export default {
-    components: {TwitterIcon, GithubIcon, FacebookIcon, InstagramIcon, TelegramIcon, SteamIcon},
-    data() {
-      return {
-        links: {
-          twitter: '',
-          github: '',
-          facebook: '',
-          instagram: '',
-          telegram: '',
-          stream: '',
-        }
-      }
-    },
-    created() {
-      this.links = this.$user().extends
-    },
-    methods: {
-      submit() {
-        this.api('users').patch(this.$user().username, {
-          extends: this.links
-        }).then(() => {
-          this.$message.success('修改成功！')
-        })
+export default {
+  components: {
+    TwitterIcon,
+    GithubIcon,
+    FacebookIcon,
+    InstagramIcon,
+    TelegramIcon,
+    SteamIcon
+  },
+  data () {
+    return {
+      links: {
+        twitter: '',
+        github: '',
+        facebook: '',
+        instagram: '',
+        telegram: '',
+        stream: ''
       }
     }
+  },
+  created () {
+    this.links = this.$user().extends
+  },
+  methods: {
+    submit () {
+      this.$http
+        .patch(`users/${this.$user().username}`, {
+          extends: this.links
+        })
+        .then(() => {
+          this.$message.success('修改成功！')
+        })
+    }
   }
+}
 </script>

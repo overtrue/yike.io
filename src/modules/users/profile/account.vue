@@ -68,54 +68,54 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
-  export default {
-    data() {
-      return {
-        oldPassword: '',
-        password: '',
-        passwordConfirmation: '',
-        email: '',
-        phone: '',
-      }
+export default {
+  data () {
+    return {
+      oldPassword: '',
+      password: '',
+      passwordConfirmation: '',
+      email: '',
+      phone: ''
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  mounted () {
+    if (this.$route.hash) {
+      let hash = this.$route.hash
+
+      this.goAnchor(hash.slice(1))
+    }
+  },
+  methods: {
+    async updateEmail () {
+      let result = await this.$http.post('user/mail', {
+        email: this.email
+      })
+
+      this.$message.warning(result.message)
     },
-    computed: {
-      ...mapGetters(['currentUser'])
+    resetPassword () {
+      this.$http.post('user/reset-password', {
+        old_password: this.oldPassword,
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
+      })
+
+      this.oldPassword = '';
+      this.password = '';
+      this.passwordConfirmation = '';
     },
-    mounted() {
-      if (this.$route.hash) {
-        let hash = this.$route.hash
+    goAnchor (name) {
+      let element = document.getElementById(name)
 
-        this.goAnchor(hash.slice(1))
-      }
-    },
-    methods: {
-      async updateEmail() {
-        let result = await this.api('user/mail').post({
-          email: this.email
-        })
-
-        this.$message.warning(result.message)
-      },
-      resetPassword() {
-        this.api('user/reset-password').post({
-          old_password: this.oldPassword,
-          password: this.password,
-          password_confirmation: this.passwordConfirmation,
-        })
-
-        this.oldPassword = ''
-        this.password = ''
-        this.passwordConfirmation = ''
-      },
-      goAnchor(name) {
-        let element = document.getElementById(name)
-
-        if (element) {
-          element.scrollIntoView()
-        }
+      if (element) {
+        element.scrollIntoView()
       }
     }
   }
+}
 </script>

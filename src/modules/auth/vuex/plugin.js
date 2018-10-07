@@ -22,4 +22,4 @@ const subscribe = (store) => {
 
 export default (store) => {
   subscribe(store)
-};
+}

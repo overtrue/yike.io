@@ -1,5 +1,7 @@
-export default [{
-  path: 'elements',
-  name: 'element',
-  component: () => import('./elements')
-}]
+export default [
+  {
+    path: 'elements',
+    name: 'element',
+    component: () => import('./elements')
+  }
+]

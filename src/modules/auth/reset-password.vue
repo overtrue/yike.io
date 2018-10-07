@@ -18,29 +18,29 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
 
-  export default {
-    data() {
-      return {
-        password: '',
-        password_confirmation: '',
-      }
-    },
-    methods: {
-      ...mapActions(['logout']),
-      submit() {
-        this.api('user/reset-password').post({
-          token: this.$route.query.token,
-          email: this.$route.query.email,
-          password: this.password,
-          password_confirmation: this.password_confirmation,
-        })
+export default {
+  data () {
+    return {
+      password: '',
+      password_confirmation: ''
+    }
+  },
+  methods: {
+    ...mapActions(['logout']),
+    submit () {
+      this.$http.post('user/reset-password', {
+        token: this.$route.query.token,
+        email: this.$route.query.email,
+        password: this.password,
+        password_confirmation: this.password_confirmation
+      })
 
-        this.logout()
-        this.$router.push({name: 'auth.login'})
-        this.$message.success('成功修改密码，请重新登录！')
-      }
+      this.logout()
+      this.$router.push({ name: 'auth.login' })
+      this.$message.success('成功修改密码，请重新登录！')
     }
   }
+}
 </script>

@@ -3,10 +3,10 @@ import Vuex from 'vuex'
 import state from './state'
 import * as mutations from './mutations'
 import * as actions from './actions'
-import { default as vuex } from './vuex'
+import vuex from './vuex'
 import * as getters from './getters'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state,
@@ -15,5 +15,5 @@ export default new Vuex.Store({
   modules: vuex.modules,
   plugins: vuex.plugins,
   getters,
-  strict: process.env.NODE_ENV !== 'production',
+  strict: process.env.NODE_ENV !== 'production'
 })

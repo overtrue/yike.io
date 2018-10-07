@@ -10,26 +10,28 @@
       </div>
       <small class="date text-muted ml-lg-auto text-mini">{{ notification.created_at }}</small>
     </div>
-    <div class="notification-body text-muted"><slot></slot></div>
+    <div class="notification-body text-muted">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      notification: {
-        type: Object,
-        required: true
-      }
-    },
-    name: 'notification'
-  }
+export default {
+  props: {
+    notification: {
+      type: Object,
+      required: true
+    }
+  },
+  name: 'notification'
+}
 </script>
 
 <style lang="scss" scoped>
-  .notification-body {
-    a {
-      color: #6c757d !important;
-    }
+.notification-body {
+  a {
+    color: #6c757d !important;
   }
+}
 </style>

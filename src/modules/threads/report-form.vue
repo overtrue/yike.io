@@ -12,42 +12,42 @@
 </template>
 
 <script>
-  import { Dialog } from 'element-ui'
-  import 'element-ui/lib/theme-chalk/dialog.css'
+import { Dialog } from 'element-ui';
+import 'element-ui/lib/theme-chalk/dialog.css';
 
-  export default {
-    components: {
-      'el-dialog': Dialog
-    },
-    props: {
-      visible: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data() {
-      return {
-        remark: ''
-      }
-    },
-    methods: {
-      report() {
-        this.api(`threads/${this.$route.params.id}/report`).post({
-          remark: this.remark
-        })
+export default {
+  components: {
+    'el-dialog': Dialog
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      remark: ''
+    }
+  },
+  methods: {
+    report () {
+      this.$http.post(`threads/${this.$route.params.id}/report`, {
+        remark: this.remark
+      })
 
-        this.close()
-        this.$message.success('举报成功！')
-      },
-      close() {
-        this.$emit('close')
-      }
+      this.close()
+      this.$message.success('举报成功！')
+    },
+    close () {
+      this.$emit('close')
     }
   }
+}
 </script>
 
 <style lang="scss">
-  textarea {
-    resize: none;
-  }
+textarea {
+  resize: none;
+}
 </style>

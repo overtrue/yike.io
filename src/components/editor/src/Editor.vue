@@ -3,8 +3,7 @@
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#form-tab-editor" role="tab" aria-controls="form-tab-editor"
-             aria-selected="true">编辑</a>
+          <a class="nav-link active" data-toggle="tab" href="#form-tab-editor" role="tab" aria-controls="form-tab-editor" aria-selected="true">编辑</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" @click="preview" data-toggle="tab" href="#form-tab-preview" role="tab" aria-controls="form-tab-editor" aria-selected="false">预览</a>
@@ -28,158 +27,160 @@
       <div class="tab-pane fade show active" id="form-tab-editor" style="margin-left: -0.35rem;">
         <textarea id="editor" :placeholder="placeholder"></textarea>
       </div>
-      <div class="tab-pane fade" id="form-tab-preview" style="min-height: 100%;"><markdown-body v-model="html"></markdown-body></div>
+      <div class="tab-pane fade" id="form-tab-preview" style="min-height: 100%;">
+        <markdown-body v-model="html"></markdown-body>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import CodeMirror from 'codemirror'
-  import EmojiCompleter from '../emoji-completer'
-  import AtCompleter from '../at-completer'
-  import '../attachment'
-  import { mapGetters } from 'vuex'
-  import PlusIcon from '@icons/plus'
-  import LinkIcon from '@icons/link'
-  import FormatHeader1Icon from '@icons/format-header-1'
-  import FormatHeader2Icon from '@icons/format-header-2'
-  import FormatHeader3Icon from '@icons/format-header-3'
-  import FormatBoldIcon from '@icons/format-bold'
-  import FormatItalicIcon from '@icons/format-italic'
-  import FormatQuoteOpenIcon from '@icons/format-quote-open'
-  import CodeTagsIcon from '@icons/code-tags'
-  import FormatListBulletedIcon from '@icons/format-list-bulleted'
-  import FormatListNumbersIcon from '@icons/format-list-numbers'
-  import MarkdownBody from '@components/markdown-body'
+import CodeMirror from 'codemirror'
+import EmojiCompleter from '../emoji-completer'
+import AtCompleter from '../at-completer'
+import '../attachment'
+import { mapGetters } from 'vuex'
+import PlusIcon from '@icons/plus'
+import LinkIcon from '@icons/link'
+import FormatHeader1Icon from '@icons/format-header-1'
+import FormatHeader2Icon from '@icons/format-header-2'
+import FormatHeader3Icon from '@icons/format-header-3'
+import FormatBoldIcon from '@icons/format-bold'
+import FormatItalicIcon from '@icons/format-italic'
+import FormatQuoteOpenIcon from '@icons/format-quote-open'
+import CodeTagsIcon from '@icons/code-tags'
+import FormatListBulletedIcon from '@icons/format-list-bulleted'
+import FormatListNumbersIcon from '@icons/format-list-numbers'
+import MarkdownBody from '@components/markdown-body'
 
-  require('codemirror/mode/gfm/gfm')
-  require('codemirror/addon/edit/continuelist')
-  require('codemirror/addon/edit/matchbrackets')
-  require('codemirror/addon/edit/closebrackets')
-  require('codemirror/addon/edit/matchtags')
-  require('codemirror/addon/display/placeholder')
-  require('codemirror/keymap/sublime')
-  require('../theme/yike.css')
+require('codemirror/mode/gfm/gfm')
+require('codemirror/addon/edit/continuelist')
+require('codemirror/addon/edit/matchbrackets')
+require('codemirror/addon/edit/closebrackets')
+require('codemirror/addon/edit/matchtags')
+require('codemirror/addon/display/placeholder')
+require('codemirror/keymap/sublime')
+require('../theme/yike.css')
 
-  export default {
-    name: 'editor',
-    props: {
-      value: {
-        type: String,
-        default: ''
-      },
-      toolbar: {
-        type: Boolean,
-        default: false
-      },
-      editorClass: {
-        type: String,
-        default: 'p-2'
-      },
-      placeholder: {
-        type: String,
-        default: '请在这里输入你的内容'
-      },
-      options: {
-        type: Object,
-        default () {
-          return {}
-        }
+export default {
+  name: 'editor',
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    toolbar: {
+      type: Boolean,
+      default: false
+    },
+    editorClass: {
+      type: String,
+      default: 'p-2'
+    },
+    placeholder: {
+      type: String,
+      default: '请在这里输入你的内容'
+    },
+    options: {
+      type: Object,
+      default () {
+        return {}
       }
-    },
-    components: {
-      MarkdownBody,
-      PlusIcon,
-      FormatHeader1Icon,
-      FormatHeader2Icon,
-      FormatHeader3Icon,
-      FormatBoldIcon,
-      FormatItalicIcon,
-      FormatQuoteOpenIcon,
-      FormatListNumbersIcon,
-      FormatListBulletedIcon,
-      CodeTagsIcon,
-      LinkIcon,
-    },
-    data () {
-      return {
-        contentBackup: false,
-        editor: null,
-        editSession: null,
-        selection: null,
-        undoManager: null,
-        tribute: null,
-        html: '预览生成中...',
-      }
-    },
-    watch: {
-      value () {
-        if (this.contentBackup == this.value) {return}
-        this.setValue()
-      }
-    },
-    computed: {
-      ...mapGetters(['authToken']),
-    },
-    methods: {
-      init () {
-        this.initEditor()
-      },
-
-      initEditor () {
-        this.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
-          keyMap: 'sublime',
-          mode: 'markdown',
-          lineWrapping: true,
-          autoCloseBrackets: true,
-          matchBrackets: true,
-          matchBothTags: true,
-          value: this.value || '',
-          profile: 'html',
-          extraKeys: {'Enter': 'newlineAndIndentContinueMarkdownList'}
-        })
-        this.editor.on('change', EmojiCompleter)
-        this.editor.on('change', AtCompleter)
-        this.editor.on('change', (editor) => {
-          let content = editor.getValue()
-          this.$emit('input', content)
-          this.contentBackup = content
-        })
-        inlineAttachment.editors.codemirror4.attach(this.editor, {
-          uploadFieldName: 'file',
-          jsonFieldName: 'url',
-          uploadUrl: this.$http.defaults.baseURL + '/files/upload',
-          extraHeaders: {
-            Authorization: `Bearer ${this.authToken}`
-          }
-        })
-      },
-
-      setValue () {
-        if (this.value) {
-          this.editor.setValue(this.value, 1)
-        }
-      },
-      preview() {
-        if (this.value.length <= 0) {
-          return this.html = '请先输入内容'
-        }
-        this.html = '预览生成中...'
-        this.$http.post('contents/preview', {markdown: this.value}).then(html => this.html = html)
-      }
-    },
-    mounted () {
-      this.init()
-      String.prototype.capitalize = function () {
-        return this.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
-      }
+    }
+  },
+  components: {
+    MarkdownBody,
+    PlusIcon,
+    FormatHeader1Icon,
+    FormatHeader2Icon,
+    FormatHeader3Icon,
+    FormatBoldIcon,
+    FormatItalicIcon,
+    FormatQuoteOpenIcon,
+    FormatListNumbersIcon,
+    FormatListBulletedIcon,
+    CodeTagsIcon,
+    LinkIcon
+  },
+  data () {
+    return {
+      contentBackup: false,
+      editor: null,
+      editSession: null,
+      selection: null,
+      undoManager: null,
+      tribute: null,
+      html: '预览生成中...'
+    }
+  },
+  watch: {
+    value () {
+      if (this.contentBackup == this.value) { return }
       this.setValue()
     }
+  },
+  computed: {
+    ...mapGetters(['authToken'])
+  },
+  methods: {
+    init () {
+      this.initEditor()
+    },
+
+    initEditor () {
+      this.editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        keyMap: 'sublime',
+        mode: 'markdown',
+        lineWrapping: true,
+        autoCloseBrackets: true,
+        matchBrackets: true,
+        matchBothTags: true,
+        value: this.value || '',
+        profile: 'html',
+        extraKeys: { 'Enter': 'newlineAndIndentContinueMarkdownList' }
+      })
+      this.editor.on('change', EmojiCompleter)
+      this.editor.on('change', AtCompleter)
+      this.editor.on('change', (editor) => {
+        let content = editor.getValue()
+        this.$emit('input', content)
+        this.contentBackup = content
+      })
+      inlineAttachment.editors.codemirror4.attach(this.editor, {
+        uploadFieldName: 'file',
+        jsonFieldName: 'url',
+        uploadUrl: this.$http.defaults.baseURL + '/files/upload',
+        extraHeaders: {
+          Authorization: `Bearer ${this.authToken}`
+        }
+      })
+    },
+
+    setValue () {
+      if (this.value) {
+        this.editor.setValue(this.value, 1)
+      }
+    },
+    preview () {
+      if (this.value.length <= 0) {
+        return this.html = '请先输入内容'
+      }
+      this.html = '预览生成中...'
+      this.$http.post('contents/preview', { markdown: this.value }).then(html => this.html = html)
+    }
+  },
+  mounted () {
+    this.init()
+    String.prototype.capitalize = function () {
+      return this.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
+    }
+    this.setValue()
   }
+}
 </script>
 
 <style lang="scss">
-  .ace_gutter {
-    -webkit-font-smoothing: antialiased;
-  }
+.ace_gutter {
+  -webkit-font-smoothing: antialiased;
+}
 </style>

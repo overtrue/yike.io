@@ -12,23 +12,23 @@
 </template>
 
 <script>
-  import Sidebar from '@modules/users/profile/sidebar'
-  import { mapGetters, mapActions } from 'vuex'
+import Sidebar from '@modules/users/profile/sidebar'
+import { mapGetters, mapActions } from 'vuex'
 
-  export default {
-    name: 'show',
-    components: { Sidebar },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
-    methods: {
-      ...mapActions(['setUser']),
-    }
+export default {
+  name: 'show',
+  components: { Sidebar },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  methods: {
+    ...mapActions(['setUser'])
   }
+}
 </script>
 
 <style lang="scss">
-  .page-user-show {
-    min-height: 100vh;
-  }
+.page-user-show {
+  min-height: 100vh;
+}
 </style>

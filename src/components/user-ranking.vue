@@ -6,39 +6,42 @@
     </div>
     <ul class="plan-list">
       <user-media class="mb-2 d-flex align-items-center" v-for="item in users" :key="item.id" :user="item">
-        <template slot="appends"><follow-btn :item="item" class="ml-auto" simple></follow-btn></template>
-        <template slot="description"><div class="text-gray-70 text-12">{{ item.created_at_timeago }}</div></template>
+        <template slot="appends">
+          <follow-btn :item="item" class="ml-auto" simple></follow-btn>
+        </template>
+        <template slot="description">
+          <div class="text-gray-70 text-12">{{ item.created_at_timeago }}</div>
+        </template>
       </user-media>
     </ul>
   </div>
 </template>
 
 <script>
-  import UserMedia from "@components/user-media"
-  import ArrowRightIcon from "@icons/arrow-right"
-  import CheckIcon from "@icons/check"
-  import PlusIcon from "@icons/plus"
-  import FollowBtn from "@components/buttons/follow-btn"
+import UserMedia from '@components/user-media';
+import ArrowRightIcon from '@icons/arrow-right';
+import CheckIcon from '@icons/check';
+import PlusIcon from '@icons/plus';
+import FollowBtn from '@components/buttons/follow-btn';
 
-  export default {
-    name: 'NewUsers',
-    components: {FollowBtn, UserMedia, ArrowRightIcon, CheckIcon, PlusIcon},
-    data() {
-      return {
-        users: []
-      }
-    },
-    methods: {
-      loadUsers() {
-        this.api('users').get('?limit=10').then(users => this.users = users.data)
-      }
-    },
-    mounted() {
-      this.loadUsers()
+export default {
+  name: 'NewUsers',
+  components: { FollowBtn, UserMedia, ArrowRightIcon, CheckIcon, PlusIcon },
+  data () {
+    return {
+      users: []
     }
+  },
+  methods: {
+    loadUsers () {
+      this.$http.get('users?limit=10').then(users => this.users = users.data)
+    }
+  },
+  mounted () {
+    this.loadUsers()
   }
+}
 </script>
 
 <style scoped>
-
 </style>

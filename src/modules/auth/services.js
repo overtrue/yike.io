@@ -14,7 +14,7 @@ export const postLogin = ({ username, password }) => {
   })
 }
 
-export const postRegister = (payload) => {
+export const postRegister = payload => {
   return http.post('/auth/register', payload)
 }
 
@@ -22,4 +22,4 @@ export const postRegister = (payload) => {
 export const loadUserData = () => http.get('/me')
 
 // revoke current token
-export const revokeToken = (token) => http.post('/oauth/tokens/' + token)
+export const revokeToken = token => http.post('/oauth/tokens/' + token)

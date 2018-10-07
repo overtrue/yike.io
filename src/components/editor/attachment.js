@@ -1,91 +1,91 @@
 import './inline-attachment'
 
-/*jslint newcap: true */
-/*global inlineAttachment: false */
+/* jslint newcap: true */
+/* global inlineAttachment: false */
 /**
  * CodeMirror version for inlineAttachment
  *
  * Call inlineAttachment.attach(editor) to attach to a codemirror instance
  */
-(function() {
-  'use strict';
+(function () {
+  'use strict'
 
-  var codeMirrorEditor = function(instance) {
-
+  var codeMirrorEditor = function (instance) {
     if (!instance.getWrapperElement) {
-      throw "Invalid CodeMirror object given";
+      throw 'Invalid CodeMirror object given'
     }
 
-    this.codeMirror = instance;
-  };
+    this.codeMirror = instance
+  }
 
-  codeMirrorEditor.prototype.getValue = function() {
-    return this.codeMirror.getValue();
-  };
+  codeMirrorEditor.prototype.getValue = function () {
+    return this.codeMirror.getValue()
+  }
 
-  codeMirrorEditor.prototype.insertValue = function(val) {
-    this.codeMirror.replaceSelection(val);
-  };
+  codeMirrorEditor.prototype.insertValue = function (val) {
+    this.codeMirror.replaceSelection(val)
+  }
 
-  codeMirrorEditor.prototype.setValue = function(val) {
-    var cursor = this.codeMirror.getCursor();
-    this.codeMirror.setValue(val);
-    this.codeMirror.setCursor(cursor);
-  };
+  codeMirrorEditor.prototype.setValue = function (val) {
+    var cursor = this.codeMirror.getCursor()
+    this.codeMirror.setValue(val)
+    this.codeMirror.setCursor(cursor)
+  }
 
   /**
    * Attach InlineAttachment to CodeMirror
    *
    * @param {CodeMirror} codeMirror
    */
-  codeMirrorEditor.attach = function(codeMirror, options) {
+  codeMirrorEditor.attach = function (codeMirror, options) {
+    options = options || {}
 
-    options = options || {};
+    var editor = new codeMirrorEditor(codeMirror)
 
-    var editor = new codeMirrorEditor(codeMirror),
-      inlineattach = new inlineAttachment(options, editor),
-      el = codeMirror.getWrapperElement();
+    var inlineattach = new inlineAttachment(options, editor)
 
-    el.addEventListener('paste', function(e) {
-      inlineattach.onPaste(e);
-    }, false);
+    var el = codeMirror.getWrapperElement()
 
-    codeMirror.setOption('onDragEvent', function(data, e) {
-      if (e.type === "drop") {
-        e.stopPropagation();
-        e.preventDefault();
-        return inlineattach.onDrop(e);
+    el.addEventListener('paste', function (e) {
+      inlineattach.onPaste(e)
+    }, false)
+
+    codeMirror.setOption('onDragEvent', function (data, e) {
+      if (e.type === 'drop') {
+        e.stopPropagation()
+        e.preventDefault()
+        return inlineattach.onDrop(e)
       }
-    });
-  };
+    })
+  }
 
-  var codeMirrorEditor4 = function(instance) {
-    codeMirrorEditor.call(this, instance);
-  };
+  var codeMirrorEditor4 = function (instance) {
+    codeMirrorEditor.call(this, instance)
+  }
 
-  codeMirrorEditor4.attach = function(codeMirror, options) {
+  codeMirrorEditor4.attach = function (codeMirror, options) {
+    options = options || {}
 
-    options = options || {};
+    var editor = new codeMirrorEditor(codeMirror)
 
-    var editor = new codeMirrorEditor(codeMirror),
-      inlineattach = new inlineAttachment(options, editor),
-      el = codeMirror.getWrapperElement();
+    var inlineattach = new inlineAttachment(options, editor)
 
-    el.addEventListener('paste', function(e) {
-      inlineattach.onPaste(e);
-    }, false);
+    var el = codeMirror.getWrapperElement()
 
-    codeMirror.on('drop', function(data, e) {
+    el.addEventListener('paste', function (e) {
+      inlineattach.onPaste(e)
+    }, false)
+
+    codeMirror.on('drop', function (data, e) {
       if (inlineattach.onDrop(e)) {
-        e.stopPropagation();
-        e.preventDefault();
-        return true;
+        e.stopPropagation()
+        e.preventDefault()
+        return true
       } else {
-        return false;
+        return false
       }
-    });
-  };
+    })
+  }
 
-  inlineAttachment.editors.codemirror4 = codeMirrorEditor4;
-
-})();
+  inlineAttachment.editors.codemirror4 = codeMirrorEditor4
+})()

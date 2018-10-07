@@ -1,7 +1,7 @@
 <template>
   <div class="user-media d-flex align-items-center">
     <router-link :to="{name: 'users.show', params:{id: user.username}}">
-      <img :src="user.avatar" class="avatar-40" :alt="user.name"/>
+      <img :src="user.avatar" class="avatar-40" :alt="user.name" />
     </router-link>
     <div class="ml-2">
       <div>
@@ -21,14 +21,14 @@
 </template>
 
 <script>
-  import FollowBtn from '@components/buttons/follow-btn'
-  export default {
-    name: 'user-list-item',
-    components: {FollowBtn},
-    props: {
-      user: {
-        type: Object
-      },
+import FollowBtn from '@components/buttons/follow-btn'
+export default {
+  name: 'user-list-item',
+  components: { FollowBtn },
+  props: {
+    user: {
+      type: Object
     }
   }
+}
 </script>

@@ -1,5 +1,7 @@
-export default [{
-  path: '/',
-  name: 'home',
-  component: () => import('./home')
-}]
+export default [
+  {
+    path: '/',
+    name: 'home',
+    component: () => import('./home')
+  }
+]

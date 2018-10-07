@@ -8,12 +8,22 @@
           <div class="my-1" v-if="!user.banned_at">{{ user.bio }}</div>
 
           <div class="extends text-white d-none d-md-block d-lg-flex" v-if="!user.banned_at">
-            <div class="mr-1" v-if="user.extends.location"><map-maker-icon class="mr-1"></map-maker-icon>{{ user.extends.location }}</div>
-            <div class="mr-1" v-if="user.extends.company"><domain-icon class="mr-1"></domain-icon>{{ user.extends.company }}</div>
-            <div class="mr-1" v-if="user.extends.home_url"><link-icon class="mr-1"></link-icon> <a class="text-white" :href="user.extends.home_url">{{ user.extends.home_url }}</a></div>
-            <div class="mr-1"><calendar-check-icon class="mr-1"></calendar-check-icon>加入于 {{ user.created_at_timeago }}</div>
+            <div class="mr-1" v-if="user.extends.location">
+              <map-maker-icon class="mr-1"></map-maker-icon>{{ user.extends.location }}
+            </div>
+            <div class="mr-1" v-if="user.extends.company">
+              <domain-icon class="mr-1"></domain-icon>{{ user.extends.company }}
+            </div>
+            <div class="mr-1" v-if="user.extends.home_url">
+              <link-icon class="mr-1"></link-icon> <a class="text-white" :href="user.extends.home_url">{{ user.extends.home_url }}</a>
+            </div>
+            <div class="mr-1">
+              <calendar-check-icon class="mr-1"></calendar-check-icon>加入于 {{ user.created_at_timeago }}
+            </div>
           </div>
-          <div class="pt-2"><user-social-btns :user="user" :spacing="2"></user-social-btns></div>
+          <div class="pt-2">
+            <user-social-btns :user="user" :spacing="2"></user-social-btns>
+          </div>
         </div>
         <template v-if="currentUser && currentUser.id != user.id && !user.banned_at">
           <follow-btn :item="user" class="d-inline-block ml-md-auto"></follow-btn>
@@ -39,10 +49,11 @@
           <div class="nav-item ml-auto" v-if="currentUser.is_admin">
             <div class="btn-group">
               <button type="button" class="btn btn-link nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <admin-icon/> 管理
+                <admin-icon /> 管理
               </button>
               <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button" @click="toggleStatus('banned_at')" :class="{'text-danger': !user.banned_at}"><account-off-icon class="mr-1"/> {{ user.banned_at ? '取消冻结' : '冻结' }}</button>
+                <button class="dropdown-item" type="button" @click="toggleStatus('banned_at')" :class="{'text-danger': !user.banned_at}">
+                  <account-off-icon class="mr-1" /> {{ user.banned_at ? '取消冻结' : '冻结' }}</button>
               </div>
             </div>
           </div>
@@ -63,123 +74,140 @@
       </div>
     </div>
     <div class="container mt-4" v-else>
-        <user-locked/>
+      <user-locked />
     </div>
   </div>
 </template>
 
 <script>
-  import moment from 'moment'
-  import { mapGetters } from 'vuex'
-  import Resource from '@utils/resource'
-  import HotTags from "@components/hot-tags"
-  import UserRanking from "@components/user-ranking"
-  import NewUsers from "@components/new-users"
-  import FollowBtn from '@components/buttons/follow-btn'
-  import MapMakerIcon from "@icons/map-marker"
-  import DomainIcon from "@icons/domain"
-  import LinkIcon from "@icons/link"
-  import AccountOffIcon from '@icons/account-off'
-  import CalendarCheckIcon from "@icons/calendar-check"
-  import AdminIcon from '@icons/account-settings-variant'
-  import UserSocialBtns from '@components/user-social-btns'
-  import UserLocked from '@components/user-locked'
+import moment from 'moment'
+import { mapGetters } from 'vuex'
+import HotTags from '@components/hot-tags'
+import UserRanking from '@components/user-ranking'
+import NewUsers from '@components/new-users'
+import FollowBtn from '@components/buttons/follow-btn'
+import MapMakerIcon from '@icons/map-marker'
+import DomainIcon from '@icons/domain'
+import LinkIcon from '@icons/link'
+import AccountOffIcon from '@icons/account-off'
+import CalendarCheckIcon from '@icons/calendar-check'
+import AdminIcon from '@icons/account-settings-variant'
+import UserSocialBtns from '@components/user-social-btns'
+import UserLocked from '@components/user-locked'
 
-  export default {
-    name: 'show',
-    components: {UserLocked, FollowBtn, DomainIcon, CalendarCheckIcon, LinkIcon, AdminIcon, AccountOffIcon, MapMakerIcon, HotTags, UserRanking, NewUsers, UserSocialBtns},
-    data() {
-      return {
-        user: {},
-        navFixed: false
-      }
-    },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
-    beforeRouteUpdate(to, from, next) {
-      if (to.params.username != from.params.username) {
-        this.getUser(to.params.username)
-      }
+export default {
+  name: 'show',
+  components: {
+    UserLocked,
+    FollowBtn,
+    DomainIcon,
+    CalendarCheckIcon,
+    LinkIcon,
+    AdminIcon,
+    AccountOffIcon,
+    MapMakerIcon,
+    HotTags,
+    UserRanking,
+    NewUsers,
+    UserSocialBtns
+  },
+  data () {
+    return {
+      user: {},
+      navFixed: false
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  beforeRouteUpdate (to, from, next) {
+    if (to.params.username !== from.params.username) {
+      this.getUser(to.params.username)
+    }
 
-      next()
+    next()
+  },
+  created () {
+    this.getUser(this.$route.params.username)
+    this.$nextTick(this.registerEventListener)
+  },
+  methods: {
+    async getUser (username) {
+      username = username || this.$route.params.username
+      this.user = await this.$http.get(`users/${username}`).catch(() => {
+        this.$router.replace({ name: 'pages.not-found' })
+      })
     },
-    created() {
-      this.getUser(this.$route.params.username)
-      this.$nextTick(this.registerEventListener)
+    toggleStatus (timestamp) {
+      this.user[timestamp] = this.user[timestamp]
+        ? null
+        : moment().format('YYYY-MM-DD HH:mm:ss')
+      this.$http.patch(`users/${this.user.username}`, this.user).then(() => {
+        this.$message.success('搞定！')
+        this.getUser()
+      })
     },
-    methods: {
-      async getUser(username) {
-        username = username || this.$route.params.username
-        let resource = new Resource(`users/${username}`)
+    registerEventListener () {
+      let vm = this
+      window.addEventListener('scroll', () => {
+        if (vm.$route.name.substr(0, 5) === 'users') {
+          let top =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop ||
+            0
 
-        this.user = await resource.get().catch(() => {
-          this.$router.replace({name: 'pages.not-found'})
-        })
-      },
-      toggleStatus(timestamp) {
-        this.user[timestamp] = this.user[timestamp] ? null : moment().format('YYYY-MM-DD HH:mm:ss')
-        this.api('users').patch(this.user.username, this.user).then(() => {
-          this.$message.success('搞定！')
-          this.getUser()
-        })
-      },
-      registerEventListener() {
-        let vm = this
-        window.addEventListener('scroll', () => {
-          if (vm.$route.name.substr(0, 5) == 'users') {
-            let top = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
-
-            this.navFixed = top >= document.querySelector('.user-show-navbar').offsetTop
-          }
-        })
-      }
+          this.navFixed =
+            top >= document.querySelector('.user-show-navbar').offsetTop
+        }
+      })
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
-  .page-user-show {
-    .bg-image {
-      overflow: hidden;
+.page-user-show {
+  .bg-image {
+    overflow: hidden;
 
-      img {
-        width: 100%;
-        height: auto;
-      }
-    }
-    .page-header {
-      min-height: 40vh;
-      overflow-y: visible;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-    .user-show-navbar {
-      position: sticky;
-      top: -1px;
-      z-index: 999;
-      .nav {
-        position: relative;
-        background: transparent;
-        box-shadow: none;
-      }
-    }
-    .avatar {
-      border: 2px solid #fff;
-    }
-    .user-profile {
-      z-index: 2;
-      text-shadow: 1px 1px 10px #3D465E;
-    }
-
-    @media (max-width: 768px) {
-      .user-profile {
-        text-align: center;
-      }
-      .user-social-btns {
-        justify-content: center !important;
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
+  .page-header {
+    min-height: 40vh;
+    overflow-y: visible;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .user-show-navbar {
+    position: sticky;
+    top: -1px;
+    z-index: 999;
+    .nav {
+      position: relative;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+  .avatar {
+    border: 2px solid #fff;
+  }
+  .user-profile {
+    z-index: 2;
+    text-shadow: 1px 1px 10px #3d465e;
+  }
+
+  @media (max-width: 768px) {
+    .user-profile {
+      text-align: center;
+    }
+    .user-social-btns {
+      justify-content: center !important;
+    }
+  }
+}
 </style>

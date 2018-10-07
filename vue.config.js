@@ -46,12 +46,12 @@ module.exports = {
           '@components': path.resolve(__dirname, 'src/components'),
           '@assets': path.resolve(__dirname, 'src/assets'),
           '@sass': path.resolve(__dirname, 'src/assets/sass'),
-          "@icons": path.resolve(__dirname, "node_modules/vue-material-design-icons"),
-          "@config": path.resolve(__dirname, 'src/config'),
-          "@root": path.resolve(__dirname, 'src/')
+          '@icons': path.resolve(__dirname, 'node_modules/vue-material-design-icons'),
+          '@config': path.resolve(__dirname, 'src/config'),
+          '@root': path.resolve(__dirname, 'src/')
         },
         extensions: [
-          ".vue"
+          '.vue'
         ]
       }
     }
@@ -72,7 +72,7 @@ module.exports = {
       sass: {
         data: fs.readFileSync('src/assets/sass/_variables.scss', 'utf-8')
       }
-    },
+    }
 
     // Enable CSS modules for all css / pre-processor files.
     // This option does not affect *.vue files.

@@ -1,9 +1,9 @@
 <template>
   <div class="box box-flush">
     <!--<form class="box-body" v-if="users.data && users.data.length > 0">-->
-      <!--<div class="input-group">-->
-        <!--<input type="text" class="form-control border-0" placeholder="搜索用户">-->
-      <!--</div>-->
+    <!--<div class="input-group">-->
+    <!--<input type="text" class="form-control border-0" placeholder="杜索用户">-->
+    <!--</div>-->
     <!--</form>-->
     <div class="list-group list-group-flush">
       <user-list-item class="list-group-item" :user="user" :key="user.id" v-for="user of users.data"></user-list-item>
@@ -17,42 +17,48 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import Resource from '@utils/resource'
-  import EmptyState from '@components/empty-state'
-  import UserListItem from '@components/user-list-item'
-  import Paginator from '@components/paginator'
-  import EmailIcon from '@icons/email'
-  import PlusIcon from '@icons/plus'
-  import MinusIcon from '@icons/minus'
+import { mapGetters } from 'vuex';
+import EmptyState from '@components/empty-state';
+import UserListItem from '@components/user-list-item';
+import Paginator from '@components/paginator';
+import EmailIcon from '@icons/email';
+import PlusIcon from '@icons/plus';
+import MinusIcon from '@icons/minus';
 
-  export default {
-    name: 'user-followings',
-    components: {UserListItem, EmptyState, Paginator, PlusIcon, EmailIcon, MinusIcon},
-    data() {
-      return {
-        users: []
-      }
-    },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
-    created() {
-      this.followings()
-    },
-    methods: {
-      async followings() {
-        let resource = new Resource(`user/${this.$parent.user.username}/followings`)
-
-        this.users = await resource.get()
-      }
+export default {
+  name: 'user-followings',
+  components: {
+    UserListItem,
+    EmptyState,
+    Paginator,
+    PlusIcon,
+    EmailIcon,
+    MinusIcon
+  },
+  data () {
+    return {
+      users: []
+    }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  created () {
+    this.followings()
+  },
+  methods: {
+    async followings () {
+      this.users = await this.$http.get(
+        `user/${this.$parent.user.username}/followings`
+      )
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .form-control:focus {
-    border: none;
-    box-shadow: none;
-  }
+.form-control:focus {
+  border: none;
+  box-shadow: none;
+}
 </style>

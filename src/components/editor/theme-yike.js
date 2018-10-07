@@ -1,8 +1,7 @@
-ace.define("ace/theme/yike",["require","exports","module","ace/lib/dom"], function(acequire, exports, module) {
-
-exports.isDark = false;
-exports.cssClass = "ace-yike";
-exports.cssText = `.ace-yike .ace_gutter {
+ace.define('ace/theme/yike', ['require', 'exports', 'module', 'ace/lib/dom'], function (acequire, exports, module) {
+  exports.isDark = false
+  exports.cssClass = 'ace-yike'
+  exports.cssText = `.ace-yike .ace_gutter {
 background: #F5F7FA;
 color: #A0AABF;
 overflow : hidden;
@@ -133,8 +132,8 @@ color: #994409;
 .ace-yike .ace_indent-guide {
 background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
 }
-`;
+`
 
-var dom = acequire("../lib/dom");
-dom.importCssString(exports.cssText, exports.cssClass);
-});
+  var dom = acequire('../lib/dom')
+  dom.importCssString(exports.cssText, exports.cssClass)
+})

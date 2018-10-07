@@ -13,27 +13,26 @@
 </template>
 
 <script>
-  import UserMedia from "@components/user-media"
-  import ArrowRight from "@icons/arrow-right"
+import UserMedia from '@components/user-media'
+import ArrowRight from '@icons/arrow-right'
 
-  export default {
-    name: 'user-list-card',
-    components: {UserMedia, ArrowRight},
-    props: {
-      title: {
-        type: String,
-        default: null,
-      },
-      users: {
-        type: Array,
-        default() {
-          return []
-        }
-      }
+export default {
+  name: 'user-list-card',
+  components: { UserMedia, ArrowRight },
+  props: {
+    title: {
+      type: String,
+      default: null
     },
+    users: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
   }
+}
 </script>
 
 <style scoped>
-
 </style>

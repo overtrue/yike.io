@@ -25,7 +25,9 @@
           </ul>
           <div class="text-center text-gray-50" v-else>
             <empty-state message="没有新的消息哦~">
-              <template slot="icon"><inbox-icon></inbox-icon></template>
+              <template slot="icon">
+                <inbox-icon></inbox-icon>
+              </template>
             </empty-state>
           </div>
         </div>
@@ -35,49 +37,63 @@
 </template>
 
 <script>
-  import BellIcon from '@icons/bell'
-  import InboxIcon from '@icons/inbox'
-  import CheckIcon from '@icons/check'
-  import EmptyState from '@components/empty-state'
+import BellIcon from '@icons/bell';
+import InboxIcon from '@icons/inbox';
+import CheckIcon from '@icons/check';
+import EmptyState from '@components/empty-state';
 
-  import NewFollower from './types/new-follower'
-  import CommentMyThread from './types/comment-my-thread'
-  import LikedMyThread from './types/liked-my-thread'
-  import MentionedMe from './types/mentioned-me'
-  import SubscribedMyThread from './types/subscribed-my-thread'
-  import Welcome from './types/welcome'
+import NewFollower from './types/new-follower';
+import CommentMyThread from './types/comment-my-thread';
+import LikedMyThread from './types/liked-my-thread';
+import MentionedMe from './types/mentioned-me';
+import SubscribedMyThread from './types/subscribed-my-thread';
+import Welcome from './types/welcome';
 
-  export default {
-    components: {EmptyState, MentionedMe, BellIcon, InboxIcon, CheckIcon, NewFollower, CommentMyThread, LikedMyThread, SubscribedMyThread, Welcome},
-    data() {
-      return {
-        tabs: {
-          all: '全部 ',
-          follow: '关注',
-          comment: '评论',
-          subscribe: '订阅',
-          like: '点赞',
-        },
-        currentTab: 'all',
-        notifications: []
-      }
-    },
-    watch: {
-      currentTab() {
-        this.loadNotifications(1)
-      }
-    },
-    created() {
-      this.loadNotifications()
-    },
-    methods: {
-      loadNotifications(page = 1) {
-        this.$router.push({name: 'notifications.show', query: {tab: this.currentTab}})
+export default {
+  components: {
+    EmptyState,
+    MentionedMe,
+    BellIcon,
+    InboxIcon,
+    CheckIcon,
+    NewFollower,
+    CommentMyThread,
+    LikedMyThread,
+    SubscribedMyThread,
+    Welcome
+  },
+  data () {
+    return {
+      tabs: {
+        all: '全部 ',
+        follow: '关注',
+        comment: '评论',
+        subscribe: '订阅',
+        like: '点赞'
+      },
+      currentTab: 'all',
+      notifications: []
+    }
+  },
+  watch: {
+    currentTab () {
+      this.loadNotifications(1)
+    }
+  },
+  created () {
+    this.loadNotifications()
+  },
+  methods: {
+    loadNotifications (page = 1) {
+      this.$router.push({
+        name: 'notifications.show',
+        query: { tab: this.currentTab }
+      })
 
-        this.api('user/notifications')
-          .get(`?tab=${this.currentTab}&page=${page}`)
-          .then(notifications => this.notifications = notifications.data)
-      }
+      this.$http
+        .get(`user/notifications?tab=${this.currentTab}&page=${page}`)
+        .then(notifications => (this.notifications = notifications.data))
     }
   }
+}
 </script>

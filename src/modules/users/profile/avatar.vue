@@ -9,53 +9,53 @@
 
     <button class="btn btn-light d-block mt-2" id="pick-avatar">选择新头像</button>
 
-    <avatar-cropper
-      @uploaded="handleUploaded"
-      trigger="#pick-avatar"
-      :upload-url="uploadUrl"
-      :upload-headers="uploadHeaders" />
+    <avatar-cropper @uploaded="handleUploaded" trigger="#pick-avatar" :upload-url="uploadUrl" :upload-headers="uploadHeaders" />
 
     <button class="btn btn-primary mt-2" @click="submit" :disabled="!newUrl">保存</button>
   </div>
 </template>
 
 <script>
-  import AvatarCropper from 'vue-avatar-cropper'
-  import { mapGetters } from 'vuex'
+import AvatarCropper from 'vue-avatar-cropper';
+import { mapGetters } from 'vuex';
 
-  export default {
-    components: { AvatarCropper },
-    data() {
+export default {
+  components: { AvatarCropper },
+  data () {
+    return {
+      url: this.$parent.currentUser.avatar,
+      newUrl: null
+    }
+  },
+  computed: {
+    ...mapGetters(['authToken']),
+    uploadUrl () {
+      return this.$http.defaults.baseURL + '/files/upload';
+    },
+    uploadHeaders () {
       return {
-        url: this.$parent.currentUser.avatar,
-        newUrl: null,
+        Authorization: `Bearer ${this.authToken}`
       }
-    },
-    computed:{
-      ...mapGetters(['authToken']),
-      uploadUrl() {
-        return this.$http.defaults.baseURL + '/files/upload'
-      },
-      uploadHeaders() {
-        return {
-          Authorization: `Bearer ${this.authToken}`
-        }
+    }
+  },
+  methods: {
+    handleUploaded (response) {
+      if (!response.success) {
+        this.$message.error(response.error)
       }
-    },
-    methods: {
-      handleUploaded(response) {
-        if (!response.success) {
-          this.$message.error(response.error)
-        }
 
-        this.url = this.newUrl = response.url
-      },
-      async submit() {
-        await this.api('users').patch(this.$parent.currentUser.username, {avatar: this.newUrl}).then(() => {
+      this.url = this.newUrl = response.url
+    },
+    async submit () {
+      await this.$http
+        .patch(`users/{this.$parent.currentUser.username}`, {
+          avatar: this.newUrl
+        })
+        .then(() => {
           this.$message.success('头像已更新')
           this.$store.dispatch('loadUser')
         })
-      }
     }
   }
+}
 </script>

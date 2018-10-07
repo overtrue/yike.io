@@ -2,7 +2,7 @@
   <div class="box box-flush text-gray-50">
     <div class="box-body">
       <div class="d-flex align-items-center justify-content-between">
-        <div class="text-13">最新成员</div>
+        <div class="text-13">最新戝员</div>
         <!--<button class="btn btn-ghost btn-icon"><arrow-right></arrow-right></button>-->
       </div>
     </div>
@@ -13,28 +13,29 @@
 </template>
 
 <script>
-  import UserMedia from "@components/user-media"
-  import ArrowRight from "@icons/arrow-right"
+import UserMedia from '@components/user-media'
+import ArrowRight from '@icons/arrow-right'
 
-  export default {
-    name: 'NewUsers',
-    components: {UserMedia, ArrowRight},
-    data() {
-      return {
-        users: []
-      }
-    },
-    methods: {
-      loadUsers() {
-        this.api('users').get('?latest=1&limit=12').then(users => this.users = users.data)
-      }
-    },
-    mounted() {
-      this.loadUsers()
+export default {
+  name: 'NewUsers',
+  components: { UserMedia, ArrowRight },
+  data () {
+    return {
+      users: []
     }
+  },
+  methods: {
+    loadUsers () {
+      this.$http
+        .get('users?latest=1&limit=12')
+        .then(users => (this.users = users.data))
+    }
+  },
+  mounted () {
+    this.loadUsers()
   }
+}
 </script>
 
 <style scoped>
-
 </style>

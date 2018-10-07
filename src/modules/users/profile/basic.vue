@@ -55,40 +55,40 @@
 </template>
 
 <script>
-  import {cloneDeepWith} from 'lodash'
-  import { mapGetters, mapActions } from 'vuex'
-  import Resource from '@utils/resource'
+import { cloneDeepWith } from 'lodash';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    data() {
-      return {
-        user: {
-          extends: {
-            home_url: '',
-            company: '',
-            location: ''
-          }
-        }
-      }
-    },
-    computed: {
-      ...mapGetters(['currentUser'])
-    },
-    created() {
-      this.user = cloneDeepWith(this.currentUser)
-    },
-    methods: {
-      ...mapActions(['setUser']),
-      async submit() {
-        let user = new Resource('users')
-
-        const result = await user.patch(this.user.username, this.user)
-
-        if (result) {
-          this.setUser(result)
-          this.$message.success('成功修改用户信息')
+export default {
+  data () {
+    return {
+      user: {
+        extends: {
+          home_url: '',
+          company: '',
+          location: ''
         }
       }
     }
+  },
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
+  created () {
+    this.user = cloneDeepWith(this.currentUser)
+  },
+  methods: {
+    ...mapActions(['setUser']),
+    async submit () {
+      const result = await this.$http.patch(
+        `users/${this.user.username}`,
+        this.user
+      )
+
+      if (result) {
+        this.setUser(result)
+        this.$message.success('成功修改用户信息')
+      }
+    }
   }
+}
 </script>

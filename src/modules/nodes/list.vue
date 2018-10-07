@@ -22,21 +22,21 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        nodes: []
-      }
-    },
-    created() {
-      this.getNodes()
-    },
-    methods: {
-      getNodes() {
-        this.api('nodes').get('?all=yes').then(({data}) => {
-          this.nodes = data
-        })
-      }
+export default {
+  data () {
+    return {
+      nodes: []
+    }
+  },
+  created () {
+    this.getNodes()
+  },
+  methods: {
+    getNodes () {
+      this.$http.get('nodes?all=yes').then(({ data }) => {
+        this.nodes = data
+      })
     }
   }
+}
 </script>

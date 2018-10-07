@@ -1,12 +1,10 @@
 import './bootstrap'
-
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
-import { default as store } from './vuex'
+import store from './vuex'
 import router from './router'
 import Root from './root'
 import http from '@utils/http'
-import Resource from '@utils/resource'
 import { Message } from 'element-ui'
 import 'element-ui/lib/theme-chalk/message.css'
 import 'element-ui/lib/theme-chalk/icon.css'
@@ -17,7 +15,6 @@ sync(store, router)
 
 Vue.prototype.$message = Message
 Vue.prototype.$http = http
-Vue.prototype.api = (resource, id = null) => new Resource(resource, id)
 Vue.prototype.$user = () => {
   return store.getters.currentUser
 }

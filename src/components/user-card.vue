@@ -3,7 +3,7 @@
     <div class="d-flex flex-md-row flex-column">
       <div class="d-flex align-items-center">
         <router-link :to="{name:'users.show', params: {username: user.username}}">
-          <img :src="user.avatar" class="avatar-40" :alt="user.name"/>
+          <img :src="user.avatar" class="avatar-40" :alt="user.name" />
         </router-link>
         <div class="ml-2">
           <router-link :to="{name:'users.show', params: {username: user.username}}">
@@ -25,19 +25,19 @@
 </template>
 
 <script>
-  import UserMedia from "@components/user-media"
-  import FollowBtn from '@components/buttons/follow-btn'
-  import MapMakerIcon from "@icons/map-marker"
-  import PlusIcon from "@icons/plus"
+import UserMedia from '@components/user-media'
+import FollowBtn from '@components/buttons/follow-btn'
+import MapMakerIcon from '@icons/map-marker'
+import PlusIcon from '@icons/plus'
 
-  export default {
-    name: 'UserCard',
-    props: {
-      user:{
-        type: Object,
-        required: true
-      }
-    },
-    components: {UserMedia, FollowBtn, MapMakerIcon, PlusIcon}
-  }
+export default {
+  name: 'UserCard',
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
+  components: { UserMedia, FollowBtn, MapMakerIcon, PlusIcon }
+}
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="box-heading">
-      <setting-icon class="mr-1 text-16"/>设置
+      <setting-icon class="mr-1 text-16" />设置
     </div>
     <div class="nav flex-column nav-pills">
       <router-link :to="{ name: 'user.profile' }" class="nav-link">基本资料</router-link>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-  import SettingIcon from '@icons/settings-outline'
+import SettingIcon from '@icons/settings-outline'
 
-  export default {
-    components: {
-      SettingIcon
-    }
+export default {
+  components: {
+    SettingIcon
   }
+}
 </script>

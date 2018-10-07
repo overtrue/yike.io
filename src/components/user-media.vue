@@ -1,12 +1,14 @@
 <template>
   <div class="user-media d-flex" v-if="type == 'default'">
     <router-link :to="{name:'users.show', params: {username: user.username}}">
-      <img :src="user.avatar" class="avatar-40" :alt="user.name"/>
+      <img :src="user.avatar" class="avatar-40" :alt="user.name" />
     </router-link>
     <div class="ml-2">
       <div>
         <router-link :to="{name:'users.show', params: {username: user.username}}">
-          <slot name="name"><h6 class="mb-0 text-16 d-inline-block" :class="nameClasses">{{ user.name }}</h6></slot>
+          <slot name="name">
+            <h6 class="mb-0 text-16 d-inline-block" :class="nameClasses">{{ user.name }}</h6>
+          </slot>
           <slot name="name-appends"></slot>
         </router-link>
       </div>
@@ -26,20 +28,20 @@
 </template>
 
 <script>
-  export default {
-    name: 'UserMedia',
-    props: {
-      type: {
-        type: String,
-        default: 'default',
-      },
-      user: {
-        type: Object
-      },
-      nameClasses: {
-        type: String,
-        default: 'text-black-50 text-14'
-      }
+export default {
+  name: 'UserMedia',
+  props: {
+    type: {
+      type: String,
+      default: 'default'
+    },
+    user: {
+      type: Object
+    },
+    nameClasses: {
+      type: String,
+      default: 'text-black-50 text-14'
     }
   }
+}
 </script>

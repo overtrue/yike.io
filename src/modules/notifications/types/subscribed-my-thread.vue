@@ -10,15 +10,15 @@
 </template>
 
 <script>
-  import Notification from './notification'
+import Notification from './notification'
 
-  export default {
-    components: { Notification },
-    props: {
-      notification: {
-        type: Object,
-        default: null
-      }
+export default {
+  components: { Notification },
+  props: {
+    notification: {
+      type: Object,
+      default: null
     }
   }
+}
 </script>

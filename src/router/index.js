@@ -10,23 +10,23 @@ import { routes as notifications } from '@modules/notifications'
 import { routes as nodes } from '@modules/nodes'
 import { routes as pages } from '@modules/pages'
 
-Vue.use(Router);
+Vue.use(Router)
 
 const AppRoute = {
   path: '/',
   component: () => import('../app'),
-  children: [...auth, ...element, ...home, ...threads, ...notifications, ...nodes, ...pages, ...users],
-};
+  children: [...auth, ...element, ...home, ...threads, ...notifications, ...nodes, ...pages, ...users]
+}
 
-const routes = [AppRoute];
+const routes = [AppRoute]
 
 const router = new Router({
   routes,
   linkActiveClass: 'active',
   linkExactActiveClass: 'active',
-  mode: 'history',
-});
+  mode: 'history'
+})
 
-router.beforeEach(beforeEach);
+router.beforeEach(beforeEach)
 
 export default router

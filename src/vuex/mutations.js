@@ -1,3 +1,3 @@
 export const toggle = state => {
-  return state.toggled = !state.toggled
+  return (state.toggled = !state.toggled)
 }
