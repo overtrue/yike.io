@@ -19,13 +19,18 @@ Then, run the project:
 npm run serve
 ```
 
-## Local Config
+## Config
 
-First, copy the `.env.example` to `.env.local`:
+First, copy the `.env.example` to `.env.[ENV]`:
+
 
 ```shell
+// local
 cp .env.example .env.local
+// production
+cp .env.example .env.production
 ```
+
 
 ## License
 
