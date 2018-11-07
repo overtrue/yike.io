@@ -25,9 +25,9 @@ export default {
     submit () {
       this.$http.post('user/forget-password', {
         email: this.email
+      }).then(() => {
+        this.$message.success('邮件发送成功，请及时查看您的邮箱！')
       })
-
-      this.$message.success('邮件发送成功，请及时查看您的邮箱！')
     }
   }
 }
