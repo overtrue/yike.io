@@ -7,6 +7,8 @@
 
 > 🏵后端源码：https://github.com/overtrue/api.yike.io
 
+开源中国 Gitee 仓库：[![Fork me on Gitee](https://gitee.com/overtrue/yike.io/widgets/widget_3.svg)](https://gitee.com/overtrue/yike.io)
+
 ## 安装
 
 克隆后先安装依赖：
