@@ -9,14 +9,14 @@ Source code of https://yike.io.
 
 First, download the dependencies using Npm:
 
-```js
-npm install
+```shell
+$ npm install
 ```
 
 Then, run the project:
 
-```js
-npm run serve
+```shell
+$ npm run serve
 ```
 
 ## Config
