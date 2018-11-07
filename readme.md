@@ -21,13 +21,14 @@ $ npm run serve
 
 ## Config
 
-First, copy the `.env.example` to `.env.[ENV]`:
+Copy the `.env.example` to `.env.[ENV]`:
 
 
 ```shell
-// local
+# local
 cp .env.example .env.local
-// production
+
+# production
 cp .env.example .env.production
 ```
 
