@@ -3,23 +3,31 @@
 
 <h1 align="left"><a href="https://yike.io">Yike.io</a></h1>
 
-Source code of https://yike.io.
+论坛项目源码：https://yike.io, 基于 Vuejs 开发的 Laravel SPA 项目。
 
-## Installation
+> 🏵后端源码：https://github.com/overtrue/api.yike.io
 
-First, download the dependencies using Npm:
+## 安装
+
+克隆后先安装依赖：
 
 ```shell
 $ npm install
 ```
 
-Then, run the project:
+或者使用 yarn：
+
+```shell
+$ yarn install 
+```
+
+跑测试服务：
 
 ```shell
 $ npm run serve
 ```
 
-## Config
+## 配置
 
 Copy the `.env.example` to `.env.[ENV]`:
 
@@ -31,6 +39,16 @@ cp .env.example .env.local
 # production
 cp .env.example .env.production
 ```
+
+其中有两个变量是你在安装后端时 `passport:install` 得到的 **Password Grant Client** 的 `id` 与 `secret`：
+
+```
+VUE_APP_AUTH_CLIENT_ID=
+VUE_APP_AUTH_CLIENT_SECRET=
+```
+
+如果你忘记了，就去找 `oauth_clients` 表中找吧。
+
 
 
 ## License
