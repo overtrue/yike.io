@@ -58,7 +58,6 @@
                       <alert-box-icon class="mr-1"></alert-box-icon> 举报
                     </button>
                   </div>
-                  <report-form :visible="showReportForm" @close="showReportForm = false"></report-form>
                 </li>
                 <li class="nav-item ml-auto">
                   <subscribe-btn relation="thread" :item="thread" />
@@ -98,6 +97,7 @@
       </div>
     </div>
     <wechat-qrcode />
+    <report-form :visible="showReportForm" @close="showReportForm = false" />
   </div>
 </template>
 
