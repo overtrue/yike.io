@@ -34,10 +34,10 @@ export default {
     report () {
       this.$http.post(`threads/${this.$route.params.id}/report`, {
         remark: this.remark
+      }).then(() => {
+        this.close()
+        this.$message.success('举报成功！')
       })
-
-      this.close()
-      this.$message.success('举报成功！')
     },
     close () {
       this.$emit('close')
