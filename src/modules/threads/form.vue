@@ -144,7 +144,7 @@ export default {
         .then(thread => (this.form = Object.assign(this.form, thread)))
     },
     showCaptcha (draft) {
-      let captcha = new TencentCaptcha('2070170938', res => {
+      let captcha = new TencentCaptcha(process.env.VUE_APP_CAPTCHA_ID_PUBLISH, res => {
         if (res.ret === 0) {
           this.form.ticket = res.ticket
           this.form.randstr = res.randstr
