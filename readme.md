@@ -55,6 +55,16 @@ VUE_APP_AUTH_CLIENT_SECRET=
 
 
 
+配置 [腾讯防水墙](https://007.qq.com/) ID , 需要跟后端一致
+
+```env
+# 腾讯防水墙配置
+VUE_APP_CAPTCHA_ID_REGISTER=
+VUE_APP_CAPTCHA_ID_PUBLISH=
+```
+
+
+
 ## License
 
 MIT
