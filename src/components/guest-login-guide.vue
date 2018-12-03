@@ -18,7 +18,7 @@ export default {
 
 <style scoped>
 .guest-login-guide {
-  background: url('/banners/technology.jpg');
+  background: url("/banners/technology.jpg");
   background-size: 160%;
   background-position: center;
 }

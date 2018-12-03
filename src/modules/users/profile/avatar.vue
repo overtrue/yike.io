@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import AvatarCropper from 'vue-avatar-cropper';
-import { mapGetters } from 'vuex';
+import AvatarCropper from 'vue-avatar-cropper'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { AvatarCropper },
@@ -30,7 +30,7 @@ export default {
   computed: {
     ...mapGetters(['authToken']),
     uploadUrl () {
-      return this.$http.defaults.baseURL + '/files/upload';
+      return this.$http.defaults.baseURL + '/files/upload'
     },
     uploadHeaders () {
       return {

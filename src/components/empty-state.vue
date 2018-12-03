@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import EmptyIcon from '@icons/tooltip-outline'
+import EmptyIcon from "@icons/tooltip-outline"
 
 export default {
-  name: 'empty-state',
+  name: "empty-state",
   components: { EmptyIcon },
   props: {
     title: {
@@ -29,7 +29,7 @@ export default {
     },
     message: {
       type: String,
-      default: '空空如也~~~'
+      default: "空空如也~~~"
     }
   }
 }

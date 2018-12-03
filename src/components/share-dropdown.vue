@@ -37,18 +37,26 @@ export default {
     return {
       url: encodeURI(window.location.href),
       title: encodeURIComponent(window.document.title),
-      description: '',
+      description: ''
     }
   },
   computed: {
     weibo () {
-      return `https://service.weibo.com/share/share.php?url=${this.url}&title=${this.title}&pic=&appkey=`
+      return `https://service.weibo.com/share/share.php?url=${this.url}&title=${
+        this.title
+      }&pic=&appkey=`
     },
     qq () {
-      return `http://connect.qq.com/widget/shareqq/index.html?url=${this.url}&title=${this.title}&source=${window.location.host}&desc=${this.description}`
+      return `http://connect.qq.com/widget/shareqq/index.html?url=${
+        this.url
+      }&title=${this.title}&source=${window.location.host}&desc=${
+        this.description
+      }`
     },
     qzone () {
-      return `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${this.url}&summary=${this.title}&site=${window.location.host}`
+      return `http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${
+        this.url
+      }&summary=${this.title}&site=${window.location.host}`
     }
   },
   methods: {
@@ -58,7 +66,13 @@ export default {
         return encodeURIComponent(d.getAttribute('content'))
       }
 
-      return encodeURIComponent(document.querySelector('.markdown-body').textContent.substr(0, 40).trim().replace(new RegExp(/\n/, 'g'), ''))
+      return encodeURIComponent(
+        document
+          .querySelector('.markdown-body')
+          .textContent.substr(0, 40)
+          .trim()
+          .replace(new RegExp(/\n/, 'g'), '')
+      )
     }
   },
   mounted () {

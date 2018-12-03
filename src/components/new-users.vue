@@ -7,14 +7,19 @@
       </div>
     </div>
     <ul class="plan-list px-2 pb-2">
-      <user-media type="vertical w25" v-for="item in users" :key="item.id" :user="item"></user-media>
+      <user-media
+        type="vertical w25"
+        v-for="item in users"
+        :key="item.id"
+        :user="item"
+      ></user-media>
     </ul>
   </div>
 </template>
 
 <script>
-import UserMedia from '@components/user-media'
-import ArrowRight from '@icons/arrow-right'
+import UserMedia from '@components/user-media';
+import ArrowRight from '@icons/arrow-right';
 
 export default {
   name: 'NewUsers',

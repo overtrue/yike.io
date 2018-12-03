@@ -84,22 +84,22 @@
 </template>
 
 <script>
-import Editor from '@components/editor'
-import Paginator from '@components/paginator'
-import MarkdownBody from '@components/markdown-body'
-import UserMedia from '@components/user-media'
-import localforage from 'localforage'
-import { mapGetters } from 'vuex'
+import Editor from "@components/editor"
+import Paginator from "@components/paginator"
+import MarkdownBody from "@components/markdown-body"
+import UserMedia from "@components/user-media"
+import localforage from "localforage"
+import { mapGetters } from "vuex"
 
-import ThumbUp from '@icons/thumb-up'
-import Reply from '@icons/reply'
-import Markdown from '@icons/markdown'
-import ThumbDown from '@icons/thumb-down'
-import ThumbUpOutline from '@icons/thumb-up-outline'
-import ThumbDownOutline from '@icons/thumb-down-outline'
+import ThumbUp from "@icons/thumb-up"
+import Reply from "@icons/reply"
+import Markdown from "@icons/markdown"
+import ThumbDown from "@icons/thumb-down"
+import ThumbUpOutline from "@icons/thumb-up-outline"
+import ThumbDownOutline from "@icons/thumb-down-outline"
 
 export default {
-  name: 'comments',
+  name: "comments",
   components: {
     Editor,
     UserMedia,
@@ -113,15 +113,15 @@ export default {
     ThumbDownOutline
   },
   computed: {
-    ...mapGetters(['currentUser']),
-    formReady () {
+    ...mapGetters(["currentUser"]),
+    formReady() {
       return this.content.length >= 3
     },
-    cacheKey () {
+    cacheKey() {
       return (
-        'comment.content_' +
-        this.objectType.replace('\\\\', '_').toLowerCase() +
-        '_' +
+        "comment.content_" +
+        this.objectType.replace("\\\\", "_").toLowerCase() +
+        "_" +
         this.objectId
       )
     }
@@ -133,13 +133,13 @@ export default {
     },
     objectType: {
       type: String,
-      default: 'App\\Thread'
+      default: "App\\Thread"
     }
   },
-  data () {
+  data() {
     return {
       writing: false,
-      content: '',
+      content: "",
       comments: [],
       editorOptions: {
         minLines: 3,
@@ -156,21 +156,21 @@ export default {
   watch: {
     query: {
       deep: true,
-      handler () {
+      handler() {
         this.$router.replace({ query: this.query })
         this.loadComments()
       }
     },
-    content () {
+    content() {
       localforage.setItem(this.cacheKey, this.content)
     },
-    writing () {
+    writing() {
       if (!this.writing) {
-        this.content = ''
+        this.content = ""
         localforage.removeItem(this.cacheKey)
-        this.$refs['editor'].editor.setValue('')
+        this.$refs["editor"].editor.setValue("")
       } else {
-        let editor = this.$refs['editor'].editor
+        let editor = this.$refs["editor"].editor
         editor.focus()
         setTimeout(() => {
           editor.setCursor(editor.lineCount(), 0)
@@ -178,7 +178,7 @@ export default {
       }
     }
   },
-  mounted () {
+  mounted() {
     this.loadComments().then(() => {
       if (window.location.hash.length > 0) {
         setTimeout(() => {
@@ -189,15 +189,15 @@ export default {
     this.syncCachedContent()
   },
   methods: {
-    handlePaginate (page) {
+    handlePaginate(page) {
       this.query.page = page
     },
-    vote (type = 'up', item, index) {
+    vote(type = "up", item, index) {
       if (!this.$user().id) {
-        return this.$router.push({ name: 'auth.login' })
+        return this.$router.push({ name: "auth.login" })
       }
 
-      let reverse = type == 'up' ? 'down' : 'up'
+      let reverse = type == "up" ? "down" : "up"
 
       if (item[`has_${type}_voted`]) {
         this.$http.post(`comments/${item.id}/cancel-vote`)
@@ -215,33 +215,33 @@ export default {
         this.comments.data[index][`has_${type}_voted`] = true
       }
     },
-    reply (item) {
+    reply(item) {
       if (!this.$user().id) {
-        return this.$router.push({ name: 'auth.login' })
+        return this.$router.push({ name: "auth.login" })
       }
       this.content = `@${item.user.username} `
       this.writing = true
       window.scrollTo(0, document.querySelector('[name="comments"]').offsetTop)
     },
-    submit () {
+    submit() {
       this.$http
-        .post('comments', {
+        .post("comments", {
           commentable_type: this.objectType,
           commentable_id: this.objectId,
           content: {
             markdown: this.content,
-            type: 'markdown'
+            type: "markdown"
           }
         })
         .then(() => {
-          this.content = ''
+          this.content = ""
           this.writing = false
-          this.$message.success('评论成功！')
-          this.$emit('created')
+          this.$message.success("评论成功！")
+          this.$emit("created")
           this.loadComments()
         })
     },
-    syncCachedContent () {
+    syncCachedContent() {
       localforage.getItem(this.cacheKey, (err, content) => {
         if (!err && content && content.length > 0) {
           this.writing = true
@@ -249,17 +249,19 @@ export default {
         }
       })
     },
-    loadComments () {
-      return this.$http.get(
-        `comments?commentable_type=${this.objectType}&commentable_id=${
-          this.objectId
-        }&page=${this.query.page}`
-      ).then(comments => {
-        this.comments = comments
-        this.mapCommentsUserForMention(comments.data)
-      })
+    loadComments() {
+      return this.$http
+        .get(
+          `comments?commentable_type=${this.objectType}&commentable_id=${
+            this.objectId
+          }&page=${this.query.page}`
+        )
+        .then(comments => {
+          this.comments = comments
+          this.mapCommentsUserForMention(comments.data)
+        })
     },
-    mapCommentsUserForMention (comments) {
+    mapCommentsUserForMention(comments) {
       comments.map(comment => {
         window.pageUsers.some(u => u.id === comment.user_id) ||
           window.pageUsers.push(comment.user)

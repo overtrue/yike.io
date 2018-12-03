@@ -44,7 +44,15 @@ import TopIcon from '@icons/format-vertical-align-top'
 
 export default {
   name: 'threads-list',
-  components: { LikeIcon, CommentIcon, ViewIcon, MedalIcon, TopIcon, Paginator, EmptyState },
+  components: {
+    LikeIcon,
+    CommentIcon,
+    ViewIcon,
+    MedalIcon,
+    TopIcon,
+    Paginator,
+    EmptyState
+  },
   props: {
     threads: {
       type: Object,

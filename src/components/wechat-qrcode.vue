@@ -17,7 +17,11 @@ export default {
   name: 'wechat-qrcode',
   mounted () {
     setTimeout(() => {
-      QRCode.toCanvas(document.getElementById('page-wechat-qrcode-canvas'), window.location.href, { width: 200 })
+      QRCode.toCanvas(
+        document.getElementById('page-wechat-qrcode-canvas'),
+        window.location.href,
+        { width: 200 }
+      )
     }, 500)
 
     document.body.appendChild(this.$refs['pageWechatQrcode'])

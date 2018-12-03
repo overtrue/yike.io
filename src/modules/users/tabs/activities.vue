@@ -62,10 +62,10 @@
 </template>
 
 <script>
-import UserCard from '@components/user-card';
-import ArrowDownIcon from '@icons/arrow-down';
-import SourceCommitEnd from '@icons/source-commit-end';
-import EmptyState from '@components/empty-state';
+import UserCard from '@components/user-card'
+import ArrowDownIcon from '@icons/arrow-down'
+import SourceCommitEnd from '@icons/source-commit-end'
+import EmptyState from '@components/empty-state'
 
 export default {
   name: 'user-activities',
@@ -98,22 +98,22 @@ export default {
   methods: {
     subjectLink (activity) {
       switch (activity.subject_type) {
-        case 'App\\Thread':
-          if (activity.log_name == 'commented.thread') {
-            return {
-              name: 'threads.show',
-              params: { id: activity.subject.id },
-              hash: '#comment-' + activity.properties.comment_id || 0
-            }
-          }
-          return { name: 'threads.show', params: { id: activity.subject.id } }
-        case 'App\\Comment':
-          return { name: 'threads.show', params: { id: activity.subject.id } }
-        case 'App\\User':
+      case 'App\\Thread':
+        if (activity.log_name == 'commented.thread') {
           return {
-            name: 'users.show',
-            params: { id: activity.subject.username }
+            name: 'threads.show',
+            params: { id: activity.subject.id },
+            hash: '#comment-' + activity.properties.comment_id || 0
           }
+        }
+        return { name: 'threads.show', params: { id: activity.subject.id } }
+      case 'App\\Comment':
+        return { name: 'threads.show', params: { id: activity.subject.id } }
+      case 'App\\User':
+        return {
+          name: 'users.show',
+          params: { id: activity.subject.username }
+        }
       }
       return {}
     },

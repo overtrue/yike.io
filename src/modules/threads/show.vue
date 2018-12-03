@@ -102,35 +102,35 @@
 </template>
 
 <script>
-import moment from 'moment';
-import MedalIcon from '@icons/medal';
-import LockIcon from '@icons/lock-alert';
-import TopIcon from '@icons/format-vertical-align-top';
-import PencilIcon from '@icons/pencil';
-import DeleteIcon from '@icons/delete';
-import AlertBoxIcon from '@icons/alert-box';
-import UserMedia from '@components/user-media';
-import HotTags from '@components/hot-tags';
-import UserListCard from '@components/user-list-card';
-import WechatQrcode from '@components/wechat-qrcode';
-import Comments from '@components/comments';
-import StarIcon from '@icons/star';
-import MoreIcon from '@icons/dots-horizontal';
-import ShareIcon from '@icons/share';
-import SubscribeBtn from '@components/buttons/subscribe-btn';
-import FollowBtn from '@components/buttons/follow-btn';
-import LikeBtn from '@components/buttons/like-btn';
-import MarkdownBody from '@components/markdown-body';
-import ReportForm from './report-form';
-import AnimateAction from '@components/buttons/animate-action';
-import ShareAction from '@components/buttons/share-action';
-import UserProfileCard from '@components/user-profile-card';
-import ShareDropdown from '@components/share-dropdown';
+import moment from 'moment'
+import MedalIcon from '@icons/medal'
+import LockIcon from '@icons/lock-alert'
+import TopIcon from '@icons/format-vertical-align-top'
+import PencilIcon from '@icons/pencil'
+import DeleteIcon from '@icons/delete'
+import AlertBoxIcon from '@icons/alert-box'
+import UserMedia from '@components/user-media'
+import HotTags from '@components/hot-tags'
+import UserListCard from '@components/user-list-card'
+import WechatQrcode from '@components/wechat-qrcode'
+import Comments from '@components/comments'
+import StarIcon from '@icons/star'
+import MoreIcon from '@icons/dots-horizontal'
+import ShareIcon from '@icons/share'
+import SubscribeBtn from '@components/buttons/subscribe-btn'
+import FollowBtn from '@components/buttons/follow-btn'
+import LikeBtn from '@components/buttons/like-btn'
+import MarkdownBody from '@components/markdown-body'
+import ReportForm from './report-form'
+import AnimateAction from '@components/buttons/animate-action'
+import ShareAction from '@components/buttons/share-action'
+import UserProfileCard from '@components/user-profile-card'
+import ShareDropdown from '@components/share-dropdown'
 
-import CommentIcon from '@icons/comment';
-import ViewIcon from '@icons/eye';
+import CommentIcon from '@icons/comment'
+import ViewIcon from '@icons/eye'
 
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
   components: {

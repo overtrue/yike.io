@@ -40,7 +40,15 @@ import ClipboardJS from 'clipboard'
 
 export default {
   name: 'share-action',
-  components: { RelationBtn, LinkVariant, VolumeMute, VolumeHigh, CheckIcon, TwitterIcon, FacebookIcon },
+  components: {
+    RelationBtn,
+    LinkVariant,
+    VolumeMute,
+    VolumeHigh,
+    CheckIcon,
+    TwitterIcon,
+    FacebookIcon
+  },
   props: {
     item: {
       type: Object,
@@ -54,7 +62,8 @@ export default {
       weibo: '',
       twitter: '',
       facebook: '',
-      btnClasses: 'btn btn-icon d-block mx-auto mt-2 bg-white text-18 text-gray-50',
+      btnClasses:
+        'btn btn-icon d-block mx-auto mt-2 bg-white text-18 text-gray-50',
       hovering: false,
       title: encodeURIComponent(this.item.title + ' -- via ' + document.title)
     }
@@ -66,8 +75,12 @@ export default {
   },
   mounted () {
     let url = encodeURIComponent(window.location.href)
-    this.weibo = `https://service.weibo.com/share/share.php?url=${url}&title=${this.title}&pic=&appkey=`
-    this.twitter = `https://twitter.com/intent/tweet?text=${this.title}&url=${url}`
+    this.weibo = `https://service.weibo.com/share/share.php?url=${url}&title=${
+      this.title
+    }&pic=&appkey=`
+    this.twitter = `https://twitter.com/intent/tweet?text=${
+      this.title
+    }&url=${url}`
     this.facebook = `https://www.facebook.com/sharer/sharer.php?u=${url}`
 
     let btn = new ClipboardJS('.copy-link')

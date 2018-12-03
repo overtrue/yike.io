@@ -37,17 +37,17 @@
 </template>
 
 <script>
-import BellIcon from '@icons/bell';
-import InboxIcon from '@icons/inbox';
-import CheckIcon from '@icons/check';
-import EmptyState from '@components/empty-state';
+import BellIcon from '@icons/bell'
+import InboxIcon from '@icons/inbox'
+import CheckIcon from '@icons/check'
+import EmptyState from '@components/empty-state'
 
-import NewFollower from './types/new-follower';
-import CommentMyThread from './types/comment-my-thread';
-import LikedMyThread from './types/liked-my-thread';
-import MentionedMe from './types/mentioned-me';
-import SubscribedMyThread from './types/subscribed-my-thread';
-import Welcome from './types/welcome';
+import NewFollower from './types/new-follower'
+import CommentMyThread from './types/comment-my-thread'
+import LikedMyThread from './types/liked-my-thread'
+import MentionedMe from './types/mentioned-me'
+import SubscribedMyThread from './types/subscribed-my-thread'
+import Welcome from './types/welcome'
 
 export default {
   components: {

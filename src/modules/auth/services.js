@@ -19,7 +19,7 @@ export const postRegister = payload => {
 }
 
 // get current user's data
-export const loadUserData = () => http.get('/me')
+export const loadUserData = () => http.get('/me').catch(() => {})
 
 // revoke current token
 export const revokeToken = token => http.post('/oauth/tokens/' + token)

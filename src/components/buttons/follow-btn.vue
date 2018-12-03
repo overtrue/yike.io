@@ -22,14 +22,14 @@
 </template>
 
 <script>
-import RelationBtn from './relation-btn'
-import PlusIcon from '@icons/plus'
-import CheckIcon from '@icons/check'
-import CloseIcon from '@icons/close'
-import { mapGetters } from 'vuex'
+import RelationBtn from "./relation-btn"
+import PlusIcon from "@icons/plus"
+import CheckIcon from "@icons/check"
+import CloseIcon from "@icons/close"
+import { mapGetters } from "vuex"
 
 export default {
-  name: 'follow-btn',
+  name: "follow-btn",
   components: {
     RelationBtn,
     PlusIcon,
@@ -46,13 +46,13 @@ export default {
       default: false
     }
   },
-  data () {
+  data() {
     return {
       hovering: false
     }
   },
   computed: {
-    ...mapGetters(['currentUser'])
+    ...mapGetters(["currentUser"])
   }
 }
 </script>

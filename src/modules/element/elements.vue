@@ -100,15 +100,72 @@ import BellIcon from '@icons/bell'
 import MsgProcessing from '@icons/message-processing'
 import AccountCircleIcon from '@icons/account-circle'
 export default {
-  components: { MenuIcon, AndroidIcon, UbuntuIcon, AccountCircleIcon, MsgProcessing, BellIcon },
+  components: {
+    MenuIcon,
+    AndroidIcon,
+    UbuntuIcon,
+    AccountCircleIcon,
+    MsgProcessing,
+    BellIcon
+  },
   data () {
     return {
       textSizes: [10, 12, 13, 14, 16, 18, 20, 22, 24, 36, 48],
       avatars: [30, 40, 45, 60, 80, 120],
-      grayDegrees: [5, 10, 15, 20, 30, 40, 50, 60, 70, 75, 80, 85, 90, 92, 94, 96, 97, 98],
+      grayDegrees: [
+        5,
+        10,
+        15,
+        20,
+        30,
+        40,
+        50,
+        60,
+        70,
+        75,
+        80,
+        85,
+        90,
+        92,
+        94,
+        96,
+        97,
+        98
+      ],
       shadowDegrees: [0, 6, 30, 60],
-      aliasItems: ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark'],
-      colorItems: ['blue', 'indigo', 'purple', 'pink', 'red', 'orange', 'yellow', 'green', 'teal', 'cyan', 'teal-blue', 'tiffany', 'orchid', 'bronze', 'facebook', 'twitter', 'pinterest', 'raisin-black', 'charcoal', 'payne-grey', 'grey-blue']
+      aliasItems: [
+        'primary',
+        'secondary',
+        'success',
+        'danger',
+        'warning',
+        'info',
+        'light',
+        'dark'
+      ],
+      colorItems: [
+        'blue',
+        'indigo',
+        'purple',
+        'pink',
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'teal',
+        'cyan',
+        'teal-blue',
+        'tiffany',
+        'orchid',
+        'bronze',
+        'facebook',
+        'twitter',
+        'pinterest',
+        'raisin-black',
+        'charcoal',
+        'payne-grey',
+        'grey-blue'
+      ]
     }
   }
 }

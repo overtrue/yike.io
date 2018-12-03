@@ -61,11 +61,15 @@ export default {
   },
   computed: {
     formReady () {
-      return !this.error && this.email.match(this.regex.email) &&
+      return (
+        !this.error &&
+        this.email.match(this.regex.email) &&
         this.username.match(this.regex.username) &&
         this.username.length >= 5 &&
         this.username.length <= 12 &&
-        this.password.length >= 6 && this.password.length <= 32
+        this.password.length >= 6 &&
+        this.password.length <= 32
+      )
     }
   },
   methods: {
@@ -73,19 +77,24 @@ export default {
     validateUsername () {
       this.error = false
 
-      if (!this.username.match(this.regex.username) || this.username.length < 5) {
+      if (
+        !this.username.match(this.regex.username) ||
+        this.username.length < 5
+      ) {
         this.error = true
         this.$refs['usernameInput'].classList.add('is-invalid')
         return this.$message.error('请输入 5 ~ 12 位正确格式用户名')
       }
 
-      this.$http.post('user/exists', { username: this.username }).then(response => {
-        if (!response.success) {
-          this.error = true
-          this.$refs['usernameInput'].classList.add('is-invalid')
-          return this.$message.error('用户名已经存在！')
-        }
-      })
+      this.$http
+        .post('user/exists', { username: this.username })
+        .then(response => {
+          if (!response.success) {
+            this.error = true
+            this.$refs['usernameInput'].classList.add('is-invalid')
+            return this.$message.error('用户名已经存在！')
+          }
+        })
     },
     validateEmail () {
       this.error = false
@@ -105,15 +114,18 @@ export default {
       })
     },
     showCaptcha () {
-      let captcha = new TencentCaptcha(process.env.VUE_APP_CAPTCHA_ID_REGISTER, (res) => {
-        if (res.ret === 0) {
-          this.ticket = res.ticket
-          this.randstr = res.randstr
-          this.submit()
-        } else {
-          return this.$message.error('请先完成验证！')
+      let captcha = new TencentCaptcha(
+        process.env.VUE_APP_CAPTCHA_ID_REGISTER,
+        res => {
+          if (res.ret === 0) {
+            this.ticket = res.ticket
+            this.randstr = res.randstr
+            this.submit()
+          } else {
+            return this.$message.error('请先完成验证！')
+          }
         }
-      })
+      )
       captcha.show()
     },
     async submit () {

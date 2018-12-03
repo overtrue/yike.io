@@ -25,27 +25,27 @@
         </div>
       </div>
       <div class="col-md-3">
-        <guest-login-guide class="mb-2"/>
-        <quick-docs class="mb-2"/>
-        <hot-tags/>
-        <user-ranking class="mt-2"/>
-        <new-users class="mt-2"/>
+        <guest-login-guide class="mb-2" />
+        <quick-docs class="mb-2" />
+        <hot-tags />
+        <user-ranking class="mt-2" />
+        <new-users class="mt-2" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Banner from "@components/banner";
-import HotTags from "@components/hot-tags";
-import UserRanking from "@components/user-ranking";
-import NewUsers from "@components/new-users";
-import QuickDocs from "@components/quick-docs";
-import ThreadsList from "@components/threads-list";
-import GuestLoginGuide from "@components/guest-login-guide";
+import Banner from '@components/banner'
+import HotTags from '@components/hot-tags'
+import UserRanking from '@components/user-ranking'
+import NewUsers from '@components/new-users'
+import QuickDocs from '@components/quick-docs'
+import ThreadsList from '@components/threads-list'
+import GuestLoginGuide from '@components/guest-login-guide'
 
 export default {
-  data() {
+  data () {
     return {
       threads: {
         default: {},
@@ -53,8 +53,8 @@ export default {
         zeroComment: {},
         recent: {}
       },
-      currentThreadsTab: "default"
-    };
+      currentThreadsTab: 'default'
+    }
   },
   components: {
     Banner,
@@ -66,22 +66,22 @@ export default {
     GuestLoginGuide
   },
   watch: {
-    currentThreadsTab() {
-      this.loadThreads(1);
+    currentThreadsTab () {
+      this.loadThreads(1)
     }
   },
   methods: {
-    loadThreads(page = 1) {
+    loadThreads (page = 1) {
       this.$http
         .get(`threads?tab=${this.currentThreadsTab}&page=${page}`)
-        .then(threads => (this.threads[this.currentThreadsTab] = threads));
+        .then(threads => (this.threads[this.currentThreadsTab] = threads))
     },
-    handlePageChanged(page) {
-      this.loadThreads(page);
+    handlePageChanged (page) {
+      this.loadThreads(page)
     }
   },
-  mounted() {
-    this.loadThreads();
+  mounted () {
+    this.loadThreads()
   }
-};
+}
 </script>

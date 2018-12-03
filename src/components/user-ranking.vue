@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import UserMedia from '@components/user-media';
-import ArrowRightIcon from '@icons/arrow-right';
-import CheckIcon from '@icons/check';
-import PlusIcon from '@icons/plus';
-import FollowBtn from '@components/buttons/follow-btn';
+import UserMedia from '@components/user-media'
+import ArrowRightIcon from '@icons/arrow-right'
+import CheckIcon from '@icons/check'
+import PlusIcon from '@icons/plus'
+import FollowBtn from '@components/buttons/follow-btn'
 
 export default {
   name: 'NewUsers',
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     loadUsers () {
-      this.$http.get('users?limit=10').then(users => this.users = users.data)
+      this.$http.get('users?limit=10').then(users => (this.users = users.data))
     }
   },
   mounted () {

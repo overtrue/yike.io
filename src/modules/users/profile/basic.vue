@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import { cloneDeepWith } from 'lodash';
-import { mapGetters, mapActions } from 'vuex';
+import { cloneDeepWith } from 'lodash'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {

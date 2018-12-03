@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import HotTags from '@components/hot-tags';
-import ThreadsList from '@components/threads-list';
-import SubscribeBtn from '@components/buttons/subscribe-btn';
+import { mapGetters } from 'vuex'
+import HotTags from '@components/hot-tags'
+import ThreadsList from '@components/threads-list'
+import SubscribeBtn from '@components/buttons/subscribe-btn'
 
 export default {
   components: { SubscribeBtn, HotTags, ThreadsList },
