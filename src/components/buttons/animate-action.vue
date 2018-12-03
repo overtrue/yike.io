@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import mojs from 'mo-js';
-import ThumbUpOutline from '@icons/thumb-up-outline';
-import ThumbUp from '@icons/thumb-up';
-import RelationBtn from './relation-btn';
-import { mapGetters } from 'vuex';
+import mojs from 'mo-js'
+import ThumbUpOutline from '@icons/thumb-up-outline'
+import ThumbUp from '@icons/thumb-up'
+import RelationBtn from './relation-btn'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { RelationBtn, ThumbUp, ThumbUpOutline },
@@ -64,11 +64,11 @@ export default {
       this.likers = this.$parent.thread.cache.likes_count
 
       if (this.item.has_liked) {
-        clapCount.innerHTML = '-1';
+        clapCount.innerHTML = '-1'
         clapTotalCount.innerHTML = this.likers - 1
         this.likers--
       } else {
-        clapCount.innerHTML = '+1';
+        clapCount.innerHTML = '+1'
         clapTotalCount.innerHTML = this.likers + 1
         this.likers++
       }
@@ -139,7 +139,7 @@ export default {
       scale: { 1.3: 1 },
       easing: mojs.easing.out
     })
-    clap.style.transform = 'scale(1, 1)'; /*Bug1 fix */
+    clap.style.transform = 'scale(1, 1)' /* Bug1 fix */
 
     this.animationTimeline = new mojs.Timeline()
     this.animationTimeline.add([
@@ -192,7 +192,7 @@ $secondary-color: #0078ff;
   width: $btn-dimension;
   height: $btn-dimension;
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

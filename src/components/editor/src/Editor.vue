@@ -115,7 +115,9 @@ export default {
   },
   watch: {
     value () {
-      if (this.contentBackup == this.value) { return }
+      if (this.contentBackup == this.value) {
+        return
+      }
       this.setValue()
     }
   },
@@ -137,11 +139,11 @@ export default {
         matchBothTags: true,
         value: this.value || '',
         profile: 'html',
-        extraKeys: { 'Enter': 'newlineAndIndentContinueMarkdownList' }
+        extraKeys: { Enter: 'newlineAndIndentContinueMarkdownList' }
       })
       this.editor.on('change', EmojiCompleter)
       this.editor.on('change', AtCompleter)
-      this.editor.on('change', (editor) => {
+      this.editor.on('change', editor => {
         let content = editor.getValue()
         this.$emit('input', content)
         this.contentBackup = content
@@ -163,10 +165,12 @@ export default {
     },
     preview () {
       if (this.value.length <= 0) {
-        return this.html = '请先输入内容'
+        return (this.html = '请先输入内容')
       }
       this.html = '预览生成中...'
-      this.$http.post('contents/preview', { markdown: this.value }).then(html => this.html = html)
+      this.$http
+        .post('contents/preview', { markdown: this.value })
+        .then(html => (this.html = html))
     }
   },
   mounted () {

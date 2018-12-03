@@ -10,7 +10,7 @@ export default {
   name: 'oauth',
   mounted () {
     let platform = this.$route.params.platform
-    if (this.$route.name == 'auth.oauth_redirect') {
+    if (this.$route.name === 'auth.oauth_redirect') {
       this.$http.get('oauth/redirect-url/' + platform).then(redirectUrl => {
         window.location = redirectUrl
       })

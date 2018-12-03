@@ -2,7 +2,7 @@
   <div class="box box-flush">
     <!--<form class="box-body" v-if="users.data && users.data.length > 0">-->
     <!--<div class="input-group">-->
-    <!--<input type="text" class="form-control border-0" placeholder="搜索用户">-->
+    <!--<input type="text" class="form-control border-0" placeholder="杜索用户">-->
     <!--</div>-->
     <!--</form>-->
     <div class="list-group list-group-flush">
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import EmptyState from '@components/empty-state';
-import UserListItem from '@components/user-list-item';
-import Paginator from '@components/paginator';
-import EmailIcon from '@icons/email';
-import PlusIcon from '@icons/plus';
+import { mapGetters } from 'vuex'
+import EmptyState from '@components/empty-state'
+import UserListItem from '@components/user-list-item'
+import Paginator from '@components/paginator'
+import EmailIcon from '@icons/email'
+import PlusIcon from '@icons/plus'
 
 export default {
   name: 'user-followers',

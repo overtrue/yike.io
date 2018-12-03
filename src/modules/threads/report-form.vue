@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import { Dialog } from 'element-ui';
-import 'element-ui/lib/theme-chalk/dialog.css';
+import { Dialog } from 'element-ui'
+import 'element-ui/lib/theme-chalk/dialog.css'
 
 export default {
   components: {
@@ -32,12 +32,14 @@ export default {
   },
   methods: {
     report () {
-      this.$http.post(`threads/${this.$route.params.id}/report`, {
-        remark: this.remark
-      }).then(() => {
-        this.close()
-        this.$message.success('举报成功！')
-      })
+      this.$http
+        .post(`threads/${this.$route.params.id}/report`, {
+          remark: this.remark
+        })
+        .then(() => {
+          this.close()
+          this.$message.success('举报成功！')
+        })
     },
     close () {
       this.$emit('close')

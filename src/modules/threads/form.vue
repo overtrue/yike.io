@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import Editor from '@components/editor';
-import UserLocked from '@components/user-locked';
-import localforage from 'localforage';
-import Alert from '@icons/alert-circle';
-import { Select as ElSelect, Option as ElOption } from 'element-ui';
-import 'element-ui/lib/theme-chalk/select.css';
+import { mapGetters } from 'vuex'
+import Editor from '@components/editor'
+import UserLocked from '@components/user-locked'
+import localforage from 'localforage'
+import Alert from '@icons/alert-circle'
+import { Select as ElSelect, Option as ElOption } from 'element-ui'
+import 'element-ui/lib/theme-chalk/select.css'
 
 export default {
   name: 'thread-form',
@@ -144,15 +144,18 @@ export default {
         .then(thread => (this.form = Object.assign(this.form, thread)))
     },
     showCaptcha (draft) {
-      let captcha = new TencentCaptcha(process.env.VUE_APP_CAPTCHA_ID_PUBLISH, res => {
-        if (res.ret === 0) {
-          this.form.ticket = res.ticket
-          this.form.randstr = res.randstr
-          this.submit(draft)
-        } else {
-          return this.$message.error('请先完成验证！')
+      let captcha = new TencentCaptcha(
+        process.env.VUE_APP_CAPTCHA_ID_PUBLISH,
+        res => {
+          if (res.ret === 0) {
+            this.form.ticket = res.ticket
+            this.form.randstr = res.randstr
+            this.submit(draft)
+          } else {
+            return this.$message.error('请先完成验证！')
+          }
         }
-      })
+      )
       captcha.show()
     },
     submit (draft = true) {
@@ -162,7 +165,7 @@ export default {
       this.form.is_draft = draft
       this.busing = true
       let promise = null
-      let isEdit = this.$route.name == 'threads.edit';
+      let isEdit = this.$route.name == 'threads.edit'
 
       if (isEdit) {
         promise = this.$http

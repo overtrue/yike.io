@@ -106,12 +106,12 @@
 </template>
 
 <script>
-import TwitterIcon from '@icons/twitter';
-import GithubIcon from '@icons/github-circle';
-import FacebookIcon from '@icons/facebook';
-import InstagramIcon from '@icons/instagram';
-import TelegramIcon from '@icons/telegram';
-import SteamIcon from '@icons/steam';
+import TwitterIcon from '@icons/twitter'
+import GithubIcon from '@icons/github-circle'
+import FacebookIcon from '@icons/facebook'
+import InstagramIcon from '@icons/instagram'
+import TelegramIcon from '@icons/telegram'
+import SteamIcon from '@icons/steam'
 
 export default {
   components: {

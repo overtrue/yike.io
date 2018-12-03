@@ -23,7 +23,7 @@ export default {
     RelationBtn,
     VolumeMute,
     VolumeHigh,
-    CheckIcon,
+    CheckIcon
   },
   props: {
     relation: {
@@ -39,6 +39,6 @@ export default {
     return {
       hovering: false
     }
-  },
+  }
 }
 </script>

@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -105,9 +105,9 @@ export default {
         password_confirmation: this.passwordConfirmation
       })
 
-      this.oldPassword = '';
-      this.password = '';
-      this.passwordConfirmation = '';
+      this.oldPassword = ''
+      this.password = ''
+      this.passwordConfirmation = ''
     },
     goAnchor (name) {
       let element = document.getElementById(name)
