@@ -1,6 +1,6 @@
 <template>
   <form class="search-form form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" v-model="q" placeholder="杜索" aria-label="Search">
+    <input class="form-control mr-sm-2" type="search" v-model="q" placeholder="搜索讨论" aria-label="Search">
     <div class="list-group" v-if="threads.length > 0">
       <div class="list-group-item list-group-item-action cursor-pointer" v-for="item of threads" :key="item.id" @click="$router.push({name: 'threads.show', params:{id: item.id}})">
         <div class="d-flex align-items-center">
