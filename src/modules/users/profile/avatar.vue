@@ -48,7 +48,7 @@ export default {
     },
     async submit () {
       await this.$http
-        .patch(`users/{this.$parent.currentUser.username}`, {
+        .patch(`users/${this.$parent.currentUser.username}`, {
           avatar: this.newUrl
         })
         .then(() => {
