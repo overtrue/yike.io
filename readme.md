@@ -9,7 +9,7 @@
 
 开源中国 Gitee 仓库：[![Fork me on Gitee](https://gitee.com/overtrue/yike.io/widgets/widget_3.svg)](https://gitee.com/overtrue/yike.io)
 
-> 🎬快速上手视频：[053. 优秀的开源社区——yike.io](https://laravel-china.org/courses/laravel-package/yikeio/2505)
+> 🎬快速上手视频：[053. 优秀的开源社区——yike.io](https://learnku.com/courses/laravel-package/yikeio/2505)
 
 ## 安装
 
