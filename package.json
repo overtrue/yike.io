@@ -26,7 +26,7 @@
     "mo-js": "^0.288.2",
     "moment": "^2.22.2",
     "node-sass": "^4.9.3",
-    "popper.js": "^1.14.4",
+    "popper.js": "^1.14.7",
     "prismjs": "^1.15.0",
     "qrcode": "^1.2.2",
     "sass-loader": "^7.1.0",
