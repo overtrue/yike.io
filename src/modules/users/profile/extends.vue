@@ -16,7 +16,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">https://github.com/</span>
               </div>
-              <input type="text" class="form-control" id="github-form" v-model="links.github" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="github-form"
+                v-model="links.github"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -31,7 +37,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2">https://twitter.com/</span>
               </div>
-              <input type="text" class="form-control" id="twitter-form" v-model="links.twitter" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="twitter-form"
+                v-model="links.twitter"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -46,7 +58,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">https://www.facebook.com/</span>
               </div>
-              <input type="text" class="form-control" id="facebook-form" v-model="links.facebook" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="facebook-form"
+                v-model="links.facebook"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -61,7 +79,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon4">https://www.instagram.com/</span>
               </div>
-              <input type="text" class="form-control" id="instagram-form" v-model="links.instagram" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="instagram-form"
+                v-model="links.instagram"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -76,7 +100,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon5">https://t.me/</span>
               </div>
-              <input type="text" class="form-control" id="telegram-form" v-model="links.telegram" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="telegram-form"
+                v-model="links.telegram"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -91,7 +121,13 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon6">https://steamcommunity.com/id/</span>
               </div>
-              <input type="text" class="form-control" id="steam-form" v-model="links.steam" placeholder="username">
+              <input
+                type="text"
+                class="form-control"
+                id="steam-form"
+                v-model="links.steam"
+                placeholder="username"
+              >
             </div>
           </div>
         </div>
@@ -106,12 +142,12 @@
 </template>
 
 <script>
-import TwitterIcon from '@icons/twitter'
-import GithubIcon from '@icons/github-circle'
-import FacebookIcon from '@icons/facebook'
-import InstagramIcon from '@icons/instagram'
-import TelegramIcon from '@icons/telegram'
-import SteamIcon from '@icons/steam'
+import TwitterIcon from '$icons/Twitter'
+import GithubIcon from '$icons/GithubCircle'
+import FacebookIcon from '$icons/Facebook'
+import InstagramIcon from '$icons/Instagram'
+import TelegramIcon from '$icons/Telegram'
+import SteamIcon from '$icons/Steam'
 
 export default {
   components: {

@@ -18,11 +18,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import EmptyState from '@components/empty-state'
-import UserListItem from '@components/user-list-item'
-import Paginator from '@components/paginator'
-import EmailIcon from '@icons/email'
-import PlusIcon from '@icons/plus'
+import EmptyState from '$components/empty-state'
+import UserListItem from '$components/user-list-item'
+import Paginator from '$components/paginator'
+import EmailIcon from '$icons/Email'
+import PlusIcon from '$icons/Plus'
 
 export default {
   name: 'user-followers',

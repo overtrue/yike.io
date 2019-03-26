@@ -6,22 +6,47 @@
         <form @submit.prevent="showCaptcha">
           <div class="form-group">
             <label>邮箱地址</label>
-            <input type="text" class="form-control" ref="emailInput" placeholder="example@yike.io" v-model="email" @blur="validateEmail" required>
+            <input
+              type="text"
+              class="form-control"
+              ref="emailInput"
+              placeholder="example@yike.io"
+              v-model="email"
+              @blur="validateEmail"
+              required
+            >
           </div>
           <div class="form-group">
             <label>用户名</label>
-            <input type="text" class="form-control" ref="usernameInput" placeholder="5 ~ 12 位字母或数字" v-model="username" @blur="validateUsername" required>
+            <input
+              type="text"
+              class="form-control"
+              ref="usernameInput"
+              placeholder="5 ~ 12 位字母或数字"
+              v-model="username"
+              @blur="validateUsername"
+              required
+            >
           </div>
           <div class="form-group">
             <label>密码</label>
-            <input type="password" class="form-control" ref="passwordInput" placeholder="6 ~ 32 位安全密码" v-model="password" required>
+            <input
+              type="password"
+              class="form-control"
+              ref="passwordInput"
+              placeholder="6 ~ 32 位安全密码"
+              v-model="password"
+              required
+            >
           </div>
           <button type="submit" :disabled="!formReady" class="my-2 btn btn-primary w-100">注册</button>
         </form>
       </div>
     </div>
     <div class="offset-sm-3 col-sm-6 text-center mt-2">
-      <p>已有账号？ <router-link class="text-blue" :to="{ name: 'auth.login' }">快速登录</router-link>
+      <p>
+        已有账号？
+        <router-link class="text-blue" :to="{ name: 'auth.login' }">快速登录</router-link>
       </p>
     </div>
   </div>
@@ -29,10 +54,10 @@
 
 <script>
 import { mapActions } from 'vuex'
-import GooglePlus from '@icons/google-plus'
-import FacebookIcon from '@icons/facebook'
-import QqIcon from '@icons/qqchat'
-import GithubIcon from '@icons/github-circle'
+import GooglePlus from '$icons/GooglePlus'
+import FacebookIcon from '$icons/Facebook'
+import QqIcon from '$icons/Qqchat'
+import GithubIcon from '$icons/GithubCircle'
 
 export default {
   name: 'register',
@@ -114,7 +139,7 @@ export default {
       })
     },
     showCaptcha () {
-      let captcha = new TencentCaptcha(
+      let captcha = new window.TencentCaptcha(
         process.env.VUE_APP_CAPTCHA_ID_REGISTER,
         res => {
           if (res.ret === 0) {
@@ -139,7 +164,7 @@ export default {
         this.$message.warning('注册成功，请先验证你邮箱地址！')
         this.$router.push({ name: 'home' })
       } catch (e) {
-        if (e.status != 422) {
+        if (e.status !== 422) {
           this.$message.error('注册失败！')
         }
       }

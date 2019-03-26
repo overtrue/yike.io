@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import LinkVariant from '@icons/link-variant'
+import LinkVariant from '$icons/LinkVariant'
 import ClipboardJS from 'clipboard'
 
 export default {

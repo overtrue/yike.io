@@ -31,7 +31,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import SocialiteBtns from '@components/socialite-login'
+import SocialiteBtns from '$components/socialite-login'
 export default {
   data () {
     return {

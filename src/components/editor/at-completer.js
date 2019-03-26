@@ -1,5 +1,5 @@
+import http from '$utils/http'
 import CodeMirror from 'codemirror'
-import http from '@utils/http'
 
 require('codemirror/addon/hint/show-hint.css')
 require('codemirror/addon/hint/show-hint')
@@ -12,15 +12,9 @@ let emojiCompleter = cm => {
     cm,
     async () => {
       let cur = cm.getCursor()
-
       let token = cm.getTokenAt(cur)
       let start = token.start
-
       let end = cur.ch
-
-      let word = token.string.slice(0, end - start)
-      let ch = cur.ch
-
       let line = cur.line
       let currentWord = token.string
 
@@ -35,9 +29,9 @@ let emojiCompleter = cm => {
             results.push({
               text: user.username + ' ',
               render (element) {
-                element.innerHTML = `<img style="width:1.2em;height: 1.2em;" src="${user.avatar}" alt="${
-                  user.name
-                }" async > ${user.username}`
+                element.innerHTML = `<img style="width:1.2em;height: 1.2em;" src="${user.avatar}" alt="${user.name}" async > ${
+                  user.username
+                }`
               }
             })
           }

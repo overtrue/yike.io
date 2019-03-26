@@ -46,10 +46,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Editor from '@components/editor'
-import UserLocked from '@components/user-locked'
+import Editor from '$components/editor'
+import UserLocked from '$components/user-locked'
 import localforage from 'localforage'
-import Alert from '@icons/alert-circle'
+import Alert from '$icons/Alert'
 import { Select as ElSelect, Option as ElOption } from 'element-ui'
 import 'element-ui/lib/theme-chalk/select.css'
 

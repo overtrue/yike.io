@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import UserMedia from '@components/user-media'
-import ArrowRightIcon from '@icons/arrow-right'
-import CheckIcon from '@icons/check'
-import PlusIcon from '@icons/plus'
-import FollowBtn from '@components/buttons/follow-btn'
+import UserMedia from '$components/user-media'
+import ArrowRightIcon from '$icons/ArrowRight'
+import CheckIcon from '$icons/Check'
+import PlusIcon from '$icons/Plus'
+import FollowBtn from '$components/buttons/follow-btn'
 
 export default {
   name: 'NewUsers',

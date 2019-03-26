@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import UserMedia from '@components/user-media'
-import ArrowRight from '@icons/arrow-right'
+import UserMedia from '$components/user-media'
+import ArrowRight from '$icons/ArrowRight'
 
 export default {
   name: 'NewUsers',

@@ -13,9 +13,9 @@
 
 <script>
 import RelationBtn from './relation-btn'
-import VolumeMute from '@icons/volume-mute'
-import VolumeHigh from '@icons/volume-high'
-import CheckIcon from '@icons/check'
+import VolumeMute from '$icons/VolumeMute'
+import VolumeHigh from '$icons/VolumeHigh'
+import CheckIcon from '$icons/Check'
 
 export default {
   name: 'subscribe-btn',

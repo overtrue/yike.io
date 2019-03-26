@@ -62,10 +62,10 @@
 </template>
 
 <script>
-import UserCard from '@components/user-card'
-import ArrowDownIcon from '@icons/arrow-down'
-import SourceCommitEnd from '@icons/source-commit-end'
-import EmptyState from '@components/empty-state'
+import UserCard from '$components/user-card'
+import ArrowDownIcon from '$icons/ArrowDown'
+import SourceCommitEnd from '$icons/SourceCommitEnd'
+import EmptyState from '$components/empty-state'
 
 export default {
   name: 'user-activities',

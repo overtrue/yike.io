@@ -1,4 +1,4 @@
-import http from '@utils/http'
+import http from '$utils/http'
 import { Message } from 'element-ui'
 import 'element-ui/lib/theme-chalk/icon.css'
 import 'element-ui/lib/theme-chalk/message.css'

@@ -27,36 +27,32 @@ export default http => {
       }
 
       switch (error.response.status) {
-      case 422: {
-        let data = error.response.data.errors
-        let content = ''
+        case 422:
+          let data = error.response.data.errors
+          let content = ''
 
-        Object.keys(data).map(function (key) {
-          let value = data[key]
+          Object.keys(data).map(function (key) {
+            let value = data[key]
 
-          content = value[0]
-        })
+            content = value[0]
+          })
 
-        Message.error(content)
-        break
+          Message.error(content)
+          break
+        case 403:
+          Message.error(error.response.data.message || '您没有此操作权限！')
+          break
+        case 401:
+          if (window.location.pathname !== '/auth/login') {
+            window.location.href = '/auth/login'
+          }
+          break
+        case 500:
+        case 501:
+        case 503:
+        default:
+          Message.error('服务器出了点小问题，程序员小哥哥要被扣工资了~！')
       }
-      case 403: {
-        Message.error(error.response.data.message || '您没有此操作权限！')
-        break
-      }
-      case 401: {
-        if (window.location.pathname !== '/auth/login') {
-          window.location.href = '/auth/login'
-        }
-        break
-      }
-      case 500:
-      case 501:
-      case 503:
-        Message.error('服务器出了点小问题，程序员小哥哥要被扣工资了~！')
-        break
-      }
-
       return Promise.reject(error.response)
     }
   )

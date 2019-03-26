@@ -1,15 +1,15 @@
-import localforage from 'localforage'
 // src is a alias. see client/build/webpack.base.conf.js
-import { userTokenStorageKey } from '@config'
+import { userTokenStorageKey } from '$config'
+import * as services from '$modules/auth/services'
+import localforage from 'localforage'
 import { isEmpty } from 'lodash'
 import * as TYPES from './mutations-types'
-import * as services from '@modules/auth/services'
 
 export const attemptLogin = ({ dispatch }, payload) =>
   services
     .postLogin(payload)
-    .then(({ access_token }) => {
-      dispatch('setToken', access_token)
+    .then(data => {
+      dispatch('setToken', data.access_token)
 
       return Promise.resolve()
     })

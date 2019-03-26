@@ -30,12 +30,12 @@
 
 <script>
 import RelationBtn from './relation-btn'
-import LinkVariant from '@icons/link-variant'
-import VolumeMute from '@icons/volume-mute'
-import VolumeHigh from '@icons/volume-high'
-import CheckIcon from '@icons/check'
-import TwitterIcon from '@icons/twitter'
-import FacebookIcon from '@icons/facebook'
+import LinkVariant from '$icons/LinkVariant'
+import VolumeMute from '$icons/VolumeMute'
+import VolumeHigh from '$icons/VolumeHigh'
+import CheckIcon from '$icons/Check'
+import TwitterIcon from '$icons/Twitter'
+import FacebookIcon from '$icons/Facebook'
 import ClipboardJS from 'clipboard'
 
 export default {
