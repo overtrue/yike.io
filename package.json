@@ -28,7 +28,7 @@
     "node-sass": "^4.11.0",
     "popper.js": "^1.14.7",
     "prismjs": "^1.16.0",
-    "qrcode": "^1.2.2",
+    "qrcode": "^1.3.3",
     "sass-loader": "^7.1.0",
     "tributejs": "^3.3.5",
     "typeface-ubuntu-mono": "0.0.54",
