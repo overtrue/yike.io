@@ -1,10 +1,10 @@
-import localforage from 'localforage'
 // plugins and src are alias. see client/build/webpack.base.conf.js
-import { userTokenStorageKey } from '@config'
-import { setToken as httpSetToken } from '@utils/http'
+import { userTokenStorageKey } from '$config'
+import { setToken as httpSetToken } from '$utils/http'
+import localforage from 'localforage'
 import * as TYPES from './mutations-types'
 
-const subscribe = (store) => {
+const subscribe = store => {
   store.subscribe((mutation, { Auth }) => {
     if (TYPES.SET_TOKEN === mutation.type) {
       /**
@@ -20,6 +20,6 @@ const subscribe = (store) => {
   })
 }
 
-export default (store) => {
+export default store => {
   subscribe(store)
 }

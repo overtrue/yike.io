@@ -1,22 +1,22 @@
 <template>
   <div class="oauth-btns d-flex align-items-center justify-content-between">
     <div class="text-20 btn mx-1 btn-icon btn-dark" @click="oauth('github')">
-      <github-icon />
+      <github-icon/>
     </div>
     <div class="text-20 btn mx-1 btn-icon btn-pink" @click="oauth('google')">
-      <google-plus />
+      <google-plus/>
     </div>
     <div class="text-20 btn mx-1 btn-icon btn-facebook" @click="oauth('facebook')">
-      <facebook-icon />
+      <facebook-icon/>
     </div>
   </div>
 </template>
 
 <script>
-import GooglePlus from '@icons/google-plus'
-import FacebookIcon from '@icons/facebook'
-import QqIcon from '@icons/qqchat'
-import GithubIcon from '@icons/github-circle'
+import GooglePlus from '$icons/GooglePlus'
+import FacebookIcon from '$icons/Facebook'
+import QqIcon from '$icons/Qqchat'
+import GithubIcon from '$icons/GithubCircle'
 
 export default {
   name: 'oauth-btn',
@@ -51,20 +51,20 @@ export default {
     popupCenter (url, title, w, h) {
       // Fixes dual-screen position                         Most browsers      Firefox
       let dualScreenLeft =
-        window.screenLeft != undefined ? window.screenLeft : window.screenX
+        window.screenLeft !== undefined ? window.screenLeft : window.screenX
       let dualScreenTop =
-        window.screenTop != undefined ? window.screenTop : window.screenY
+        window.screenTop !== undefined ? window.screenTop : window.screenY
 
       let width = window.innerWidth
         ? window.innerWidth
         : document.documentElement.clientWidth
           ? document.documentElement.clientWidth
-          : screen.width
+          : window.screen.width
       let height = window.innerHeight
         ? window.innerHeight
         : document.documentElement.clientHeight
           ? document.documentElement.clientHeight
-          : screen.height
+          : window.screen.height
 
       let left = width / 2 - w / 2 + dualScreenLeft
       let top = height / 2 - h / 2 + dualScreenTop

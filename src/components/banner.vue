@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import ArrowLeft from '@icons/arrow-left'
-import ArrowRight from '@icons/arrow-right'
+import ArrowLeft from '$icons/ArrowLeft'
+import ArrowRight from '$icons/ArrowRight'
 
 export default {
   name: 'Banner',

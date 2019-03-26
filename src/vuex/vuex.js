@@ -1,4 +1,4 @@
-import { vuex as Auth } from '@modules/auth'
+import { vuex as Auth } from '$modules/auth'
 import { isFunction } from 'lodash'
 
 // start extraction data from vuex modules

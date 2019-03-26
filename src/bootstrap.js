@@ -13,7 +13,7 @@ try {
 
   import('bootstrap')
   import('prismjs/themes/prism.css')
-  import('@sass/app.scss')
+  import('$sass/app.scss')
   import('animate.css')
   import('typeface-ubuntu-mono')
   import('vue-material-design-icons/styles.css')
@@ -21,6 +21,7 @@ try {
   // check if the implementation is available
   if (typeof Promise.prototype['finally'] !== 'function') {
     // implementation
+    // eslint-disable-next-line no-extend-native
     Promise.prototype['finally'] = function (callback) {
       const constructor = this.constructor
 

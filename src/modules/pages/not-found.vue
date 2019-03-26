@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import AlertCircleIcon from '@icons/alert-circle'
+import AlertCircleIcon from '$icons/AlertCircle'
 export default {
   name: 'not-found',
   components: { AlertCircleIcon }

@@ -28,7 +28,9 @@ module.exports = {
 
   // babel-loader skips `node_modules` deps by default.
   // explicitly transpile a dependency with this option.
-  transpileDependencies: [/* string or regex */],
+  transpileDependencies: [
+    /* string or regex */
+  ],
 
   // generate sourceMap for production build?
   productionSourceMap: true,
@@ -36,24 +38,18 @@ module.exports = {
   // tweak internal webpack configuration.
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   chainWebpack: () => {},
-  configureWebpack: () => {
-    return {
-      resolve: {
-        alias: {
-          '@modules': path.resolve(__dirname, 'src/modules'),
-          '@plugins': path.resolve(__dirname, 'src/plugins'),
-          '@utils': path.resolve(__dirname, 'src/utils'),
-          '@components': path.resolve(__dirname, 'src/components'),
-          '@assets': path.resolve(__dirname, 'src/assets'),
-          '@sass': path.resolve(__dirname, 'src/assets/sass'),
-          '@icons': path.resolve(__dirname, 'node_modules/vue-material-design-icons'),
-          '@config': path.resolve(__dirname, 'src/config'),
-          '@root': path.resolve(__dirname, 'src/')
-        },
-        extensions: [
-          '.vue'
-        ]
-      }
+  configureWebpack: {
+    resolve: {
+      alias: {
+        $modules: path.resolve(__dirname, 'src/modules'),
+        $plugins: path.resolve(__dirname, 'src/plugins'),
+        $utils: path.resolve(__dirname, 'src/utils'),
+        $components: path.resolve(__dirname, 'src/components'),
+        $sass: path.resolve(__dirname, 'src/assets/sass'),
+        $icons: path.resolve(__dirname, 'node_modules/vue-material-design-icons'),
+        $config: path.resolve(__dirname, 'src/config')
+      },
+      extensions: ['.vue']
     }
   },
 
@@ -100,6 +96,5 @@ module.exports = {
   },
 
   // options for 3rd party plugins
-  pluginOptions: {
-  }
+  pluginOptions: {}
 }

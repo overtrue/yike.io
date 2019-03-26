@@ -36,13 +36,13 @@
 </template>
 
 <script>
-import Banner from '@components/banner'
-import HotTags from '@components/hot-tags'
-import UserRanking from '@components/user-ranking'
-import NewUsers from '@components/new-users'
-import QuickDocs from '@components/quick-docs'
-import ThreadsList from '@components/threads-list'
-import GuestLoginGuide from '@components/guest-login-guide'
+import Banner from '$components/banner'
+import HotTags from '$components/hot-tags'
+import UserRanking from '$components/user-ranking'
+import NewUsers from '$components/new-users'
+import QuickDocs from '$components/quick-docs'
+import ThreadsList from '$components/threads-list'
+import GuestLoginGuide from '$components/guest-login-guide'
 
 export default {
   data () {

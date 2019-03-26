@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import BellIcon from '@icons/bell'
-import InboxIcon from '@icons/inbox'
-import CheckIcon from '@icons/check'
-import EmptyState from '@components/empty-state'
+import BellIcon from '$icons/Bell'
+import InboxIcon from '$icons/Inbox'
+import CheckIcon from '$icons/Check'
+import EmptyState from '$components/empty-state'
 
 import NewFollower from './types/new-follower'
 import CommentMyThread from './types/comment-my-thread'

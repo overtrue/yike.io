@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import EmptyIcon from '@icons/tooltip-outline'
+import EmptyIcon from '$icons/TooltipOutline'
 
 export default {
   name: 'empty-state',

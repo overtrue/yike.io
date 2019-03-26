@@ -37,9 +37,9 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Navbar from '@components/navbar'
-import Sidebar from '@components/sidebar'
-import ArrowUpIcon from '@icons/arrow-up'
+import Navbar from '$components/navbar'
+import Sidebar from '$components/sidebar'
+import ArrowUpIcon from '$icons/ArrowUp'
 
 export default {
   name: 'app',

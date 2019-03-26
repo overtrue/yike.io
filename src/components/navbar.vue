@@ -83,13 +83,13 @@
 </template>
 
 <script>
-import MenuIcon from '@icons/menu'
-import BellIcon from '@icons/bell'
-import PlusIcon from '@icons/plus'
-import MagnifyIcon from '@icons/magnify'
-import AccountIcon from '@icons/account'
-import AccountEditIcon from '@icons/account-edit'
-import LogoutVariant from '@icons/logout-variant'
+import MenuIcon from '$icons/Menu'
+import BellIcon from '$icons/Bell'
+import PlusIcon from '$icons/Plus'
+import MagnifyIcon from '$icons/Magnify'
+import AccountIcon from '$icons/Account'
+import AccountEditIcon from '$icons/AccountEdit'
+import LogoutVariant from '$icons/LogoutVariant'
 import NavSearch from './nav-search'
 import { mapGetters, mapActions } from 'vuex'
 

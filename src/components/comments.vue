@@ -84,19 +84,19 @@
 </template>
 
 <script>
-import Editor from '@components/editor'
-import Paginator from '@components/paginator'
-import MarkdownBody from '@components/markdown-body'
-import UserMedia from '@components/user-media'
+import Editor from '$components/editor'
+import Paginator from '$components/paginator'
+import MarkdownBody from '$components/markdown-body'
+import UserMedia from '$components/user-media'
 import localforage from 'localforage'
 import { mapGetters } from 'vuex'
 
-import ThumbUp from '@icons/thumb-up'
-import Reply from '@icons/reply'
-import Markdown from '@icons/markdown'
-import ThumbDown from '@icons/thumb-down'
-import ThumbUpOutline from '@icons/thumb-up-outline'
-import ThumbDownOutline from '@icons/thumb-down-outline'
+import ThumbUp from '$icons/ThumbUp'
+import Reply from '$icons/Reply'
+import Markdown from '$icons/Markdown'
+import ThumbDown from '$icons/ThumbDown'
+import ThumbUpOutline from '$icons/ThumbUpOutline'
+import ThumbDownOutline from '$icons/ThumbDownOutline'
 
 export default {
   name: 'comments',

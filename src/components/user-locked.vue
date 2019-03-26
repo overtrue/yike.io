@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AccountOffIcon from '@icons/account-off'
+import AccountOffIcon from '$icons/AccountOff'
 export default {
   name: 'user-locked',
   components: { AccountOffIcon }

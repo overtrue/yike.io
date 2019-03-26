@@ -3,10 +3,25 @@
     <div class="card-header">
       <ul class="nav nav-tabs card-header-tabs" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#form-tab-editor" role="tab" aria-controls="form-tab-editor" aria-selected="true">编辑</a>
+          <a
+            class="nav-link active"
+            data-toggle="tab"
+            href="#form-tab-editor"
+            role="tab"
+            aria-controls="form-tab-editor"
+            aria-selected="true"
+          >编辑</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="preview" data-toggle="tab" href="#form-tab-preview" role="tab" aria-controls="form-tab-editor" aria-selected="false">预览</a>
+          <a
+            class="nav-link"
+            @click="preview"
+            data-toggle="tab"
+            href="#form-tab-preview"
+            role="tab"
+            aria-controls="form-tab-editor"
+            aria-selected="false"
+          >预览</a>
         </li>
         <li class="nav-item ml-auto">
           <div v-if="toolbar" class="editor-toolbar border-bottom d-flex align-items-center px-2">
@@ -40,18 +55,18 @@ import EmojiCompleter from '../emoji-completer'
 import AtCompleter from '../at-completer'
 import '../attachment'
 import { mapGetters } from 'vuex'
-import PlusIcon from '@icons/plus'
-import LinkIcon from '@icons/link'
-import FormatHeader1Icon from '@icons/format-header-1'
-import FormatHeader2Icon from '@icons/format-header-2'
-import FormatHeader3Icon from '@icons/format-header-3'
-import FormatBoldIcon from '@icons/format-bold'
-import FormatItalicIcon from '@icons/format-italic'
-import FormatQuoteOpenIcon from '@icons/format-quote-open'
-import CodeTagsIcon from '@icons/code-tags'
-import FormatListBulletedIcon from '@icons/format-list-bulleted'
-import FormatListNumbersIcon from '@icons/format-list-numbers'
-import MarkdownBody from '@components/markdown-body'
+import PlusIcon from '$icons/Plus'
+import LinkIcon from '$icons/Link'
+import FormatHeader1Icon from '$icons/FormatHeader1'
+import FormatHeader2Icon from '$icons/FormatHeader2'
+import FormatHeader3Icon from '$icons/FormatHeader3'
+import FormatBoldIcon from '$icons/FormatBold'
+import FormatItalicIcon from '$icons/FormatItalic'
+import FormatQuoteOpenIcon from '$icons/FormatQuoteOpen'
+import CodeTagsIcon from '$icons/CodeTags'
+import FormatListBulletedIcon from '$icons/FormatListBulleted'
+import FormatListNumbersIcon from '$icons/FormatListNumbered'
+import MarkdownBody from '$components/markdown-body'
 
 require('codemirror/mode/gfm/gfm')
 require('codemirror/addon/edit/continuelist')
@@ -115,7 +130,7 @@ export default {
   },
   watch: {
     value () {
-      if (this.contentBackup == this.value) {
+      if (this.contentBackup === this.value) {
         return
       }
       this.setValue()
@@ -148,7 +163,7 @@ export default {
         this.$emit('input', content)
         this.contentBackup = content
       })
-      inlineAttachment.editors.codemirror4.attach(this.editor, {
+      window.inlineAttachment.editors.codemirror4.attach(this.editor, {
         uploadFieldName: 'file',
         jsonFieldName: 'url',
         uploadUrl: this.$http.defaults.baseURL + '/files/upload',
@@ -175,9 +190,6 @@ export default {
   },
   mounted () {
     this.init()
-    String.prototype.capitalize = function () {
-      return this.replace(/(?:^|\s)\S/g, a => a.toUpperCase())
-    }
     this.setValue()
   }
 }

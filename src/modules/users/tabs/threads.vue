@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ThreadsList from '@components/threads-list'
+import ThreadsList from '$components/threads-list'
 
 export default {
   name: 'user-threads',

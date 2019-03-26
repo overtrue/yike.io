@@ -11,7 +11,7 @@
 
 <script>
 import RelationBtn from './relation-btn'
-import ThumbUpIcon from '@icons/thumb-up'
+import ThumbUpIcon from '$icons/ThumbUp'
 
 export default {
   name: 'like-btn',

@@ -11,8 +11,8 @@
 
 <script>
 import mojs from 'mo-js'
-import ThumbUpOutline from '@icons/thumb-up-outline'
-import ThumbUp from '@icons/thumb-up'
+import ThumbUpOutline from '$icons/ThumbUpOutline'
+import ThumbUp from '$icons/ThumbUp'
 import RelationBtn from './relation-btn'
 import { mapGetters } from 'vuex'
 
