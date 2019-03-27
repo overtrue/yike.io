@@ -30,7 +30,7 @@
     "prismjs": "^1.16.0",
     "qrcode": "^1.2.2",
     "sass-loader": "^7.1.0",
-    "tributejs": "^3.3.5",
+    "tributejs": "^3.6.0",
     "typeface-ubuntu-mono": "0.0.54",
     "vue": "^2.6.10",
     "vue-avatar-cropper": "0.0.28",
