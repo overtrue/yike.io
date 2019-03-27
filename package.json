@@ -21,7 +21,7 @@
     "emojify.js": "^1.1.0",
     "emojione": "^3.1.7",
     "jquery": "^3.3.1",
-    "localforage": "^1.7.2",
+    "localforage": "^1.7.3",
     "lodash": "^4.17.11",
     "mo-js": "^0.288.2",
     "moment": "^2.24.0",
