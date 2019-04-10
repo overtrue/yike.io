@@ -20,7 +20,7 @@
     "element-ui": "^2.7.2",
     "emojify.js": "^1.1.0",
     "emojione": "^4.5.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.11",
     "mo-js": "^0.288.2",
