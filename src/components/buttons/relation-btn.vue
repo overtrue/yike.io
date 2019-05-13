@@ -46,7 +46,7 @@ export default {
     toggle () {
       // let action = !this.item[this.actions[this.action]] ? this.action : `${this.action}`
 
-      this.post(`relations/${this.action}`, {
+      this.$http.post(`relations/${this.action}`, {
         followable_type: this.types[this.relation],
         followable_id: this.item.id
       }).then(() => {
