@@ -59,7 +59,7 @@ export default {
     loadBanner () {
       this.$http.get('banners/' + this.name).then(banner => {
         this.banner = banner
-      })
+      }).catch(err => {})
     }
   },
   mounted () {
