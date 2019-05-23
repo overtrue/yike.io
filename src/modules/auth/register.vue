@@ -71,7 +71,7 @@ export default {
       randstr: null,
       error: true,
       regex: {
-        email: /^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-.]+.(com|io|cc|co|li|it|sh|cn|net|org|jp|tw|me|info|us|in|la|pro|im|so|at|my)$/,
+        email: /^[a-zA-Z0-9-_.]+@[a-zA-Z0-9-.]+.(com|io|cc|co|li|it|sh|cn|net|org|jp|tw|me|info|us|in|la|pro|im|so|at|my|ren|red|top|ltd|fun|vip)$/,
         username: /^[a-zA-Z]+[a-zA-Z0-9_-]+$/
       }
     }
