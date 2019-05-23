@@ -6,7 +6,7 @@
     <ul class="plan-list text-13">
       <template v-for="node in nodes">
         <router-link tag="li" :key="node.id" :to="{name: 'nodes.node', params:{id: node.id}}" class="py-1 cursor-pointer">
-          #{{ node.title }} <span class="float-right">{{node.cache.threads_count}}</span>
+          #{{ node.title }} <span class="float-right">{{node.cache ? node.cache.threads_count : 0}}</span>
         </router-link>
       </template>
     </ul>

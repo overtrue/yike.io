@@ -1,9 +1,11 @@
 .DS_Store
 node_modules
+yarn.lock
 /dist
 
 # local env files
 .env.local
+.env.production
 
 # Log files
 npm-debug.log*
