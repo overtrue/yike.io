@@ -8,19 +8,19 @@
         <docs-icon class="mr-1"/>
         <a
           class="text-gray-50"
-          href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html"
+          href="https://developers.weixin.qq.com/miniprogram/dev/framework/"
           target="_blank"
         >小程序开发文档</a>
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
-        <a class="text-gray-50" href="https://mp.weixin.qq.com/wiki" target="_blank">公众平台官方文档</a>
+        <a class="text-gray-50" href="https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview" target="_blank">公众平台官方文档</a>
       </li>
       <li class="py-1">
         <docs-icon class="mr-1"/>
         <a
           class="text-gray-50"
-          href="https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&lang=zh_CN"
+          href="https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Resource_Center_Homepage"
           target="_blank"
         >微信开放平台文档</a>
       </li>
