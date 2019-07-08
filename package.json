@@ -10,7 +10,7 @@
   "dependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
     "animate.css": "^3.7.2",
     "axios": "^0.18.1",
     "bootstrap": "^4.3.1",
