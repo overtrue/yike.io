@@ -5,7 +5,6 @@ import 'element-ui/lib/theme-chalk/message.css'
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import './bootstrap'
-import Root from './root'
 import router from './router'
 import store from './vuex'
 
@@ -19,10 +18,8 @@ Vue.prototype.$user = () => {
   return store.getters.currentUser
 }
 
-setTimeout(() => {
-  new Vue({
-    store,
-    router,
-    render: h => h(Root)
-  }).$mount('#app')
-}, 200)
+new Vue({
+  el: '#app',
+  store,
+  router,
+})

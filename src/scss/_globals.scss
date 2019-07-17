@@ -14,11 +14,6 @@ body {
   background: #F2F5F9;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 $placeholder-color: unquote('#6c757d70');
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: $placeholder-color !important;
