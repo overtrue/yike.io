@@ -1,4 +1,5 @@
 import { Message } from 'element-ui';
+import store from 'vuex'
 
 export default http => {
   // 请求拦截
@@ -44,6 +45,7 @@ export default http => {
           break
         case 401:
           if (window.location.pathname !== '/auth/login') {
+            store.dispatch('logout')
             window.location.href = '/auth/login'
           }
           break

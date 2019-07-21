@@ -4,6 +4,7 @@ yarn.lock
 /dist
 
 # local env files
+.env
 .env.local
 .env.production
 
@@ -20,4 +21,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-.packages-lock.json
+.packages-lock.json/public/mix-manifest.json

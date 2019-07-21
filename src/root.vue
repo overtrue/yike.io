@@ -12,7 +12,7 @@
       <div
         class="alert alert-warning text-center m-0"
         role="alert"
-        v-if="currentUser.id && !currentUser.has_activated"
+        v-if="currentUser && currentUser.id && !currentUser.has_activated"
       >
         您的邮箱尚未验证，将影响你的正常使用。请先验证您的邮箱，如果未收到邮件，请点击
         <a

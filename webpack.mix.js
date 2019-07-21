@@ -32,5 +32,8 @@ mix.webpackConfig({
       $icons: path.resolve(__dirname, 'node_modules/vue-material-design-icons'),
       $config: path.resolve(__dirname, 'src/config')
     }
+  },
+  watchOptions: {
+    ignored: /node_modules/
   }
 })
