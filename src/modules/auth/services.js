@@ -6,8 +6,8 @@ import http from '$utils/http'
 export const postLogin = ({ username, password }) => {
   return http.post('/oauth/token', {
     grant_type: 'password',
-    client_id: process.env.VUE_APP_AUTH_CLIENT_ID,
-    client_secret: process.env.VUE_APP_AUTH_CLIENT_SECRET,
+    client_id: process.env.MIX_AUTH_CLIENT_ID,
+    client_secret: process.env.MIX_AUTH_CLIENT_SECRET,
     username: username,
     password: password,
     scope: ''

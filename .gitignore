@@ -22,3 +22,4 @@ yarn-error.log*
 *.sln
 *.sw*
 .packages-lock.json/public/mix-manifest.json
+public/mix-manifest.json

@@ -140,7 +140,7 @@ export default {
     },
     showCaptcha () {
       let captcha = new window.TencentCaptcha(
-        process.env.VUE_APP_CAPTCHA_ID_REGISTER,
+        process.env.MIX_CAPTCHA_ID_REGISTER,
         res => {
           if (res.ret === 0) {
             this.ticket = res.ticket

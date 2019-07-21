@@ -22,6 +22,7 @@ set('http_group', 'www-data');
 set('writable_mode', 'chown');
 set('default_stage', 'production');
 set('keep_releases', 2);
+set('shared_files', ['.env']);
 
 set('shared_files', [
     '.env.production',
