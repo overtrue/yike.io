@@ -46,6 +46,3 @@ export default {
   components: { UserMedia, FollowBtn, PlusIcon, UserSocialBtns }
 }
 </script>
-
-<style scoped>
-</style>

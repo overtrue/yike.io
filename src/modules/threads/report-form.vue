@@ -13,7 +13,6 @@
 
 <script>
 import { Dialog } from 'element-ui'
-import 'element-ui/lib/theme-chalk/dialog.css'
 
 export default {
   components: {

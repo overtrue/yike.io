@@ -1,7 +1,7 @@
 import http from '$utils/http'
 import CodeMirror from 'codemirror'
 
-require('codemirror/addon/hint/show-hint.css')
+// require('codemirror/addon/hint/show-hint.css')
 require('codemirror/addon/hint/show-hint')
 require('codemirror/addon/hint/html-hint')
 

@@ -2,6 +2,6 @@ export default [
   {
     path: '',
     name: 'home',
-    component: () => import('./home'),
+    component: () => import('./home').default,
   },
 ]

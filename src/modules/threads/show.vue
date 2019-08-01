@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import dayjs from 'dayjs'
 import MedalIcon from '$icons/Medal'
 import LockIcon from '$icons/LockAlert'
 import TopIcon from '$icons/FormatVerticalAlignTop'
@@ -244,7 +244,7 @@ export default {
     toggleStatus (timestamp) {
       this.thread[timestamp] = this.thread[timestamp]
         ? null
-        : moment().format('YYYY-MM-DD HH:mm:ss')
+        : dayjs().format('YYYY-MM-DD HH:mm:ss')
       this.$http.patch(`threads/${this.thread.id}`, this.thread).then(() => {
         this.$message.success('搞定！')
         this.loadThread()

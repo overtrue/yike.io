@@ -24,7 +24,7 @@
               <editor v-model="form.content.markdown" :toolbar="false" :options="{maxLines: Infinity}" placeholder="请使用 Markdown 格式详细并精准的表达，不得少于30个字符~"></editor>
               <div class="card-footer border-top p-2 d-flex justify-content-between">
                 <div class="left-actions d-flex align-items-center">
-                  <span class="text-muted">发布到</span>
+                  <span class="text-muted">发布到节点</span>
                   <div class="dropdown ml-1">
                     <el-select filterable v-model="form.node_id">
                       <el-option v-for="item in nodes" :key="item.id" :value="item.id" :label="item.title"></el-option>
@@ -51,7 +51,6 @@ import UserLocked from '$components/user-locked'
 import localforage from 'localforage'
 import Alert from '$icons/Alert'
 import { Select as ElSelect, Option as ElOption } from 'element-ui'
-import 'element-ui/lib/theme-chalk/select.css'
 
 export default {
   name: 'thread-form',

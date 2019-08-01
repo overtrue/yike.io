@@ -1,7 +1,7 @@
 export default [
   {
     path: '/:username',
-    component: () => import('./show'),
+    component: () => import('./show').default,
     children: [
       {
         path: '/',
@@ -9,7 +9,7 @@ export default [
         meta: {
           container: false
         },
-        component: () => import('./tabs/activities')
+        component: () => import('./tabs/activities').default
       },
       {
         path: 'threads',
@@ -17,7 +17,7 @@ export default [
         meta: {
           container: false
         },
-        component: () => import('./tabs/threads')
+        component: () => import('./tabs/threads').default
       },
       {
         path: 'followers',
@@ -25,7 +25,7 @@ export default [
         meta: {
           container: false
         },
-        component: () => import('./tabs/followers')
+        component: () => import('./tabs/followers').default
       },
       {
         path: 'following',
@@ -33,13 +33,13 @@ export default [
         meta: {
           container: false
         },
-        component: () => import('./tabs/following')
+        component: () => import('./tabs/following').default
       }
     ]
   },
   {
     path: '/user',
-    component: () => import('./profile'),
+    component: () => import('./profile').default,
     children: [
       {
         path: 'profile',
@@ -47,7 +47,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/basic')
+        component: () => import('./profile/basic').default
       },
       {
         path: 'account',
@@ -55,7 +55,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/account')
+        component: () => import('./profile/account').default
       },
       {
         path: 'extends',
@@ -63,7 +63,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/extends')
+        component: () => import('./profile/extends').default
       },
       {
         path: 'notification',
@@ -71,7 +71,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/notification')
+        component: () => import('./profile/notification').default
       },
       {
         path: 'bindings',
@@ -79,7 +79,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/bindings')
+        component: () => import('./profile/bindings').default
       },
       {
         path: 'avatar',
@@ -87,7 +87,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/avatar')
+        component: () => import('./profile/avatar').default
       },
       {
         path: 'blacklist',
@@ -95,7 +95,7 @@ export default [
         meta: {
           requiresAuth: true
         },
-        component: () => import('./profile/blacklist')
+        component: () => import('./profile/blacklist').default
       }
     ]
   }

@@ -13,13 +13,14 @@ const path = require('path')
  */
 
 mix
-  .js('src/app.js', 'public/')
-  .sass('src/scss/app.scss', 'public/')
+  .sass('src/scss/app.scss', 'public/css')
+  .js('src/app.js', 'public/js')
   .setPublicPath('public')
-
-mix.babelConfig({
-  plugins: ['@babel/plugin-syntax-dynamic-import']
-})
+  .options({
+    processCssUrls: true,
+    extractVueStyles: true
+  })
+  // .extract(['vue'])
 
 mix.webpackConfig({
   resolve: {
@@ -33,7 +34,7 @@ mix.webpackConfig({
       $config: path.resolve(__dirname, 'src/config')
     }
   },
-  watchOptions: {
-    ignored: /node_modules/
+  output: {
+    chunkFilename: '[name].[chunkhash].js'
   }
 })

@@ -15,6 +15,3 @@ export default {
   components: { AlertCircleIcon }
 }
 </script>
-
-<style scoped>
-</style>

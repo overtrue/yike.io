@@ -68,14 +68,14 @@ import FormatListBulletedIcon from '$icons/FormatListBulleted'
 import FormatListNumbersIcon from '$icons/FormatListNumbered'
 import MarkdownBody from '$components/markdown-body'
 
-require('codemirror/mode/gfm/gfm')
-require('codemirror/addon/edit/continuelist')
-require('codemirror/addon/edit/matchbrackets')
-require('codemirror/addon/edit/closebrackets')
-require('codemirror/addon/edit/matchtags')
-require('codemirror/addon/display/placeholder')
-require('codemirror/keymap/sublime')
-require('../theme/yike.css')
+import 'codemirror/mode/gfm/gfm'
+import 'codemirror/addon/edit/continuelist'
+import 'codemirror/addon/edit/matchbrackets'
+import 'codemirror/addon/edit/closebrackets'
+import 'codemirror/addon/edit/matchtags'
+import 'codemirror/addon/display/placeholder'
+import 'codemirror/keymap/sublime'
+// import '../theme/yike.css'
 
 export default {
   name: 'editor',

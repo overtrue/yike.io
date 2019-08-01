@@ -56,6 +56,3 @@ export default {
   components: { DocsIcon }
 }
 </script>
-
-<style scoped>
-</style>

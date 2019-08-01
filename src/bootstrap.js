@@ -12,10 +12,7 @@ try {
   window.$ = window.jQuery = $
 
   import('bootstrap')
-  import('prismjs/themes/prism.css')
-  import('animate.css')
   import('typeface-ubuntu-mono')
-  import('vue-material-design-icons/styles.css')
 } catch (e) {
   throw e
 }

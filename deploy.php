@@ -34,15 +34,15 @@ host('yike.io')
 
 desc('Run build.');
 
-task('npm:install-and-compile', function(){
+task('yarn:install-and-compile', function(){
 //    if (has('previous_release')) {
 //        run('cp -R {{previous_release}}/node_modules {{release_path}}/node_modules');
 //    }
 
     within('{{release_path}}', function () {
 //        run('npm install --registry=http://registry.npm.taobao.org ');
-        run('npm install');
-        run('npm run prod');
+        run('yarn install');
+        run('yarn run prod');
     });
 });
 
@@ -56,7 +56,7 @@ task('deploy', [
     'deploy:release',
     'deploy:update_code',
     'deploy:shared',
-    'npm:install-and-compile',
+    'yarn:install-and-compile',
     'deploy:writable',
     'deploy:clear_paths',
     'deploy:symlink',

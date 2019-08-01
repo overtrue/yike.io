@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .guest-login-guide {
   background: url("/banners/technology.jpg");
   background-size: 160%;

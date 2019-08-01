@@ -44,13 +44,6 @@ cp .env.example .env.local
 cp .env.example .env.production
 ```
 
-其中有两个变量是你在安装后端时 `passport:install` 得到的 **Password Grant Client** 的 `id` 与 `secret`：
-
-```
-VUE_APP_AUTH_CLIENT_ID=
-VUE_APP_AUTH_CLIENT_SECRET=
-```
-
 如果你忘记了，就去找 `oauth_clients` 表中找吧。
 
 
@@ -59,8 +52,8 @@ VUE_APP_AUTH_CLIENT_SECRET=
 
 ```env
 # 腾讯防水墙配置
-VUE_APP_CAPTCHA_ID_REGISTER=
-VUE_APP_CAPTCHA_ID_PUBLISH=
+MIX_CAPTCHA_ID_REGISTER=
+MIX_CAPTCHA_ID_PUBLISH=
 ```
 
 

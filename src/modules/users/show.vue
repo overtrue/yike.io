@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import dayjs from 'dayjs'
 import { mapGetters } from 'vuex'
 import HotTags from '$components/hot-tags'
 import UserRanking from '$components/user-ranking'
@@ -177,7 +177,7 @@ export default {
     toggleStatus (timestamp) {
       this.user[timestamp] = this.user[timestamp]
         ? null
-        : moment().format('YYYY-MM-DD HH:mm:ss')
+        : dayjs().format('YYYY-MM-DD HH:mm:ss')
       this.$http.patch(`users/${this.user.username}`, this.user).then(() => {
         this.$message.success('搞定！')
         this.getUser()

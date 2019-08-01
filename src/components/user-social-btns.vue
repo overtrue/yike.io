@@ -98,15 +98,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.user-social-btns {
-  @each $size in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-    19, 20
-  {
-    .spacing-#{$size} {
-      margin-left: #{$size}px;
-      margin-right: #{$size}px;
-      margin-bottom: #{$size}px;
-    }
-  }
-}
+// .user-social-btns {
+//   @each $size in 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+//     19, 20
+//   {
+//     .spacing-#{$size} {
+//       margin-left: #{$size}px;
+//       margin-right: #{$size}px;
+//       margin-bottom: #{$size}px;
+//     }
+//   }
+// }
 </style>

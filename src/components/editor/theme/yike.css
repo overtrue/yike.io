@@ -4,9 +4,6 @@
   font-weight: 400;
 }
 
-.CodeMirror-lines {
-}
-
 .CodeMirror pre {
   padding: 0 4px;
   font-family: 'Ubuntu Mono', 'Operator Mono', Monaco, PingFang SC, Hiragino Sans GB, Arial, Microsoft YaHei, Helvetica Neue, sans-serif;
