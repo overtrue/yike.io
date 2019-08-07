@@ -45,15 +45,6 @@ cp .env.example .env.local
 cp .env.example .env.production
 ```
 
-其中有两个变量是你在安装后端时 `passport:install` 得到的 **Password Grant Client** 的 `id` 与 `secret`：
-
-```
-VUE_APP_AUTH_CLIENT_ID=
-VUE_APP_AUTH_CLIENT_SECRET=
-```
-
-如果你忘记了，就去找 `oauth_clients` 表中找吧。
-
 配置 [腾讯防水墙](https://007.qq.com/) ID , 需要跟后端一致
 
 ```env
