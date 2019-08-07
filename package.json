@@ -22,7 +22,7 @@
     "emojione": "^4.5.0",
     "jquery": "^3.4.1",
     "localforage": "^1.7.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "mo-js": "^0.288.2",
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
