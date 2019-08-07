@@ -1,0 +1,32 @@
+<svg width="480px" height="480px" viewBox="0 0 480 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <circle id="path-1" cx="240" cy="240" r="240"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(240.000000, 240.000000) rotate(45.000000) translate(-240.000000, -240.000000) ">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g mask="url(#mask-2)">
+                <g transform="translate(-85.000000, -56.000000)">
+                    <rect id="Rectangle" fill="#2196F3" x="296" y="390" width="60" height="200"></rect>
+                    <path d="M324,419 C257.72583,419 204,365.27417 204,299 C204,232.72583 257.72583,179 324,179 C390.27417,179 444,232.72583 444,299 C444,365.27417 390.27417,419 324,419 Z M325,356 C358.137085,356 385,329.137085 385,296 C385,262.862915 358.137085,236 325,236 C291.862915,236 265,262.862915 265,296 C265,329.137085 291.862915,356 325,356 Z" id="Combined-Shape" fill="#2196F3"></path>
+                    <circle id="Oval" fill="#2196F3" cx="325" cy="60" r="60"></circle>
+                    <g id="Group" stroke-width="1" fill="none" transform="translate(325.000000, 300.000000) rotate(45.000000) translate(-325.000000, -300.000000) translate(240.000000, -25.000000)">
+                        <circle id="Oval-Copy-3" fill="#2196F3" transform="translate(85.000000, 85.000000) rotate(45.000000) translate(-85.000000, -85.000000) " cx="85" cy="85" r="60"></circle>
+                        <circle id="Oval-Copy-2" fill="#2196F3" transform="translate(85.000000, 565.000000) rotate(45.000000) translate(-85.000000, -565.000000) " cx="85" cy="565" r="60"></circle>
+                    </g>
+                    <g id="Group-Copy" stroke-width="1" fill="none" transform="translate(325.000000, 300.000000) rotate(90.000000) translate(-325.000000, -300.000000) translate(240.000000, -25.000000)">
+                        <circle id="Oval-Copy-3" fill="#2196F3" transform="translate(85.000000, 85.000000) rotate(45.000000) translate(-85.000000, -85.000000) " cx="85" cy="85" r="60"></circle>
+                        <circle id="Oval-Copy-2" fill="#2196F3" transform="translate(85.000000, 565.000000) rotate(45.000000) translate(-85.000000, -565.000000) " cx="85" cy="565" r="60"></circle>
+                    </g>
+                    <g id="Group-Copy-2" stroke-width="1" fill="none" transform="translate(325.000000, 300.000000) rotate(135.000000) translate(-325.000000, -300.000000) translate(240.000000, -25.000000)">
+                        <circle id="Oval-Copy-3" fill="#2196F3" transform="translate(85.000000, 85.000000) rotate(45.000000) translate(-85.000000, -85.000000) " cx="85" cy="85" r="60"></circle>
+                        <circle id="Oval-Copy-2" fill="#2196F3" transform="translate(85.000000, 565.000000) rotate(45.000000) translate(-85.000000, -565.000000) " cx="85" cy="565" r="60"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
