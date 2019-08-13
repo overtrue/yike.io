@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     handleUploaded (response) {
-      if (!response.success) {
+      if (!response['url']) {
         this.$message.error(response.error)
       }
 
